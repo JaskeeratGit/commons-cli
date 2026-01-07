@@ -1,0 +1,25 @@
+{
+  "className": "Parser",
+  "methodName": "flatten",
+  "brief": "protected abstract String[] flatten(Options opts, String[] arguments, boolean stopAtNonOption) throws ParseException;",
+  "methodSignature": "flatten(Options, String[], boolean)",
+  "sourceCode": "protected abstract String[] flatten(Options opts, String[] arguments, boolean stopAtNonOption) throws ParseException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "Options",
+    "String[]",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Subclasses must implement this method to reduce the {@code arguments} that have been passed to the parse method.\n *\n * @param opts The Options to parse the arguments by.\n * @param arguments The arguments that have to be flattened.\n * @param stopAtNonOption specifies whether to stop flattening when a non option has been encountered\n * @return a String array of the flattened arguments\n * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n */\nprotected abstract String[] flatten(Options opts, String[] arguments, boolean stopAtNonOption) throws ParseException;",
+  "method_comment": "\n     * Subclasses must implement this method to reduce the {@code arguments} that have been passed to the parse method.\n     *\n     * @param opts The Options to parse the arguments by.\n     * @param arguments The arguments that have to be flattened.\n     * @param stopAtNonOption specifies whether to stop flattening when a non option has been encountered\n     * @return a String array of the flattened arguments\n     * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n     ",
+  "method_annotation": ""
+}

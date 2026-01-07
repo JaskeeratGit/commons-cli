@@ -1,0 +1,128 @@
+{
+  "method0": {
+    "methodName": "create",
+    "signature": "create()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "create",
+    "signature": "create(char)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method10": {
+    "methodName": "isRequired",
+    "signature": "isRequired()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method11": {
+    "methodName": "isRequired",
+    "signature": "isRequired(boolean)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method12": {
+    "methodName": "reset",
+    "signature": "reset()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method13": {
+    "methodName": "withArgName",
+    "signature": "withArgName(String)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method14": {
+    "methodName": "withDescription",
+    "signature": "withDescription(String)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method15": {
+    "methodName": "withLongOpt",
+    "signature": "withLongOpt(String)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method16": {
+    "methodName": "withType",
+    "signature": "withType(Class)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method17": {
+    "methodName": "withType",
+    "signature": "withType(Object)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method18": {
+    "methodName": "withValueSeparator",
+    "signature": "withValueSeparator()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method19": {
+    "methodName": "withValueSeparator",
+    "signature": "withValueSeparator(char)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "create",
+    "signature": "create(String)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method20": {
+    "methodName": "OptionBuilder",
+    "signature": "OptionBuilder()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "hasArg",
+    "signature": "hasArg()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "hasArg",
+    "signature": "hasArg(boolean)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "hasArgs",
+    "signature": "hasArgs()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "hasArgs",
+    "signature": "hasArgs(int)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "hasOptionalArg",
+    "signature": "hasOptionalArg()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "hasOptionalArgs",
+    "signature": "hasOptionalArgs()",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "hasOptionalArgs",
+    "signature": "hasOptionalArgs(int)",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "className": "TableDefinition",
+  "methodName": "rows",
+  "brief": "Iterable<List<String>> rows();",
+  "methodSignature": "rows()",
+  "sourceCode": "Iterable<List<String>> rows();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the collection of rows.\n * <p>\n * Each row is a list of Strings, one for each column in the table.\n * </p>\n *\n * @return The collection of rows.\n */\nIterable<List<String>> rows();",
+  "method_comment": "\n     * Gets the collection of rows.\n     * <p>\n     * Each row is a list of Strings, one for each column in the table.\n     * </p>\n     *\n     * @return The collection of rows.\n     ",
+  "method_annotation": ""
+}

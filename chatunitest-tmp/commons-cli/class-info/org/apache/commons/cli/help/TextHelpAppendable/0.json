@@ -1,0 +1,36 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "indexOfWrap",
+  "brief": "public static int indexOfWrap(final CharSequence text, final int width, final int startPos){}",
+  "methodSignature": "indexOfWrap(CharSequence, int, int)",
+  "sourceCode": "public static int indexOfWrap(final CharSequence text, final int width, final int startPos) {\n        if (width < 1) {\n            throw new IllegalArgumentException(\"Width must be greater than 0\");\n        }\n        // handle case of width > text.\n        // the line ends before the max wrap pos or a new line char found\n        final int limit = Math.min(startPos + width, text.length() - 1);\n        for (int idx = startPos; idx < limit; idx++) {\n            if (BREAK_CHAR_SET.contains(text.charAt(idx))) {\n                return idx;\n            }\n        }\n        if (startPos + width >= text.length()) {\n            return text.length();\n        }\n        int pos;\n        // look for the last whitespace character before limit\n        for (pos = limit; pos >= startPos; --pos) {\n            if (Util.isWhitespace(text.charAt(pos))) {\n                break;\n            }\n        }\n        // if we found it return it, otherwise just chop at limit\n        return pos > startPos ? pos : limit - 1;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "length()",
+      "charAt(int)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "java.util.Set": [
+      "contains(Object)"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "isWhitespace(char)"
+    ]
+  },
+  "full_method_info": "// @formatter:on\n/**\n * Finds the next text wrap position after {@code startPos} for the text in {@code text} with the column width {@code width}. The wrap point is the last\n * position before startPos+width having a whitespace character (space, \\n, \\r). If there is no whitespace character before startPos+width, it will return\n * startPos+width.\n *\n * @param text     The text being searched for the wrap position\n * @param width    width of the wrapped text\n * @param startPos position from which to start the lookup whitespace character\n * @return position on which the text must be wrapped or @{code text.length()} if the wrap position is at the end of the text.\n */\npublic static int indexOfWrap(final CharSequence text, final int width, final int startPos) {\n    if (width < 1) {\n        throw new IllegalArgumentException(\"Width must be greater than 0\");\n    }\n    // handle case of width > text.\n    // the line ends before the max wrap pos or a new line char found\n    final int limit = Math.min(startPos + width, text.length() - 1);\n    for (int idx = startPos; idx < limit; idx++) {\n        if (BREAK_CHAR_SET.contains(text.charAt(idx))) {\n            return idx;\n        }\n    }\n    if (startPos + width >= text.length()) {\n        return text.length();\n    }\n    int pos;\n    // look for the last whitespace character before limit\n    for (pos = limit; pos >= startPos; --pos) {\n        if (Util.isWhitespace(text.charAt(pos))) {\n            break;\n        }\n    }\n    // if we found it return it, otherwise just chop at limit\n    return pos > startPos ? pos : limit - 1;\n}",
+  "method_comment": "\n     * Finds the next text wrap position after {@code startPos} for the text in {@code text} with the column width {@code width}. The wrap point is the last\n     * position before startPos+width having a whitespace character (space, \\n, \\r). If there is no whitespace character before startPos+width, it will return\n     * startPos+width.\n     *\n     * @param text     The text being searched for the wrap position\n     * @param width    width of the wrapped text\n     * @param startPos position from which to start the lookup whitespace character\n     * @return position on which the text must be wrapped or @{code text.length()} if the wrap position is at the end of the text.\n     ",
+  "method_annotation": ""
+}

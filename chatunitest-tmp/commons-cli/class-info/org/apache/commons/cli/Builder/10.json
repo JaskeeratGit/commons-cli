@@ -1,0 +1,18 @@
+{
+  "className": "Builder",
+  "methodName": "hasArgs",
+  "brief": "public Builder hasArgs(){}",
+  "methodSignature": "hasArgs()",
+  "sourceCode": "public Builder hasArgs() {\n            argCount = UNLIMITED_VALUES;\n            return this;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether the Option can have unlimited argument values.\n *\n * @return this builder.\n */\npublic Builder hasArgs() {\n    argCount = UNLIMITED_VALUES;\n    return this;\n}",
+  "method_comment": "\n         * Tests whether the Option can have unlimited argument values.\n         *\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

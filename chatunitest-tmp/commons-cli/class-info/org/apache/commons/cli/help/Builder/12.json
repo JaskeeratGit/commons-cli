@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "setTextStyle",
+  "brief": "public Builder setTextStyle(final TextStyle style){}",
+  "methodSignature": "setTextStyle(TextStyle)",
+  "sourceCode": "public Builder setTextStyle(final TextStyle style) {\n            this.alignment = style.alignment;\n            this.leftPad = style.leftPad;\n            this.indent = style.indent;\n            this.scalable = style.scalable;\n            this.minWidth = style.minWidth;\n            this.maxWidth = style.maxWidth;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TextStyle"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle": []
+  },
+  "full_method_info": "/**\n * Sets all properties from the given text style.\n *\n * @param style the source text style.\n * @return this instance.\n */\npublic Builder setTextStyle(final TextStyle style) {\n    this.alignment = style.alignment;\n    this.leftPad = style.leftPad;\n    this.indent = style.indent;\n    this.scalable = style.scalable;\n    this.minWidth = style.minWidth;\n    this.maxWidth = style.maxWidth;\n    return this;\n}",
+  "method_comment": "\n         * Sets all properties from the given text style.\n         *\n         * @param style the source text style.\n         * @return this instance.\n         ",
+  "method_annotation": ""
+}

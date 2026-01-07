@@ -1,0 +1,39 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleConcatenatedOptions",
+  "brief": "protected void handleConcatenatedOptions(final String token) throws ParseException{}",
+  "methodSignature": "handleConcatenatedOptions(String)",
+  "sourceCode": "protected void handleConcatenatedOptions(final String token) throws ParseException {\n        for (int i = 1; i < token.length(); i++) {\n            final String ch = String.valueOf(token.charAt(i));\n            if (!options.hasOption(ch)) {\n                handleUnknownToken(nonOptionAction == NonOptionAction.STOP && i > 1 ? token.substring(i) : token);\n                break;\n            }\n            handleOption(options.getOption(ch));\n            if (currentOption != null && token.length() != i + 1) {\n                // add the trail as an argument of the option\n                currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(token.substring(i + 1)));\n                break;\n            }\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "length()",
+      "valueOf(char)",
+      "charAt(int)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "getOption(String)",
+      "hasOption(String)"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "stripLeadingAndTrailingQuotesDefaultOff(String)",
+      "handleUnknownToken(String)",
+      "handleOption(Option)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "processValue(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Breaks {@code token} into its constituent parts using the following algorithm.\n *\n * <ul>\n * <li>ignore the first character (\"<strong>-</strong>\")</li>\n * <li>for each remaining character check if an {@link Option} exists with that id.</li>\n * <li>if an {@link Option} does exist then add that character prepended with \"<strong>-</strong>\" to the list of processed\n * tokens.</li>\n * <li>if the {@link Option} can have an argument value and there are remaining characters in the token then add the\n * remaining characters as a token to the list of processed tokens.</li>\n * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS</strong> set then add the\n * special token \"<strong>--</strong>\" followed by the remaining characters and also the remaining tokens directly to the\n * processed tokens list.</li>\n * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS NOT</strong> set then add\n * that character prepended with \"<strong>-</strong>\".</li>\n * </ul>\n *\n * @param token The current token to be <strong>burst</strong> at the first non-Option encountered.\n * @throws ParseException if there are any problems encountered while parsing the command line token.\n */\nprotected void handleConcatenatedOptions(final String token) throws ParseException {\n    for (int i = 1; i < token.length(); i++) {\n        final String ch = String.valueOf(token.charAt(i));\n        if (!options.hasOption(ch)) {\n            handleUnknownToken(nonOptionAction == NonOptionAction.STOP && i > 1 ? token.substring(i) : token);\n            break;\n        }\n        handleOption(options.getOption(ch));\n        if (currentOption != null && token.length() != i + 1) {\n            // add the trail as an argument of the option\n            currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(token.substring(i + 1)));\n            break;\n        }\n    }\n}",
+  "method_comment": "\n     * Breaks {@code token} into its constituent parts using the following algorithm.\n     *\n     * <ul>\n     * <li>ignore the first character (\"<strong>-</strong>\")</li>\n     * <li>for each remaining character check if an {@link Option} exists with that id.</li>\n     * <li>if an {@link Option} does exist then add that character prepended with \"<strong>-</strong>\" to the list of processed\n     * tokens.</li>\n     * <li>if the {@link Option} can have an argument value and there are remaining characters in the token then add the\n     * remaining characters as a token to the list of processed tokens.</li>\n     * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS</strong> set then add the\n     * special token \"<strong>--</strong>\" followed by the remaining characters and also the remaining tokens directly to the\n     * processed tokens list.</li>\n     * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS NOT</strong> set then add\n     * that character prepended with \"<strong>-</strong>\".</li>\n     * </ul>\n     *\n     * @param token The current token to be <strong>burst</strong> at the first non-Option encountered.\n     * @throws ParseException if there are any problems encountered while parsing the command line token.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,26 @@
+{
+  "className": "DefaultParser",
+  "methodName": "isOption",
+  "brief": "private boolean isOption(final String token){}",
+  "methodSignature": "isOption(String)",
+  "sourceCode": "private boolean isOption(final String token) {\n        return isLongOption(token) || isShortOption(token);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.DefaultParser": [
+      "isLongOption(String)",
+      "isShortOption(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests if the token looks like an option.\n *\n * @param token\n */\nprivate boolean isOption(final String token) {\n    return isLongOption(token) || isShortOption(token);\n}",
+  "method_comment": "\n     * Tests if the token looks like an option.\n     *\n     * @param token\n     ",
+  "method_annotation": ""
+}

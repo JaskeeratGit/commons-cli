@@ -1,0 +1,25 @@
+{
+  "className": "TableDefinition",
+  "methodName": "from",
+  "brief": "static TableDefinition from(final String caption, final List<TextStyle> columnStyle, final List<String> headers, final Iterable<List<String>> rows){}",
+  "methodSignature": "from(String, List, List, Iterable)",
+  "sourceCode": "static TableDefinition from(final String caption, final List<TextStyle> columnStyle, final List<String> headers, final Iterable<List<String>> rows) {\n        return new TableDefinition() {\n\n            @Override\n            public String caption() {\n                return caption;\n            }\n\n            @Override\n            public List<TextStyle> columnTextStyles() {\n                return columnStyle;\n            }\n\n            @Override\n            public List<String> headers() {\n                return headers;\n            }\n\n            @Override\n            public Iterable<List<String>> rows() {\n                return rows;\n            }\n        };\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "List<TextStyle>",
+    "List<String>",
+    "Iterable<List<String>>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * A helper function to create a table instance from the various components.\n *\n * @param caption     The caption, may be {@code null}.\n * @param columnStyle a list of TextStyle elements defining the columns.\n * @param headers     the list of column headers.\n * @param rows        a collection of rows.\n * @return A TableDefinition returning the parameters as appropriate.\n */\nstatic TableDefinition from(final String caption, final List<TextStyle> columnStyle, final List<String> headers, final Iterable<List<String>> rows) {\n    return new TableDefinition() {\n\n        @Override\n        public String caption() {\n            return caption;\n        }\n\n        @Override\n        public List<TextStyle> columnTextStyles() {\n            return columnStyle;\n        }\n\n        @Override\n        public List<String> headers() {\n            return headers;\n        }\n\n        @Override\n        public Iterable<List<String>> rows() {\n            return rows;\n        }\n    };\n}",
+  "method_comment": "\n     * A helper function to create a table instance from the various components.\n     *\n     * @param caption     The caption, may be {@code null}.\n     * @param columnStyle a list of TextStyle elements defining the columns.\n     * @param headers     the list of column headers.\n     * @param rows        a collection of rows.\n     * @return A TableDefinition returning the parameters as appropriate.\n     ",
+  "method_annotation": ""
+}

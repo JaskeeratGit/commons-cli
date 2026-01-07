@@ -1,0 +1,18 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "getSyntaxPrefix",
+  "brief": "public final String getSyntaxPrefix(){}",
+  "methodSignature": "getSyntaxPrefix()",
+  "sourceCode": "public final String getSyntaxPrefix() {\n        return syntaxPrefix;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the currently set syntax prefix.\n *\n * @return The currently set syntax prefix.\n */\npublic final String getSyntaxPrefix() {\n    return syntaxPrefix;\n}",
+  "method_comment": "\n     * Gets the currently set syntax prefix.\n     *\n     * @return The currently set syntax prefix.\n     ",
+  "method_annotation": ""
+}

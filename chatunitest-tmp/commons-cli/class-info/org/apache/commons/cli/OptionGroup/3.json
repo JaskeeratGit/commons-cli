@@ -1,0 +1,18 @@
+{
+  "className": "OptionGroup",
+  "methodName": "getSelected",
+  "brief": "public String getSelected(){}",
+  "methodSignature": "getSelected()",
+  "sourceCode": "public String getSelected() {\n        return selected;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the selected option name.\n *\n * If the selected option is deprecated <em>no warning is logged</em>.\n * @return the selected option name.\n */\npublic String getSelected() {\n    return selected;\n}",
+  "method_comment": "\n     * Gets the selected option name.\n     *\n     * If the selected option is deprecated <em>no warning is logged</em>.\n     * @return the selected option name.\n     ",
+  "method_annotation": ""
+}

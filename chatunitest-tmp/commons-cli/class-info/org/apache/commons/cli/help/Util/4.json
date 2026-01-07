@@ -1,0 +1,27 @@
+{
+  "className": "Util",
+  "methodName": "ltrim",
+  "brief": "static String ltrim(final String s){}",
+  "methodSignature": "ltrim(String)",
+  "sourceCode": "static String ltrim(final String s) {\n        final int pos = indexOfNonWhitespace(s, 0);\n        return pos == NOT_FOUND ? \"\" : s.substring(pos);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "indexOfNonWhitespace(CharSequence, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Removes the leading whitespace from the specified String.\n *\n * @param s The String to remove the leading padding from.\n * @return The String of without the leading padding.\n */\nstatic String ltrim(final String s) {\n    final int pos = indexOfNonWhitespace(s, 0);\n    return pos == NOT_FOUND ? \"\" : s.substring(pos);\n}",
+  "method_comment": "\n     * Removes the leading whitespace from the specified String.\n     *\n     * @param s The String to remove the leading padding from.\n     * @return The String of without the leading padding.\n     ",
+  "method_annotation": ""
+}

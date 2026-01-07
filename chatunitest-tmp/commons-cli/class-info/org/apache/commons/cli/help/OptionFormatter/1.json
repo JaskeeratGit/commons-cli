@@ -1,0 +1,25 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "from",
+  "brief": "public static OptionFormatter from(final Option option){}",
+  "methodSignature": "from(Option)",
+  "sourceCode": "public static OptionFormatter from(final Option option) {\n        return new Builder().build(option);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [],
+    "org.apache.commons.cli.help.OptionFormatter.Builder": [
+      "build(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Construct the {@link OptionFormatter} from an {@link Option} using the default {@link OptionFormatter.Builder}.\n *\n * @param option the option to format.\n * @return an OptionFormatter for the specified @{code option}.\n */\npublic static OptionFormatter from(final Option option) {\n    return new Builder().build(option);\n}",
+  "method_comment": "\n     * Construct the {@link OptionFormatter} from an {@link Option} using the default {@link OptionFormatter.Builder}.\n     *\n     * @param option the option to format.\n     * @return an OptionFormatter for the specified @{code option}.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getLongOpt",
+  "brief": "public String getLongOpt(){}",
+  "methodSignature": "getLongOpt()",
+  "sourceCode": "public String getLongOpt() {\n        return longOption;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the long name of this Option.\n *\n * @return Long name of this option, or null, if there is no long name.\n */\npublic String getLongOpt() {\n    return longOption;\n}",
+  "method_comment": "\n     * Gets the long name of this Option.\n     *\n     * @return Long name of this option, or null, if there is no long name.\n     ",
+  "method_annotation": ""
+}

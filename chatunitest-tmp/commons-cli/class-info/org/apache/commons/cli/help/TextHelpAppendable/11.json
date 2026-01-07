@@ -1,0 +1,18 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "getTextStyleBuilder",
+  "brief": "public TextStyle.Builder getTextStyleBuilder(){}",
+  "methodSignature": "getTextStyleBuilder()",
+  "sourceCode": "public TextStyle.Builder getTextStyleBuilder() {\n        return textStyleBuilder;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the style builder used to format text that is not otherwise formatted.\n *\n * @return The style builder used to format text that is not otherwise formatted.\n */\npublic TextStyle.Builder getTextStyleBuilder() {\n    return textStyleBuilder;\n}",
+  "method_comment": "\n     * Gets the style builder used to format text that is not otherwise formatted.\n     *\n     * @return The style builder used to format text that is not otherwise formatted.\n     ",
+  "method_annotation": ""
+}

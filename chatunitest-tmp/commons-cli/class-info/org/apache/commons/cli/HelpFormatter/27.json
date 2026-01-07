@@ -1,0 +1,31 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printHelp",
+  "brief": "public void printHelp(final String cmdLineSyntax, final String header, final Options options, final String footer, final boolean autoUsage){}",
+  "methodSignature": "printHelp(String, String, Options, String, boolean)",
+  "sourceCode": "public void printHelp(final String cmdLineSyntax, final String header, final Options options, final String footer, final boolean autoUsage) {\n        printHelp(getWidth(), cmdLineSyntax, header, options, footer, autoUsage);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Options",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [],
+    "org.apache.commons.cli.HelpFormatter": [
+      "getWidth()",
+      "printHelp(int, String, String, Options, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the help for {@code options} with the specified command line syntax. This method prints help information\n * to {@link System#out} by default.\n *\n * @param cmdLineSyntax the syntax for this application\n * @param header the banner to display at the beginning of the help\n * @param options the Options instance\n * @param footer the banner to display at the end of the help\n * @param autoUsage whether to print an automatically generated usage statement\n */\npublic void printHelp(final String cmdLineSyntax, final String header, final Options options, final String footer, final boolean autoUsage) {\n    printHelp(getWidth(), cmdLineSyntax, header, options, footer, autoUsage);\n}",
+  "method_comment": "\n     * Prints the help for {@code options} with the specified command line syntax. This method prints help information\n     * to {@link System#out} by default.\n     *\n     * @param cmdLineSyntax the syntax for this application\n     * @param header the banner to display at the beginning of the help\n     * @param options the Options instance\n     * @param footer the banner to display at the end of the help\n     * @param autoUsage whether to print an automatically generated usage statement\n     ",
+  "method_annotation": ""
+}

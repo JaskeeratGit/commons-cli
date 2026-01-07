@@ -1,0 +1,33 @@
+{
+  "className": "Options",
+  "methodName": "addOptions",
+  "brief": "public Options addOptions(final Options options){}",
+  "methodSignature": "addOptions(Options)",
+  "sourceCode": "public Options addOptions(final Options options) {\n        for (final Option opt : options.getOptions()) {\n            if (hasOption(opt.getKey())) {\n                throw new IllegalArgumentException(\"Duplicate key: \" + opt.getKey());\n            }\n            addOption(opt);\n        }\n        options.getOptionGroups().forEach(this::addOptionGroup);\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "getOptions()",
+      "hasOption(String)",
+      "addOption(Option)",
+      "getOptionGroups()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ],
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds options to this option.  If any Option in {@code options} already exists\n * in this Options an IllegalArgumentException is thrown.\n *\n * @param options the options to add.\n * @return The resulting Options instance.\n * @since 1.7.0\n */\npublic Options addOptions(final Options options) {\n    for (final Option opt : options.getOptions()) {\n        if (hasOption(opt.getKey())) {\n            throw new IllegalArgumentException(\"Duplicate key: \" + opt.getKey());\n        }\n        addOption(opt);\n    }\n    options.getOptionGroups().forEach(this::addOptionGroup);\n    return this;\n}",
+  "method_comment": "\n     * Adds options to this option.  If any Option in {@code options} already exists\n     * in this Options an IllegalArgumentException is thrown.\n     *\n     * @param options the options to add.\n     * @return The resulting Options instance.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

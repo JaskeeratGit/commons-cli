@@ -1,0 +1,36 @@
+{
+  "className": "DefaultParser",
+  "methodName": "isShortOption",
+  "brief": "private boolean isShortOption(final String token){}",
+  "methodSignature": "isShortOption(String)",
+  "sourceCode": "private boolean isShortOption(final String token) {\n        // short options (-S, -SV, -S=V, -SV1=V2, -S1S2)\n        if (token == null || !token.startsWith(\"-\") || token.length() == 1) {\n            return false;\n        }\n        // remove leading \"-\" and \"=value\"\n        final int pos = indexOfEqual(token);\n        final String optName = pos == -1 ? token.substring(1) : token.substring(1, pos);\n        if (options.hasShortOption(optName)) {\n            return true;\n        }\n        // check for several concatenated short options\n        return !optName.isEmpty() && options.hasShortOption(String.valueOf(optName.charAt(0)));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "isEmpty()",
+      "substring(int, int)",
+      "length()",
+      "valueOf(char)",
+      "charAt(int)"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "indexOfEqual(String)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "hasShortOption(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests if the token looks like a short option.\n *\n * @param token\n */\nprivate boolean isShortOption(final String token) {\n    // short options (-S, -SV, -S=V, -SV1=V2, -S1S2)\n    if (token == null || !token.startsWith(\"-\") || token.length() == 1) {\n        return false;\n    }\n    // remove leading \"-\" and \"=value\"\n    final int pos = indexOfEqual(token);\n    final String optName = pos == -1 ? token.substring(1) : token.substring(1, pos);\n    if (options.hasShortOption(optName)) {\n        return true;\n    }\n    // check for several concatenated short options\n    return !optName.isEmpty() && options.hasShortOption(String.valueOf(optName.charAt(0)));\n}",
+  "method_comment": "\n     * Tests if the token looks like a short option.\n     *\n     * @param token\n     ",
+  "method_annotation": ""
+}

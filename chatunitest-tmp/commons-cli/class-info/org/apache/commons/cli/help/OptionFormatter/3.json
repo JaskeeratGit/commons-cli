@@ -1,0 +1,33 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "getBothOpt",
+  "brief": "public String getBothOpt(){}",
+  "methodSignature": "getBothOpt()",
+  "sourceCode": "public String getBothOpt() {\n        final String lOpt = getLongOpt();\n\n        final StringBuilder sb = new StringBuilder(getOpt());\n        if (sb.length() > 0 && !Util.isEmpty(lOpt)) {\n            sb.append(optSeparator);\n        }\n        // sb will not be empty as Option requries at least one of opt or longOpt.\n        return sb.append(getLongOpt()).toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.OptionFormatter": [
+      "getOpt()",
+      "getLongOpt()"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "isEmpty(CharSequence)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets both options separated by the specified option separator. Correctly handles the case where one option is not specified.\n *\n * @return The one or both of the short and/or long Opt with the associate prefixes.\n */\npublic String getBothOpt() {\n    final String lOpt = getLongOpt();\n    final StringBuilder sb = new StringBuilder(getOpt());\n    if (sb.length() > 0 && !Util.isEmpty(lOpt)) {\n        sb.append(optSeparator);\n    }\n    // sb will not be empty as Option requries at least one of opt or longOpt.\n    return sb.append(getLongOpt()).toString();\n}",
+  "method_comment": "\n     * Gets both options separated by the specified option separator. Correctly handles the case where one option is not specified.\n     *\n     * @return The one or both of the short and/or long Opt with the associate prefixes.\n     ",
+  "method_annotation": ""
+}

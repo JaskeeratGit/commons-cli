@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getLongOptSeparator",
+  "brief": "public String getLongOptSeparator(){}",
+  "methodSignature": "getLongOptSeparator()",
+  "sourceCode": "public String getLongOptSeparator() {\n        return longOptSeparator;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the separator displayed between a long option and its value.\n *\n * @return the separator\n * @since 1.3\n */\npublic String getLongOptSeparator() {\n    return longOptSeparator;\n}",
+  "method_comment": "\n     * Gets the separator displayed between a long option and its value.\n     *\n     * @return the separator\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

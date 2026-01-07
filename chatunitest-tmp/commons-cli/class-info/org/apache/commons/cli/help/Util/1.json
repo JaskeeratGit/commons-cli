@@ -1,0 +1,30 @@
+{
+  "className": "Util",
+  "methodName": "indexOfNonWhitespace",
+  "brief": "static int indexOfNonWhitespace(final CharSequence text, final int startPos){}",
+  "methodSignature": "indexOfNonWhitespace(CharSequence, int)",
+  "sourceCode": "static int indexOfNonWhitespace(final CharSequence text, final int startPos) {\n        if (isEmpty(text)) {\n            return NOT_FOUND;\n        }\n        // the line ends before the max wrap pos or a new line char found\n        int idx = startPos;\n        while (idx < text.length() && isWhitespace(text.charAt(idx))) {\n            idx++;\n        }\n        return idx < text.length() ? idx : NOT_FOUND;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "length()",
+      "charAt(int)"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "isWhitespace(char)",
+      "isEmpty(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * Finds the index of the first non whitespace character.\n *\n * @param text     the text to search in.\n * @param startPos the starting position to search from.\n * @return the index of the first non whitespace character or -1 if non found.\n */\nstatic int indexOfNonWhitespace(final CharSequence text, final int startPos) {\n    if (isEmpty(text)) {\n        return NOT_FOUND;\n    }\n    // the line ends before the max wrap pos or a new line char found\n    int idx = startPos;\n    while (idx < text.length() && isWhitespace(text.charAt(idx))) {\n        idx++;\n    }\n    return idx < text.length() ? idx : NOT_FOUND;\n}",
+  "method_comment": "\n     * Finds the index of the first non whitespace character.\n     *\n     * @param text     the text to search in.\n     * @param startPos the starting position to search from.\n     * @return the index of the first non whitespace character or -1 if non found.\n     ",
+  "method_annotation": ""
+}

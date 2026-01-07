@@ -1,0 +1,36 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleLongOptionWithoutEqual",
+  "brief": "private void handleLongOptionWithoutEqual(final String token) throws ParseException{}",
+  "methodSignature": "handleLongOptionWithoutEqual(String)",
+  "sourceCode": "private void handleLongOptionWithoutEqual(final String token) throws ParseException {\n        final List<String> matchingOpts = getMatchingLongOptions(token);\n        if (matchingOpts.isEmpty()) {\n            handleUnknownToken(currentToken);\n        } else if (matchingOpts.size() > 1 && !options.hasLongOption(token)) {\n            throw new AmbiguousOptionException(token, matchingOpts);\n        } else {\n            final String key = options.hasLongOption(token) ? token : matchingOpts.get(0);\n            handleOption(options.getOption(key));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.DefaultParser": [
+      "handleUnknownToken(String)",
+      "handleOption(Option)",
+      "getMatchingLongOptions(String)"
+    ],
+    "java.util.List": [
+      "isEmpty()",
+      "get(int)",
+      "size()"
+    ],
+    "org.apache.commons.cli.Options": [
+      "hasLongOption(String)",
+      "getOption(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Handles the following tokens:\n *\n * <pre>\n * --L -L --l -l\n * </pre>\n *\n * @param token the command line token to handle.\n */\nprivate void handleLongOptionWithoutEqual(final String token) throws ParseException {\n    final List<String> matchingOpts = getMatchingLongOptions(token);\n    if (matchingOpts.isEmpty()) {\n        handleUnknownToken(currentToken);\n    } else if (matchingOpts.size() > 1 && !options.hasLongOption(token)) {\n        throw new AmbiguousOptionException(token, matchingOpts);\n    } else {\n        final String key = options.hasLongOption(token) ? token : matchingOpts.get(0);\n        handleOption(options.getOption(key));\n    }\n}",
+  "method_comment": "\n     * Handles the following tokens:\n     *\n     * <pre>\n     * --L -L --l -l\n     * </pre>\n     *\n     * @param token the command line token to handle.\n     ",
+  "method_annotation": ""
+}

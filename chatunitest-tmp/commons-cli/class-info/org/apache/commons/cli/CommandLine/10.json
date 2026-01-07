@@ -1,0 +1,22 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptions",
+  "brief": "public Option[] getOptions(){}",
+  "methodSignature": "getOptions()",
+  "sourceCode": "public Option[] getOptions() {\n        return options.toArray(Option.EMPTY_ARRAY);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.List": [
+      "toArray(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * Gets an array of the processed {@link Option}s.\n *\n * @return an array of the processed {@link Option}s.\n */\npublic Option[] getOptions() {\n    return options.toArray(Option.EMPTY_ARRAY);\n}",
+  "method_comment": "\n     * Gets an array of the processed {@link Option}s.\n     *\n     * @return an array of the processed {@link Option}s.\n     ",
+  "method_annotation": ""
+}

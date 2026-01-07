@@ -1,0 +1,25 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createNumber",
+  "brief": "@Deprecated // since 1.7.0\n    public static Number createNumber(final String string) throws ParseException{}",
+  "methodSignature": "createNumber(String)",
+  "sourceCode": "@Deprecated // since 1.7.0\n    public static Number createNumber(final String string) throws ParseException {\n        return createValue(string, Number.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValue(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a number from a String. If a '.' is present, it creates a Double, otherwise a Long.\n *\n * @param string the value\n * @return the number represented by {@code string}\n * @throws ParseException if {@code string} is not a number\n */\n// since 1.7.0\n@Deprecated\npublic static Number createNumber(final String string) throws ParseException {\n    return createValue(string, Number.class);\n}",
+  "method_comment": "\n     * Creates a number from a String. If a '.' is present, it creates a Double, otherwise a Long.\n     *\n     * @param string the value\n     * @return the number represented by {@code string}\n     * @throws ParseException if {@code string} is not a number\n     ",
+  "method_annotation": "// since 1.7.0\n@Deprecated\n"
+}

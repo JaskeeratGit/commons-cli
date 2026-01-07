@@ -1,0 +1,80 @@
+{
+  "method0": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method1": {
+    "methodName": "from",
+    "signature": "from(Option)",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method10": {
+    "methodName": "toSyntaxOption",
+    "signature": "toSyntaxOption()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method11": {
+    "methodName": "toSyntaxOption",
+    "signature": "toSyntaxOption(boolean)",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method12": {
+    "methodName": "OptionFormatter",
+    "signature": "OptionFormatter(Option, Builder)",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method2": {
+    "methodName": "getArgName",
+    "signature": "getArgName()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method3": {
+    "methodName": "getBothOpt",
+    "signature": "getBothOpt()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method4": {
+    "methodName": "getDescription",
+    "signature": "getDescription()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method5": {
+    "methodName": "getLongOpt",
+    "signature": "getLongOpt()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method6": {
+    "methodName": "getOpt",
+    "signature": "getOpt()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method7": {
+    "methodName": "getSince",
+    "signature": "getSince()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method8": {
+    "methodName": "isRequired",
+    "signature": "isRequired()",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method9": {
+    "methodName": "toOptional",
+    "signature": "toOptional(String)",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help"
+  }
+}

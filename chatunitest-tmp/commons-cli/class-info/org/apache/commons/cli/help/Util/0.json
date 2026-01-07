@@ -1,0 +1,26 @@
+{
+  "className": "Util",
+  "methodName": "defaultValue",
+  "brief": "static <T extends CharSequence> T defaultValue(final T str, final T defaultValue){}",
+  "methodSignature": "defaultValue(T, T)",
+  "sourceCode": "static <T extends CharSequence> T defaultValue(final T str, final T defaultValue) {\n        return isEmpty(str) ? defaultValue : str;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "T",
+    "T"
+  ],
+  "dependentMethods": {
+    "T": [],
+    "org.apache.commons.cli.help.Util": [
+      "isEmpty(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the {@code defaultValue} if {@code str} is empty.\n *\n * @param str          The string to check\n * @param defaultValue the default value if the string is empty.\n * @param <T>          The type of arguments.\n * @return the {@code defaultValue} if {@code str} is empty,\n */\nstatic <T extends CharSequence> T defaultValue(final T str, final T defaultValue) {\n    return isEmpty(str) ? defaultValue : str;\n}",
+  "method_comment": "\n     * Returns the {@code defaultValue} if {@code str} is empty.\n     *\n     * @param str          The string to check\n     * @param defaultValue the default value if the string is empty.\n     * @param <T>          The type of arguments.\n     * @return the {@code defaultValue} if {@code str} is empty,\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "getHelpAppendable",
+  "brief": "protected HelpAppendable getHelpAppendable(){}",
+  "methodSignature": "getHelpAppendable()",
+  "sourceCode": "protected HelpAppendable getHelpAppendable() {\n        return helpAppendable;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the help appendable.\n *\n * @return The help appendable.\n */\nprotected HelpAppendable getHelpAppendable() {\n    return helpAppendable;\n}",
+  "method_comment": "\n     * Gets the help appendable.\n     *\n     * @return The help appendable.\n     ",
+  "method_annotation": ""
+}

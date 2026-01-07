@@ -1,0 +1,32 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionProperties",
+  "brief": "public Properties getOptionProperties(final String optionName){}",
+  "methodSignature": "getOptionProperties(String)",
+  "sourceCode": "public Properties getOptionProperties(final String optionName) {\n        final Properties props = new Properties();\n        for (final Option option : options) {\n            if (optionName.equals(option.getOpt()) || optionName.equals(option.getLongOpt())) {\n                processPropertiesFromValues(props, option.getValuesList());\n            }\n        }\n        return props;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getOpt()",
+      "getValuesList()",
+      "getLongOpt()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "processPropertiesFromValues(Properties, String>)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the map of values associated to the option. This is convenient for options specifying Java properties like\n * <code>-Dparam1=value1\n * -Dparam2=value2</code>. The first argument of the option is the key, and the 2nd argument is the value. If the option\n * has only one argument ({@code -Dfoo}) it is considered as a boolean flag and the value is {@code \"true\"}.\n *\n * @param optionName name of the option.\n * @return The Properties mapped by the option, never {@code null} even if the option doesn't exists.\n * @since 1.2\n */\npublic Properties getOptionProperties(final String optionName) {\n    final Properties props = new Properties();\n    for (final Option option : options) {\n        if (optionName.equals(option.getOpt()) || optionName.equals(option.getLongOpt())) {\n            processPropertiesFromValues(props, option.getValuesList());\n        }\n    }\n    return props;\n}",
+  "method_comment": "\n     * Gets the map of values associated to the option. This is convenient for options specifying Java properties like\n     * <code>-Dparam1=value1\n     * -Dparam2=value2</code>. The first argument of the option is the key, and the 2nd argument is the value. If the option\n     * has only one argument ({@code -Dfoo}) it is considered as a boolean flag and the value is {@code \"true\"}.\n     *\n     * @param optionName name of the option.\n     * @return The Properties mapped by the option, never {@code null} even if the option doesn't exists.\n     * @since 1.2\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,113 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+/**
+ * Unit tests for CommandLine#getOptionValue(char)
+ */
+public class CommandLine_getOptionValue_11_0_Test {
+
+    /**
+     * Test helper subclass that overrides getOptionValue(String) so we can assert that
+     * getOptionValue(char) forwards correctly with the one-character String.
+     */
+    static class TestableCommandLine extends CommandLine {
+
+        private String lastReceived;
+
+        private final String toReturnPrefix;
+
+        TestableCommandLine() {
+            this("");
+        }
+
+        TestableCommandLine(String toReturnPrefix) {
+            // calls protected no-arg constructor
+            super();
+            this.toReturnPrefix = toReturnPrefix;
+        }
+
+        @Override
+        public String getOptionValue(final String optionName) {
+            this.lastReceived = optionName;
+            return toReturnPrefix + optionName;
+        }
+
+        String getLastReceived() {
+            return lastReceived;
+        }
+    }
+
+    @Test
+    public void testGetOptionValue_forwardsCharToStringOverload_directCall() {
+        TestableCommandLine cmd = new TestableCommandLine("val-");
+        String result = cmd.getOptionValue('a');
+        assertEquals("val-a", result, "Expected returned value to be built from the single-character option name");
+        assertEquals("a", cmd.getLastReceived(), "Expected getOptionValue(String) to be called with the single-character string");
+    }
+
+    @Test
+    public void testGetOptionValue_forwardsCharToStringOverload_reflectiveInvocation() throws Exception {
+        TestableCommandLine cmd = new TestableCommandLine("R-");
+        // Use reflection to invoke the char overload (simulating reflective usage)
+        Method method = CommandLine.class.getMethod("getOptionValue", char.class);
+        Object result = method.invoke(cmd, 'Z');
+        assertTrue(result instanceof String);
+        assertEquals("R-Z", result);
+        assertEquals("Z", cmd.getLastReceived(), "Reflective invocation should still forward a single-character string");
+    }
+
+    @Test
+    public void testCanInstantiatePrivateConstructorViaReflection_andFieldsAreSet() throws Exception {
+        // Use reflection to call the private constructor CommandLine(List<String>, List<Option>, Consumer<Option>)
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        List<String> args = new LinkedList<>();
+        args.add("arg1");
+        // generics erased at runtime, safe to pass
+        List<Option> options = new ArrayList<>();
+        // allowed by constructor (deprecated handler)
+        Consumer<Option> handler = null;
+        CommandLine created = ctor.newInstance(args, options, handler);
+        // ensure instance was created and internal fields were set to the passed lists (via reflection)
+        var fArgs = CommandLine.class.getDeclaredField("args");
+        var fOptions = CommandLine.class.getDeclaredField("options");
+        fArgs.setAccessible(true);
+        fOptions.setAccessible(true);
+        Object actualArgs = fArgs.get(created);
+        Object actualOptions = fOptions.get(created);
+        assertSame(args, actualArgs, "Constructor should assign the provided args list");
+        assertSame(options, actualOptions, "Constructor should assign the provided options list");
+        // Finally, ensure that getOptionValue(char) exists and is invocable (do not rely on internal behavior)
+        Method getOptionValueChar = CommandLine.class.getMethod("getOptionValue", char.class);
+        Object rtn = getOptionValueChar.invoke(created, 'x');
+        // We don't assert on a specific return because the real implementation may depend on other internals;
+        // instead assert that invocation completed (returned something or null).
+        assertTrue(rtn == null || rtn instanceof String);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getOptionValue_11_0_Test: line 90 : cannot find symbol
+  symbol:   class var
+  location: class org.apache.commons.cli.CommandLine_getOptionValue_11_0_Test
+Error in CommandLine_getOptionValue_11_0_Test: line 91 : cannot find symbol
+  symbol:   class var
+  location: class org.apache.commons.cli.CommandLine_getOptionValue_11_0_Test

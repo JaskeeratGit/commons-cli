@@ -1,0 +1,28 @@
+{
+  "className": "Option",
+  "methodName": "toDeprecatedString",
+  "brief": "String toDeprecatedString(){}",
+  "methodSignature": "toDeprecatedString()",
+  "sourceCode": "String toDeprecatedString() {\n        if (!isDeprecated()) {\n            return \"\";\n        }\n        // @formatter:off\n        final StringBuilder buf = new StringBuilder()\n                .append(\"Option '\")\n                .append(option)\n                .append(Char.APOS);\n        // @formatter:on\n        if (longOption != null) {\n            buf.append(Char.APOS).append(longOption).append(Char.APOS);\n        }\n        buf.append(\": \").append(deprecated);\n        return buf.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "isDeprecated()"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(Object)",
+      "append(String)"
+    ]
+  },
+  "full_method_info": "String toDeprecatedString() {\n    if (!isDeprecated()) {\n        return \"\";\n    }\n    // @formatter:off\n    final StringBuilder buf = new StringBuilder().append(\"Option '\").append(option).append(Char.APOS);\n    // @formatter:on\n    if (longOption != null) {\n        buf.append(Char.APOS).append(longOption).append(Char.APOS);\n    }\n    buf.append(\": \").append(deprecated);\n    return buf.toString();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

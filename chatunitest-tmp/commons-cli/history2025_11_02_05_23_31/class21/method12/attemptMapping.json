@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "TypeHandler_openFile_12_0_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_openFile_12_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_openFile_12_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "openFile",
+    "methodSig": "openFile(String)"
+  },
+  "attempt1": {
+    "testClassName": "TypeHandler_openFile_12_1_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_openFile_12_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_openFile_12_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "openFile",
+    "methodSig": "openFile(String)"
+  },
+  "attempt2": {
+    "testClassName": "TypeHandler_openFile_12_2_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_openFile_12_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_openFile_12_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "openFile",
+    "methodSig": "openFile(String)"
+  },
+  "attempt3": {
+    "testClassName": "TypeHandler_openFile_12_3_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_openFile_12_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_openFile_12_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "openFile",
+    "methodSig": "openFile(String)"
+  },
+  "attempt4": {
+    "testClassName": "TypeHandler_openFile_12_4_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_openFile_12_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_openFile_12_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "openFile",
+    "methodSig": "openFile(String)"
+  }
+}

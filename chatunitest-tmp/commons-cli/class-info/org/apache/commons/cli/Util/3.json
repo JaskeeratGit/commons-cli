@@ -1,0 +1,28 @@
+{
+  "className": "Util",
+  "methodName": "stripLeadingHyphens",
+  "brief": "static String stripLeadingHyphens(final String str){}",
+  "methodSignature": "stripLeadingHyphens(String)",
+  "sourceCode": "static String stripLeadingHyphens(final String str) {\n        if (isEmpty(str)) {\n            return str;\n        }\n        if (str.startsWith(\"--\")) {\n            return str.substring(2);\n        }\n        if (str.startsWith(\"-\")) {\n            return str.substring(1);\n        }\n        return str;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)"
+    ],
+    "org.apache.commons.cli.Util": [
+      "isEmpty(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Removes the hyphens from the beginning of {@code str} and return the new String.\n *\n * @param str The string from which the hyphens should be removed.\n * @return the new String.\n */\nstatic String stripLeadingHyphens(final String str) {\n    if (isEmpty(str)) {\n        return str;\n    }\n    if (str.startsWith(\"--\")) {\n        return str.substring(2);\n    }\n    if (str.startsWith(\"-\")) {\n        return str.substring(1);\n    }\n    return str;\n}",
+  "method_comment": "\n     * Removes the hyphens from the beginning of {@code str} and return the new String.\n     *\n     * @param str The string from which the hyphens should be removed.\n     * @return the new String.\n     ",
+  "method_annotation": ""
+}

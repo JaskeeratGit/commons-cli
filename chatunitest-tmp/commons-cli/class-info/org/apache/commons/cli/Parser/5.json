@@ -1,0 +1,28 @@
+{
+  "className": "Parser",
+  "methodName": "parse",
+  "brief": "@Override\n    public CommandLine parse(final Options options, final String[] arguments, final boolean stopAtNonOption) throws ParseException{}",
+  "methodSignature": "parse(Options, String[], boolean)",
+  "sourceCode": "@Override\n    public CommandLine parse(final Options options, final String[] arguments, final boolean stopAtNonOption) throws ParseException {\n        return parse(options, arguments, null, stopAtNonOption);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": [],
+    "org.apache.commons.cli.Parser": [
+      "parse(Options, String[], Properties, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the specified {@code arguments} based on the specified {@link Options}.\n *\n * @param options the {@code Options}\n * @param arguments the {@code arguments}\n * @param stopAtNonOption if {@code true} an unrecognized argument stops the parsing and the remaining arguments\n *        are added to the {@link CommandLine}s args list. If {@code false} an unrecognized argument triggers a\n *        ParseException.\n * @return the {@code CommandLine}\n * @throws ParseException if an error occurs when parsing the arguments.\n */\n@Override\npublic CommandLine parse(final Options options, final String[] arguments, final boolean stopAtNonOption) throws ParseException {\n    return parse(options, arguments, null, stopAtNonOption);\n}",
+  "method_comment": "\n     * Parses the specified {@code arguments} based on the specified {@link Options}.\n     *\n     * @param options the {@code Options}\n     * @param arguments the {@code arguments}\n     * @param stopAtNonOption if {@code true} an unrecognized argument stops the parsing and the remaining arguments\n     *        are added to the {@link CommandLine}s args list. If {@code false} an unrecognized argument triggers a\n     *        ParseException.\n     * @return the {@code CommandLine}\n     * @throws ParseException if an error occurs when parsing the arguments.\n     ",
+  "method_annotation": "@Override\n"
+}

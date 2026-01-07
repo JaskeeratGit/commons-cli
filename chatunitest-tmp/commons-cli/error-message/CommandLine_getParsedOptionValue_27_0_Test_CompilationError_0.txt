@@ -1,0 +1,99 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+class CommandLine_getParsedOptionValue_27_0_Test {
+
+    /**
+     * Test subclass that overrides the String-based getParsedOptionValue
+     * so we can observe the argument passed when the char-based variant is used.
+     */
+    static class TestableCommandLine extends CommandLine {
+
+        volatile String lastReceived = null;
+
+        volatile Object toReturn = null;
+
+        // protected no-arg constructor of CommandLine is accessible from same package
+        TestableCommandLine() {
+            super();
+        }
+
+        @Override
+        public <T> T getParsedOptionValue(final String optionName) {
+            this.lastReceived = optionName;
+            @SuppressWarnings("unchecked")
+            T ret = (T) toReturn;
+            return ret;
+        }
+    }
+
+    @Test
+    void delegatesToStringVariant_directCall() {
+        TestableCommandLine cl = new TestableCommandLine();
+        cl.toReturn = "RETURNED";
+        // call the char-based method directly
+        String result = cl.getParsedOptionValue('x');
+        assertEquals("x", cl.lastReceived, "Expected the char to be converted to its String form");
+        assertEquals("RETURNED", result, "Expected the overridden method's return value to be propagated");
+    }
+
+    @Test
+    void delegatesToStringVariant_reflectionInvoke() throws Exception {
+        TestableCommandLine cl = new TestableCommandLine();
+        // use Integer to show generic return works
+        cl.toReturn = 12345;
+        // obtain the char-accepting method via reflection and invoke it
+        Method m = CommandLine.class.getDeclaredMethod("getParsedOptionValue", char.class);
+        m.setAccessible(true);
+        Object result = m.invoke(cl, 'A');
+        assertEquals("A", cl.lastReceived, "Reflection-invoked char method should delegate to String method with String.valueOf(char)");
+        assertEquals(12345, result, "Return value from overridden String method should be returned by the char method");
+    }
+
+    @Test
+    void charZeroIsConvertedToString() {
+        TestableCommandLine cl = new TestableCommandLine();
+        cl.toReturn = "ZERO";
+        String result = cl.getParsedOptionValue('\0');
+        assertEquals("\0", cl.lastReceived, "Null character should be converted to a one-character String");
+        assertEquals("ZERO", result);
+    }
+
+    @Test
+    void privateConstructor_requiresNonNullArgs() throws Exception {
+        // Attempt to call the private constructor that requires non-null args and assert it throws NPE
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        try {
+            // pass null for args to trigger the Objects.requireNonNull check in the private constructor
+            ctor.newInstance(null, new ArrayList<>(), null);
+            fail("Expected InvocationTargetException with cause NullPointerException when passing null args");
+        } catch (InvocationTargetException ite) {
+            assertNotNull(ite.getCause());
+            assertTrue(ite.getCause() instanceof NullPointerException, "Expected NullPointerException cause from constructor");
+        }
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getParsedOptionValue_27_0_Test: line 54 : unreported exception org.apache.commons.cli.ParseException; must be caught or declared to be thrown
+Error in CommandLine_getParsedOptionValue_27_0_Test: line 76 : unreported exception org.apache.commons.cli.ParseException; must be caught or declared to be thrown

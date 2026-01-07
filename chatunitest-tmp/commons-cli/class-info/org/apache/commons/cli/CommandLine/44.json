@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getParsedOptionValues",
+  "brief": "public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}",
+  "methodSignature": "getParsedOptionValues(Option, T[])",
+  "sourceCode": "public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException {\n        return getParsedOptionValues(option, () -> defaultValue);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option",
+    "T[]"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [],
+    "T": [],
+    "org.apache.commons.cli.CommandLine": [
+      "getParsedOptionValues(Option, Supplier<T[]>)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a version of this {@code Option} converted to an array of a particular type.\n *\n * @param option the option.\n * @param defaultValue the default value to return if opt is not set.\n * @param <T> The array type for the return value.\n * @return the values parsed into an array of objects or the defaultValue if the option is not set.\n * @throws ParseException if there are problems turning the option value into the desired type\n * @see PatternOptionBuilder\n * @since 1.10.0\n */\npublic <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException {\n    return getParsedOptionValues(option, () -> defaultValue);\n}",
+  "method_comment": "\n     * Gets a version of this {@code Option} converted to an array of a particular type.\n     *\n     * @param option the option.\n     * @param defaultValue the default value to return if opt is not set.\n     * @param <T> The array type for the return value.\n     * @return the values parsed into an array of objects or the defaultValue if the option is not set.\n     * @throws ParseException if there are problems turning the option value into the desired type\n     * @see PatternOptionBuilder\n     * @since 1.10.0\n     ",
+  "method_annotation": ""
+}

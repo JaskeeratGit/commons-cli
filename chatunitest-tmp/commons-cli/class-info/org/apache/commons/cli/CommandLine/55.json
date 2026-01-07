@@ -1,0 +1,26 @@
+{
+  "className": "CommandLine",
+  "methodName": "hasOption",
+  "brief": "public boolean hasOption(final String optionName){}",
+  "methodSignature": "hasOption(String)",
+  "sourceCode": "public boolean hasOption(final String optionName) {\n        return hasOption(resolveOption(optionName));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.CommandLine": [
+      "resolveOption(String)",
+      "hasOption(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests to see if an option has been set.\n *\n * @param optionName Short name of the option.\n * @return true if set, false if not.\n */\npublic boolean hasOption(final String optionName) {\n    return hasOption(resolveOption(optionName));\n}",
+  "method_comment": "\n     * Tests to see if an option has been set.\n     *\n     * @param optionName Short name of the option.\n     * @return true if set, false if not.\n     ",
+  "method_annotation": ""
+}

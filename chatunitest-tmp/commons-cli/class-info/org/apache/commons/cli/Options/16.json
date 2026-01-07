@@ -1,0 +1,22 @@
+{
+  "className": "Options",
+  "methodName": "helpOptions",
+  "brief": "List<Option> helpOptions(){}",
+  "methodSignature": "helpOptions()",
+  "sourceCode": "List<Option> helpOptions() {\n        return new ArrayList<>(shortOpts.values());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "values()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the Options for use by the HelpFormatter.\n *\n * @return the List of Options.\n */\nList<Option> helpOptions() {\n    return new ArrayList<>(shortOpts.values());\n}",
+  "method_comment": "\n     * Returns the Options for use by the HelpFormatter.\n     *\n     * @return the List of Options.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,25 @@
+{
+  "className": "Option",
+  "methodName": "getValues",
+  "brief": "public String[] getValues(){}",
+  "methodSignature": "getValues()",
+  "sourceCode": "public String[] getValues() {\n        return hasNoValues() ? null : values.toArray(EMPTY_STRING_ARRAY);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "hasNoValues()"
+    ],
+    "java.util.List": [
+      "toArray(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the values of this Option as a String array or an empty array if there are no values.\n *\n * @return the values of this Option as a String array or an empty array if there are no values.\n */\npublic String[] getValues() {\n    return hasNoValues() ? null : values.toArray(EMPTY_STRING_ARRAY);\n}",
+  "method_comment": "\n     * Gets the values of this Option as a String array or an empty array if there are no values.\n     *\n     * @return the values of this Option as a String array or an empty array if there are no values.\n     ",
+  "method_annotation": ""
+}

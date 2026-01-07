@@ -1,0 +1,18 @@
+{
+  "className": "AlreadySelectedException",
+  "methodName": "getOptionGroup",
+  "brief": "public OptionGroup getOptionGroup(){}",
+  "methodSignature": "getOptionGroup()",
+  "sourceCode": "public OptionGroup getOptionGroup() {\n        return optionGroup;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the option group where another option has been selected.\n *\n * @return the related option group\n * @since 1.2\n */\npublic OptionGroup getOptionGroup() {\n    return optionGroup;\n}",
+  "method_comment": "\n     * Gets the option group where another option has been selected.\n     *\n     * @return the related option group\n     * @since 1.2\n     ",
+  "method_annotation": ""
+}

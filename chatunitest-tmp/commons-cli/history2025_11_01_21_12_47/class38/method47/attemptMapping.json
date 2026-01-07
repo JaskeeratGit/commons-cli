@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "CommandLine_getParsedOptionValues_47_0_Test",
+    "fullName": "org.apache.commons.cli.CommandLine_getParsedOptionValues_47_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/CommandLine_getParsedOptionValues_47_0_Test.java",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getParsedOptionValues",
+    "methodSig": "getParsedOptionValues(OptionGroup, T[])"
+  },
+  "attempt1": {
+    "testClassName": "CommandLine_getParsedOptionValues_47_1_Test",
+    "fullName": "org.apache.commons.cli.CommandLine_getParsedOptionValues_47_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/CommandLine_getParsedOptionValues_47_0_Test.java",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getParsedOptionValues",
+    "methodSig": "getParsedOptionValues(OptionGroup, T[])"
+  },
+  "attempt2": {
+    "testClassName": "CommandLine_getParsedOptionValues_47_2_Test",
+    "fullName": "org.apache.commons.cli.CommandLine_getParsedOptionValues_47_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/CommandLine_getParsedOptionValues_47_0_Test.java",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getParsedOptionValues",
+    "methodSig": "getParsedOptionValues(OptionGroup, T[])"
+  },
+  "attempt3": {
+    "testClassName": "CommandLine_getParsedOptionValues_47_3_Test",
+    "fullName": "org.apache.commons.cli.CommandLine_getParsedOptionValues_47_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/CommandLine_getParsedOptionValues_47_0_Test.java",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getParsedOptionValues",
+    "methodSig": "getParsedOptionValues(OptionGroup, T[])"
+  },
+  "attempt4": {
+    "testClassName": "CommandLine_getParsedOptionValues_47_4_Test",
+    "fullName": "org.apache.commons.cli.CommandLine_getParsedOptionValues_47_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/CommandLine_getParsedOptionValues_47_0_Test.java",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getParsedOptionValues",
+    "methodSig": "getParsedOptionValues(OptionGroup, T[])"
+  }
+}

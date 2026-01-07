@@ -1,0 +1,58 @@
+{
+  "fullClassName": "org.apache.commons.cli.AmbiguousOptionException",
+  "className": "AmbiguousOptionException",
+  "index": 35,
+  "modifier": "[public ]",
+  "extend": "[UnrecognizedOptionException]",
+  "implement": "[]",
+  "packageName": "org.apache.commons.cli",
+  "packageDeclaration": "package org.apache.commons.cli;",
+  "classSignature": "public class AmbiguousOptionException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Collection;",
+    "import java.util.Iterator;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 5829816121277947229L;",
+    "private final Collection<String> matchingOptions;"
+  ],
+  "superClasses": [
+    "UnrecognizedOptionException"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "createMessage(String, Collection)": "0",
+    "getMatchingOptions()": "1",
+    "AmbiguousOptionException(String, Collection)": "2"
+  },
+  "methodsBrief": [
+    "private static String createMessage(final String option, final Collection<String> matchingOptions){}",
+    "public Collection<String> getMatchingOptions(){}",
+    "public AmbiguousOptionException(final String option, final Collection<String> matchingOptions){}"
+  ],
+  "constructorSigs": [
+    "AmbiguousOptionException(String, Collection)"
+  ],
+  "constructorBrief": [
+    "public AmbiguousOptionException(final String option, final Collection<String> matchingOptions){}"
+  ],
+  "getterSetterSigs": [
+    "getMatchingOptions()"
+  ],
+  "getterSetterBrief": [
+    "public Collection<String> getMatchingOptions(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.AmbiguousOptionException": [
+      "createMessage(String, String>)"
+    ]
+  },
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli;\n\nimport java.util.Collection;\nimport java.util.Iterator;\n\n/**\n * Exception thrown when an option can't be identified from a partial name.\n *\n * @since 1.3\n */\npublic class AmbiguousOptionException extends UnrecognizedOptionException {\n\n    /**\n     * This exception {@code serialVersionUID}.\n     */\n    private static final long serialVersionUID = 5829816121277947229L;\n\n    /**\n     * Build the exception message from the specified list of options.\n     *\n     * @param option\n     * @param matchingOptions\n     * @return\n     */\n    private static String createMessage(final String option, final Collection<String> matchingOptions) {\n        final StringBuilder buf = new StringBuilder(\"Ambiguous option: '\");\n        buf.append(option);\n        buf.append(\"'  (could be: \");\n        final Iterator<String> it = matchingOptions.iterator();\n        while (it.hasNext()) {\n            buf.append(Char.APOS);\n            buf.append(it.next());\n            buf.append(Char.APOS);\n            if (it.hasNext()) {\n                buf.append(\", \");\n            }\n        }\n        buf.append(\")\");\n        return buf.toString();\n    }\n\n    /**\n     * The list of options matching the partial name specified\n     */\n    private final Collection<String> matchingOptions;\n\n    public AmbiguousOptionException(final String option, final Collection<String> matchingOptions) {\n        super(createMessage(option, matchingOptions), option);\n        this.matchingOptions = matchingOptions;\n    }\n\n    /**\n     * Gets the options matching the partial name.\n     *\n     * @return a collection of options matching the name\n     */\n    public Collection<String> getMatchingOptions() {\n        return matchingOptions;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Exception thrown when an option can't be identified from a partial name.\n *\n * @since 1.3\n */\npublic class AmbiguousOptionException extends UnrecognizedOptionException {\n\n    /**\n     * This exception {@code serialVersionUID}.\n     */\n    private static final long serialVersionUID = 5829816121277947229L;\n\n    /**\n     * Build the exception message from the specified list of options.\n     *\n     * @param option\n     * @param matchingOptions\n     * @return\n     */\n    private static String createMessage(final String option, final Collection<String> matchingOptions) {\n        final StringBuilder buf = new StringBuilder(\"Ambiguous option: '\");\n        buf.append(option);\n        buf.append(\"'  (could be: \");\n        final Iterator<String> it = matchingOptions.iterator();\n        while (it.hasNext()) {\n            buf.append(Char.APOS);\n            buf.append(it.next());\n            buf.append(Char.APOS);\n            if (it.hasNext()) {\n                buf.append(\", \");\n            }\n        }\n        buf.append(\")\");\n        return buf.toString();\n    }\n\n    /**\n     * The list of options matching the partial name specified\n     */\n    private final Collection<String> matchingOptions;\n\n    public AmbiguousOptionException(final String option, final Collection<String> matchingOptions) {\n        super(createMessage(option, matchingOptions), option);\n        this.matchingOptions = matchingOptions;\n    }\n\n    /**\n     * Gets the options matching the partial name.\n     *\n     * @return a collection of options matching the name\n     */\n    public Collection<String> getMatchingOptions() {\n        return matchingOptions;\n    }\n}",
+  "subClasses": []
+}

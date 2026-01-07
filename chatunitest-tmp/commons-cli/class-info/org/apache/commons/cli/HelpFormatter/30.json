@@ -1,0 +1,61 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printUsage",
+  "brief": "public void printUsage(final PrintWriter pw, final int width, final String app, final Options options){}",
+  "methodSignature": "printUsage(PrintWriter, int, String, Options)",
+  "sourceCode": "public void printUsage(final PrintWriter pw, final int width, final String app, final Options options) {\n        // initialize the string buffer\n        final StringBuilder buff = new StringBuilder(getSyntaxPrefix()).append(app).append(Char.SP);\n        // create a list for processed option groups\n        final Collection<OptionGroup> processedGroups = new ArrayList<>();\n        final List<Option> optList = new ArrayList<>(options.getOptions());\n        if (getOptionComparator() != null) {\n            Collections.sort(optList, getOptionComparator());\n        }\n        // iterate over the options\n        for (final Iterator<Option> it = optList.iterator(); it.hasNext();) {\n            // get the next Option\n            final Option option = it.next();\n            // check if the option is part of an OptionGroup\n            final OptionGroup group = options.getOptionGroup(option);\n            // if the option is part of a group\n            if (group != null) {\n                // and if the group has not already been processed\n                if (!processedGroups.contains(group)) {\n                    // add the group to the processed list\n                    processedGroups.add(group);\n                    // add the usage clause\n                    appendOptionGroup(buff, group);\n                }\n                // otherwise the option was displayed in the group\n                // previously so ignore it.\n            }\n            // if the Option is not part of an OptionGroup\n            else {\n                appendOption(buff, option, option.isRequired());\n            }\n            if (it.hasNext()) {\n                buff.append(Char.SP);\n            }\n        }\n\n        // call printWrapped\n        printWrapped(pw, width, buff.toString().indexOf(' ') + 1, buff.toString());\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PrintWriter",
+    "int",
+    "String",
+    "Options"
+  ],
+  "dependentMethods": {
+    "java.io.PrintWriter": [],
+    "java.lang.String": [
+      "indexOf(int)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "getOptions()",
+      "getOptionGroup(Option)"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(String)"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "appendOption(StringBuilder, Option, boolean)",
+      "appendOptionGroup(StringBuilder, OptionGroup)",
+      "getOptionComparator()",
+      "printWrapped(PrintWriter, int, int, String)",
+      "getSyntaxPrefix()"
+    ],
+    "java.util.Collections": [
+      "sort(List<T>, Comparator<? super T>)"
+    ],
+    "java.util.List": [
+      "iterator()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.util.Collection": [
+      "contains(Object)",
+      "add(E)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "isRequired()"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the usage statement for the specified application.\n *\n * @param pw The PrintWriter to print the usage statement\n * @param width The number of characters to display per line\n * @param app The application name\n * @param options The command line Options\n */\npublic void printUsage(final PrintWriter pw, final int width, final String app, final Options options) {\n    // initialize the string buffer\n    final StringBuilder buff = new StringBuilder(getSyntaxPrefix()).append(app).append(Char.SP);\n    // create a list for processed option groups\n    final Collection<OptionGroup> processedGroups = new ArrayList<>();\n    final List<Option> optList = new ArrayList<>(options.getOptions());\n    if (getOptionComparator() != null) {\n        Collections.sort(optList, getOptionComparator());\n    }\n    // iterate over the options\n    for (final Iterator<Option> it = optList.iterator(); it.hasNext(); ) {\n        // get the next Option\n        final Option option = it.next();\n        // check if the option is part of an OptionGroup\n        final OptionGroup group = options.getOptionGroup(option);\n        // if the option is part of a group\n        if (group != null) {\n            // and if the group has not already been processed\n            if (!processedGroups.contains(group)) {\n                // add the group to the processed list\n                processedGroups.add(group);\n                // add the usage clause\n                appendOptionGroup(buff, group);\n            }\n            // otherwise the option was displayed in the group\n            // previously so ignore it.\n        } else // if the Option is not part of an OptionGroup\n        {\n            appendOption(buff, option, option.isRequired());\n        }\n        if (it.hasNext()) {\n            buff.append(Char.SP);\n        }\n    }\n    // call printWrapped\n    printWrapped(pw, width, buff.toString().indexOf(' ') + 1, buff.toString());\n}",
+  "method_comment": "\n     * Prints the usage statement for the specified application.\n     *\n     * @param pw The PrintWriter to print the usage statement\n     * @param width The number of characters to display per line\n     * @param app The application name\n     * @param options The command line Options\n     ",
+  "method_annotation": ""
+}

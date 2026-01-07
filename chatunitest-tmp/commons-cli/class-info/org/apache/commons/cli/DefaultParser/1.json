@@ -1,0 +1,24 @@
+{
+  "className": "DefaultParser",
+  "methodName": "indexOfEqual",
+  "brief": "static int indexOfEqual(final String token){}",
+  "methodSignature": "indexOfEqual(String)",
+  "sourceCode": "static int indexOfEqual(final String token) {\n        return token.indexOf(Char.EQUAL);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "indexOf(int)"
+    ]
+  },
+  "full_method_info": "static int indexOfEqual(final String token) {\n    return token.indexOf(Char.EQUAL);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Option_hasLongOpt_29_0_Test",
+    "fullName": "org.apache.commons.cli.Option_hasLongOpt_29_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasLongOpt_29_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasLongOpt",
+    "methodSig": "hasLongOpt()"
+  },
+  "attempt1": {
+    "testClassName": "Option_hasLongOpt_29_1_Test",
+    "fullName": "org.apache.commons.cli.Option_hasLongOpt_29_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasLongOpt_29_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasLongOpt",
+    "methodSig": "hasLongOpt()"
+  },
+  "attempt2": {
+    "testClassName": "Option_hasLongOpt_29_2_Test",
+    "fullName": "org.apache.commons.cli.Option_hasLongOpt_29_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasLongOpt_29_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasLongOpt",
+    "methodSig": "hasLongOpt()"
+  },
+  "attempt3": {
+    "testClassName": "Option_hasLongOpt_29_3_Test",
+    "fullName": "org.apache.commons.cli.Option_hasLongOpt_29_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasLongOpt_29_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasLongOpt",
+    "methodSig": "hasLongOpt()"
+  },
+  "attempt4": {
+    "testClassName": "Option_hasLongOpt_29_4_Test",
+    "fullName": "org.apache.commons.cli.Option_hasLongOpt_29_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasLongOpt_29_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasLongOpt",
+    "methodSig": "hasLongOpt()"
+  }
+}

@@ -1,0 +1,131 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+
+public class Options_hasOption_14_0_Test {
+
+    private Options options;
+
+    @BeforeEach
+    public void setUp() {
+        options = new Options();
+    }
+
+    @Test
+    public void testHasShortOptionExactAndWithHyphen() throws Exception {
+        putOptionIntoField("shortOpts", "a");
+        // exact
+        assertTrue(options.hasOption("a"));
+        // single hyphen
+        assertTrue(options.hasOption("-a"));
+        // double hyphen also strips to "a"
+        assertTrue(options.hasOption("--a"));
+    }
+
+    @Test
+    public void testHasLongOptionExactAndWithHyphens() throws Exception {
+        putOptionIntoField("longOpts", "help");
+        assertTrue(options.hasOption("help"));
+        // single hyphen leads to "help"
+        assertTrue(options.hasOption("-help"));
+        // double hyphen leads to "help"
+        assertTrue(options.hasOption("--help"));
+    }
+
+    @Test
+    public void testAbsentOption() throws Exception {
+        putOptionIntoField("shortOpts", "x");
+        putOptionIntoField("longOpts", "longX");
+        assertFalse(options.hasOption("y"));
+        assertFalse(options.hasOption("-y"));
+        assertFalse(options.hasOption("--y"));
+        // ensure unrelated formats do not match stored keys
+        assertFalse(options.hasOption("---y"));
+    }
+
+    @Test
+    public void testBothShortAndLongPresent() throws Exception {
+        putOptionIntoField("shortOpts", "dup");
+        putOptionIntoField("longOpts", "dup");
+        // either source should result in true
+        assertTrue(options.hasOption("dup"));
+        assertTrue(options.hasOption("-dup"));
+        assertTrue(options.hasOption("--dup"));
+    }
+
+    @Test
+    public void testWeirdHyphensDoNotMatchShortKey() throws Exception {
+        putOptionIntoField("shortOpts", "a");
+        // "---a" is stripped of only two leading hyphens, resulting in "-a", which should not match "a"
+        assertFalse(options.hasOption("---a"));
+    }
+
+    @Test
+    public void testEmptyStringKeyAndHyphenVariants() throws Exception {
+        // put an empty key into short options and verify behavior with hyphen variants
+        putOptionIntoField("shortOpts", "");
+        // exact empty string
+        assertTrue(options.hasOption(""));
+        // single "-" strips to empty string
+        assertTrue(options.hasOption("-"));
+        // double "--" strips to empty string
+        assertTrue(options.hasOption("--"));
+    }
+
+    // Helper to inject Option instances into private Maps shortOpts/longOpts via reflection
+    @SuppressWarnings("unchecked")
+    private void putOptionIntoField(String fieldName, String key) throws Exception {
+        Field field = Options.class.getDeclaredField(fieldName);
+        field.setAccessible(true);
+        Map<String, Option> map = (Map<String, Option>) field.get(options);
+        map.put(key, new Option(key));
+    }
+}
+
+// Minimal stub of Option to satisfy Options' generic type usage in tests.
+// Kept package-private and simple.
+class Option {
+
+    private final String name;
+
+    Option(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+// Minimal stub for OptionGroup in case it's referenced elsewhere; not used directly here.
+class OptionGroup {
+    // no-op
+}
+
+--------------------------------------------
+Error in testEmptyStringKeyAndHyphenVariants(): line 95 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testEmptyStringKeyAndHyphenVariants(): line 80 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testAbsentOption(): line 95 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testAbsentOption(): line 51 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testWeirdHyphensDoNotMatchShortKey(): line 95 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testWeirdHyphensDoNotMatchShortKey(): line 72 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testHasLongOptionExactAndWithHyphens(): line 95 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testHasLongOptionExactAndWithHyphens(): line 41 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testBothShortAndLongPresent(): line 95 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testBothShortAndLongPresent(): line 62 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testHasShortOptionExactAndWithHyphen(): line 95 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V
+Error in testHasShortOptionExactAndWithHyphen(): line 30 : java.lang.NoSuchMethodError: org.apache.commons.cli.Option.<init>(Ljava/lang/String;)V

@@ -1,0 +1,24 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "HelpFormatter",
+  "brief": "private HelpFormatter(final Function<Option, String> deprecatedFormatFunction, final PrintWriter printWriter, final boolean showSince){}",
+  "methodSignature": "HelpFormatter(Function, PrintWriter, boolean)",
+  "sourceCode": "private HelpFormatter(final Function<Option, String> deprecatedFormatFunction, final PrintWriter printWriter, final boolean showSince) {\n        // TODO All other instance HelpFormatter instance variables.\n        // Make HelpFormatter immutable for 2.0\n        this.deprecatedFormatFunction = deprecatedFormatFunction;\n        this.printWriter = printWriter;\n        this.showSince = showSince;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Function<Option,String>",
+    "PrintWriter",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.io.PrintWriter": []
+  },
+  "full_method_info": "private HelpFormatter(final Function<Option, String> deprecatedFormatFunction, final PrintWriter printWriter, final boolean showSince) {\n    // TODO All other instance HelpFormatter instance variables.\n    // Make HelpFormatter immutable for 2.0\n    this.deprecatedFormatFunction = deprecatedFormatFunction;\n    this.printWriter = printWriter;\n    this.showSince = showSince;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

@@ -1,0 +1,33 @@
+{
+  "className": "TextStyle",
+  "methodName": "pad",
+  "brief": "public CharSequence pad(final boolean addIndent, final CharSequence text){}",
+  "methodSignature": "pad(boolean, CharSequence)",
+  "sourceCode": "public CharSequence pad(final boolean addIndent, final CharSequence text) {\n        if (text.length() >= maxWidth) {\n            return text;\n        }\n        String indentPad;\n        String rest;\n        final StringBuilder sb = new StringBuilder();\n        switch (alignment) {\n        case CENTER:\n            int padLen;\n            if (maxWidth == UNSET_MAX_WIDTH) {\n                padLen = addIndent ? indent : 0;\n            } else {\n                padLen = maxWidth - text.length();\n            }\n            final int left = padLen / 2;\n            indentPad = Util.repeatSpace(left);\n            rest = Util.repeatSpace(padLen - left);\n            sb.append(indentPad).append(text).append(rest);\n            break;\n        case LEFT:\n        case RIGHT:\n        default: // default should never happen. It is here to keep code coverage happy.\n            if (maxWidth == UNSET_MAX_WIDTH) {\n                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";\n                rest = \"\";\n            } else {\n                int restLen = maxWidth - text.length();\n                if (addIndent && restLen > indent) {\n                    indentPad = Util.repeatSpace(indent);\n                    restLen -= indent;\n                } else {\n                    indentPad = \"\";\n                }\n                rest = Util.repeatSpace(restLen);\n            }\n\n            if (alignment == Alignment.LEFT) {\n                sb.append(indentPad).append(text).append(rest);\n            } else {\n                sb.append(indentPad).append(rest).append(text);\n            }\n            break;\n        }\n        return sb.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean",
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "length()"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "repeatSpace(int)"
+    ],
+    "java.lang.StringBuilder": [
+      "append(CharSequence)",
+      "toString()",
+      "append(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Pads a string to the maximum width or optionally to the maximum width - indent.\n * <ul>\n * <li>Returns the string unchanged if it is longer than the specified length.</li>\n * <li>Will add the padding based on the alignment.</li>\n * </ul>\n *\n * @param addIndent if {@code true} account for the indent when padding the string.\n * @param text      the text to pad.\n * @return the padded string.\n */\npublic CharSequence pad(final boolean addIndent, final CharSequence text) {\n    if (text.length() >= maxWidth) {\n        return text;\n    }\n    String indentPad;\n    String rest;\n    final StringBuilder sb = new StringBuilder();\n    switch(alignment) {\n        case CENTER:\n            int padLen;\n            if (maxWidth == UNSET_MAX_WIDTH) {\n                padLen = addIndent ? indent : 0;\n            } else {\n                padLen = maxWidth - text.length();\n            }\n            final int left = padLen / 2;\n            indentPad = Util.repeatSpace(left);\n            rest = Util.repeatSpace(padLen - left);\n            sb.append(indentPad).append(text).append(rest);\n            break;\n        case LEFT:\n        case RIGHT:\n        default:\n            // default should never happen. It is here to keep code coverage happy.\n            if (maxWidth == UNSET_MAX_WIDTH) {\n                indentPad = addIndent ? Util.repeatSpace(indent) : \"\";\n                rest = \"\";\n            } else {\n                int restLen = maxWidth - text.length();\n                if (addIndent && restLen > indent) {\n                    indentPad = Util.repeatSpace(indent);\n                    restLen -= indent;\n                } else {\n                    indentPad = \"\";\n                }\n                rest = Util.repeatSpace(restLen);\n            }\n            if (alignment == Alignment.LEFT) {\n                sb.append(indentPad).append(text).append(rest);\n            } else {\n                sb.append(indentPad).append(rest).append(text);\n            }\n            break;\n    }\n    return sb.toString();\n}",
+  "method_comment": "\n     * Pads a string to the maximum width or optionally to the maximum width - indent.\n     * <ul>\n     * <li>Returns the string unchanged if it is longer than the specified length.</li>\n     * <li>Will add the padding based on the alignment.</li>\n     * </ul>\n     *\n     * @param addIndent if {@code true} account for the indent when padding the string.\n     * @param text      the text to pad.\n     * @return the padded string.\n     ",
+  "method_annotation": ""
+}

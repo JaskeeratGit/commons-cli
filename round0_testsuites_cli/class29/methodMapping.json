@@ -1,0 +1,320 @@
+{
+  "method0": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "builder",
+    "signature": "builder(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method10": {
+    "methodName": "getConverter",
+    "signature": "getConverter()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method11": {
+    "methodName": "getDeprecated",
+    "signature": "getDeprecated()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method12": {
+    "methodName": "getDescription",
+    "signature": "getDescription()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method13": {
+    "methodName": "getId",
+    "signature": "getId()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method14": {
+    "methodName": "getKey",
+    "signature": "getKey()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method15": {
+    "methodName": "getLongOpt",
+    "signature": "getLongOpt()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method16": {
+    "methodName": "getOpt",
+    "signature": "getOpt()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method17": {
+    "methodName": "getSince",
+    "signature": "getSince()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method18": {
+    "methodName": "getType",
+    "signature": "getType()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method19": {
+    "methodName": "getValue",
+    "signature": "getValue()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "acceptsArg",
+    "signature": "acceptsArg()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method20": {
+    "methodName": "getValue",
+    "signature": "getValue(int)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method21": {
+    "methodName": "getValue",
+    "signature": "getValue(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method22": {
+    "methodName": "getValues",
+    "signature": "getValues()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method23": {
+    "methodName": "getValueSeparator",
+    "signature": "getValueSeparator()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method24": {
+    "methodName": "getValuesList",
+    "signature": "getValuesList()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method25": {
+    "methodName": "hasArg",
+    "signature": "hasArg()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method26": {
+    "methodName": "hasArgName",
+    "signature": "hasArgName()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method27": {
+    "methodName": "hasArgs",
+    "signature": "hasArgs()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method28": {
+    "methodName": "hashCode",
+    "signature": "hashCode()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method29": {
+    "methodName": "hasLongOpt",
+    "signature": "hasLongOpt()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "add",
+    "signature": "add(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method30": {
+    "methodName": "hasNoValues",
+    "signature": "hasNoValues()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method31": {
+    "methodName": "hasOptionalArg",
+    "signature": "hasOptionalArg()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method32": {
+    "methodName": "hasValueSeparator",
+    "signature": "hasValueSeparator()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method33": {
+    "methodName": "isDeprecated",
+    "signature": "isDeprecated()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method34": {
+    "methodName": "isRequired",
+    "signature": "isRequired()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method35": {
+    "methodName": "processValue",
+    "signature": "processValue(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method36": {
+    "methodName": "requiresArg",
+    "signature": "requiresArg()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method37": {
+    "methodName": "setArgName",
+    "signature": "setArgName(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method38": {
+    "methodName": "setArgs",
+    "signature": "setArgs(int)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method39": {
+    "methodName": "setConverter",
+    "signature": "setConverter(Converter)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "addValue",
+    "signature": "addValue(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method40": {
+    "methodName": "setDescription",
+    "signature": "setDescription(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method41": {
+    "methodName": "setLongOpt",
+    "signature": "setLongOpt(String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method42": {
+    "methodName": "setOptionalArg",
+    "signature": "setOptionalArg(boolean)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method43": {
+    "methodName": "setRequired",
+    "signature": "setRequired(boolean)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method44": {
+    "methodName": "setType",
+    "signature": "setType(Class)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method45": {
+    "methodName": "setType",
+    "signature": "setType(Object)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method46": {
+    "methodName": "setValueSeparator",
+    "signature": "setValueSeparator(char)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method47": {
+    "methodName": "toDeprecatedString",
+    "signature": "toDeprecatedString()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method48": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method49": {
+    "methodName": "Option",
+    "signature": "Option(Builder)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "clearValues",
+    "signature": "clearValues()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method50": {
+    "methodName": "Option",
+    "signature": "Option(String, boolean, String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method51": {
+    "methodName": "Option",
+    "signature": "Option(String, String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method52": {
+    "methodName": "Option",
+    "signature": "Option(String, String, boolean, String)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "clone",
+    "signature": "clone()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "equals",
+    "signature": "equals(Object)",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "getArgName",
+    "signature": "getArgName()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "getArgs",
+    "signature": "getArgs()",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli"
+  }
+}

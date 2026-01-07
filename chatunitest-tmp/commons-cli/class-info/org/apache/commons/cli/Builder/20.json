@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "valueSeparator",
+  "brief": "public Builder valueSeparator(final char valueSeparator){}",
+  "methodSignature": "valueSeparator(char)",
+  "sourceCode": "public Builder valueSeparator(final char valueSeparator) {\n            this.valueSeparator = valueSeparator;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The Option will use {@code sep} as a means to separate argument values.\n * <p>\n * <strong>Example:</strong>\n * </p>\n *\n * <pre>\n * Option opt = Option.builder(\"D\").hasArgs().valueSeparator('=').build();\n * Options options = new Options();\n * options.addOption(opt);\n * String[] args = { \"-Dkey=value\" };\n * CommandLineParser parser = new DefaultParser();\n * CommandLine line = parser.parse(options, args);\n * String propertyName = line.getOptionValues(\"D\")[0]; // will be \"key\"\n * String propertyValue = line.getOptionValues(\"D\")[1]; // will be \"value\"\n * </pre>\n *\n * @param valueSeparator The value separator.\n * @return this builder.\n */\npublic Builder valueSeparator(final char valueSeparator) {\n    this.valueSeparator = valueSeparator;\n    return this;\n}",
+  "method_comment": "\n         * The Option will use {@code sep} as a means to separate argument values.\n         * <p>\n         * <strong>Example:</strong>\n         * </p>\n         *\n         * <pre>\n         * Option opt = Option.builder(\"D\").hasArgs().valueSeparator('=').build();\n         * Options options = new Options();\n         * options.addOption(opt);\n         * String[] args = { \"-Dkey=value\" };\n         * CommandLineParser parser = new DefaultParser();\n         * CommandLine line = parser.parse(options, args);\n         * String propertyName = line.getOptionValues(\"D\")[0]; // will be \"key\"\n         * String propertyValue = line.getOptionValues(\"D\")[1]; // will be \"value\"\n         * </pre>\n         *\n         * @param valueSeparator The value separator.\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

@@ -1,0 +1,27 @@
+{
+  "className": "Option",
+  "methodName": "acceptsArg",
+  "brief": "boolean acceptsArg(){}",
+  "methodSignature": "acceptsArg()",
+  "sourceCode": "boolean acceptsArg() {\n        return (hasArg() || hasArgs() || hasOptionalArg()) && (argCount <= 0 || values.size() < argCount);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "hasArg()",
+      "hasOptionalArg()",
+      "hasArgs()"
+    ],
+    "java.util.List": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether the option can accept more arguments.\n *\n * @return false if the maximum number of arguments is reached.\n * @since 1.3\n */\nboolean acceptsArg() {\n    return (hasArg() || hasArgs() || hasOptionalArg()) && (argCount <= 0 || values.size() < argCount);\n}",
+  "method_comment": "\n     * Tests whether the option can accept more arguments.\n     *\n     * @return false if the maximum number of arguments is reached.\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

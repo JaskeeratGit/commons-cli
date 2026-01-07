@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "optionalArg",
+  "brief": "public Builder optionalArg(final boolean optionalArg){}",
+  "methodSignature": "optionalArg(boolean)",
+  "sourceCode": "public Builder optionalArg(final boolean optionalArg) {\n            if (optionalArg && argCount == UNINITIALIZED) {\n                argCount = 1;\n            }\n            this.optionalArg = optionalArg;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether the Option can have an optional argument.\n *\n * @param optionalArg specifies whether the Option can have an optional argument.\n * @return this builder.\n */\npublic Builder optionalArg(final boolean optionalArg) {\n    if (optionalArg && argCount == UNINITIALIZED) {\n        argCount = 1;\n    }\n    this.optionalArg = optionalArg;\n    return this;\n}",
+  "method_comment": "\n         * Sets whether the Option can have an optional argument.\n         *\n         * @param optionalArg specifies whether the Option can have an optional argument.\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

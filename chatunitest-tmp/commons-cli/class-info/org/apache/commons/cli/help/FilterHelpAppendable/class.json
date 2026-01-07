@@ -1,0 +1,53 @@
+{
+  "fullClassName": "org.apache.commons.cli.help.FilterHelpAppendable",
+  "className": "FilterHelpAppendable",
+  "index": 1,
+  "modifier": "[public , abstract ]",
+  "extend": "[]",
+  "implement": "[HelpAppendable]",
+  "packageName": "org.apache.commons.cli.help",
+  "packageDeclaration": "package org.apache.commons.cli.help;",
+  "classSignature": "public abstract class FilterHelpAppendable",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": true,
+  "imports": [
+    "import java.io.IOException;"
+  ],
+  "fields": [
+    "protected final Appendable output;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "HelpAppendable"
+  ],
+  "methodSigs": {
+    "append(char)": "0",
+    "append(CharSequence)": "1",
+    "append(CharSequence, int, int)": "2",
+    "FilterHelpAppendable(Appendable)": "3"
+  },
+  "methodsBrief": [
+    "@Override\n    public FilterHelpAppendable append(final char ch) throws IOException{}",
+    "@Override\n    public FilterHelpAppendable append(final CharSequence text) throws IOException{}",
+    "@Override\n    public FilterHelpAppendable append(final CharSequence csq, final int start, final int end) throws IOException{}",
+    "protected FilterHelpAppendable(final Appendable output){}"
+  ],
+  "constructorSigs": [
+    "FilterHelpAppendable(Appendable)"
+  ],
+  "constructorBrief": [
+    "protected FilterHelpAppendable(final Appendable output){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.Appendable": []
+  },
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli.help;\n\nimport java.io.IOException;\n\n/**\n * An abstract implementation of {@link HelpAppendable} that writes output to an {@link Appendable} instance.\n * <p>\n * This class is the superclass of all classes that filter help appendables. These appendable sit on top of an existing appendable (the <em>underlying</em>\n * appendable) which it uses as its basic sink of data, but possibly transforming the data along the way or providing additional functionality.\n * </p>\n * <p>\n * The class {@code FilterHelpAppendable} itself simply overrides all methods of {@code HelpAppendable} with versions that pass all requests to the underlying\n * appendable. Subclasses of {@code FilterHelpAppendable} may further override some of these methods as well as provide additional methods and fields.\n * </p>\n * <p>\n * <em>Implementation Note</em>: This class is similar to FilterOutputStream in relation to OutputStream. We could further split FilterHelpAppendable into a\n * FilterAppendable but that seems like YAGNI.\n * </p>\n *\n * @since 1.10.0\n */\npublic abstract class FilterHelpAppendable implements HelpAppendable {\n\n    /**\n     * The underlying appendable to be filtered.\n     */\n    protected final Appendable output;\n\n    protected FilterHelpAppendable(final Appendable output) {\n        this.output = output;\n    }\n\n    @Override\n    public FilterHelpAppendable append(final char ch) throws IOException {\n        output.append(ch);\n        return this;\n    }\n\n    @Override\n    public FilterHelpAppendable append(final CharSequence text) throws IOException {\n        output.append(text);\n        return this;\n    }\n\n    @Override\n    public FilterHelpAppendable append(final CharSequence csq, final int start, final int end) throws IOException {\n        output.append(csq, start, end);\n        return this;\n    }\n}\n",
+  "classDeclarationCode": "/**\n * An abstract implementation of {@link HelpAppendable} that writes output to an {@link Appendable} instance.\n * <p>\n * This class is the superclass of all classes that filter help appendables. These appendable sit on top of an existing appendable (the <em>underlying</em>\n * appendable) which it uses as its basic sink of data, but possibly transforming the data along the way or providing additional functionality.\n * </p>\n * <p>\n * The class {@code FilterHelpAppendable} itself simply overrides all methods of {@code HelpAppendable} with versions that pass all requests to the underlying\n * appendable. Subclasses of {@code FilterHelpAppendable} may further override some of these methods as well as provide additional methods and fields.\n * </p>\n * <p>\n * <em>Implementation Note</em>: This class is similar to FilterOutputStream in relation to OutputStream. We could further split FilterHelpAppendable into a\n * FilterAppendable but that seems like YAGNI.\n * </p>\n *\n * @since 1.10.0\n */\npublic abstract class FilterHelpAppendable implements HelpAppendable {\n\n    /**\n     * The underlying appendable to be filtered.\n     */\n    protected final Appendable output;\n\n    protected FilterHelpAppendable(final Appendable output) {\n        this.output = output;\n    }\n\n    @Override\n    public FilterHelpAppendable append(final char ch) throws IOException {\n        output.append(ch);\n        return this;\n    }\n\n    @Override\n    public FilterHelpAppendable append(final CharSequence text) throws IOException {\n        output.append(text);\n        return this;\n    }\n\n    @Override\n    public FilterHelpAppendable append(final CharSequence csq, final int start, final int end) throws IOException {\n        output.append(csq, start, end);\n        return this;\n    }\n}",
+  "subClasses": [
+    "org.apache.commons.cli.help.TextHelpAppendable"
+  ]
+}

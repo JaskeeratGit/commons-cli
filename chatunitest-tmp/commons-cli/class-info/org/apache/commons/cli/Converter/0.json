@@ -1,0 +1,22 @@
+{
+  "className": "Converter",
+  "methodName": "apply",
+  "brief": "T apply(String string) throws E;",
+  "methodSignature": "apply(String)",
+  "sourceCode": "T apply(String string) throws E;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Applies the conversion function to the String argument.\n *\n * @param string the String to convert\n * @return the Object from the conversion.\n * @throws E on error.\n */\nT apply(String string) throws E;",
+  "method_comment": "\n     * Applies the conversion function to the String argument.\n     *\n     * @param string the String to convert\n     * @return the Object from the conversion.\n     * @throws E on error.\n     ",
+  "method_annotation": ""
+}

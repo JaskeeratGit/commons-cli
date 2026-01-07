@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getDeprecated",
+  "brief": "public DeprecatedAttributes getDeprecated(){}",
+  "methodSignature": "getDeprecated()",
+  "sourceCode": "public DeprecatedAttributes getDeprecated() {\n        return deprecated;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets deprecated attributes if any.\n *\n * @return boolean deprecated attributes or null.\n * @since 1.7.0\n */\npublic DeprecatedAttributes getDeprecated() {\n    return deprecated;\n}",
+  "method_comment": "\n     * Gets deprecated attributes if any.\n     *\n     * @return boolean deprecated attributes or null.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

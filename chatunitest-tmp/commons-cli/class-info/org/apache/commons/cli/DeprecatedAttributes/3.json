@@ -1,0 +1,18 @@
+{
+  "className": "DeprecatedAttributes",
+  "methodName": "isForRemoval",
+  "brief": "public boolean isForRemoval(){}",
+  "methodSignature": "isForRemoval()",
+  "sourceCode": "public boolean isForRemoval() {\n        return forRemoval;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether this option is subject to removal in a future version.\n *\n * @return whether this option is subject to removal in a future version.\n */\npublic boolean isForRemoval() {\n    return forRemoval;\n}",
+  "method_comment": "\n     * Tests whether this option is subject to removal in a future version.\n     *\n     * @return whether this option is subject to removal in a future version.\n     ",
+  "method_annotation": ""
+}

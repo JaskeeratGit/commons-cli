@@ -1,0 +1,25 @@
+{
+  "className": "Util",
+  "methodName": "repeat",
+  "brief": "static String repeat(final int len, final char fillChar){}",
+  "methodSignature": "repeat(int, char)",
+  "sourceCode": "static String repeat(final int len, final char fillChar) {\n        final char[] padding = new char[len];\n        Arrays.fill(padding, fillChar);\n        return new String(padding);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "char"
+  ],
+  "dependentMethods": {
+    "java.util.Arrays": [
+      "fill(char[], char)"
+    ]
+  },
+  "full_method_info": "/**\n * Constructs a string of specified length filled with the specified char.\n *\n * @param len      the length of the final string.\n * @param fillChar the character to file it will.\n * @return A string of specified length filled with the specified char.\n */\nstatic String repeat(final int len, final char fillChar) {\n    final char[] padding = new char[len];\n    Arrays.fill(padding, fillChar);\n    return new String(padding);\n}",
+  "method_comment": "\n     * Constructs a string of specified length filled with the specified char.\n     *\n     * @param len      the length of the final string.\n     * @param fillChar the character to file it will.\n     * @return A string of specified length filled with the specified char.\n     ",
+  "method_annotation": ""
+}

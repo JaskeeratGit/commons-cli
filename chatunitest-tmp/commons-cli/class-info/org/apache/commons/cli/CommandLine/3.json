@@ -1,0 +1,24 @@
+{
+  "className": "CommandLine",
+  "methodName": "get",
+  "brief": "private <T> T get(final Supplier<T> supplier){}",
+  "methodSignature": "get(Supplier)",
+  "sourceCode": "private <T> T get(final Supplier<T> supplier) {\n        return supplier == null ? null : supplier.get();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Supplier<T>"
+  ],
+  "dependentMethods": {
+    "java.util.function.Supplier": [
+      "get()"
+    ]
+  },
+  "full_method_info": "private <T> T get(final Supplier<T> supplier) {\n    return supplier == null ? null : supplier.get();\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

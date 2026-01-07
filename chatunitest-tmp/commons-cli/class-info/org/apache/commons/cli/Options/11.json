@@ -1,0 +1,25 @@
+{
+  "className": "Options",
+  "methodName": "getOptions",
+  "brief": "public Collection<Option> getOptions(){}",
+  "methodSignature": "getOptions()",
+  "sourceCode": "public Collection<Option> getOptions() {\n        return Collections.unmodifiableCollection(helpOptions());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableCollection(Collection<? extends T>)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "helpOptions()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a read-only list of options in this set.\n *\n * @return read-only Collection of {@link Option} objects in this descriptor.\n */\npublic Collection<Option> getOptions() {\n    return Collections.unmodifiableCollection(helpOptions());\n}",
+  "method_comment": "\n     * Gets a read-only list of options in this set.\n     *\n     * @return read-only Collection of {@link Option} objects in this descriptor.\n     ",
+  "method_annotation": ""
+}

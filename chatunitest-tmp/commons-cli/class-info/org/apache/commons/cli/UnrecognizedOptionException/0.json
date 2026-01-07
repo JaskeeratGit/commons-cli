@@ -1,0 +1,18 @@
+{
+  "className": "UnrecognizedOptionException",
+  "methodName": "getOption",
+  "brief": "public String getOption(){}",
+  "methodSignature": "getOption()",
+  "sourceCode": "public String getOption() {\n        return option;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the unrecognized option.\n *\n * @return the related option\n * @since 1.2\n */\npublic String getOption() {\n    return option;\n}",
+  "method_comment": "\n     * Gets the unrecognized option.\n     *\n     * @return the related option\n     * @since 1.2\n     ",
+  "method_annotation": ""
+}

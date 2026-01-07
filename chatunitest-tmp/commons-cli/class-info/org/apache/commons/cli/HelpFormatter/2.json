@@ -1,0 +1,24 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getDescription",
+  "brief": "public static String getDescription(final Option option){}",
+  "methodSignature": "getDescription(Option)",
+  "sourceCode": "public static String getDescription(final Option option) {\n        final String desc = option.getDescription();\n        return desc == null ? \"\" : desc;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getDescription()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the option description or an empty string if the description is {@code null}.\n * @param option The option to get the description from.\n * @return the option description or an empty string if the description is {@code null}.\n * @since 1.8.0\n */\npublic static String getDescription(final Option option) {\n    final String desc = option.getDescription();\n    return desc == null ? \"\" : desc;\n}",
+  "method_comment": "\n     * Gets the option description or an empty string if the description is {@code null}.\n     * @param option The option to get the description from.\n     * @return the option description or an empty string if the description is {@code null}.\n     * @since 1.8.0\n     ",
+  "method_annotation": ""
+}

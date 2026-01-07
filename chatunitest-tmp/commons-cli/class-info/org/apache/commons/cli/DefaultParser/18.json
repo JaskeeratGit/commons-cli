@@ -1,0 +1,34 @@
+{
+  "className": "DefaultParser",
+  "methodName": "isLongOption",
+  "brief": "private boolean isLongOption(final String token){}",
+  "methodSignature": "isLongOption(String)",
+  "sourceCode": "private boolean isLongOption(final String token) {\n        if (token == null || !token.startsWith(\"-\") || token.length() == 1) {\n            return false;\n        }\n        final int pos = indexOfEqual(token);\n        final String t = pos == -1 ? token : token.substring(0, pos);\n        if (!getMatchingLongOptions(t).isEmpty()) {\n            // long or partial long options (--L, -L, --L=V, -L=V, --l, --l=V)\n            return true;\n        }\n        if (getLongPrefix(token) != null && !token.startsWith(\"--\")) {\n            // -LV\n            return true;\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int, int)",
+      "length()"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "indexOfEqual(String)",
+      "getLongPrefix(String)",
+      "getMatchingLongOptions(String)"
+    ],
+    "java.util.List": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests if the token looks like a long option.\n *\n * @param token\n */\nprivate boolean isLongOption(final String token) {\n    if (token == null || !token.startsWith(\"-\") || token.length() == 1) {\n        return false;\n    }\n    final int pos = indexOfEqual(token);\n    final String t = pos == -1 ? token : token.substring(0, pos);\n    if (!getMatchingLongOptions(t).isEmpty()) {\n        // long or partial long options (--L, -L, --L=V, -L=V, --l, --l=V)\n        return true;\n    }\n    if (getLongPrefix(token) != null && !token.startsWith(\"--\")) {\n        // -LV\n        return true;\n    }\n    return false;\n}",
+  "method_comment": "\n     * Tests if the token looks like a long option.\n     *\n     * @param token\n     ",
+  "method_annotation": ""
+}

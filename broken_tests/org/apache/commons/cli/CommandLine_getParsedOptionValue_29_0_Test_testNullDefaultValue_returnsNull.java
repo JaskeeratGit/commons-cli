@@ -1,0 +1,70 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+class CommandLine_getParsedOptionValue_29_0_Test_testNullDefaultValue_returnsNull {
+
+    /**
+     * A small test subclass that overrides the String-variant of getParsedOptionValue to
+     * capture the incoming option name and default value and return predictable results
+     * depending on the type of defaultValue.
+     */
+    static class TestCommandLine extends CommandLine {
+
+        String capturedOptionName;
+
+        Object capturedDefaultValue;
+
+        protected TestCommandLine() {
+            // calls protected no-arg constructor of CommandLine
+            super();
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T getParsedOptionValue(final String optionName, final T defaultValue) {
+            this.capturedOptionName = optionName;
+            this.capturedDefaultValue = defaultValue;
+            // If defaultValue is null -> return null
+            if (defaultValue == null) {
+                return null;
+            }
+            // If defaultValue is an Integer, return the codepoint of the first char as Integer
+            if (defaultValue instanceof Integer) {
+                return (T) Integer.valueOf((int) optionName.charAt(0));
+            }
+            // Otherwise return a string indicating the optionName
+            return (T) ("OK:" + optionName);
+        }
+    }
+
+
+    @Test
+    void testNullDefaultValue_returnsNull() {
+        TestCommandLine cmd = new TestCommandLine();
+        Object result = cmd.getParsedOptionValue('c', null);
+        assertNull(result, "When defaultValue is null the override returns null");
+        assertEquals("c", cmd.capturedOptionName);
+        assertNull(cmd.capturedDefaultValue);
+    }
+
+
+
+}

@@ -1,0 +1,18 @@
+{
+  "className": "TableDefinition",
+  "methodName": "caption",
+  "brief": "String caption();",
+  "methodSignature": "caption()",
+  "sourceCode": "String caption();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the caption for the table. May be @{code null}.\n *\n * @return The caption for the table. May be @{code null}.\n */\nString caption();",
+  "method_comment": "\n     * Gets the caption for the table. May be @{code null}.\n     *\n     * @return The caption for the table. May be @{code null}.\n     ",
+  "method_annotation": ""
+}

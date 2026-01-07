@@ -1,0 +1,26 @@
+{
+  "className": "DefaultParser",
+  "methodName": "isArgument",
+  "brief": "private boolean isArgument(final String token){}",
+  "methodSignature": "isArgument(String)",
+  "sourceCode": "private boolean isArgument(final String token) {\n        return !isOption(token) || isNegativeNumber(token);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.DefaultParser": [
+      "isNegativeNumber(String)",
+      "isOption(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests if the token is a valid argument.\n *\n * @param token\n */\nprivate boolean isArgument(final String token) {\n    return !isOption(token) || isNegativeNumber(token);\n}",
+  "method_comment": "\n     * Tests if the token is a valid argument.\n     *\n     * @param token\n     ",
+  "method_annotation": ""
+}

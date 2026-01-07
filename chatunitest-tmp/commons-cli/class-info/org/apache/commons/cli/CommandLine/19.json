@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionValue",
+  "brief": "public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}",
+  "methodSignature": "getOptionValue(OptionGroup, Supplier)",
+  "sourceCode": "public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue) {\n        final String answer = getOptionValue(optionGroup);\n        return answer != null ? answer : get(defaultValue);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionGroup",
+    "Supplier<String>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionGroup": [],
+    "org.apache.commons.cli.CommandLine": [
+      "get(Supplier<T>)",
+      "getOptionValue(OptionGroup)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the first argument, if any, of an option group.\n *\n * @param optionGroup the option group.\n * @param defaultValue is a supplier for the default value to be returned if the option group is not selected.\n * @return Value of the argument if option group is selected, and has an argument, otherwise {@code defaultValue}.\n * @since 1.9.0\n */\npublic String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue) {\n    final String answer = getOptionValue(optionGroup);\n    return answer != null ? answer : get(defaultValue);\n}",
+  "method_comment": "\n     * Gets the first argument, if any, of an option group.\n     *\n     * @param optionGroup the option group.\n     * @param defaultValue is a supplier for the default value to be returned if the option group is not selected.\n     * @return Value of the argument if option group is selected, and has an argument, otherwise {@code defaultValue}.\n     * @since 1.9.0\n     ",
+  "method_annotation": ""
+}

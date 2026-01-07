@@ -1,0 +1,22 @@
+{
+  "className": "PosixParser",
+  "methodName": "init",
+  "brief": "private void init(){}",
+  "methodSignature": "init()",
+  "sourceCode": "private void init() {\n        eatTheRest = false;\n        tokens.clear();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.List": [
+      "clear()"
+    ]
+  },
+  "full_method_info": "/**\n * Resets the members to their original state i.e. remove all of {@code tokens} entries and set\n * {@code eatTheRest} to false.\n */\nprivate void init() {\n    eatTheRest = false;\n    tokens.clear();\n}",
+  "method_comment": "\n     * Resets the members to their original state i.e. remove all of {@code tokens} entries and set\n     * {@code eatTheRest} to false.\n     ",
+  "method_annotation": ""
+}

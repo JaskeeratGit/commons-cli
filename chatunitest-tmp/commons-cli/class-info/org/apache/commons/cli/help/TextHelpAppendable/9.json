@@ -1,0 +1,22 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "getLeftPad",
+  "brief": "public int getLeftPad(){}",
+  "methodSignature": "getLeftPad()",
+  "sourceCode": "public int getLeftPad() {\n        return textStyleBuilder.getLeftPad();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "getLeftPad()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the left padding for the output.\n *\n * @return The left padding for the output.\n */\npublic int getLeftPad() {\n    return textStyleBuilder.getLeftPad();\n}",
+  "method_comment": "\n     * Returns the left padding for the output.\n     *\n     * @return The left padding for the output.\n     ",
+  "method_annotation": ""
+}

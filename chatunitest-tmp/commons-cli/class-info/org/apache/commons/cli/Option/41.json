@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "setLongOpt",
+  "brief": "public void setLongOpt(final String longOpt){}",
+  "methodSignature": "setLongOpt(String)",
+  "sourceCode": "public void setLongOpt(final String longOpt) {\n        this.longOption = longOpt;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the long name of this Option.\n *\n * @param longOpt the long name of this Option.\n */\npublic void setLongOpt(final String longOpt) {\n    this.longOption = longOpt;\n}",
+  "method_comment": "\n     * Sets the long name of this Option.\n     *\n     * @param longOpt the long name of this Option.\n     ",
+  "method_annotation": ""
+}

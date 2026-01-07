@@ -1,0 +1,121 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+/**
+ * Fixed unit test: made class package-private to avoid filename/public-class mismatch.
+ */
+class CommandLine_getParsedOptionValue_35_0_Test {
+
+    /**
+     * Helper to create a CommandLine instance using the no-arg protected constructor via reflection.
+     */
+    private CommandLine newCommandLineInstance() {
+        try {
+            Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor();
+            ctor.setAccessible(true);
+            return ctor.newInstance();
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException("Failed to instantiate CommandLine", e);
+        }
+    }
+
+    @Test
+    public void testGetParsedOptionValue_returnsProvidedDefaultString() {
+        CommandLine cmd = newCommandLineInstance();
+        OptionGroup group = new OptionGroup();
+        try {
+            String result = cmd.getParsedOptionValue(group, "theDefault");
+            assertEquals("theDefault", result);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e);
+        }
+    }
+
+    @Test
+    public void testGetParsedOptionValue_returnsProvidedDefaultNull() {
+        CommandLine cmd = newCommandLineInstance();
+        OptionGroup group = new OptionGroup();
+        try {
+            Object result = cmd.getParsedOptionValue(group, (Object) null);
+            assertNull(result);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e);
+        }
+    }
+
+    @Test
+    public void testGetParsedOptionValue_withDifferentType_defaultInteger() {
+        CommandLine cmd = newCommandLineInstance();
+        OptionGroup group = new OptionGroup();
+        try {
+            Integer def = 42;
+            Integer result = cmd.getParsedOptionValue(group, def);
+            assertEquals(def, result);
+        } catch (Exception e) {
+            fail("Unexpected exception: " + e);
+        }
+    }
+
+    /**
+     * Use reflection to invoke the (likely) Supplier-based overload:
+     * getParsedOptionValue(OptionGroup, Supplier)
+     * This verifies the supplier is actually invoked and its result is returned.
+     */
+    @Test
+    public void testSupplierOverload_invokedAndReturned() {
+        CommandLine cmd = newCommandLineInstance();
+        OptionGroup group = new OptionGroup();
+        try {
+            // Find the overload with (OptionGroup, Supplier)
+            Method supplierMethod = null;
+            for (Method m : CommandLine.class.getDeclaredMethods()) {
+                if (!m.getName().equals("getParsedOptionValue")) {
+                    continue;
+                }
+                Class<?>[] params = m.getParameterTypes();
+                if (params.length == 2 && params[0] == OptionGroup.class && params[1] == java.util.function.Supplier.class) {
+                    supplierMethod = m;
+                    break;
+                }
+            }
+            assertNotNull(supplierMethod, "Supplier overload of getParsedOptionValue not found");
+            supplierMethod.setAccessible(true);
+            AtomicBoolean supplierInvoked = new AtomicBoolean(false);
+            Supplier<String> supplier = () -> {
+                supplierInvoked.set(true);
+                return "fromSupplier";
+            };
+            Object returned = supplierMethod.invoke(cmd, group, supplier);
+            assertTrue(supplierInvoked.get(), "Supplier should have been invoked");
+            assertEquals("fromSupplier", returned);
+        } catch (InvocationTargetException ite) {
+            Throwable cause = ite.getCause();
+            fail("InvocationTargetException with cause: " + cause);
+        } catch (IllegalAccessException e) {
+            fail("IllegalAccessException: " + e);
+        }
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getParsedOptionValue_35_0_Test: line 22 : class CommandLine_getParsedOptionValue_34_0_Test is public, should be declared in a file named CommandLine_getParsedOptionValue_34_0_Test.java

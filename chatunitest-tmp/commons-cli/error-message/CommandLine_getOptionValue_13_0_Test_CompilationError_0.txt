@@ -1,0 +1,129 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Method;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+
+public class CommandLine_getOptionValue_13_0_Test {
+
+    /**
+     * A variant of CommandLine that records the received option string and supplier,
+     * but does NOT invoke the supplier.
+     */
+    static class NonCallingCommandLine extends CommandLine {
+
+        String recordedOption;
+
+        Supplier<String> recordedSupplier;
+
+        NonCallingCommandLine() {
+            super();
+        }
+
+        @Override
+        public String getOptionValue(final String option, final Supplier<String> defaultValue) {
+            this.recordedOption = option;
+            this.recordedSupplier = defaultValue;
+            return "NON_CALL_RETURN";
+        }
+    }
+
+    /**
+     * A variant of CommandLine that records the received option string and supplier,
+     * and DOES invoke the supplier (if non-null) and returns its value.
+     */
+    static class CallingCommandLine extends CommandLine {
+
+        String recordedOption;
+
+        Supplier<String> recordedSupplier;
+
+        boolean supplierInvoked = false;
+
+        CallingCommandLine() {
+            super();
+        }
+
+        @Override
+        public String getOptionValue(final String option, final Supplier<String> defaultValue) {
+            this.recordedOption = option;
+            this.recordedSupplier = defaultValue;
+            if (defaultValue != null) {
+                supplierInvoked = true;
+                return defaultValue.get();
+            }
+            return "NULL_SUPPLIER_RETURN";
+        }
+    }
+
+    @Test
+    public void testDelegatesStringConversionAndPassesSupplier_instanceMethod() {
+        NonCallingCommandLine cl = new NonCallingCommandLine();
+        Supplier<String> supplier = () -> {
+            fail("Supplier must not be invoked by NonCallingCommandLine override");
+            return "SHOULD_NOT_HAPPEN";
+        };
+        // direct invocation of the char-based API
+        String result = cl.getOptionValue('z', supplier);
+        // verify that the char was converted to the correct String and passed through
+        assertEquals("z", cl.recordedOption, "Option char should be converted to its String representation");
+        assertSame(supplier, cl.recordedSupplier, "Supplier instance should be passed through unchanged");
+        assertEquals("NON_CALL_RETURN", result, "Return value should come from the override");
+    }
+
+    @Test
+    public void testDelegatesAndInvokesSupplier_instanceMethod() {
+        CallingCommandLine cl = new CallingCommandLine();
+        Supplier<String> supplier = () -> "value-from-supplier";
+        // direct invocation of the char-based API
+        String result = cl.getOptionValue('b', supplier);
+        // verify recorded option and supplier and that supplier was invoked and its value returned
+        assertEquals("b", cl.recordedOption);
+        assertSame(supplier, cl.recordedSupplier);
+        assertTrue(cl.supplierInvoked, "Supplier should have been invoked by the override");
+        assertEquals("value-from-supplier", result);
+    }
+
+    @Test
+    public void testNullSupplierIsPassedThrough() {
+        NonCallingCommandLine cl = new NonCallingCommandLine();
+        // pass null supplier and ensure it's recorded as null
+        String result = cl.getOptionValue('c', null);
+        assertEquals("c", cl.recordedOption);
+        assertNull(cl.recordedSupplier, "Null supplier should be passed through unchanged");
+        assertEquals("NON_CALL_RETURN", result);
+    }
+
+    @Test
+    public void testReflectionInvocationOfGetOptionValueChar() throws Exception {
+        // Use a CallingCommandLine to verify behavior when invoked via reflection
+        CallingCommandLine cl = new CallingCommandLine();
+        Supplier<String> supplier = () -> "reflected-supplier-value";
+        // reflectively obtain the method (char, Supplier)
+        Method m = CommandLine.class.getMethod("getOptionValue", char.class, Supplier.class);
+        // invoke reflectively
+        Object reflectedResult = m.invoke(cl, 'x', supplier);
+        assertEquals("x", cl.recordedOption, "Option char should be converted to String and passed");
+        assertSame(supplier, cl.recordedSupplier, "Supplier instance should be the same object passed via reflection");
+        assertTrue(cl.supplierInvoked, "Supplier should have been invoked by the override when called reflectively");
+        assertEquals("reflected-supplier-value", reflectedResult);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getOptionValue_13_0_Test: line 105 : reference to getOptionValue is ambiguous
+  both method getOptionValue(char,java.lang.String) in org.apache.commons.cli.CommandLine and method getOptionValue(char,java.util.function.Supplier<java.lang.String>) in org.apache.commons.cli.CommandLine match

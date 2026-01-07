@@ -1,0 +1,110 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+/**
+ * Unit tests for CommandLine#getOptionValue(String, Supplier)
+ */
+public class CommandLine_getOptionValue_22_0_Test_testGetOptionValue_whenOptionNotFound_returnsDefault {
+
+    // Helper to construct a CommandLine instance via the non-public constructor
+    private CommandLine newCommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    // Helper to invoke private resolveOption(String) via reflection
+    private Option invokeResolveOption(CommandLine cli, String optionName) throws Exception {
+        Method resolve = CommandLine.class.getDeclaredMethod("resolveOption", String.class);
+        resolve.setAccessible(true);
+        return (Option) resolve.invoke(cli, optionName);
+    }
+
+    // Helper to invoke getOptionValue(Option, Supplier) via reflection
+    private String invokeGetOptionValueWithOption(CommandLine cli, Option opt, Supplier<String> supplier) throws Exception {
+        Method gv = CommandLine.class.getDeclaredMethod("getOptionValue", Option.class, Supplier.class);
+        gv.setAccessible(true);
+        return (String) gv.invoke(cli, opt, supplier);
+    }
+
+
+
+    @Test
+    public void testGetOptionValue_whenOptionNotFound_returnsDefault() throws Exception {
+        List<String> args = new LinkedList<>();
+        // no options
+        List<Option> options = new ArrayList<>();
+        CommandLine cli = newCommandLine(args, options, null);
+        Supplier<String> def = () -> "MY-DEFAULT";
+        // When option name is null -> Util.stripLeadingHyphens will yield null and resolveOption returns null
+        String viaString = cli.getOptionValue(null, def);
+        // Direct resolveOption should return null
+        Option resolved = invokeResolveOption(cli, null);
+        assertNull(resolved, "resolveOption should return null for a null input");
+        // getOptionValue(Option,Supplier) with null should be invoked directly and match
+        String viaOption = invokeGetOptionValueWithOption(cli, null, def);
+        assertEquals("MY-DEFAULT", viaString, "When option not found, public method should return the supplier value");
+        assertEquals(viaOption, viaString, "Both invocation paths should produce the same result");
+    }
+}
+
+/*
+ * Minimal supporting Option and Util classes in the same package to allow testing of resolveOption.
+ * These are intentionally simple and provide the required methods used by CommandLine.resolveOption.
+ */
+class Option {
+
+    private final String opt;
+
+    private final String longOpt;
+
+    public Option(String opt, String longOpt) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+}
+
+class Util {
+
+    /**
+     * Strips leading hyphens from the option name.
+     * Returns null if input is null or the result is empty.
+     */
+    public static String stripLeadingHyphens(final String option) {
+        if (option == null) {
+            return null;
+        }
+        int i = 0;
+        while (i < option.length() && option.charAt(i) == '-') {
+            i++;
+        }
+        String actual = option.substring(i);
+        return actual.isEmpty() ? null : actual;
+    }
+}

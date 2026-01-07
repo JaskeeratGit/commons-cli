@@ -1,0 +1,26 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createValueUnchecked",
+  "brief": "private static <T> T createValueUnchecked(final String string, final Class<T> clazz){}",
+  "methodSignature": "createValueUnchecked(String, Class)",
+  "sourceCode": "private static <T> T createValueUnchecked(final String string, final Class<T> clazz) {\n        try {\n            return createValue(string, clazz);\n        } catch (final ParseException e) {\n            throw new IllegalArgumentException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValue(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Delegates to {@link #createValue(String, Class)} throwing IllegalArgumentException instead of ParseException.\n *\n * @param string the command line value\n * @param clazz  the class representing the type of argument\n * @param <T>    type of argument\n * @return The instance of {@code clazz} initialized with the value of {@code string}.\n * @throws IllegalArgumentException if the value creation for the given class threw an exception.\n */\nprivate static <T> T createValueUnchecked(final String string, final Class<T> clazz) {\n    try {\n        return createValue(string, clazz);\n    } catch (final ParseException e) {\n        throw new IllegalArgumentException(e);\n    }\n}",
+  "method_comment": "\n     * Delegates to {@link #createValue(String, Class)} throwing IllegalArgumentException instead of ParseException.\n     *\n     * @param string the command line value\n     * @param clazz  the class representing the type of argument\n     * @param <T>    type of argument\n     * @return The instance of {@code clazz} initialized with the value of {@code string}.\n     * @throws IllegalArgumentException if the value creation for the given class threw an exception.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "HelpAppendable",
+  "methodName": "appendTable",
+  "brief": "void appendTable(TableDefinition table) throws IOException;",
+  "methodSignature": "appendTable(TableDefinition)",
+  "sourceCode": "void appendTable(TableDefinition table) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TableDefinition"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TableDefinition": []
+  },
+  "full_method_info": "/**\n * Appends a table.\n *\n * @param table the table definition to write, null is a noop.\n * @throws IOException If an output error occurs.\n */\nvoid appendTable(TableDefinition table) throws IOException;",
+  "method_comment": "\n     * Appends a table.\n     *\n     * @param table the table definition to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     ",
+  "method_annotation": ""
+}

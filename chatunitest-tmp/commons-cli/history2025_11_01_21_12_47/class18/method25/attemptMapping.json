@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "DefaultParser_parse_25_0_Test",
+    "fullName": "org.apache.commons.cli.DefaultParser_parse_25_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/DefaultParser_parse_25_0_Test.java",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "parse",
+    "methodSig": "parse(Options, String[], Properties)"
+  },
+  "attempt1": {
+    "testClassName": "DefaultParser_parse_25_1_Test",
+    "fullName": "org.apache.commons.cli.DefaultParser_parse_25_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/DefaultParser_parse_25_0_Test.java",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "parse",
+    "methodSig": "parse(Options, String[], Properties)"
+  },
+  "attempt2": {
+    "testClassName": "DefaultParser_parse_25_2_Test",
+    "fullName": "org.apache.commons.cli.DefaultParser_parse_25_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/DefaultParser_parse_25_0_Test.java",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "parse",
+    "methodSig": "parse(Options, String[], Properties)"
+  },
+  "attempt3": {
+    "testClassName": "DefaultParser_parse_25_3_Test",
+    "fullName": "org.apache.commons.cli.DefaultParser_parse_25_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/DefaultParser_parse_25_0_Test.java",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "parse",
+    "methodSig": "parse(Options, String[], Properties)"
+  },
+  "attempt4": {
+    "testClassName": "DefaultParser_parse_25_4_Test",
+    "fullName": "org.apache.commons.cli.DefaultParser_parse_25_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/DefaultParser_parse_25_0_Test.java",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "parse",
+    "methodSig": "parse(Options, String[], Properties)"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "className": "Parser",
+  "methodName": "parse",
+  "brief": "public CommandLine parse(final Options options, final String[] arguments, final Properties properties, final boolean stopAtNonOption)\n            throws ParseException{}",
+  "methodSignature": "parse(Options, String[], Properties, boolean)",
+  "sourceCode": "public CommandLine parse(final Options options, final String[] arguments, final Properties properties, final boolean stopAtNonOption)\n            throws ParseException {\n        // clear out the data in options in case it's been used before (CLI-71)\n        for (final Option opt : options.helpOptions()) {\n            opt.clearValues();\n        }\n        // clear the data from the groups\n        for (final OptionGroup optionGroup : options.getOptionGroups()) {\n            optionGroup.setSelected(null);\n        }\n        // initialize members\n        setOptions(options);\n        cmd = CommandLine.builder().get();\n        boolean eatTheRest = false;\n        final List<String> tokenList = Arrays.asList(flatten(getOptions(), arguments == null ? new String[0] : arguments, stopAtNonOption));\n        final ListIterator<String> iterator = tokenList.listIterator();\n        // process each flattened token\n        while (iterator.hasNext()) {\n            final String token = iterator.next();\n            if (token != null) {\n                // the value is the double-dash\n                if (\"--\".equals(token)) {\n                    eatTheRest = true;\n                } else if (\"-\".equals(token)) {\n                    // the value is a single dash\n                    if (stopAtNonOption) {\n                        eatTheRest = true;\n                    } else {\n                        cmd.addArg(token);\n                    }\n                } else if (token.startsWith(\"-\")) {\n                    // the value is an option\n                    if (stopAtNonOption && !getOptions().hasOption(token)) {\n                        eatTheRest = true;\n                        cmd.addArg(token);\n                    } else {\n                        processOption(token, iterator);\n                    }\n                } else {\n                    // the value is an argument\n                    cmd.addArg(token);\n                    if (stopAtNonOption) {\n                        eatTheRest = true;\n                    }\n                }\n                // eat the remaining tokens\n                if (eatTheRest) {\n                    while (iterator.hasNext()) {\n                        final String str = iterator.next();\n                        // ensure only one double-dash is added\n                        if (!\"--\".equals(str)) {\n                            cmd.addArg(str);\n                        }\n                    }\n                }\n            }\n        }\n        processProperties(properties);\n        checkRequiredOptions();\n        return cmd;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]",
+    "Properties",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "helpOptions()",
+      "hasOption(String)",
+      "getOptionGroups()"
+    ],
+    "java.lang.String": [
+      "equals(Object)",
+      "startsWith(String)"
+    ],
+    "java.util.Properties": [],
+    "org.apache.commons.cli.Option": [
+      "clearValues()"
+    ],
+    "org.apache.commons.cli.OptionGroup": [
+      "setSelected(Option)"
+    ],
+    "org.apache.commons.cli.Parser": [
+      "flatten(Options, String[], boolean)",
+      "getOptions()",
+      "setOptions(Options)",
+      "processProperties(Properties)",
+      "processOption(String, String>)",
+      "checkRequiredOptions()"
+    ],
+    "org.apache.commons.cli.CommandLine.Builder": [
+      "get()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "builder()",
+      "addArg(String)"
+    ],
+    "java.util.Arrays": [
+      "asList(T[])"
+    ],
+    "java.util.List": [
+      "listIterator()"
+    ],
+    "java.util.ListIterator": [
+      "hasNext()",
+      "next()"
+    ]
+  },
+  "full_method_info": "/**\n * Parse the arguments according to the specified options and properties.\n *\n * @param options the specified Options\n * @param arguments the command line arguments\n * @param properties command line option name-value pairs\n * @param stopAtNonOption if {@code true} an unrecognized argument stops the parsing and the remaining arguments\n *        are added to the {@link CommandLine}s args list. If {@code false} an unrecognized argument triggers a\n *        ParseException.\n * @return the list of atomic option and value tokens\n * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n * @since 1.1\n */\npublic CommandLine parse(final Options options, final String[] arguments, final Properties properties, final boolean stopAtNonOption) throws ParseException {\n    // clear out the data in options in case it's been used before (CLI-71)\n    for (final Option opt : options.helpOptions()) {\n        opt.clearValues();\n    }\n    // clear the data from the groups\n    for (final OptionGroup optionGroup : options.getOptionGroups()) {\n        optionGroup.setSelected(null);\n    }\n    // initialize members\n    setOptions(options);\n    cmd = CommandLine.builder().get();\n    boolean eatTheRest = false;\n    final List<String> tokenList = Arrays.asList(flatten(getOptions(), arguments == null ? new String[0] : arguments, stopAtNonOption));\n    final ListIterator<String> iterator = tokenList.listIterator();\n    // process each flattened token\n    while (iterator.hasNext()) {\n        final String token = iterator.next();\n        if (token != null) {\n            // the value is the double-dash\n            if (\"--\".equals(token)) {\n                eatTheRest = true;\n            } else if (\"-\".equals(token)) {\n                // the value is a single dash\n                if (stopAtNonOption) {\n                    eatTheRest = true;\n                } else {\n                    cmd.addArg(token);\n                }\n            } else if (token.startsWith(\"-\")) {\n                // the value is an option\n                if (stopAtNonOption && !getOptions().hasOption(token)) {\n                    eatTheRest = true;\n                    cmd.addArg(token);\n                } else {\n                    processOption(token, iterator);\n                }\n            } else {\n                // the value is an argument\n                cmd.addArg(token);\n                if (stopAtNonOption) {\n                    eatTheRest = true;\n                }\n            }\n            // eat the remaining tokens\n            if (eatTheRest) {\n                while (iterator.hasNext()) {\n                    final String str = iterator.next();\n                    // ensure only one double-dash is added\n                    if (!\"--\".equals(str)) {\n                        cmd.addArg(str);\n                    }\n                }\n            }\n        }\n    }\n    processProperties(properties);\n    checkRequiredOptions();\n    return cmd;\n}",
+  "method_comment": "\n     * Parse the arguments according to the specified options and properties.\n     *\n     * @param options the specified Options\n     * @param arguments the command line arguments\n     * @param properties command line option name-value pairs\n     * @param stopAtNonOption if {@code true} an unrecognized argument stops the parsing and the remaining arguments\n     *        are added to the {@link CommandLine}s args list. If {@code false} an unrecognized argument triggers a\n     *        ParseException.\n     * @return the list of atomic option and value tokens\n     * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n     * @since 1.1\n     ",
+  "method_annotation": ""
+}

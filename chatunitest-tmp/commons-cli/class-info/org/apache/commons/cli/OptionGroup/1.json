@@ -1,0 +1,22 @@
+{
+  "className": "OptionGroup",
+  "methodName": "getNames",
+  "brief": "public Collection<String> getNames(){}",
+  "methodSignature": "getNames()",
+  "sourceCode": "public Collection<String> getNames() {\n        // the key set is the collection of names\n        return optionMap.keySet();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "keySet()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the names of the options in this group as a {@code Collection}.\n *\n * @return the names of the options in this group as a {@code Collection}.\n */\npublic Collection<String> getNames() {\n    // the key set is the collection of names\n    return optionMap.keySet();\n}",
+  "method_comment": "\n     * Gets the names of the options in this group as a {@code Collection}.\n     *\n     * @return the names of the options in this group as a {@code Collection}.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "DeprecatedAttributes",
+  "methodName": "getSince",
+  "brief": "public String getSince(){}",
+  "methodSignature": "getSince()",
+  "sourceCode": "public String getSince() {\n        return since;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets version in which the option became deprecated.\n *\n * @return the version in which the option became deprecated.\n */\npublic String getSince() {\n    return since;\n}",
+  "method_comment": "\n     * Gets version in which the option became deprecated.\n     *\n     * @return the version in which the option became deprecated.\n     ",
+  "method_annotation": ""
+}

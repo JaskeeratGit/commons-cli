@@ -1,0 +1,28 @@
+{
+  "className": "Options",
+  "methodName": "getOption",
+  "brief": "public Option getOption(final String opt){}",
+  "methodSignature": "getOption(String)",
+  "sourceCode": "public Option getOption(final String opt) {\n        final String clean = Util.stripLeadingHyphens(opt);\n        final Option option = shortOpts.get(clean);\n        return option != null ? option : longOpts.get(clean);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingHyphens(String)"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the {@link Option} matching the long or short name specified.\n * <p>\n * The leading hyphens in the name are ignored (up to 2).\n * </p>\n *\n * @param opt short or long name of the {@link Option}.\n * @return the option represented by opt.\n */\npublic Option getOption(final String opt) {\n    final String clean = Util.stripLeadingHyphens(opt);\n    final Option option = shortOpts.get(clean);\n    return option != null ? option : longOpts.get(clean);\n}",
+  "method_comment": "\n     * Gets the {@link Option} matching the long or short name specified.\n     * <p>\n     * The leading hyphens in the name are ignored (up to 2).\n     * </p>\n     *\n     * @param opt short or long name of the {@link Option}.\n     * @return the option represented by opt.\n     ",
+  "method_annotation": ""
+}

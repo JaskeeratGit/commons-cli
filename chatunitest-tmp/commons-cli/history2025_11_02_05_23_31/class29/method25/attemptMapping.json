@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Option_hasArg_25_0_Test",
+    "fullName": "org.apache.commons.cli.Option_hasArg_25_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasArg_25_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasArg",
+    "methodSig": "hasArg()"
+  },
+  "attempt1": {
+    "testClassName": "Option_hasArg_25_1_Test",
+    "fullName": "org.apache.commons.cli.Option_hasArg_25_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasArg_25_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasArg",
+    "methodSig": "hasArg()"
+  },
+  "attempt2": {
+    "testClassName": "Option_hasArg_25_2_Test",
+    "fullName": "org.apache.commons.cli.Option_hasArg_25_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasArg_25_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasArg",
+    "methodSig": "hasArg()"
+  },
+  "attempt3": {
+    "testClassName": "Option_hasArg_25_3_Test",
+    "fullName": "org.apache.commons.cli.Option_hasArg_25_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasArg_25_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasArg",
+    "methodSig": "hasArg()"
+  },
+  "attempt4": {
+    "testClassName": "Option_hasArg_25_4_Test",
+    "fullName": "org.apache.commons.cli.Option_hasArg_25_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_hasArg_25_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasArg",
+    "methodSig": "hasArg()"
+  }
+}

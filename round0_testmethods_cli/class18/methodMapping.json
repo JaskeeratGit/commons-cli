@@ -1,0 +1,200 @@
+{
+  "method0": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "indexOfEqual",
+    "signature": "indexOfEqual(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method10": {
+    "methodName": "handleLongOptionWithoutEqual",
+    "signature": "handleLongOptionWithoutEqual(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method11": {
+    "methodName": "handleOption",
+    "signature": "handleOption(Option)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method12": {
+    "methodName": "handleProperties",
+    "signature": "handleProperties(Properties)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method13": {
+    "methodName": "handleShortAndLongOption",
+    "signature": "handleShortAndLongOption(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method14": {
+    "methodName": "handleToken",
+    "signature": "handleToken(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method15": {
+    "methodName": "handleUnknownToken",
+    "signature": "handleUnknownToken(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method16": {
+    "methodName": "isArgument",
+    "signature": "isArgument(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method17": {
+    "methodName": "isJavaProperty",
+    "signature": "isJavaProperty(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method18": {
+    "methodName": "isLongOption",
+    "signature": "isLongOption(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method19": {
+    "methodName": "isNegativeNumber",
+    "signature": "isNegativeNumber(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "addArg",
+    "signature": "addArg(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method20": {
+    "methodName": "isOption",
+    "signature": "isOption(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method21": {
+    "methodName": "isShortOption",
+    "signature": "isShortOption(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method22": {
+    "methodName": "parse",
+    "signature": "parse(Options, Properties, NonOptionAction, String[])",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method23": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[])",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method24": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[], boolean)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method25": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[], Properties)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method26": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[], Properties, boolean)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method27": {
+    "methodName": "stripLeadingAndTrailingQuotesDefaultOff",
+    "signature": "stripLeadingAndTrailingQuotesDefaultOff(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method28": {
+    "methodName": "stripLeadingAndTrailingQuotesDefaultOn",
+    "signature": "stripLeadingAndTrailingQuotesDefaultOn(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method29": {
+    "methodName": "updateRequiredOptions",
+    "signature": "updateRequiredOptions(Option)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "checkRequiredArgs",
+    "signature": "checkRequiredArgs()",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method30": {
+    "methodName": "DefaultParser",
+    "signature": "DefaultParser()",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method31": {
+    "methodName": "DefaultParser",
+    "signature": "DefaultParser(boolean)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method32": {
+    "methodName": "DefaultParser",
+    "signature": "DefaultParser(boolean, Boolean, Consumer)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "checkRequiredOptions",
+    "signature": "checkRequiredOptions()",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "getLongPrefix",
+    "signature": "getLongPrefix(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "getMatchingLongOptions",
+    "signature": "getMatchingLongOptions(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "handleConcatenatedOptions",
+    "signature": "handleConcatenatedOptions(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "handleLongOption",
+    "signature": "handleLongOption(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "handleLongOptionWithEqual",
+    "signature": "handleLongOptionWithEqual(String)",
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli"
+  }
+}

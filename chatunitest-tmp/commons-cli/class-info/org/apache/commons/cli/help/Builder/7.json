@@ -1,0 +1,27 @@
+{
+  "className": "Builder",
+  "methodName": "setOptionFormatBuilder",
+  "brief": "public B setOptionFormatBuilder(final OptionFormatter.Builder optionFormatBuilder){}",
+  "methodSignature": "setOptionFormatBuilder(OptionFormatter.Builder)",
+  "sourceCode": "public B setOptionFormatBuilder(final OptionFormatter.Builder optionFormatBuilder) {\n            this.optionFormatBuilder = optionFormatBuilder != null ? optionFormatBuilder : OptionFormatter.builder();\n            return asThis();\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionFormatter.Builder"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.OptionFormatter": [
+      "builder()"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter.Builder": [
+      "asThis()"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the {@link OptionFormatter.Builder}.\n *\n * @param optionFormatBuilder the {@link OptionFormatter.Builder} to use.\n * @return this\n */\npublic B setOptionFormatBuilder(final OptionFormatter.Builder optionFormatBuilder) {\n    this.optionFormatBuilder = optionFormatBuilder != null ? optionFormatBuilder : OptionFormatter.builder();\n    return asThis();\n}",
+  "method_comment": "\n         * Sets the {@link OptionFormatter.Builder}.\n         *\n         * @param optionFormatBuilder the {@link OptionFormatter.Builder} to use.\n         * @return this\n         ",
+  "method_annotation": ""
+}

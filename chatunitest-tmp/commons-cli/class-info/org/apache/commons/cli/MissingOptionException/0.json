@@ -1,0 +1,35 @@
+{
+  "className": "MissingOptionException",
+  "methodName": "createMessage",
+  "brief": "private static String createMessage(final List<?> missingOptions){}",
+  "methodSignature": "createMessage(List)",
+  "sourceCode": "private static String createMessage(final List<?> missingOptions) {\n        final StringBuilder buf = new StringBuilder(\"Missing required option\");\n        buf.append(missingOptions.size() == 1 ? \"\" : \"s\").append(\": \");\n        final String string = missingOptions.toString();\n        return buf.append(string.substring(1, string.length() - 1)).toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<?>"
+  ],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ],
+    "java.util.List": [
+      "size()"
+    ],
+    "java.lang.Object": [
+      "toString()"
+    ],
+    "java.lang.String": [
+      "substring(int, int)",
+      "length()"
+    ]
+  },
+  "full_method_info": "/**\n * Build the exception message from the specified list of options.\n *\n * @param missingOptions the list of missing options and groups\n */\nprivate static String createMessage(final List<?> missingOptions) {\n    final StringBuilder buf = new StringBuilder(\"Missing required option\");\n    buf.append(missingOptions.size() == 1 ? \"\" : \"s\").append(\": \");\n    final String string = missingOptions.toString();\n    return buf.append(string.substring(1, string.length() - 1)).toString();\n}",
+  "method_comment": "\n     * Build the exception message from the specified list of options.\n     *\n     * @param missingOptions the list of missing options and groups\n     ",
+  "method_annotation": ""
+}

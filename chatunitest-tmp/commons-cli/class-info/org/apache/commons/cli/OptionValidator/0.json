@@ -1,0 +1,27 @@
+{
+  "className": "OptionValidator",
+  "methodName": "isValidChar",
+  "brief": "private static boolean isValidChar(final char c){}",
+  "methodSignature": "isValidChar(char)",
+  "sourceCode": "private static boolean isValidChar(final char c) {\n        return Character.isJavaIdentifierPart(c) || search(ADDITIONAL_LONG_CHARS, c);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "java.lang.Character": [
+      "isJavaIdentifierPart(char)"
+    ],
+    "org.apache.commons.cli.OptionValidator": [
+      "search(char[], char)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns whether the specified character is a valid character.\n * A character is valid if any of the following conditions are true:\n * <ul>\n * <li>it is a letter</li>\n * <li>it is a currency symbol (such as '$')</li>\n * <li>it is a connecting punctuation character (such as '_')</li>\n * <li>it is a digit</li>\n * <li>it is a numeric letter (such as a Roman numeral character)</li>\n * <li>it is a combining mark</li>\n * <li>it is a non-spacing mark</li>\n * <li>isIdentifierIgnorable returns true for the character</li>\n * <li>it is a hyphen/dash ('-')</li>\n * </ul>\n * @param c the character to validate\n * @return true if {@code c} is a valid character letter.\n */\nprivate static boolean isValidChar(final char c) {\n    return Character.isJavaIdentifierPart(c) || search(ADDITIONAL_LONG_CHARS, c);\n}",
+  "method_comment": "\n     * Returns whether the specified character is a valid character.\n     * A character is valid if any of the following conditions are true:\n     * <ul>\n     * <li>it is a letter</li>\n     * <li>it is a currency symbol (such as '$')</li>\n     * <li>it is a connecting punctuation character (such as '_')</li>\n     * <li>it is a digit</li>\n     * <li>it is a numeric letter (such as a Roman numeral character)</li>\n     * <li>it is a combining mark</li>\n     * <li>it is a non-spacing mark</li>\n     * <li>isIdentifierIgnorable returns true for the character</li>\n     * <li>it is a hyphen/dash ('-')</li>\n     * </ul>\n     * @param c the character to validate\n     * @return true if {@code c} is a valid character letter.\n     ",
+  "method_annotation": ""
+}

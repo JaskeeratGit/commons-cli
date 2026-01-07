@@ -1,0 +1,45 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleLongOptionWithEqual",
+  "brief": "private void handleLongOptionWithEqual(final String token) throws ParseException{}",
+  "methodSignature": "handleLongOptionWithEqual(String)",
+  "sourceCode": "private void handleLongOptionWithEqual(final String token) throws ParseException {\n        final int pos = indexOfEqual(token);\n        final String value = token.substring(pos + 1);\n        final String opt = token.substring(0, pos);\n        final List<String> matchingOpts = getMatchingLongOptions(opt);\n        if (matchingOpts.isEmpty()) {\n            handleUnknownToken(currentToken);\n        } else if (matchingOpts.size() > 1 && !options.hasLongOption(opt)) {\n            throw new AmbiguousOptionException(opt, matchingOpts);\n        } else {\n            final String key = options.hasLongOption(opt) ? opt : matchingOpts.get(0);\n            final Option option = options.getOption(key);\n            if (option.acceptsArg()) {\n                handleOption(option);\n                currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(value));\n                currentOption = null;\n            } else {\n                handleUnknownToken(currentToken);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "substring(int, int)"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "stripLeadingAndTrailingQuotesDefaultOff(String)",
+      "handleUnknownToken(String)",
+      "indexOfEqual(String)",
+      "handleOption(Option)",
+      "getMatchingLongOptions(String)"
+    ],
+    "java.util.List": [
+      "isEmpty()",
+      "get(int)",
+      "size()"
+    ],
+    "org.apache.commons.cli.Options": [
+      "hasLongOption(String)",
+      "getOption(String)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "acceptsArg()",
+      "processValue(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Handles the following tokens:\n * <pre>\n * --L=V -L=V --l=V -l=V\n * </pre>\n *\n * @param token the command line token to handle.\n */\nprivate void handleLongOptionWithEqual(final String token) throws ParseException {\n    final int pos = indexOfEqual(token);\n    final String value = token.substring(pos + 1);\n    final String opt = token.substring(0, pos);\n    final List<String> matchingOpts = getMatchingLongOptions(opt);\n    if (matchingOpts.isEmpty()) {\n        handleUnknownToken(currentToken);\n    } else if (matchingOpts.size() > 1 && !options.hasLongOption(opt)) {\n        throw new AmbiguousOptionException(opt, matchingOpts);\n    } else {\n        final String key = options.hasLongOption(opt) ? opt : matchingOpts.get(0);\n        final Option option = options.getOption(key);\n        if (option.acceptsArg()) {\n            handleOption(option);\n            currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(value));\n            currentOption = null;\n        } else {\n            handleUnknownToken(currentToken);\n        }\n    }\n}",
+  "method_comment": "\n     * Handles the following tokens:\n     * <pre>\n     * --L=V -L=V --l=V -l=V\n     * </pre>\n     *\n     * @param token the command line token to handle.\n     ",
+  "method_annotation": ""
+}

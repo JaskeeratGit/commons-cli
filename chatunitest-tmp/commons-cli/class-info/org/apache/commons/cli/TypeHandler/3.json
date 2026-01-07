@@ -1,0 +1,25 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createFile",
+  "brief": "public static File createFile(final String string){}",
+  "methodSignature": "createFile(String)",
+  "sourceCode": "public static File createFile(final String string) {\n        return createValueUnchecked(string, File.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValueUnchecked(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the File represented by {@code string}.\n *\n * @param string the File location\n * @return The file represented by {@code string}.\n */\npublic static File createFile(final String string) {\n    return createValueUnchecked(string, File.class);\n}",
+  "method_comment": "\n     * Returns the File represented by {@code string}.\n     *\n     * @param string the File location\n     * @return The file represented by {@code string}.\n     ",
+  "method_annotation": ""
+}

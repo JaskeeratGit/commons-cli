@@ -1,0 +1,33 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createValue",
+  "brief": "public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException{}",
+  "methodSignature": "createValue(String, Class)",
+  "sourceCode": "public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException {\n        try {\n            return getDefault().getConverter(clazz).apply(string);\n        } catch (final Exception e) {\n            throw ParseException.wrap(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Converter": [
+      "apply(String)"
+    ],
+    "org.apache.commons.cli.TypeHandler": [
+      "getConverter(Class<T>)",
+      "getDefault()"
+    ],
+    "org.apache.commons.cli.ParseException": [
+      "wrap(Throwable)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates the @code Object} of type {@code clazz} with the value of {@code string}.\n *\n * @param string the command line value\n * @param clazz  the class representing the type of argument\n * @param <T>    type of argument\n * @return The instance of {@code clazz} initialized with the value of {@code string}.\n * @throws ParseException if the value creation for the given class threw an exception.\n */\npublic static <T> T createValue(final String string, final Class<T> clazz) throws ParseException {\n    try {\n        return getDefault().getConverter(clazz).apply(string);\n    } catch (final Exception e) {\n        throw ParseException.wrap(e);\n    }\n}",
+  "method_comment": "\n     * Creates the @code Object} of type {@code clazz} with the value of {@code string}.\n     *\n     * @param string the command line value\n     * @param clazz  the class representing the type of argument\n     * @param <T>    type of argument\n     * @return The instance of {@code clazz} initialized with the value of {@code string}.\n     * @throws ParseException if the value creation for the given class threw an exception.\n     ",
+  "method_annotation": ""
+}

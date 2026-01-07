@@ -1,0 +1,31 @@
+{
+  "className": "AlreadySelectedException",
+  "methodName": "AlreadySelectedException",
+  "brief": "public AlreadySelectedException(final OptionGroup optionGroup, final Option option){}",
+  "methodSignature": "AlreadySelectedException(OptionGroup, Option)",
+  "sourceCode": "public AlreadySelectedException(final OptionGroup optionGroup, final Option option) {\n        this(String.format(\"The option '%s' was specified but an option from this group has already been selected: '%s'\", option.getKey(),\n                optionGroup.getSelected()), optionGroup, option);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionGroup",
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionGroup": [
+      "getSelected()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ],
+    "java.lang.String": [
+      "format(String, Object[])"
+    ]
+  },
+  "full_method_info": "public AlreadySelectedException(final OptionGroup optionGroup, final Option option) {\n    this(String.format(\"The option '%s' was specified but an option from this group has already been selected: '%s'\", option.getKey(), optionGroup.getSelected()), optionGroup, option);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

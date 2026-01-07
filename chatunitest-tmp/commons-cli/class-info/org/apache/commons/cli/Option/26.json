@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "hasArgName",
+  "brief": "public boolean hasArgName(){}",
+  "methodSignature": "hasArgName()",
+  "sourceCode": "public boolean hasArgName() {\n        return argName != null && !argName.isEmpty();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether the display name for the argument value has been set.\n *\n * @return if the display name for the argument value has been set.\n */\npublic boolean hasArgName() {\n    return argName != null && !argName.isEmpty();\n}",
+  "method_comment": "\n     * Tests whether the display name for the argument value has been set.\n     *\n     * @return if the display name for the argument value has been set.\n     ",
+  "method_annotation": ""
+}

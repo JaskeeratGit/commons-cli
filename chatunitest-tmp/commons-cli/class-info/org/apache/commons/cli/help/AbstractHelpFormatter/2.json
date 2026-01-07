@@ -1,0 +1,18 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "getOptionFormatBuilder",
+  "brief": "protected OptionFormatter.Builder getOptionFormatBuilder(){}",
+  "methodSignature": "getOptionFormatBuilder()",
+  "sourceCode": "protected OptionFormatter.Builder getOptionFormatBuilder() {\n        return optionFormatBuilder;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the option formatter builder.\n *\n * @return The option formatter builder.\n */\nprotected OptionFormatter.Builder getOptionFormatBuilder() {\n    return optionFormatBuilder;\n}",
+  "method_comment": "\n     * Gets the option formatter builder.\n     *\n     * @return The option formatter builder.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "CommandLine",
+  "methodName": "getArgs",
+  "brief": "public String[] getArgs(){}",
+  "methodSignature": "getArgs()",
+  "sourceCode": "public String[] getArgs() {\n        return args.toArray(Util.EMPTY_STRING_ARRAY);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.List": [
+      "toArray(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * Gets any left-over non-recognized options and arguments\n *\n * @return remaining items passed in but not parsed as an array.\n */\npublic String[] getArgs() {\n    return args.toArray(Util.EMPTY_STRING_ARRAY);\n}",
+  "method_comment": "\n     * Gets any left-over non-recognized options and arguments\n     *\n     * @return remaining items passed in but not parsed as an array.\n     ",
+  "method_annotation": ""
+}

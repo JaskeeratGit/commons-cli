@@ -1,0 +1,25 @@
+{
+  "className": "Option",
+  "methodName": "clone",
+  "brief": "@Override\n    public Object clone(){}",
+  "methodSignature": "clone()",
+  "sourceCode": "@Override\n    public Object clone() {\n        try {\n            final Option option = (Option) super.clone();\n            option.values = new ArrayList<>(values);\n            return option;\n        } catch (final CloneNotSupportedException e) {\n            throw new UnsupportedOperationException(e.getMessage(), e);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.Object": [
+      "clone()"
+    ],
+    "java.lang.Throwable": [
+      "getMessage()"
+    ]
+  },
+  "full_method_info": "/**\n * A rather odd clone method - due to incorrect code in 1.0 it is public and in 1.1 rather than throwing a CloneNotSupportedException it throws a\n * RuntimeException so as to maintain backwards compatible at the API level.\n *\n * After calling this method, it is very likely you will want to call clearValues().\n *\n * @return a clone of this Option instance.\n * @throws RuntimeException if a {@link CloneNotSupportedException} has been thrown by {@code super.clone()}.\n */\n@Override\npublic Object clone() {\n    try {\n        final Option option = (Option) super.clone();\n        option.values = new ArrayList<>(values);\n        return option;\n    } catch (final CloneNotSupportedException e) {\n        throw new UnsupportedOperationException(e.getMessage(), e);\n    }\n}",
+  "method_comment": "\n     * A rather odd clone method - due to incorrect code in 1.0 it is public and in 1.1 rather than throwing a CloneNotSupportedException it throws a\n     * RuntimeException so as to maintain backwards compatible at the API level.\n     *\n     * After calling this method, it is very likely you will want to call clearValues().\n     *\n     * @return a clone of this Option instance.\n     * @throws RuntimeException if a {@link CloneNotSupportedException} has been thrown by {@code super.clone()}.\n     ",
+  "method_annotation": "@Override\n"
+}

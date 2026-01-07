@@ -1,0 +1,113 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+class CommandLine_getOptionValue_17_0_Test {
+
+    /**
+     * A small test helper subclass that allows controlling the return value
+     * of getOptionValues(OptionGroup) so we can exercise getOptionValue(OptionGroup).
+     */
+    static class TestableCommandLine extends CommandLine {
+
+        String[] toReturn;
+
+        TestableCommandLine() {
+            // uses protected no-arg constructor
+            super();
+        }
+
+        @Override
+        public String[] getOptionValues(final OptionGroup optionGroup) {
+            return toReturn;
+        }
+    }
+
+    @Test
+    void getOptionValue_nullGroup_returnsNull() {
+        TestableCommandLine cli = new TestableCommandLine();
+        // simulate getOptionValues returning null
+        cli.toReturn = null;
+        assertNull(cli.getOptionValue(null));
+    }
+
+    @Test
+    void getOptionValue_groupPresent_butValuesNull_returnsNull() {
+        TestableCommandLine cli = new TestableCommandLine();
+        cli.toReturn = null;
+        OptionGroup group = new OptionGroup();
+        assertNull(cli.getOptionValue(group));
+    }
+
+    @Test
+    void getOptionValue_valuesProvided_returnsFirstValue() {
+        TestableCommandLine cli = new TestableCommandLine();
+        cli.toReturn = new String[] { "first", "second" };
+        OptionGroup group = new OptionGroup();
+        assertEquals("first", cli.getOptionValue(group));
+    }
+
+    @Test
+    void getOptionValue_valuesSingleElement_returnsThatElement() {
+        TestableCommandLine cli = new TestableCommandLine();
+        cli.toReturn = new String[] { "only" };
+        OptionGroup group = new OptionGroup();
+        assertEquals("only", cli.getOptionValue(group));
+    }
+
+    @Test
+    void getOptionValue_emptyArray_throwsArrayIndexOutOfBounds() {
+        TestableCommandLine cli = new TestableCommandLine();
+        cli.toReturn = new String[0];
+        OptionGroup group = new OptionGroup();
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> cli.getOptionValue(group));
+    }
+
+    @Test
+    void instantiatePrivateConstructor_viaReflection_andInspectFields() throws Exception {
+        // Find the private constructor CommandLine(List, List, Consumer)
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        // Create instance via private constructor
+        CommandLine instance = ctor.newInstance(new LinkedList<>(), new ArrayList<>(), null);
+        // Use the public method under test with null to confirm behavior
+        assertNull(instance.getOptionValue(null));
+        // Reflectively inspect the private final 'args' field
+        Field argsField = CommandLine.class.getDeclaredField("args");
+        argsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        List<String> args = (List<String>) argsField.get(instance);
+        assertNotNull(args);
+        assertEquals(0, args.size());
+        // Reflectively inspect the private final 'options' field
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        List<?> options = (List<?>) optionsField.get(instance);
+        assertNotNull(options);
+        assertEquals(0, options.size());
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getOptionValue_17_0_Test: line 48 : reference to getOptionValue is ambiguous
+  both method getOptionValue(org.apache.commons.cli.OptionGroup) in org.apache.commons.cli.CommandLine and method getOptionValue(java.lang.String) in org.apache.commons.cli.CommandLine match
+Error in CommandLine_getOptionValue_17_0_Test: line 91 : reference to getOptionValue is ambiguous
+  both method getOptionValue(org.apache.commons.cli.OptionGroup) in org.apache.commons.cli.CommandLine and method getOptionValue(java.lang.String) in org.apache.commons.cli.CommandLine match

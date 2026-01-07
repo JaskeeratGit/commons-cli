@@ -1,0 +1,27 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "sort",
+  "brief": "public List<Option> sort(final Iterable<Option> options){}",
+  "methodSignature": "sort(Iterable)",
+  "sourceCode": "public List<Option> sort(final Iterable<Option> options) {\n        final List<Option> result = new ArrayList<>();\n        if (options != null) {\n            options.forEach(result::add);\n            result.sort(comparator);\n        }\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<Option>"
+  ],
+  "dependentMethods": {
+    "java.lang.Iterable": [
+      "forEach(Consumer<? super T>)"
+    ],
+    "java.util.List": [
+      "sort(Comparator<? super E>)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new list of options ordered by the comparator.\n *\n * @param options the Options to sort.\n * @return a new list of options ordered by the comparator.\n */\npublic List<Option> sort(final Iterable<Option> options) {\n    final List<Option> result = new ArrayList<>();\n    if (options != null) {\n        options.forEach(result::add);\n        result.sort(comparator);\n    }\n    return result;\n}",
+  "method_comment": "\n     * Creates a new list of options ordered by the comparator.\n     *\n     * @param options the Options to sort.\n     * @return a new list of options ordered by the comparator.\n     ",
+  "method_annotation": ""
+}

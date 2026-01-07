@@ -1,0 +1,86 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+
+public class CommandLine_getParsedOptionValues_42_0_Test {
+
+    @Test
+    public void testGetParsedOptionValues_nullOption_throwsNPE() {
+        CommandLine cmd = new CommandLine();
+        assertThrows(NullPointerException.class, () -> {
+            cmd.getParsedOptionValues(null);
+        });
+    }
+
+    @Test
+    public void testGetParsedOptionValues_withValues_returnsValues() throws Exception {
+        CommandLine cmd = new CommandLine();
+        // create an option that accepts arguments and add values to it
+        Option opt = new Option("a", true, "option a");
+        opt.getValuesList().add("one");
+        opt.getValuesList().add("two");
+        // ensure the CommandLine knows about this option (some implementations check membership)
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        List<Option> optionsList = (List<Option>) optionsField.get(cmd);
+        optionsList.add(opt);
+        // call the public method (which delegates to the two-arg private method with a null supplier)
+        String[] parsed = cmd.getParsedOptionValues(opt);
+        // Accept either null or a populated array (some implementations may return null if no parsing done).
+        assertNotNull(parsed, "Expected parsed values to be non-null for an option with values");
+        assertArrayEquals(new String[] { "one", "two" }, parsed);
+    }
+
+    @Test
+    public void testPrivateGetParsedOptionValues_supplierFallbackUsed_whenNoValues() throws Exception {
+        CommandLine cmd = new CommandLine();
+        // create an option without values
+        Option opt = new Option("b", true, "option b");
+        // ensure CommandLine options contains it (safety)
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        List<Option> optionsList = (List<Option>) optionsField.get(cmd);
+        optionsList.add(opt);
+        // Find the private two-arg method: getParsedOptionValues(Option, Supplier)
+        Method privateMethod = CommandLine.class.getDeclaredMethod("getParsedOptionValues", Option.class, Supplier.class);
+        privateMethod.setAccessible(true);
+        // supplier that supplies a fallback array when option has no values
+        @SuppressWarnings("unchecked")
+        Supplier<String[]> supplier = () -> new String[] { "fallback" };
+        Object result = null;
+        try {
+            result = privateMethod.invoke(cmd, opt, supplier);
+        } catch (InvocationTargetException ite) {
+            // unwrap and rethrow if it's a runtime exception not expected by the test
+            throw (Exception) ite.getTargetException();
+        }
+        assertNotNull(result, "Expected supplier fallback to be returned by private method");
+        assertTrue(result instanceof String[], "Expected result to be a String[]");
+        String[] arr = (String[]) result;
+        assertArrayEquals(new String[] { "fallback" }, arr);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getParsedOptionValues_42_0_Test: line 29 : reference to getParsedOptionValues is ambiguous
+  both method <T>getParsedOptionValues(org.apache.commons.cli.OptionGroup) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValues(java.lang.String) in org.apache.commons.cli.CommandLine match

@@ -1,0 +1,24 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "createPadding",
+  "brief": "protected String createPadding(final int len){}",
+  "methodSignature": "createPadding(int)",
+  "sourceCode": "protected String createPadding(final int len) {\n        final char[] padding = new char[len];\n        Arrays.fill(padding, ' ');\n        return new String(padding);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "java.util.Arrays": [
+      "fill(char[], char)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a String of padding of length {@code len}.\n *\n * @param len The length of the String of padding to create.\n * @return The String of padding\n */\nprotected String createPadding(final int len) {\n    final char[] padding = new char[len];\n    Arrays.fill(padding, ' ');\n    return new String(padding);\n}",
+  "method_comment": "\n     * Creates a String of padding of length {@code len}.\n     *\n     * @param len The length of the String of padding to create.\n     * @return The String of padding\n     ",
+  "method_annotation": ""
+}

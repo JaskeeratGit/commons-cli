@@ -1,0 +1,151 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.Objects;
+
+/**
+ * JUnit 5 tests for TypeHandler#createDefaultMap() and related behavior.
+ *
+ * Note: A minimal Converter interface is provided below to satisfy compilation
+ * of the TypeHandler signatures used in these tests.
+ */
+public class TypeHandler_createDefaultMap_2_0_Test {
+
+    @Test
+    public void testCreateDefaultMapNotEmptyAndContentsValid() {
+        Map<Class<?>, Converter<?, ? extends Throwable>> map = TypeHandler.createDefaultMap();
+        assertNotNull(map, "createDefaultMap() should not return null");
+        assertFalse(map.isEmpty(), "createDefaultMap() should populate default converters");
+        // Validate each entry has non-null key and value, and key is a Class
+        for (Map.Entry<Class<?>, Converter<?, ? extends Throwable>> e : map.entrySet()) {
+            assertNotNull(e.getKey(), "map key should not be null");
+            assertNotNull(e.getValue(), "map value (converter) should not be null");
+            assertTrue(Class.class.isAssignableFrom(e.getKey().getClass()), "map key should be a Class");
+        }
+    }
+
+    @Test
+    public void testCreateDefaultMapReturnsDistinctInstances() {
+        Map<Class<?>, Converter<?, ? extends Throwable>> a = TypeHandler.createDefaultMap();
+        Map<Class<?>, Converter<?, ? extends Throwable>> b = TypeHandler.createDefaultMap();
+        assertNotSame(a, b, "createDefaultMap() should return a new Map instance each call");
+        // but contents should be non-empty in both
+        assertFalse(a.isEmpty());
+        assertFalse(b.isEmpty());
+    }
+
+    @Test
+    public void testPutDefaultMapViaReflectionProducesDefaultEntries() throws Exception {
+        // Attempt to locate a private static method putDefaultMap(Map) and invoke it.
+        Method putDefaultMap = null;
+        for (Method m : TypeHandler.class.getDeclaredMethods()) {
+            if ("putDefaultMap".equals(m.getName()) && m.getParameterCount() == 1) {
+                Class<?>[] params = m.getParameterTypes();
+                if (Map.class.isAssignableFrom(params[0])) {
+                    putDefaultMap = m;
+                    break;
+                }
+            }
+        }
+        assertNotNull(putDefaultMap, "Expected a method named putDefaultMap(Map) in TypeHandler");
+        putDefaultMap.setAccessible(true);
+        Map<Class<?>, Converter<?, ? extends Throwable>> input = new HashMap<>();
+        Object ret = putDefaultMap.invoke(null, input);
+        assertNotNull(ret, "putDefaultMap should return a Map");
+        assertTrue(ret instanceof Map, "putDefaultMap should return a Map instance");
+        @SuppressWarnings("unchecked")
+        Map<Class<?>, Converter<?, ? extends Throwable>> returned = (Map<Class<?>, Converter<?, ? extends Throwable>>) ret;
+        // The returned map should be non-empty (populated with default converters)
+        assertFalse(returned.isEmpty(), "putDefaultMap should populate the provided map with default converters");
+        // Ensure returned map is the same instance as passed (common implementation choice)
+        assertSame(input, returned, "putDefaultMap is expected to populate and return the same map instance");
+    }
+
+    @Test
+    public void testTypeHandlerConstructorNullThrowsNPE() {
+        assertThrows(NullPointerException.class, () -> new TypeHandler((Map<Class<?>, Converter<?, ? extends Throwable>>) null));
+    }
+
+    @Test
+    public void testDefaultConstructorInitializesConverterMapField() throws Exception {
+        // uses default constructor which delegates to createDefaultMap()
+        TypeHandler th = new TypeHandler();
+        Field converterMapField = TypeHandler.class.getDeclaredField("converterMap");
+        converterMapField.setAccessible(true);
+        Object fieldVal = converterMapField.get(th);
+        assertNotNull(fieldVal, "converterMap field should be initialized by default constructor");
+        assertTrue(fieldVal instanceof Map, "converterMap field should be a Map");
+        @SuppressWarnings("unchecked")
+        Map<Class<?>, Converter<?, ? extends Throwable>> cmap = (Map<Class<?>, Converter<?, ? extends Throwable>>) fieldVal;
+        assertFalse(cmap.isEmpty(), "converterMap initialized by default constructor should contain default converters");
+    }
+
+    @Test
+    public void testGetDefaultReturnsSingletonDefaultField() throws Exception {
+        // Access private static DEFAULT field
+        Field defaultField = TypeHandler.class.getDeclaredField("DEFAULT");
+        defaultField.setAccessible(true);
+        Object defaultInstance = defaultField.get(null);
+        // Call public static getDefault()
+        Method getDefaultMethod = TypeHandler.class.getMethod("getDefault");
+        Object returned = getDefaultMethod.invoke(null);
+        assertNotNull(returned, "getDefault() should not return null");
+        assertSame(defaultInstance, returned, "getDefault() should return the DEFAULT singleton instance");
+    }
+
+    @Test
+    public void testCreateDefaultMapAndPutDefaultMapConsistency() throws Exception {
+        // Ensure createDefaultMap delegates to putDefaultMap(new HashMap<>()) effectively
+        Map<Class<?>, Converter<?, ? extends Throwable>> created = TypeHandler.createDefaultMap();
+        // invoke putDefaultMap on a fresh map
+        Method putDefaultMap = null;
+        for (Method m : TypeHandler.class.getDeclaredMethods()) {
+            if ("putDefaultMap".equals(m.getName()) && m.getParameterCount() == 1) {
+                Class<?>[] params = m.getParameterTypes();
+                if (Map.class.isAssignableFrom(params[0])) {
+                    putDefaultMap = m;
+                    break;
+                }
+            }
+        }
+        assertNotNull(putDefaultMap, "Expected a method named putDefaultMap(Map) in TypeHandler");
+        putDefaultMap.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<Class<?>, Converter<?, ? extends Throwable>> fromPut = (Map<Class<?>, Converter<?, ? extends Throwable>>) putDefaultMap.invoke(null, new HashMap<>());
+        // The two maps should have similar characteristics: both non-empty and contain Class->Converter mappings.
+        assertFalse(created.isEmpty());
+        assertFalse(fromPut.isEmpty());
+        // Verify that keys/values types align
+        for (Class<?> k : created.keySet()) {
+            assertNotNull(k);
+            assertTrue(created.get(k) != null);
+        }
+        for (Class<?> k : fromPut.keySet()) {
+            assertNotNull(k);
+            assertTrue(fromPut.get(k) != null);
+        }
+    }
+
+    // Minimal stub for Converter to satisfy compilation when running tests.
+    // If a real Converter interface exists on the classpath, this definition will be ignored only if the real one is present;
+    // otherwise this package-private interface here allows tests to compile.
+    interface Converter<S, T extends Throwable> {
+        // no methods needed for tests
+    }
+}

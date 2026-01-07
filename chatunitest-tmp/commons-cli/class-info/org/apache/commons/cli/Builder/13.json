@@ -1,0 +1,25 @@
+{
+  "className": "Builder",
+  "methodName": "option",
+  "brief": "public Builder option(final String option) throws IllegalArgumentException{}",
+  "methodSignature": "option(String)",
+  "sourceCode": "public Builder option(final String option) throws IllegalArgumentException {\n            this.option = OptionValidator.validate(option);\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.OptionValidator": [
+      "validate(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the name of the Option.\n *\n * @param option the name of the Option.\n * @return this builder.\n * @throws IllegalArgumentException if there are any non valid Option characters in {@code opt}.\n * @since 1.5.0\n */\npublic Builder option(final String option) throws IllegalArgumentException {\n    this.option = OptionValidator.validate(option);\n    return this;\n}",
+  "method_comment": "\n         * Sets the name of the Option.\n         *\n         * @param option the name of the Option.\n         * @return this builder.\n         * @throws IllegalArgumentException if there are any non valid Option characters in {@code opt}.\n         * @since 1.5.0\n         ",
+  "method_annotation": ""
+}

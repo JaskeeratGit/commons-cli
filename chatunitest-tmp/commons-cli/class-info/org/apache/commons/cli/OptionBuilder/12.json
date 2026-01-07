@@ -1,0 +1,18 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "reset",
+  "brief": "private static void reset(){}",
+  "methodSignature": "reset()",
+  "sourceCode": "private static void reset() {\n        description = null;\n        argName = null;\n        longOption = null;\n        type = String.class;\n        required = false;\n        argCount = Option.UNINITIALIZED;\n        optionalArg = false;\n        valueSeparator = (char) 0;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Resets the member variables to their default values.\n */\nprivate static void reset() {\n    description = null;\n    argName = null;\n    longOption = null;\n    type = String.class;\n    required = false;\n    argCount = Option.UNINITIALIZED;\n    optionalArg = false;\n    valueSeparator = (char) 0;\n}",
+  "method_comment": "\n     * Resets the member variables to their default values.\n     ",
+  "method_annotation": ""
+}

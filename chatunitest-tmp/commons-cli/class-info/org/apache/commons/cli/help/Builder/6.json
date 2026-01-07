@@ -1,0 +1,28 @@
+{
+  "className": "Builder",
+  "methodName": "setHelpAppendable",
+  "brief": "public B setHelpAppendable(final HelpAppendable helpAppendable){}",
+  "methodSignature": "setHelpAppendable(HelpAppendable)",
+  "sourceCode": "public B setHelpAppendable(final HelpAppendable helpAppendable) {\n            this.helpAppendable = helpAppendable != null ? helpAppendable : TextHelpAppendable.systemOut();\n            return asThis();\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "HelpAppendable"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.HelpAppendable": [],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "systemOut()"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter.Builder": [
+      "asThis()"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the {@link HelpAppendable}.\n *\n * @param helpAppendable the {@link HelpAppendable} to use.\n * @return this\n */\npublic B setHelpAppendable(final HelpAppendable helpAppendable) {\n    this.helpAppendable = helpAppendable != null ? helpAppendable : TextHelpAppendable.systemOut();\n    return asThis();\n}",
+  "method_comment": "\n         * Sets the {@link HelpAppendable}.\n         *\n         * @param helpAppendable the {@link HelpAppendable} to use.\n         * @return this\n         ",
+  "method_annotation": ""
+}

@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "TypeHandler_createDefaultMap_2_0_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createDefaultMap_2_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createDefaultMap_2_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createDefaultMap",
+    "methodSig": "createDefaultMap()"
+  },
+  "attempt1": {
+    "testClassName": "TypeHandler_createDefaultMap_2_1_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createDefaultMap_2_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createDefaultMap_2_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createDefaultMap",
+    "methodSig": "createDefaultMap()"
+  },
+  "attempt2": {
+    "testClassName": "TypeHandler_createDefaultMap_2_2_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createDefaultMap_2_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createDefaultMap_2_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createDefaultMap",
+    "methodSig": "createDefaultMap()"
+  },
+  "attempt3": {
+    "testClassName": "TypeHandler_createDefaultMap_2_3_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createDefaultMap_2_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createDefaultMap_2_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createDefaultMap",
+    "methodSig": "createDefaultMap()"
+  },
+  "attempt4": {
+    "testClassName": "TypeHandler_createDefaultMap_2_4_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createDefaultMap_2_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createDefaultMap_2_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createDefaultMap",
+    "methodSig": "createDefaultMap()"
+  }
+}

@@ -1,0 +1,110 @@
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+class TextHelpAppendable_appendHeader_3_0_Test {
+
+    /**
+     * Testable subclass to capture the queue passed to printQueue so tests do not rely on actual Appendable output.
+     */
+    static class TestableTextHelpAppendable extends TextHelpAppendable {
+
+        private LinkedList<String> captured;
+
+        TestableTextHelpAppendable(final Appendable output) {
+            super(output);
+        }
+
+        @Override
+        protected void printQueue(final Queue<String> queue) throws IOException {
+            // Capture a copy so tests can assert contents and ordering
+            this.captured = new LinkedList<>(queue);
+            // Do not call super to avoid writing to the Appendable in tests
+        }
+
+        LinkedList<String> getCaptured() {
+            return captured;
+        }
+
+        void clearCaptured() {
+            this.captured = null;
+        }
+    }
+
+    @Test
+    void appendHeader_withNullOrEmpty_doesNothing() throws Exception {
+        final TestableTextHelpAppendable tha = new TestableTextHelpAppendable(new StringBuilder());
+        // null
+        tha.appendHeader(1, (CharSequence) null);
+        assertNull(tha.getCaptured(), "appendHeader should do nothing for null text");
+        // empty
+        tha.clearCaptured();
+        tha.appendHeader(1, "");
+        assertNull(tha.getCaptured(), "appendHeader should do nothing for empty text");
+    }
+
+    @Test
+    void appendHeader_levelLessThanOne_throws() {
+        final TestableTextHelpAppendable tha = new TestableTextHelpAppendable(new StringBuilder());
+        final CharSequence text = "some header";
+        assertThrows(IllegalArgumentException.class, () -> tha.appendHeader(0, text));
+        assertThrows(IllegalArgumentException.class, () -> tha.appendHeader(-5, text));
+    }
+
+    @Test
+    void appendHeader_levelOne_usesEqualsFillChar_and_appendsBlankLine() throws Exception {
+        final TestableTextHelpAppendable tha = new TestableTextHelpAppendable(new StringBuilder());
+        // Configure style to predictable values
+        tha.setLeftPad(2);
+        tha.setMaxWidth(10);
+        final String text = "abc";
+        tha.appendHeader(1, text);
+        final LinkedList<String> captured = tha.getCaptured();
+        assertNotNull(captured, "printQueue should be invoked for non-empty text");
+        // The border should be the second-to-last entry and the blank line the last entry
+        assertTrue(captured.size() >= 2, "Captured queue should contain at least header line + border + blank line");
+        final String border = captured.get(captured.size() - 2);
+        final String blank = captured.get(captured.size() - 1);
+        // leftPad = 2, text length = 3 -> 2 spaces then 3 '=' characters
+        final String expectedBorder = "  " + Util.repeat(Math.min(text.length(), tha.getMaxWidth()), '=');
+        assertEquals(expectedBorder, border, "Border line should consist of left pad then '=' repeated");
+        assertEquals("", blank, "Last queued element should be a blank line");
+    }
+
+    @Test
+    void appendHeader_levelGreaterThanFillArray_usesLastFillChar_and_clampsToMaxWidth() throws Exception {
+        final TestableTextHelpAppendable tha = new TestableTextHelpAppendable(new StringBuilder());
+        // Use a small max width to force clamping
+        tha.setLeftPad(1);
+        tha.setMaxWidth(4);
+        // length 10
+        final String longText = "abcdefghij";
+        // Use level larger than fillChars length (fillChars length is 4) to ensure '_' is selected
+        tha.appendHeader(10, longText);
+        final LinkedList<String> captured = tha.getCaptured();
+        assertNotNull(captured, "printQueue should be invoked for non-empty text");
+        assertTrue(captured.size() >= 2, "Captured queue should contain at least header line + border + blank line");
+        final String border = captured.get(captured.size() - 2);
+        // leftPad 1 + '_' * maxWidth(4)
+        final String expectedBorder = " " + Util.repeat(Math.min(longText.length(), tha.getMaxWidth()), '_');
+        assertEquals(expectedBorder, border, "Border should use last fill char '_' and be clamped to maxWidth");
+    }
+}
+
+--------------------------------------------
+Error in TextHelpAppendable_appendHeader_3_0_Test: line 33 : method does not override or implement a method from a supertype

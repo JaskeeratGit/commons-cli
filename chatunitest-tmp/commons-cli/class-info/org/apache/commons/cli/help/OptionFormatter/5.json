@@ -1,0 +1,25 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "getLongOpt",
+  "brief": "public String getLongOpt(){}",
+  "methodSignature": "getLongOpt()",
+  "sourceCode": "public String getLongOpt() {\n        return Util.isEmpty(option.getLongOpt()) ? \"\" : longOptPrefix + option.getLongOpt();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.Util": [
+      "isEmpty(CharSequence)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getLongOpt()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the long Opt from the @{link Option} with the associate prefix.\n *\n * @return The long Opt from the @{link Option} with the associate prefix or an empty string.\n */\npublic String getLongOpt() {\n    return Util.isEmpty(option.getLongOpt()) ? \"\" : longOptPrefix + option.getLongOpt();\n}",
+  "method_comment": "\n     * Gets the long Opt from the @{link Option} with the associate prefix.\n     *\n     * @return The long Opt from the @{link Option} with the associate prefix or an empty string.\n     ",
+  "method_annotation": ""
+}

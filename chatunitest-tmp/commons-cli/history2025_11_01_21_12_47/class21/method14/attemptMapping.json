@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "TypeHandler_getConverter_14_0_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_getConverter_14_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getConverter",
+    "methodSig": "getConverter(Class)"
+  },
+  "attempt1": {
+    "testClassName": "TypeHandler_getConverter_14_1_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_getConverter_14_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getConverter",
+    "methodSig": "getConverter(Class)"
+  },
+  "attempt2": {
+    "testClassName": "TypeHandler_getConverter_14_2_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_getConverter_14_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getConverter",
+    "methodSig": "getConverter(Class)"
+  },
+  "attempt3": {
+    "testClassName": "TypeHandler_getConverter_14_3_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_getConverter_14_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getConverter",
+    "methodSig": "getConverter(Class)"
+  },
+  "attempt4": {
+    "testClassName": "TypeHandler_getConverter_14_4_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_getConverter_14_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getConverter",
+    "methodSig": "getConverter(Class)"
+  }
+}

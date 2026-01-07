@@ -1,0 +1,141 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for Parser.processArgs(Option, ListIterator)
+ */
+public class Parser_processArgs_8_0_Test {
+
+    /**
+     * A small concrete Parser to allow setting Options via protected setOptions.
+     */
+    static class ConcreteParser extends Parser {
+
+        ConcreteParser(Options options) {
+            setOptions(options);
+        }
+
+        @Override
+        protected String[] flatten(Options options, String[] args, boolean stopAtNonOption) {
+            // Simple passthrough implementation sufficient for these tests
+            return args;
+        }
+    }
+
+    /**
+     * Test Options that only responds true for the configured option names.
+     * It normalizes names by stripping leading hyphens so callers may pass "-b" or "b".
+     */
+    static class TestOptions extends Options {
+
+        private final Set<String> names = new HashSet<>();
+
+        TestOptions(String... names) {
+            for (String n : names) {
+                this.names.add(Util.stripLeadingHyphens(n));
+            }
+        }
+
+        @Override
+        public boolean hasOption(final String opt) {
+            return names.contains(Util.stripLeadingHyphens(opt));
+        }
+    }
+
+    private void invokeProcessArgs(Parser parser, Option opt, ListIterator<String> iter) throws Throwable {
+        Method m = Parser.class.getDeclaredMethod("processArgs", Option.class, ListIterator.class);
+        m.setAccessible(true);
+        try {
+            m.invoke(parser, opt, iter);
+        } catch (InvocationTargetException e) {
+            throw e.getCause();
+        }
+    }
+
+    @Test
+    public void testConsumesValuesAndStopsBeforeNextOption() throws Throwable {
+        Options options = new TestOptions("-b");
+        Parser parser = new ConcreteParser(options);
+        // expects an argument
+        Option opt = new Option("a", true, "desc");
+        List<String> items = new ArrayList<>(Arrays.asList("value1", "-b"));
+        ListIterator<String> iter = items.listIterator();
+        // should consume "value1" and stop before "-b"
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> invokeProcessArgs(parser, opt, iter));
+        // verify option received the value
+        String[] vals = opt.getValues();
+        org.junit.jupiter.api.Assertions.assertNotNull(vals);
+        org.junit.jupiter.api.Assertions.assertArrayEquals(new String[] { "value1" }, vals);
+        // iterator should be positioned before "-b"
+        org.junit.jupiter.api.Assertions.assertTrue(iter.hasNext());
+        org.junit.jupiter.api.Assertions.assertEquals("-b", iter.next());
+    }
+
+    @Test
+    public void testImmediateOptionThrowsMissingArgument() {
+        Options options = new TestOptions("-b");
+        Parser parser = new ConcreteParser(options);
+        // expects an argument
+        Option opt = new Option("a", true, "desc");
+        List<String> items = new ArrayList<>(Collections.singletonList("-b"));
+        ListIterator<String> iter = items.listIterator();
+        org.junit.jupiter.api.Assertions.assertThrows(MissingArgumentException.class, () -> {
+            try {
+                invokeProcessArgs(parser, opt, iter);
+            } catch (Throwable t) {
+                throw t;
+            }
+        });
+        // iterator should be positioned before "-b"
+        org.junit.jupiter.api.Assertions.assertTrue(iter.hasNext());
+        org.junit.jupiter.api.Assertions.assertEquals("-b", iter.next());
+    }
+
+    @Test
+    public void testProcessValueRuntimeExceptionRewindsIteratorAndThrowsMissingArgument() {
+        Options options = new TestOptions("-b");
+        Parser parser = new ConcreteParser(options);
+        // create an Option with no args allowed (UNINITIALIZED) so processValue will throw
+        // hasArg = false => UNINITIALIZED
+        Option opt = new Option("a", false, "desc");
+        List<String> items = new ArrayList<>(Arrays.asList("badValue", "-b"));
+        ListIterator<String> iter = items.listIterator();
+        org.junit.jupiter.api.Assertions.assertThrows(MissingArgumentException.class, () -> {
+            try {
+                invokeProcessArgs(parser, opt, iter);
+            } catch (Throwable t) {
+                throw t;
+            }
+        });
+        // processArgs should have called iter.previous() when processValue threw, so iterator should be before "badValue"
+        org.junit.jupiter.api.Assertions.assertTrue(iter.hasNext());
+        org.junit.jupiter.api.Assertions.assertEquals("badValue", iter.next());
+    }
+
+    @Test
+    public void testOptionalArgAllowsNoValues() throws Throwable {
+        Options options = new TestOptions("-b");
+        Parser parser = new ConcreteParser(options);
+        Option opt = new Option("a", true, "desc");
+        // allow no argument
+        opt.setOptionalArg(true);
+        List<String> items = new ArrayList<>(Collections.singletonList("-b"));
+        ListIterator<String> iter = items.listIterator();
+        // should not throw because option allows optional arg
+        org.junit.jupiter.api.Assertions.assertDoesNotThrow(() -> invokeProcessArgs(parser, opt, iter));
+        // still no values set
+        org.junit.jupiter.api.Assertions.assertNull(opt.getValues());
+        // iterator should be positioned before "-b"
+        org.junit.jupiter.api.Assertions.assertTrue(iter.hasNext());
+        org.junit.jupiter.api.Assertions.assertEquals("-b", iter.next());
+    }
+}

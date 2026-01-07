@@ -1,0 +1,25 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "toOptional",
+  "brief": "public String toOptional(final String text){}",
+  "methodSignature": "toOptional(String)",
+  "sourceCode": "public String toOptional(final String text) {\n        if (Util.isEmpty(text)) {\n            return \"\";\n        }\n        return optionalDelimiters[0] + text + optionalDelimiters[1];\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.help.Util": [
+      "isEmpty(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * Wraps the provided text in the optional delimiters.\n *\n * @param text the text to wrap.\n * @return The text wrapped in the optional delimiters or an eppty string of the text is null or an empty string.\n */\npublic String toOptional(final String text) {\n    if (Util.isEmpty(text)) {\n        return \"\";\n    }\n    return optionalDelimiters[0] + text + optionalDelimiters[1];\n}",
+  "method_comment": "\n     * Wraps the provided text in the optional delimiters.\n     *\n     * @param text the text to wrap.\n     * @return The text wrapped in the optional delimiters or an eppty string of the text is null or an empty string.\n     ",
+  "method_annotation": ""
+}

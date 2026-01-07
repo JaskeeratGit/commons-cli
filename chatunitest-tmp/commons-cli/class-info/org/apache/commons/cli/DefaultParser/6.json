@@ -1,0 +1,33 @@
+{
+  "className": "DefaultParser",
+  "methodName": "getMatchingLongOptions",
+  "brief": "private List<String> getMatchingLongOptions(final String token){}",
+  "methodSignature": "getMatchingLongOptions(String)",
+  "sourceCode": "private List<String> getMatchingLongOptions(final String token) {\n        if (allowPartialMatching) {\n            return options.getMatchingOptions(token);\n        }\n        final List<String> matches = new ArrayList<>(1);\n        if (options.hasLongOption(token)) {\n            matches.add(options.getOption(token).getLongOpt());\n        }\n        return matches;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [
+      "hasLongOption(String)",
+      "getMatchingOptions(String)",
+      "getOption(String)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getLongOpt()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a list of matching option strings for the given token, depending on the selected partial matching policy.\n *\n * @param token the token (may contain leading dashes).\n * @return the list of matching option strings or an empty list if no matching option could be found.\n */\nprivate List<String> getMatchingLongOptions(final String token) {\n    if (allowPartialMatching) {\n        return options.getMatchingOptions(token);\n    }\n    final List<String> matches = new ArrayList<>(1);\n    if (options.hasLongOption(token)) {\n        matches.add(options.getOption(token).getLongOpt());\n    }\n    return matches;\n}",
+  "method_comment": "\n     * Gets a list of matching option strings for the given token, depending on the selected partial matching policy.\n     *\n     * @param token the token (may contain leading dashes).\n     * @return the list of matching option strings or an empty list if no matching option could be found.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,83 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "appendOptions",
+  "brief": "<A extends Appendable> A appendOptions(final A sb, final int width, final Options options, final int leftPad, final int descPad) throws IOException{}",
+  "methodSignature": "appendOptions(A, int, Options, int, int)",
+  "sourceCode": "<A extends Appendable> A appendOptions(final A sb, final int width, final Options options, final int leftPad, final int descPad) throws IOException {\n        final String lpad = createPadding(leftPad);\n        final String dpad = createPadding(descPad);\n        // first create list containing only <lpad>-a,--aaa where\n        // -a is opt and --aaa is long opt; in parallel look for\n        // the longest opt string this list will be then used to\n        // sort options ascending\n        int max = 0;\n        final int maxSince = showSince ? determineMaxSinceLength(options) + leftPad : 0;\n        final List<StringBuilder> prefixList = new ArrayList<>();\n        final List<Option> optList = options.helpOptions();\n        if (getOptionComparator() != null) {\n            Collections.sort(optList, getOptionComparator());\n        }\n        for (final Option option : optList) {\n            final StringBuilder optBuf = new StringBuilder();\n            if (option.getOpt() == null) {\n                optBuf.append(lpad).append(\"   \").append(getLongOptPrefix()).append(option.getLongOpt());\n            } else {\n                optBuf.append(lpad).append(getOptPrefix()).append(option.getOpt());\n                if (option.hasLongOpt()) {\n                    optBuf.append(',').append(getLongOptPrefix()).append(option.getLongOpt());\n                }\n            }\n            if (option.hasArg()) {\n                final String argName = option.getArgName();\n                if (argName != null && argName.isEmpty()) {\n                    // if the option has a blank argname\n                    optBuf.append(' ');\n                } else {\n                    optBuf.append(option.hasLongOpt() ? longOptSeparator : \" \");\n                    optBuf.append(\"<\").append(argName != null ? option.getArgName() : getArgName()).append(\">\");\n                }\n            }\n\n            prefixList.add(optBuf);\n            max = Math.max(optBuf.length() + maxSince, max);\n        }\n        final int nextLineTabStop = max + descPad;\n        if (showSince) {\n            final StringBuilder optHeader = new StringBuilder(HEADER_OPTIONS).append(createPadding(max - maxSince - HEADER_OPTIONS.length() + leftPad))\n                    .append(HEADER_SINCE);\n            optHeader.append(createPadding(max - optHeader.length())).append(lpad).append(HEADER_DESCRIPTION);\n            appendWrappedText(sb, width, nextLineTabStop, optHeader.toString());\n            sb.append(getNewLine());\n        }\n\n        int x = 0;\n        for (final Iterator<Option> it = optList.iterator(); it.hasNext();) {\n            final Option option = it.next();\n            final StringBuilder optBuf = new StringBuilder(prefixList.get(x++).toString());\n            if (optBuf.length() < max) {\n                optBuf.append(createPadding(max - maxSince - optBuf.length()));\n                if (showSince) {\n                    optBuf.append(lpad).append(option.getSince() == null ? \"-\" : option.getSince());\n                }\n                optBuf.append(createPadding(max - optBuf.length()));\n            }\n            optBuf.append(dpad);\n\n            if (deprecatedFormatFunction != null && option.isDeprecated()) {\n                optBuf.append(deprecatedFormatFunction.apply(option).trim());\n            } else if (option.getDescription() != null) {\n                optBuf.append(option.getDescription());\n            }\n            appendWrappedText(sb, width, nextLineTabStop, optBuf.toString());\n            if (it.hasNext()) {\n                sb.append(getNewLine());\n            }\n        }\n        return sb;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "A",
+    "int",
+    "Options",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "A": [],
+    "org.apache.commons.cli.Options": [
+      "helpOptions()"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "getOptPrefix()",
+      "determineMaxSinceLength(Options)",
+      "getLongOptPrefix()",
+      "getNewLine()",
+      "createPadding(int)",
+      "getArgName()",
+      "getOptionComparator()",
+      "appendWrappedText(A, int, int, String)"
+    ],
+    "java.util.Collections": [
+      "sort(List<T>, Comparator<? super T>)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getOpt()",
+      "hasArg()",
+      "getDescription()",
+      "getSince()",
+      "getArgName()",
+      "hasLongOpt()",
+      "isDeprecated()",
+      "getLongOpt()"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(String)"
+    ],
+    "java.lang.String": [
+      "isEmpty()",
+      "trim()",
+      "length()"
+    ],
+    "java.util.List": [
+      "iterator()",
+      "get(int)",
+      "add(E)"
+    ],
+    "java.lang.Math": [
+      "max(int, int)"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "length()"
+    ],
+    "java.lang.Appendable": [
+      "append(CharSequence)"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.util.function.Function": [
+      "apply(T)"
+    ]
+  },
+  "full_method_info": "/**\n * Renders the specified Options and return the rendered Options in a StringBuffer.\n *\n * @param sb The StringBuffer to place the rendered Options into.\n * @param width The number of characters to display per line\n * @param options The command line Options\n * @param leftPad the number of characters of padding to be prefixed to each line\n * @param descPad the number of characters of padding to be prefixed to each description line\n * @return the StringBuffer with the rendered Options contents.\n * @throws IOException if an I/O error occurs.\n */\n<A extends Appendable> A appendOptions(final A sb, final int width, final Options options, final int leftPad, final int descPad) throws IOException {\n    final String lpad = createPadding(leftPad);\n    final String dpad = createPadding(descPad);\n    // first create list containing only <lpad>-a,--aaa where\n    // -a is opt and --aaa is long opt; in parallel look for\n    // the longest opt string this list will be then used to\n    // sort options ascending\n    int max = 0;\n    final int maxSince = showSince ? determineMaxSinceLength(options) + leftPad : 0;\n    final List<StringBuilder> prefixList = new ArrayList<>();\n    final List<Option> optList = options.helpOptions();\n    if (getOptionComparator() != null) {\n        Collections.sort(optList, getOptionComparator());\n    }\n    for (final Option option : optList) {\n        final StringBuilder optBuf = new StringBuilder();\n        if (option.getOpt() == null) {\n            optBuf.append(lpad).append(\"   \").append(getLongOptPrefix()).append(option.getLongOpt());\n        } else {\n            optBuf.append(lpad).append(getOptPrefix()).append(option.getOpt());\n            if (option.hasLongOpt()) {\n                optBuf.append(',').append(getLongOptPrefix()).append(option.getLongOpt());\n            }\n        }\n        if (option.hasArg()) {\n            final String argName = option.getArgName();\n            if (argName != null && argName.isEmpty()) {\n                // if the option has a blank argname\n                optBuf.append(' ');\n            } else {\n                optBuf.append(option.hasLongOpt() ? longOptSeparator : \" \");\n                optBuf.append(\"<\").append(argName != null ? option.getArgName() : getArgName()).append(\">\");\n            }\n        }\n        prefixList.add(optBuf);\n        max = Math.max(optBuf.length() + maxSince, max);\n    }\n    final int nextLineTabStop = max + descPad;\n    if (showSince) {\n        final StringBuilder optHeader = new StringBuilder(HEADER_OPTIONS).append(createPadding(max - maxSince - HEADER_OPTIONS.length() + leftPad)).append(HEADER_SINCE);\n        optHeader.append(createPadding(max - optHeader.length())).append(lpad).append(HEADER_DESCRIPTION);\n        appendWrappedText(sb, width, nextLineTabStop, optHeader.toString());\n        sb.append(getNewLine());\n    }\n    int x = 0;\n    for (final Iterator<Option> it = optList.iterator(); it.hasNext(); ) {\n        final Option option = it.next();\n        final StringBuilder optBuf = new StringBuilder(prefixList.get(x++).toString());\n        if (optBuf.length() < max) {\n            optBuf.append(createPadding(max - maxSince - optBuf.length()));\n            if (showSince) {\n                optBuf.append(lpad).append(option.getSince() == null ? \"-\" : option.getSince());\n            }\n            optBuf.append(createPadding(max - optBuf.length()));\n        }\n        optBuf.append(dpad);\n        if (deprecatedFormatFunction != null && option.isDeprecated()) {\n            optBuf.append(deprecatedFormatFunction.apply(option).trim());\n        } else if (option.getDescription() != null) {\n            optBuf.append(option.getDescription());\n        }\n        appendWrappedText(sb, width, nextLineTabStop, optBuf.toString());\n        if (it.hasNext()) {\n            sb.append(getNewLine());\n        }\n    }\n    return sb;\n}",
+  "method_comment": "\n     * Renders the specified Options and return the rendered Options in a StringBuffer.\n     *\n     * @param sb The StringBuffer to place the rendered Options into.\n     * @param width The number of characters to display per line\n     * @param options The command line Options\n     * @param leftPad the number of characters of padding to be prefixed to each line\n     * @param descPad the number of characters of padding to be prefixed to each description line\n     * @return the StringBuffer with the rendered Options contents.\n     * @throws IOException if an I/O error occurs.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "OptionGroup",
+  "methodName": "isRequired",
+  "brief": "public boolean isRequired(){}",
+  "methodSignature": "isRequired()",
+  "sourceCode": "public boolean isRequired() {\n        return required;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether this option group is required.\n *\n * @return whether this option group is required.\n */\npublic boolean isRequired() {\n    return required;\n}",
+  "method_comment": "\n     * Tests whether this option group is required.\n     *\n     * @return whether this option group is required.\n     ",
+  "method_annotation": ""
+}

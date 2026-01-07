@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "setDescription",
+  "brief": "public void setDescription(final String description){}",
+  "methodSignature": "setDescription(String)",
+  "sourceCode": "public void setDescription(final String description) {\n        this.description = description;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the self-documenting description of this Option.\n *\n * @param description The description of this option.\n * @since 1.1\n */\npublic void setDescription(final String description) {\n    this.description = description;\n}",
+  "method_comment": "\n     * Sets the self-documenting description of this Option.\n     *\n     * @param description The description of this option.\n     * @since 1.1\n     ",
+  "method_annotation": ""
+}

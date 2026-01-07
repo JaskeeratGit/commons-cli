@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getLongOptPrefix",
+  "brief": "public String getLongOptPrefix(){}",
+  "methodSignature": "getLongOptPrefix()",
+  "sourceCode": "public String getLongOptPrefix() {\n        return defaultLongOptPrefix;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the 'longOptPrefix'.\n *\n * @return the 'longOptPrefix'\n */\npublic String getLongOptPrefix() {\n    return defaultLongOptPrefix;\n}",
+  "method_comment": "\n     * Gets the 'longOptPrefix'.\n     *\n     * @return the 'longOptPrefix'\n     ",
+  "method_annotation": ""
+}

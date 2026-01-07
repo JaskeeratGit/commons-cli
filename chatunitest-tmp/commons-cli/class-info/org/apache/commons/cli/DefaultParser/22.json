@@ -1,0 +1,50 @@
+{
+  "className": "DefaultParser",
+  "methodName": "parse",
+  "brief": "public CommandLine parse(final Options options, final Properties properties, final NonOptionAction nonOptionAction, final String... arguments)\n            throws ParseException{}",
+  "methodSignature": "parse(Options, Properties, NonOptionAction, String[])",
+  "sourceCode": "public CommandLine parse(final Options options, final Properties properties, final NonOptionAction nonOptionAction, final String... arguments)\n            throws ParseException {\n        this.options = Objects.requireNonNull(options, \"options\");\n        this.nonOptionAction = nonOptionAction;\n        skipParsing = false;\n        currentOption = null;\n        expectedOpts = new ArrayList<>(options.getRequiredOptions());\n        // clear the data from the groups\n        for (final OptionGroup optionGroup : options.getOptionGroups()) {\n            optionGroup.setSelected(null);\n        }\n        cmd = CommandLine.builder().setDeprecatedHandler(deprecatedHandler).get();\n        if (arguments != null) {\n            for (final String argument : arguments) {\n                handleToken(argument);\n            }\n        }\n        // check the arguments of the last option\n        checkRequiredArgs();\n        // add the default options\n        handleProperties(properties);\n        checkRequiredOptions();\n        return cmd;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "Properties",
+    "NonOptionAction",
+    "String"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "getRequiredOptions()",
+      "getOptionGroups()"
+    ],
+    "java.util.Properties": [],
+    "org.apache.commons.cli.DefaultParser.NonOptionAction": [],
+    "java.lang.String...": [],
+    "java.util.Objects": [
+      "requireNonNull(T, String)"
+    ],
+    "org.apache.commons.cli.OptionGroup": [
+      "setSelected(Option)"
+    ],
+    "org.apache.commons.cli.CommandLine.Builder": [
+      "setDeprecatedHandler(Option>)",
+      "get()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "builder()"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "handleToken(String)",
+      "checkRequiredArgs()",
+      "handleProperties(Properties)",
+      "checkRequiredOptions()"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the arguments according to the specified options and properties.\n *\n * @param options the specified Options\n * @param properties command line option name-value pairs\n * @param nonOptionAction see {@link NonOptionAction}.\n * @param arguments the command line arguments\n *\n * @return the list of atomic option and value tokens.\n * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n * @since 1.10.0\n */\npublic CommandLine parse(final Options options, final Properties properties, final NonOptionAction nonOptionAction, final String... arguments) throws ParseException {\n    this.options = Objects.requireNonNull(options, \"options\");\n    this.nonOptionAction = nonOptionAction;\n    skipParsing = false;\n    currentOption = null;\n    expectedOpts = new ArrayList<>(options.getRequiredOptions());\n    // clear the data from the groups\n    for (final OptionGroup optionGroup : options.getOptionGroups()) {\n        optionGroup.setSelected(null);\n    }\n    cmd = CommandLine.builder().setDeprecatedHandler(deprecatedHandler).get();\n    if (arguments != null) {\n        for (final String argument : arguments) {\n            handleToken(argument);\n        }\n    }\n    // check the arguments of the last option\n    checkRequiredArgs();\n    // add the default options\n    handleProperties(properties);\n    checkRequiredOptions();\n    return cmd;\n}",
+  "method_comment": "\n     * Parses the arguments according to the specified options and properties.\n     *\n     * @param options the specified Options\n     * @param properties command line option name-value pairs\n     * @param nonOptionAction see {@link NonOptionAction}.\n     * @param arguments the command line arguments\n     *\n     * @return the list of atomic option and value tokens.\n     * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n     * @since 1.10.0\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getOptionComparator",
+  "brief": "public Comparator<Option> getOptionComparator(){}",
+  "methodSignature": "getOptionComparator()",
+  "sourceCode": "public Comparator<Option> getOptionComparator() {\n        return optionComparator;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Comparator used to sort the options when they output in help text. Defaults to case-insensitive alphabetical sorting\n * by option key.\n *\n * @return the {@link Comparator} currently in use to sort the options\n * @since 1.2\n */\npublic Comparator<Option> getOptionComparator() {\n    return optionComparator;\n}",
+  "method_comment": "\n     * Comparator used to sort the options when they output in help text. Defaults to case-insensitive alphabetical sorting\n     * by option key.\n     *\n     * @return the {@link Comparator} currently in use to sort the options\n     * @since 1.2\n     ",
+  "method_annotation": ""
+}

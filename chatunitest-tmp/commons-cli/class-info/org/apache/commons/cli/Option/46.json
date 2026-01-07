@@ -1,0 +1,20 @@
+{
+  "className": "Option",
+  "methodName": "setValueSeparator",
+  "brief": "public void setValueSeparator(final char valueSeparator){}",
+  "methodSignature": "setValueSeparator(char)",
+  "sourceCode": "public void setValueSeparator(final char valueSeparator) {\n        this.valueSeparator = valueSeparator;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the value separator. For example if the argument value was a Java property, the value separator would be '='.\n *\n * @param valueSeparator The value separator.\n */\npublic void setValueSeparator(final char valueSeparator) {\n    this.valueSeparator = valueSeparator;\n}",
+  "method_comment": "\n     * Sets the value separator. For example if the argument value was a Java property, the value separator would be '='.\n     *\n     * @param valueSeparator The value separator.\n     ",
+  "method_annotation": ""
+}

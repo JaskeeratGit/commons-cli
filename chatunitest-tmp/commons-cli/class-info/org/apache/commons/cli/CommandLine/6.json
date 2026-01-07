@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionObject",
+  "brief": "@Deprecated\n    public Object getOptionObject(final char optionChar){}",
+  "methodSignature": "getOptionObject(char)",
+  "sourceCode": "@Deprecated\n    public Object getOptionObject(final char optionChar) {\n        return getOptionObject(String.valueOf(optionChar));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.CommandLine": [
+      "getOptionObject(String)"
+    ],
+    "java.lang.String": [
+      "valueOf(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the {@code Object} type of this {@code Option}.\n *\n * @deprecated due to System.err message. Instead use getParsedOptionValue(char)\n * @param optionChar the name of the option.\n * @return the type of opt.\n */\n@Deprecated\npublic Object getOptionObject(final char optionChar) {\n    return getOptionObject(String.valueOf(optionChar));\n}",
+  "method_comment": "\n     * Gets the {@code Object} type of this {@code Option}.\n     *\n     * @deprecated due to System.err message. Instead use getParsedOptionValue(char)\n     * @param optionChar the name of the option.\n     * @return the type of opt.\n     ",
+  "method_annotation": "@Deprecated\n"
+}

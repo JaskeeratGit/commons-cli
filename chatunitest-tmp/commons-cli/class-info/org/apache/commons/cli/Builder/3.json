@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "setSince",
+  "brief": "public Builder setSince(final String since){}",
+  "methodSignature": "setSince(String)",
+  "sourceCode": "public Builder setSince(final String since) {\n            this.since = since;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the version in which the option became deprecated.\n *\n * @param since the version in which the option became deprecated.\n * @return {@code this} instance.\n */\npublic Builder setSince(final String since) {\n    this.since = since;\n    return this;\n}",
+  "method_comment": "\n         * Sets the version in which the option became deprecated.\n         *\n         * @param since the version in which the option became deprecated.\n         * @return {@code this} instance.\n         ",
+  "method_annotation": ""
+}

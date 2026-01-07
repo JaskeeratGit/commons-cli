@@ -1,0 +1,20 @@
+{
+  "className": "Option",
+  "methodName": "setArgs",
+  "brief": "public void setArgs(final int num){}",
+  "methodSignature": "setArgs(int)",
+  "sourceCode": "public void setArgs(final int num) {\n        this.argCount = num;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the number of argument values this Option can take.\n *\n * @param num the number of argument values.\n */\npublic void setArgs(final int num) {\n    this.argCount = num;\n}",
+  "method_comment": "\n     * Sets the number of argument values this Option can take.\n     *\n     * @param num the number of argument values.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,368 @@
+{
+  "method0": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "addArg",
+    "signature": "addArg(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method10": {
+    "methodName": "getOptions",
+    "signature": "getOptions()",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method11": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(char)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method12": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(char, String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method13": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(char, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method14": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method15": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(Option, String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method16": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(Option, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method17": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(OptionGroup)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method18": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(OptionGroup, String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method19": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(OptionGroup, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "addOption",
+    "signature": "addOption(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method20": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method21": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(String, String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method22": {
+    "methodName": "getOptionValue",
+    "signature": "getOptionValue(String, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method23": {
+    "methodName": "getOptionValues",
+    "signature": "getOptionValues(char)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method24": {
+    "methodName": "getOptionValues",
+    "signature": "getOptionValues(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method25": {
+    "methodName": "getOptionValues",
+    "signature": "getOptionValues(OptionGroup)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method26": {
+    "methodName": "getOptionValues",
+    "signature": "getOptionValues(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method27": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(char)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method28": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(char, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method29": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(char, T)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "get",
+    "signature": "get(Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method30": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method31": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(Option, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method32": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(Option, T)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method33": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(OptionGroup)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method34": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(OptionGroup, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method35": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(OptionGroup, T)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method36": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method37": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(String, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method38": {
+    "methodName": "getParsedOptionValue",
+    "signature": "getParsedOptionValue(String, T)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method39": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(char)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "getArgList",
+    "signature": "getArgList()",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method40": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(char, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method41": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(char, T[])",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method42": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method43": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(Option, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method44": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(Option, T[])",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method45": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(OptionGroup)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method46": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(OptionGroup, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method47": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(OptionGroup, T[])",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method48": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method49": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(String, Supplier)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "getArgs",
+    "signature": "getArgs()",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method50": {
+    "methodName": "getParsedOptionValues",
+    "signature": "getParsedOptionValues(String, T[])",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method51": {
+    "methodName": "handleDeprecated",
+    "signature": "handleDeprecated(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method52": {
+    "methodName": "hasOption",
+    "signature": "hasOption(char)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method53": {
+    "methodName": "hasOption",
+    "signature": "hasOption(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method54": {
+    "methodName": "hasOption",
+    "signature": "hasOption(OptionGroup)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method55": {
+    "methodName": "hasOption",
+    "signature": "hasOption(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method56": {
+    "methodName": "iterator",
+    "signature": "iterator()",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method57": {
+    "methodName": "processPropertiesFromValues",
+    "signature": "processPropertiesFromValues(Properties, List)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method58": {
+    "methodName": "resolveOption",
+    "signature": "resolveOption(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method59": {
+    "methodName": "CommandLine",
+    "signature": "CommandLine()",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "getOptionObject",
+    "signature": "getOptionObject(char)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method60": {
+    "methodName": "CommandLine",
+    "signature": "CommandLine(List, List, Consumer)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "getOptionObject",
+    "signature": "getOptionObject(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "getOptionProperties",
+    "signature": "getOptionProperties(Option)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "getOptionProperties",
+    "signature": "getOptionProperties(String)",
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "OptionBuilder_withType_16_0_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_withType_16_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_withType_16_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "withType",
+    "methodSig": "withType(Class)"
+  },
+  "attempt1": {
+    "testClassName": "OptionBuilder_withType_16_1_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_withType_16_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_withType_16_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "withType",
+    "methodSig": "withType(Class)"
+  },
+  "attempt2": {
+    "testClassName": "OptionBuilder_withType_16_2_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_withType_16_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_withType_16_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "withType",
+    "methodSig": "withType(Class)"
+  },
+  "attempt3": {
+    "testClassName": "OptionBuilder_withType_16_3_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_withType_16_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_withType_16_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "withType",
+    "methodSig": "withType(Class)"
+  },
+  "attempt4": {
+    "testClassName": "OptionBuilder_withType_16_4_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_withType_16_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_withType_16_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "withType",
+    "methodSig": "withType(Class)"
+  }
+}

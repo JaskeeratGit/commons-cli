@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "OptionGroup_addOption_0_0_Test",
+    "fullName": "org.apache.commons.cli.OptionGroup_addOption_0_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionGroup_addOption_0_0_Test.java",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "addOption",
+    "methodSig": "addOption(Option)"
+  },
+  "attempt1": {
+    "testClassName": "OptionGroup_addOption_0_1_Test",
+    "fullName": "org.apache.commons.cli.OptionGroup_addOption_0_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionGroup_addOption_0_0_Test.java",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "addOption",
+    "methodSig": "addOption(Option)"
+  },
+  "attempt2": {
+    "testClassName": "OptionGroup_addOption_0_2_Test",
+    "fullName": "org.apache.commons.cli.OptionGroup_addOption_0_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionGroup_addOption_0_0_Test.java",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "addOption",
+    "methodSig": "addOption(Option)"
+  },
+  "attempt3": {
+    "testClassName": "OptionGroup_addOption_0_3_Test",
+    "fullName": "org.apache.commons.cli.OptionGroup_addOption_0_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionGroup_addOption_0_0_Test.java",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "addOption",
+    "methodSig": "addOption(Option)"
+  },
+  "attempt4": {
+    "testClassName": "OptionGroup_addOption_0_4_Test",
+    "fullName": "org.apache.commons.cli.OptionGroup_addOption_0_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionGroup_addOption_0_0_Test.java",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "addOption",
+    "methodSig": "addOption(Option)"
+  }
+}

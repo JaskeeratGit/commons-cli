@@ -1,0 +1,18 @@
+{
+  "className": "Builder",
+  "methodName": "getOptionGroupSeparator",
+  "brief": "protected String getOptionGroupSeparator(){}",
+  "methodSignature": "getOptionGroupSeparator()",
+  "sourceCode": "protected String getOptionGroupSeparator() {\n            return optionGroupSeparator;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets string to separate option groups.\n *\n * @return the string to separate option groups.\n */\nprotected String getOptionGroupSeparator() {\n    return optionGroupSeparator;\n}",
+  "method_comment": "\n         * Gets string to separate option groups.\n         *\n         * @return the string to separate option groups.\n         ",
+  "method_annotation": ""
+}

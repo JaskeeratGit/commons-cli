@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionValue",
+  "brief": "public String getOptionValue(final Option option, final Supplier<String> defaultValue){}",
+  "methodSignature": "getOptionValue(Option, Supplier)",
+  "sourceCode": "public String getOptionValue(final Option option, final Supplier<String> defaultValue) {\n        final String answer = getOptionValue(option);\n        return answer != null ? answer : get(defaultValue);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option",
+    "Supplier<String>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [],
+    "org.apache.commons.cli.CommandLine": [
+      "get(Supplier<T>)",
+      "getOptionValue(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the first argument, if any, of an option.\n *\n * @param option the option.\n * @param defaultValue is a supplier for the default value to be returned if the option is not specified.\n * @return Value of the argument if option is set, and has an argument, otherwise {@code defaultValue}.\n * @since 1.7.0\n */\npublic String getOptionValue(final Option option, final Supplier<String> defaultValue) {\n    final String answer = getOptionValue(option);\n    return answer != null ? answer : get(defaultValue);\n}",
+  "method_comment": "\n     * Gets the first argument, if any, of an option.\n     *\n     * @param option the option.\n     * @param defaultValue is a supplier for the default value to be returned if the option is not specified.\n     * @return Value of the argument if option is set, and has an argument, otherwise {@code defaultValue}.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

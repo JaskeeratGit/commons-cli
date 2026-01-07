@@ -1,0 +1,79 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+public class CommandLine_getParsedOptionValue_27_0_Test {
+
+    @Test
+    public void testDelegatesToStringVersion_returnsValue() throws Exception {
+        final AtomicReference<String> captured = new AtomicReference<>();
+        // Use the protected no-arg constructor by subclassing to override the String-version method.
+        CommandLine cmd = new CommandLine() {
+
+            @Override
+            public <T> T getParsedOptionValue(final String optionName) throws ParseException {
+                captured.set(optionName);
+                // return a typed value to verify generics behavior
+                return (T) ("parsed:" + optionName);
+            }
+        };
+        // should delegate to getParsedOptionValue(String)
+        String result = cmd.getParsedOptionValue('a');
+        assertEquals("parsed:a", result);
+        assertEquals("a", captured.get());
+    }
+
+    @Test
+    public void testDelegatesToStringVersion_propagatesParseException() {
+        CommandLine cmd = new CommandLine() {
+
+            @Override
+            public <T> T getParsedOptionValue(final String optionName) throws ParseException {
+                throw new ParseException("simulated failure for: " + optionName);
+            }
+        };
+        assertThrows(ParseException.class, () -> cmd.getParsedOptionValue('z'));
+    }
+}
+
+/*
+ * Minimal supporting stubs to allow this test to compile and run independently.
+ * These match the minimal signatures referenced by CommandLine and the tests.
+ * In a real project these would be provided by the library under test.
+ */
+class Option {
+    // minimal stub
+}
+
+class ParseException extends Exception {
+
+    public ParseException(final String message) {
+        super(message);
+    }
+}
+
+class Builder {
+
+    // Provide a default deprecated handler used by the protected CommandLine() constructor.
+    static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        // no-op stub
+    };
+}

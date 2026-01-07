@@ -1,0 +1,177 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getOptionValue_22_0_Test {
+
+    /**
+     * Test subclass that overrides the getOptionValue(Option, Supplier) method so that
+     * calls from the focal method getOptionValue(String, Supplier) can be observed deterministically.
+     */
+    static class TestCommandLine extends CommandLine {
+
+        TestCommandLine() {
+            // call protected no-arg constructor of CommandLine
+            super();
+        }
+
+        // override the overload that the focal method delegates to
+        @Override
+        public String getOptionValue(final Option option, final Supplier<String> defaultValue) {
+            if (option == null) {
+                return defaultValue == null ? null : defaultValue.get();
+            }
+            // produce observable value using option short or long opt
+            final String opt = option.getOpt();
+            final String longOpt = option.getLongOpt();
+            return "OVERRIDE:" + (opt != null ? opt : "") + ":" + (longOpt != null ? longOpt : "");
+        }
+    }
+
+    // Helper to instantiate an Option reflectively, trying several constructor shapes,
+    // and ensuring longOpt is set when possible.
+    private Option createOptionReflective(final String opt, final String longOpt) throws Exception {
+        final Class<?> optionClass = Class.forName("org.apache.commons.cli.Option");
+        Constructor<?> ctor = null;
+        Object optionObj = null;
+        // Try common constructor signatures in order of preference
+        for (Constructor<?> c : optionClass.getDeclaredConstructors()) {
+            final Class<?>[] params = c.getParameterTypes();
+            if (params.length == 4 && params[0] == String.class && params[1] == String.class && (params[2] == boolean.class || params[2] == Boolean.class) && params[3] == String.class) {
+                ctor = c;
+                ctor.setAccessible(true);
+                optionObj = ctor.newInstance(opt, longOpt, false, "desc");
+                break;
+            }
+        }
+        if (optionObj == null) {
+            // try two-arg (String opt, String description)
+            for (Constructor<?> c : optionClass.getDeclaredConstructors()) {
+                final Class<?>[] params = c.getParameterTypes();
+                if (params.length == 2 && params[0] == String.class && params[1] == String.class) {
+                    ctor = c;
+                    ctor.setAccessible(true);
+                    optionObj = ctor.newInstance(opt, "desc");
+                    break;
+                }
+            }
+        }
+        if (optionObj == null) {
+            // try single-arg (String opt)
+            for (Constructor<?> c : optionClass.getDeclaredConstructors()) {
+                final Class<?>[] params = c.getParameterTypes();
+                if (params.length == 1 && params[0] == String.class) {
+                    ctor = c;
+                    ctor.setAccessible(true);
+                    optionObj = ctor.newInstance(opt);
+                    break;
+                }
+            }
+        }
+        if (optionObj == null) {
+            // fallback: try no-arg then call setters (very unlikely)
+            for (Constructor<?> c : optionClass.getDeclaredConstructors()) {
+                final Class<?>[] params = c.getParameterTypes();
+                if (params.length == 0) {
+                    ctor = c;
+                    ctor.setAccessible(true);
+                    optionObj = ctor.newInstance();
+                    break;
+                }
+            }
+        }
+        if (optionObj == null) {
+            throw new IllegalStateException("Unable to construct Option reflectively");
+        }
+        // If longOpt provided, try to set it via setLongOpt if available
+        if (longOpt != null) {
+            try {
+                final Method setLongOpt = optionClass.getMethod("setLongOpt", String.class);
+                setLongOpt.setAccessible(true);
+                setLongOpt.invoke(optionObj, longOpt);
+            } catch (NoSuchMethodException ignored) {
+                // ignore if setter not present
+            }
+        }
+        // Cast and return
+        return optionClass.cast(optionObj);
+    }
+
+    // Helper to replace the private 'options' field in CommandLine instance with our list
+    private void setOptionsList(final CommandLine cmd, final List<Option> options) throws Exception {
+        final Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        optionsField.set(cmd, options);
+    }
+
+    @Test
+    public void testGetOptionValue_withShortOption_matchesAndDelegates() throws Exception {
+        TestCommandLine cmd = new TestCommandLine();
+        // create option with short opt "a" and long opt "alpha"
+        final Option opt = createOptionReflective("a", "alpha");
+        final List<Option> list = new ArrayList<>();
+        list.add(opt);
+        // inject options list into the CommandLine instance
+        setOptionsList(cmd, list);
+        // call focal method with short option format and a default supplier that would be ignored
+        final String result = cmd.getOptionValue("-a", () -> "DEFAULT");
+        assertEquals("OVERRIDE:a:alpha", result);
+    }
+
+    @Test
+    public void testGetOptionValue_withLongOption_matchesAndDelegates() throws Exception {
+        TestCommandLine cmd = new TestCommandLine();
+        // create option with short opt "b" and long opt "beta"
+        final Option opt = createOptionReflective("b", "beta");
+        final List<Option> list = new ArrayList<>();
+        list.add(opt);
+        setOptionsList(cmd, list);
+        // call with long option string
+        final String result = cmd.getOptionValue("--beta", () -> "DEFAULT");
+        assertEquals("OVERRIDE:b:beta", result);
+    }
+
+    @Test
+    public void testGetOptionValue_whenOptionNameIsNull_usesDefaultSupplier() throws Exception {
+        TestCommandLine cmd = new TestCommandLine();
+        // ensure options list is empty
+        setOptionsList(cmd, new ArrayList<>());
+        final String result = cmd.getOptionValue(null, () -> "myDefault");
+        assertEquals("myDefault", result);
+    }
+
+    @Test
+    public void testGetOptionValue_whenOptionNotFound_usesDefaultSupplier() throws Exception {
+        TestCommandLine cmd = new TestCommandLine();
+        // add an option that does not match the requested name
+        final Option opt = createOptionReflective("x", "ex");
+        setOptionsList(cmd, new ArrayList<>(Arrays.asList(opt)));
+        // ask for an option that does not exist
+        final String result = cmd.getOptionValue("--doesNotExist", () -> "fallback");
+        assertEquals("fallback", result);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getOptionValue_22_0_Test: line 116 : incompatible types: capture#1 of ? cannot be converted to org.apache.commons.cli.Option
+Error in CommandLine_getOptionValue_22_0_Test: line 158 : reference to getOptionValue is ambiguous
+  both method getOptionValue(java.lang.String,java.util.function.Supplier<java.lang.String>) in org.apache.commons.cli.CommandLine and method getOptionValue(org.apache.commons.cli.Option,java.util.function.Supplier<java.lang.String>) in org.apache.commons.cli.CommandLine_getOptionValue_22_0_Test.TestCommandLine match

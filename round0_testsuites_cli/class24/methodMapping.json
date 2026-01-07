@@ -1,0 +1,62 @@
+{
+  "method0": {
+    "methodName": "addOption",
+    "signature": "addOption(Option)",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "getNames",
+    "signature": "getNames()",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "getOptions",
+    "signature": "getOptions()",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "getSelected",
+    "signature": "getSelected()",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "isRequired",
+    "signature": "isRequired()",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "isSelected",
+    "signature": "isSelected()",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "setRequired",
+    "signature": "setRequired(boolean)",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "setSelected",
+    "signature": "setSelected(Option)",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "OptionGroup",
+    "signature": "OptionGroup()",
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "printOptions",
+  "brief": "public final void printOptions(final TableDefinition tableDefinition) throws IOException{}",
+  "methodSignature": "printOptions(TableDefinition)",
+  "sourceCode": "public final void printOptions(final TableDefinition tableDefinition) throws IOException {\n        helpAppendable.appendTable(tableDefinition);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TableDefinition"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TableDefinition": [],
+    "org.apache.commons.cli.help.HelpAppendable": [
+      "appendTable(TableDefinition)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints a {@link TableDefinition} to the {@link HelpAppendable}.\n *\n * @param tableDefinition the {@link TableDefinition} to print.\n * @throws IOException If the output could not be written to the {@link HelpAppendable}\n */\npublic final void printOptions(final TableDefinition tableDefinition) throws IOException {\n    helpAppendable.appendTable(tableDefinition);\n}",
+  "method_comment": "\n     * Prints a {@link TableDefinition} to the {@link HelpAppendable}.\n     *\n     * @param tableDefinition the {@link TableDefinition} to print.\n     * @throws IOException If the output could not be written to the {@link HelpAppendable}\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "CommandLine",
+  "methodName": "getArgList",
+  "brief": "public List<String> getArgList(){}",
+  "methodSignature": "getArgList()",
+  "sourceCode": "public List<String> getArgList() {\n        return args;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets any left-over non-recognized options and arguments\n *\n * @return remaining items passed in but not parsed as a {@code List}.\n */\npublic List<String> getArgList() {\n    return args;\n}",
+  "method_comment": "\n     * Gets any left-over non-recognized options and arguments\n     *\n     * @return remaining items passed in but not parsed as a {@code List}.\n     ",
+  "method_annotation": ""
+}

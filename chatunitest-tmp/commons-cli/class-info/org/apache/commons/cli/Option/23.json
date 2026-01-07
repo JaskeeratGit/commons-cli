@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getValueSeparator",
+  "brief": "public char getValueSeparator(){}",
+  "methodSignature": "getValueSeparator()",
+  "sourceCode": "public char getValueSeparator() {\n        return valueSeparator;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the value separator character.\n *\n * @return the value separator character.\n */\npublic char getValueSeparator() {\n    return valueSeparator;\n}",
+  "method_comment": "\n     * Gets the value separator character.\n     *\n     * @return the value separator character.\n     ",
+  "method_annotation": ""
+}

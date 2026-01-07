@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "OptionBuilder_isRequired_10_0_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_isRequired_10_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_isRequired_10_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "isRequired",
+    "methodSig": "isRequired()"
+  },
+  "attempt1": {
+    "testClassName": "OptionBuilder_isRequired_10_1_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_isRequired_10_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_isRequired_10_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "isRequired",
+    "methodSig": "isRequired()"
+  },
+  "attempt2": {
+    "testClassName": "OptionBuilder_isRequired_10_2_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_isRequired_10_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_isRequired_10_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "isRequired",
+    "methodSig": "isRequired()"
+  },
+  "attempt3": {
+    "testClassName": "OptionBuilder_isRequired_10_3_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_isRequired_10_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_isRequired_10_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "isRequired",
+    "methodSig": "isRequired()"
+  },
+  "attempt4": {
+    "testClassName": "OptionBuilder_isRequired_10_4_Test",
+    "fullName": "org.apache.commons.cli.OptionBuilder_isRequired_10_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/OptionBuilder_isRequired_10_0_Test.java",
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "isRequired",
+    "methodSig": "isRequired()"
+  }
+}

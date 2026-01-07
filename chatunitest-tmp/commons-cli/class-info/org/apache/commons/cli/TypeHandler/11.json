@@ -1,0 +1,18 @@
+{
+  "className": "TypeHandler",
+  "methodName": "getDefault",
+  "brief": "public static TypeHandler getDefault(){}",
+  "methodSignature": "getDefault()",
+  "sourceCode": "public static TypeHandler getDefault() {\n        return DEFAULT;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the default TypeHandler.\n *\n * @return the default TypeHandler.\n * @since 1.7.0\n */\npublic static TypeHandler getDefault() {\n    return DEFAULT;\n}",
+  "method_comment": "\n     * Gets the default TypeHandler.\n     *\n     * @return the default TypeHandler.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

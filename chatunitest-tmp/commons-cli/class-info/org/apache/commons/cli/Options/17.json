@@ -1,0 +1,27 @@
+{
+  "className": "Options",
+  "methodName": "toString",
+  "brief": "@Override\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        final StringBuilder buf = new StringBuilder();\n        buf.append(\"[ Options: [ short \");\n        buf.append(shortOpts.toString());\n        buf.append(\" ] [ long \");\n        buf.append(longOpts);\n        buf.append(\" ]\");\n        return buf.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(Object)",
+      "append(String)"
+    ],
+    "java.lang.Object": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Dump state, suitable for debugging.\n *\n * @return Stringified form of this object.\n */\n@Override\npublic String toString() {\n    final StringBuilder buf = new StringBuilder();\n    buf.append(\"[ Options: [ short \");\n    buf.append(shortOpts.toString());\n    buf.append(\" ] [ long \");\n    buf.append(longOpts);\n    buf.append(\" ]\");\n    return buf.toString();\n}",
+  "method_comment": "\n     * Dump state, suitable for debugging.\n     *\n     * @return Stringified form of this object.\n     ",
+  "method_annotation": "@Override\n"
+}

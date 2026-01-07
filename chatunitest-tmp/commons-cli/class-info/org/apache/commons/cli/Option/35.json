@@ -1,0 +1,37 @@
+{
+  "className": "Option",
+  "methodName": "processValue",
+  "brief": "void processValue(final String value){}",
+  "methodSignature": "processValue(String)",
+  "sourceCode": "void processValue(final String value) {\n        if (argCount == UNINITIALIZED) {\n            throw new IllegalStateException(\"NO_ARGS_ALLOWED\");\n        }\n        String add = Objects.requireNonNull(value, \"value\");\n        // this Option has a separator character\n        if (hasValueSeparator()) {\n            // get the separator character\n            final char sep = getValueSeparator();\n            // store the index for the value separator\n            int index = add.indexOf(sep);\n            // while there are more value separators\n            while (index != -1) {\n                // next value to be added\n                if (values.size() == argCount - 1) {\n                    break;\n                }\n                // store\n                add(add.substring(0, index));\n                // parse\n                add = add.substring(index + 1);\n                // get new index\n                index = add.indexOf(sep);\n            }\n        }\n        // store the actual value or the last value that has been parsed\n        add(add);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "substring(int, int)",
+      "indexOf(int)"
+    ],
+    "java.util.Objects": [
+      "requireNonNull(T, String)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "hasValueSeparator()",
+      "add(String)",
+      "getValueSeparator()"
+    ],
+    "java.util.List": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Processes the value. If this Option has a value separator the value will have to be parsed into individual tokens. When n-1 tokens have been processed\n * and there are more value separators in the value, parsing is ceased and the remaining characters are added as a single token.\n *\n * @param value The String to be processed.\n */\nvoid processValue(final String value) {\n    if (argCount == UNINITIALIZED) {\n        throw new IllegalStateException(\"NO_ARGS_ALLOWED\");\n    }\n    String add = Objects.requireNonNull(value, \"value\");\n    // this Option has a separator character\n    if (hasValueSeparator()) {\n        // get the separator character\n        final char sep = getValueSeparator();\n        // store the index for the value separator\n        int index = add.indexOf(sep);\n        // while there are more value separators\n        while (index != -1) {\n            // next value to be added\n            if (values.size() == argCount - 1) {\n                break;\n            }\n            // store\n            add(add.substring(0, index));\n            // parse\n            add = add.substring(index + 1);\n            // get new index\n            index = add.indexOf(sep);\n        }\n    }\n    // store the actual value or the last value that has been parsed\n    add(add);\n}",
+  "method_comment": "\n     * Processes the value. If this Option has a value separator the value will have to be parsed into individual tokens. When n-1 tokens have been processed\n     * and there are more value separators in the value, parsing is ceased and the remaining characters are added as a single token.\n     *\n     * @param value The String to be processed.\n     ",
+  "method_annotation": ""
+}

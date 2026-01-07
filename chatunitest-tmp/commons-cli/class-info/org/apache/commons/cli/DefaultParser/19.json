@@ -1,0 +1,25 @@
+{
+  "className": "DefaultParser",
+  "methodName": "isNegativeNumber",
+  "brief": "private boolean isNegativeNumber(final String token){}",
+  "methodSignature": "isNegativeNumber(String)",
+  "sourceCode": "private boolean isNegativeNumber(final String token) {\n        try {\n            Double.parseDouble(token);\n            return true;\n        } catch (final NumberFormatException e) {\n            return false;\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.Double": [
+      "parseDouble(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests if the token is a negative number.\n *\n * @param token\n */\nprivate boolean isNegativeNumber(final String token) {\n    try {\n        Double.parseDouble(token);\n        return true;\n    } catch (final NumberFormatException e) {\n        return false;\n    }\n}",
+  "method_comment": "\n     * Tests if the token is a negative number.\n     *\n     * @param token\n     ",
+  "method_annotation": ""
+}

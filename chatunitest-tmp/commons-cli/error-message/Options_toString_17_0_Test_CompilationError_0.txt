@@ -1,0 +1,104 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+
+public class CommandLine_getOptionValue_18_0_Test {
+
+    /**
+     * Uses the private constructor CommandLine(List<String>, List<Option>, Consumer<Option>)
+     * to create an instance without invoking the protected no-arg constructor.
+     * Uses reflection to locate the private getOptionValue(OptionGroup, Supplier<String>) method
+     * and invokes it to verify behavior when the OptionGroup argument is null.
+     */
+    @Test
+    public void testGetOptionValue_callsSupplier_whenOptionGroupIsNull() throws Exception {
+        // prepare a CommandLine instance via private constructor
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(new ArrayList<String>(), new ArrayList<Option>(), null);
+        assertNotNull(cmd);
+        // find private method getOptionValue(OptionGroup, Supplier)
+        Method privateGetOptionValue = CommandLine.class.getDeclaredMethod("getOptionValue", OptionGroup.class, Supplier.class);
+        privateGetOptionValue.setAccessible(true);
+        // supplier that counts invocations and returns a distinct string
+        AtomicInteger counter = new AtomicInteger(0);
+        Supplier<String> supplier = () -> {
+            counter.incrementAndGet();
+            return "default-from-supplier";
+        };
+        // invoke with null OptionGroup -> should use supplier
+        Object result = privateGetOptionValue.invoke(cmd, new Object[] { null, supplier });
+        assertEquals("default-from-supplier", result);
+        assertEquals(1, counter.get(), "Supplier should have been invoked exactly once");
+    }
+
+    /**
+     * Verifies that when an OptionGroup is present but there are no matching options in the CommandLine,
+     * the fallback supplier is used. Uses an anonymous subclass of OptionGroup to control getSelected().
+     */
+    @Test
+    public void testGetOptionValue_withNonNullGroupAndNoMatchingOptions_usesSupplier() throws Exception {
+        // create CommandLine instance with empty options
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(new ArrayList<String>(), new ArrayList<Option>(), null);
+        assertNotNull(cmd);
+        // make an OptionGroup that reports a selected name but does not provide any actual Option objects
+        OptionGroup group = new OptionGroup() {
+
+            @Override
+            public String getSelected() {
+                return "nonexistent";
+            }
+        };
+        // find private method getOptionValue(OptionGroup, Supplier)
+        Method privateGetOptionValue = CommandLine.class.getDeclaredMethod("getOptionValue", OptionGroup.class, Supplier.class);
+        privateGetOptionValue.setAccessible(true);
+        AtomicInteger counter = new AtomicInteger(0);
+        Supplier<String> supplier = () -> {
+            counter.incrementAndGet();
+            return "fallback";
+        };
+        Object result = privateGetOptionValue.invoke(cmd, new Object[] { group, supplier });
+        assertEquals("fallback", result);
+        assertEquals(1, counter.get(), "Fallback supplier should be invoked when no match is found");
+    }
+
+    /**
+     * Tests the public wrapper getOptionValue(OptionGroup, String) which should delegate to the Supplier-based variant.
+     * Ensures that the default value passed is returned when the group is null.
+     */
+    @Test
+    public void testPublicWrapper_getOptionValue_delegatesToSupplierWhenGroupNull() throws Exception {
+        // instantiate via private ctor to avoid side-effects of protected ctor
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(new ArrayList<String>(), new ArrayList<Option>(), null);
+        assertNotNull(cmd);
+        String defaultVal = "public-default";
+        // call the public wrapper directly; cast null to OptionGroup to disambiguate overloaded methods
+        String ret = cmd.getOptionValue((OptionGroup) null, defaultVal);
+        assertEquals(defaultVal, ret);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getOptionValue_18_0_Test: line 16 : class Options_hasOption_14_0_Test is public, should be declared in a file named Options_hasOption_14_0_Test.java

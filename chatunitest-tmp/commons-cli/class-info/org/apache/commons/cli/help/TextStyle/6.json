@@ -1,0 +1,18 @@
+{
+  "className": "TextStyle",
+  "methodName": "isScalable",
+  "brief": "public boolean isScalable(){}",
+  "methodSignature": "isScalable()",
+  "sourceCode": "public boolean isScalable() {\n        return scalable;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Specifies if the column can be made wider or to narrower width to fit constraints of the HelpAppendable and formatting.\n *\n * @return the scaling value.\n */\npublic boolean isScalable() {\n    return scalable;\n}",
+  "method_comment": "\n     * Specifies if the column can be made wider or to narrower width to fit constraints of the HelpAppendable and formatting.\n     *\n     * @return the scaling value.\n     ",
+  "method_annotation": ""
+}

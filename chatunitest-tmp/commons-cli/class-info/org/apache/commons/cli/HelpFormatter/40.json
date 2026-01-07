@@ -1,0 +1,22 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setLongOptPrefix",
+  "brief": "public void setLongOptPrefix(final String prefix){}",
+  "methodSignature": "setLongOptPrefix(String)",
+  "sourceCode": "public void setLongOptPrefix(final String prefix) {\n        this.defaultLongOptPrefix = prefix;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the 'longOptPrefix'.\n *\n * @param prefix the new value of 'longOptPrefix'\n */\npublic void setLongOptPrefix(final String prefix) {\n    this.defaultLongOptPrefix = prefix;\n}",
+  "method_comment": "\n     * Sets the 'longOptPrefix'.\n     *\n     * @param prefix the new value of 'longOptPrefix'\n     ",
+  "method_annotation": ""
+}

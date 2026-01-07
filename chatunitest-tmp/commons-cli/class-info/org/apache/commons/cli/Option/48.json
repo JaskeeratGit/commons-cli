@@ -1,0 +1,33 @@
+{
+  "className": "Option",
+  "methodName": "toString",
+  "brief": "@Override\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        final StringBuilder buf = new StringBuilder().append(\"[ \");\n        buf.append(\"Option \");\n        buf.append(option);\n        if (longOption != null) {\n            buf.append(Char.SP).append(longOption);\n        }\n        if (isDeprecated()) {\n            buf.append(Char.SP);\n            buf.append(deprecated.toString());\n        }\n        if (hasArgs()) {\n            buf.append(\"[ARG...]\");\n        } else if (hasArg()) {\n            buf.append(\" [ARG]\");\n        }\n        // @formatter:off\n        return buf.append(\" :: \")\n            .append(description)\n            .append(\" :: \")\n            .append(type)\n            .append(\" ]\")\n            .toString();\n        // @formatter:on\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(Object)",
+      "append(String)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "hasArg()",
+      "hasArgs()",
+      "isDeprecated()"
+    ],
+    "org.apache.commons.cli.DeprecatedAttributes": [
+      "toString()"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a String suitable for debugging.\n *\n * @return a String suitable for debugging.\n */\n@Override\npublic String toString() {\n    final StringBuilder buf = new StringBuilder().append(\"[ \");\n    buf.append(\"Option \");\n    buf.append(option);\n    if (longOption != null) {\n        buf.append(Char.SP).append(longOption);\n    }\n    if (isDeprecated()) {\n        buf.append(Char.SP);\n        buf.append(deprecated.toString());\n    }\n    if (hasArgs()) {\n        buf.append(\"[ARG...]\");\n    } else if (hasArg()) {\n        buf.append(\" [ARG]\");\n    }\n    // @formatter:off\n    return buf.append(\" :: \").append(description).append(\" :: \").append(type).append(\" ]\").toString();\n    // @formatter:on\n}",
+  "method_comment": "\n     * Creates a String suitable for debugging.\n     *\n     * @return a String suitable for debugging.\n     ",
+  "method_annotation": "@Override\n"
+}

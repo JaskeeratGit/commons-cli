@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getArgs",
+  "brief": "public int getArgs(){}",
+  "methodSignature": "getArgs()",
+  "sourceCode": "public int getArgs() {\n        return argCount;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the number of argument values this Option can take.\n *\n * <p>\n * A value equal to the constant {@link #UNINITIALIZED} (= -1) indicates the number of arguments has not been specified. A value equal to the constant\n * {@link #UNLIMITED_VALUES} (= -2) indicates that this options takes an unlimited amount of values.\n * </p>\n *\n * @return num the number of argument values.\n * @see #UNINITIALIZED\n * @see #UNLIMITED_VALUES\n */\npublic int getArgs() {\n    return argCount;\n}",
+  "method_comment": "\n     * Gets the number of argument values this Option can take.\n     *\n     * <p>\n     * A value equal to the constant {@link #UNINITIALIZED} (= -1) indicates the number of arguments has not been specified. A value equal to the constant\n     * {@link #UNLIMITED_VALUES} (= -2) indicates that this options takes an unlimited amount of values.\n     * </p>\n     *\n     * @return num the number of argument values.\n     * @see #UNINITIALIZED\n     * @see #UNLIMITED_VALUES\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "Util",
+  "methodName": "rtrim",
+  "brief": "static String rtrim(final String s){}",
+  "methodSignature": "rtrim(String)",
+  "sourceCode": "static String rtrim(final String s) {\n        if (isEmpty(s)) {\n            return s;\n        }\n        int pos = s.length();\n        while (pos > 0 && isWhitespace(s.charAt(pos - 1))) {\n            --pos;\n        }\n        return s.substring(0, pos);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int, int)",
+      "length()",
+      "charAt(int)"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "isWhitespace(char)",
+      "isEmpty(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * Removes the trailing whitespace from the specified String.\n *\n * @param s The String to remove the trailing padding from.\n * @return The String of without the trailing padding.\n */\nstatic String rtrim(final String s) {\n    if (isEmpty(s)) {\n        return s;\n    }\n    int pos = s.length();\n    while (pos > 0 && isWhitespace(s.charAt(pos - 1))) {\n        --pos;\n    }\n    return s.substring(0, pos);\n}",
+  "method_comment": "\n     * Removes the trailing whitespace from the specified String.\n     *\n     * @param s The String to remove the trailing padding from.\n     * @return The String of without the trailing padding.\n     ",
+  "method_annotation": ""
+}

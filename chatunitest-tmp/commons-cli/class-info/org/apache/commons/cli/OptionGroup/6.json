@@ -1,0 +1,20 @@
+{
+  "className": "OptionGroup",
+  "methodName": "setRequired",
+  "brief": "public void setRequired(final boolean required){}",
+  "methodSignature": "setRequired(boolean)",
+  "sourceCode": "public void setRequired(final boolean required) {\n        this.required = required;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether this group is required.\n *\n * @param required whether this group is required.\n */\npublic void setRequired(final boolean required) {\n    this.required = required;\n}",
+  "method_comment": "\n     * Sets whether this group is required.\n     *\n     * @param required whether this group is required.\n     ",
+  "method_annotation": ""
+}

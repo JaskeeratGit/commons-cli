@@ -1,0 +1,30 @@
+{
+  "className": "DefaultParser",
+  "methodName": "checkRequiredArgs",
+  "brief": "private void checkRequiredArgs() throws ParseException{}",
+  "methodSignature": "checkRequiredArgs()",
+  "sourceCode": "private void checkRequiredArgs() throws ParseException {\n        if (currentOption != null && currentOption.requiresArg()) {\n            if (isJavaProperty(currentOption.getKey()) && currentOption.getValuesList().size() == 1) {\n                return;\n            }\n            throw new MissingArgumentException(currentOption);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getValuesList()",
+      "getKey()",
+      "requiresArg()"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "isJavaProperty(String)"
+    ],
+    "java.util.List": [
+      "size()"
+    ]
+  },
+  "full_method_info": "/**\n * Throws a {@link MissingArgumentException} if the current option didn't receive the number of arguments expected.\n */\nprivate void checkRequiredArgs() throws ParseException {\n    if (currentOption != null && currentOption.requiresArg()) {\n        if (isJavaProperty(currentOption.getKey()) && currentOption.getValuesList().size() == 1) {\n            return;\n        }\n        throw new MissingArgumentException(currentOption);\n    }\n}",
+  "method_comment": "\n     * Throws a {@link MissingArgumentException} if the current option didn't receive the number of arguments expected.\n     ",
+  "method_annotation": ""
+}

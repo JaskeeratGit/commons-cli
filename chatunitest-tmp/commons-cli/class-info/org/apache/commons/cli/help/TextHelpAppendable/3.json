@@ -1,0 +1,47 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "appendHeader",
+  "brief": "@Override\n    public void appendHeader(final int level, final CharSequence text) throws IOException{}",
+  "methodSignature": "appendHeader(int, CharSequence)",
+  "sourceCode": "@Override\n    public void appendHeader(final int level, final CharSequence text) throws IOException {\n        if (!Util.isEmpty(text)) {\n            if (level < 1) {\n                throw new IllegalArgumentException(\"level must be at least 1\");\n            }\n            final char[] fillChars = { '=', '%', '+', '_' };\n            final int idx = Math.min(level, fillChars.length) - 1;\n            final TextStyle style = textStyleBuilder.get();\n            final Queue<String> queue = makeColumnQueue(text, style);\n            queue.add(Util.repeatSpace(style.getLeftPad()) + Util.repeat(Math.min(text.length(), style.getMaxWidth()), fillChars[idx]));\n            queue.add(BLANK_LINE);\n            printQueue(queue);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "length()"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "repeat(int, char)",
+      "repeatSpace(int)",
+      "isEmpty(CharSequence)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "get()"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "printQueue(String>)",
+      "makeColumnQueue(CharSequence, TextStyle)"
+    ],
+    "java.util.Queue": [
+      "add(E)"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "getLeftPad()",
+      "getMaxWidth()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void appendHeader(final int level, final CharSequence text) throws IOException {\n    if (!Util.isEmpty(text)) {\n        if (level < 1) {\n            throw new IllegalArgumentException(\"level must be at least 1\");\n        }\n        final char[] fillChars = { '=', '%', '+', '_' };\n        final int idx = Math.min(level, fillChars.length) - 1;\n        final TextStyle style = textStyleBuilder.get();\n        final Queue<String> queue = makeColumnQueue(text, style);\n        queue.add(Util.repeatSpace(style.getLeftPad()) + Util.repeat(Math.min(text.length(), style.getMaxWidth()), fillChars[idx]));\n        queue.add(BLANK_LINE);\n        printQueue(queue);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

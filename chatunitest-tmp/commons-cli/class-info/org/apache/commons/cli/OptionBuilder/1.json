@@ -1,0 +1,27 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "create",
+  "brief": "public static Option create(final char opt) throws IllegalArgumentException{}",
+  "methodSignature": "create(char)",
+  "sourceCode": "public static Option create(final char opt) throws IllegalArgumentException {\n        return create(String.valueOf(opt));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionBuilder": [
+      "create(String)"
+    ],
+    "java.lang.String": [
+      "valueOf(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates an Option using the current settings and with the specified Option {@code char}.\n *\n * @param opt the character representation of the Option\n * @return the Option instance\n * @throws IllegalArgumentException if {@code opt} is not a valid character. See Option.\n */\npublic static Option create(final char opt) throws IllegalArgumentException {\n    return create(String.valueOf(opt));\n}",
+  "method_comment": "\n     * Creates an Option using the current settings and with the specified Option {@code char}.\n     *\n     * @param opt the character representation of the Option\n     * @return the Option instance\n     * @throws IllegalArgumentException if {@code opt} is not a valid character. See Option.\n     ",
+  "method_annotation": ""
+}

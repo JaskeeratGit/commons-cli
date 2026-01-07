@@ -1,0 +1,29 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleUnknownToken",
+  "brief": "protected void handleUnknownToken(final String token) throws ParseException{}",
+  "methodSignature": "handleUnknownToken(String)",
+  "sourceCode": "protected void handleUnknownToken(final String token) throws ParseException {\n        if (token.startsWith(\"-\") && token.length() > 1 && nonOptionAction == NonOptionAction.THROW) {\n            throw new UnrecognizedOptionException(\"Unrecognized option: \" + token, token);\n        }\n        if (!token.startsWith(\"-\") || token.equals(\"-\") || token.length() > 1 && nonOptionAction != NonOptionAction.IGNORE) {\n            addArg(token);\n        }\n        if (nonOptionAction == NonOptionAction.STOP) {\n            skipParsing = true;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)",
+      "equals(Object)",
+      "length()"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "addArg(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Handles an unknown token. If the token starts with a dash an UnrecognizedOptionException is thrown. Otherwise the\n * token is added to the arguments of the command line. If the stopAtNonOption flag is set, this stops the parsing and\n * the remaining tokens are added as-is in the arguments of the command line.\n *\n * @param token the command line token to handle.\n * @throws ParseException if parsing should fail.\n * @since 1.10.0\n */\nprotected void handleUnknownToken(final String token) throws ParseException {\n    if (token.startsWith(\"-\") && token.length() > 1 && nonOptionAction == NonOptionAction.THROW) {\n        throw new UnrecognizedOptionException(\"Unrecognized option: \" + token, token);\n    }\n    if (!token.startsWith(\"-\") || token.equals(\"-\") || token.length() > 1 && nonOptionAction != NonOptionAction.IGNORE) {\n        addArg(token);\n    }\n    if (nonOptionAction == NonOptionAction.STOP) {\n        skipParsing = true;\n    }\n}",
+  "method_comment": "\n     * Handles an unknown token. If the token starts with a dash an UnrecognizedOptionException is thrown. Otherwise the\n     * token is added to the arguments of the command line. If the stopAtNonOption flag is set, this stops the parsing and\n     * the remaining tokens are added as-is in the arguments of the command line.\n     *\n     * @param token the command line token to handle.\n     * @throws ParseException if parsing should fail.\n     * @since 1.10.0\n     ",
+  "method_annotation": ""
+}

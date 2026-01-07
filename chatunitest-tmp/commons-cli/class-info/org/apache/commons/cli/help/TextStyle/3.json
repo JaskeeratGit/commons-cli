@@ -1,0 +1,18 @@
+{
+  "className": "TextStyle",
+  "methodName": "getLeftPad",
+  "brief": "public int getLeftPad(){}",
+  "methodSignature": "getLeftPad()",
+  "sourceCode": "public int getLeftPad() {\n        return leftPad;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the left padding.\n *\n * @return the left padding.\n */\npublic int getLeftPad() {\n    return leftPad;\n}",
+  "method_comment": "\n     * Gets the left padding.\n     *\n     * @return the left padding.\n     ",
+  "method_annotation": ""
+}

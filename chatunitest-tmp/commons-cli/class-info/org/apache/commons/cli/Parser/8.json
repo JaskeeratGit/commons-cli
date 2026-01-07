@@ -1,0 +1,44 @@
+{
+  "className": "Parser",
+  "methodName": "processArgs",
+  "brief": "public void processArgs(final Option opt, final ListIterator<String> iter) throws ParseException{}",
+  "methodSignature": "processArgs(Option, ListIterator)",
+  "sourceCode": "public void processArgs(final Option opt, final ListIterator<String> iter) throws ParseException {\n        // loop until an option is found\n        while (iter.hasNext()) {\n            final String str = iter.next();\n            // found an Option, not an argument\n            if (getOptions().hasOption(str) && str.startsWith(\"-\")) {\n                iter.previous();\n                break;\n            }\n            // found a value\n            try {\n                opt.processValue(Util.stripLeadingAndTrailingQuotes(str));\n            } catch (final RuntimeException exp) {\n                iter.previous();\n                break;\n            }\n        }\n        if (opt.getValues() == null && !opt.hasOptionalArg()) {\n            throw new MissingArgumentException(opt);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option",
+    "ListIterator<String>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "hasOptionalArg()",
+      "getValues()",
+      "processValue(String)"
+    ],
+    "java.util.ListIterator": [
+      "hasNext()",
+      "next()",
+      "previous()"
+    ],
+    "org.apache.commons.cli.Options": [
+      "hasOption(String)"
+    ],
+    "org.apache.commons.cli.Parser": [
+      "getOptions()"
+    ],
+    "java.lang.String": [
+      "startsWith(String)"
+    ],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingAndTrailingQuotes(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Process the argument values for the specified Option {@code opt} using the values retrieved from the specified\n * iterator {@code iter}.\n *\n * @param opt The current Option\n * @param iter The iterator over the flattened command line Options.\n * @throws ParseException if an argument value is required and it is has not been found.\n */\npublic void processArgs(final Option opt, final ListIterator<String> iter) throws ParseException {\n    // loop until an option is found\n    while (iter.hasNext()) {\n        final String str = iter.next();\n        // found an Option, not an argument\n        if (getOptions().hasOption(str) && str.startsWith(\"-\")) {\n            iter.previous();\n            break;\n        }\n        // found a value\n        try {\n            opt.processValue(Util.stripLeadingAndTrailingQuotes(str));\n        } catch (final RuntimeException exp) {\n            iter.previous();\n            break;\n        }\n    }\n    if (opt.getValues() == null && !opt.hasOptionalArg()) {\n        throw new MissingArgumentException(opt);\n    }\n}",
+  "method_comment": "\n     * Process the argument values for the specified Option {@code opt} using the values retrieved from the specified\n     * iterator {@code iter}.\n     *\n     * @param opt The current Option\n     * @param iter The iterator over the flattened command line Options.\n     * @throws ParseException if an argument value is required and it is has not been found.\n     ",
+  "method_annotation": ""
+}

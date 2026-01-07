@@ -1,0 +1,20 @@
+{
+  "className": "Option",
+  "methodName": "setConverter",
+  "brief": "public void setConverter(final Converter<?, ?> converter){}",
+  "methodSignature": "setConverter(Converter)",
+  "sourceCode": "public void setConverter(final Converter<?, ?> converter) {\n        this.converter = converter;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Converter<?,?>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the value to type converter.\n *\n * @param converter The converter to convert the string value to the type.\n * @since 1.7.0\n */\npublic void setConverter(final Converter<?, ?> converter) {\n    this.converter = converter;\n}",
+  "method_comment": "\n     * Sets the value to type converter.\n     *\n     * @param converter The converter to convert the string value to the type.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

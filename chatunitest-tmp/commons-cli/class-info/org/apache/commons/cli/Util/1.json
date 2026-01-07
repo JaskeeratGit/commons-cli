@@ -1,0 +1,24 @@
+{
+  "className": "Util",
+  "methodName": "isEmpty",
+  "brief": "static boolean isEmpty(final String str){}",
+  "methodSignature": "isEmpty(String)",
+  "sourceCode": "static boolean isEmpty(final String str) {\n        return str == null || str.isEmpty();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether the given string is null or empty.\n *\n * @param str The string to test.\n * @return Whether the given string is null or empty.\n */\nstatic boolean isEmpty(final String str) {\n    return str == null || str.isEmpty();\n}",
+  "method_comment": "\n     * Tests whether the given string is null or empty.\n     *\n     * @param str The string to test.\n     * @return Whether the given string is null or empty.\n     ",
+  "method_annotation": ""
+}

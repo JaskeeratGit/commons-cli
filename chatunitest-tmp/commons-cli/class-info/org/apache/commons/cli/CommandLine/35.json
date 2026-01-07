@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getParsedOptionValue",
+  "brief": "public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}",
+  "methodSignature": "getParsedOptionValue(OptionGroup, T)",
+  "sourceCode": "public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException {\n        return getParsedOptionValue(optionGroup, () -> defaultValue);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionGroup",
+    "T"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionGroup": [],
+    "T": [],
+    "org.apache.commons.cli.CommandLine": [
+      "getParsedOptionValue(OptionGroup, Supplier<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a version of this {@code OptionGroup} converted to a particular type.\n *\n * @param optionGroup the option group.\n * @param defaultValue the default value to return if an option is not selected.\n * @param <T> The return type for the method.\n * @return the value parsed into a particular object or the defaultValue if no option in the OptionGroup is set.\n * @throws ParseException if there are problems turning the option value into the desired type\n * @see PatternOptionBuilder\n * @since 1.9.0\n */\npublic <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException {\n    return getParsedOptionValue(optionGroup, () -> defaultValue);\n}",
+  "method_comment": "\n     * Gets a version of this {@code OptionGroup} converted to a particular type.\n     *\n     * @param optionGroup the option group.\n     * @param defaultValue the default value to return if an option is not selected.\n     * @param <T> The return type for the method.\n     * @return the value parsed into a particular object or the defaultValue if no option in the OptionGroup is set.\n     * @throws ParseException if there are problems turning the option value into the desired type\n     * @see PatternOptionBuilder\n     * @since 1.9.0\n     ",
+  "method_annotation": ""
+}

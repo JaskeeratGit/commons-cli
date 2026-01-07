@@ -1,0 +1,50 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "appendTable",
+  "brief": "@Override\n    public void appendTable(final TableDefinition rawTable) throws IOException{}",
+  "methodSignature": "appendTable(TableDefinition)",
+  "sourceCode": "@Override\n    public void appendTable(final TableDefinition rawTable) throws IOException {\n        final TableDefinition table = adjustTableFormat(rawTable);\n        // write the table\n        appendParagraph(table.caption());\n        final List<TextStyle> headerStyles = new ArrayList<>();\n        for (final TextStyle style : table.columnTextStyles()) {\n            headerStyles.add(TextStyle.builder().setTextStyle(style).setAlignment(TextStyle.Alignment.CENTER).get());\n        }\n        writeColumnQueues(makeColumnQueues(table.headers(), headerStyles), headerStyles);\n        for (final List<String> row : table.rows()) {\n            writeColumnQueues(makeColumnQueues(row, table.columnTextStyles()), table.columnTextStyles());\n        }\n        output.append(System.lineSeparator());\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TableDefinition"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TableDefinition": [
+      "columnTextStyles()",
+      "rows()",
+      "caption()",
+      "headers()"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "makeColumnQueues(String>, TextStyle>)",
+      "adjustTableFormat(TableDefinition)",
+      "writeColumnQueues(String>>, TextStyle>)",
+      "appendParagraph(CharSequence)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "setAlignment(Alignment)",
+      "setTextStyle(TextStyle)",
+      "get()"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "builder()"
+    ],
+    "java.lang.Appendable": [
+      "append(CharSequence)"
+    ],
+    "java.lang.System": [
+      "lineSeparator()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void appendTable(final TableDefinition rawTable) throws IOException {\n    final TableDefinition table = adjustTableFormat(rawTable);\n    // write the table\n    appendParagraph(table.caption());\n    final List<TextStyle> headerStyles = new ArrayList<>();\n    for (final TextStyle style : table.columnTextStyles()) {\n        headerStyles.add(TextStyle.builder().setTextStyle(style).setAlignment(TextStyle.Alignment.CENTER).get());\n    }\n    writeColumnQueues(makeColumnQueues(table.headers(), headerStyles), headerStyles);\n    for (final List<String> row : table.rows()) {\n        writeColumnQueues(makeColumnQueues(row, table.columnTextStyles()), table.columnTextStyles());\n    }\n    output.append(System.lineSeparator());\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

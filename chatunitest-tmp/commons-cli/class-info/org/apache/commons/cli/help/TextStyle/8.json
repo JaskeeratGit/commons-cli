@@ -1,0 +1,22 @@
+{
+  "className": "TextStyle",
+  "methodName": "toString",
+  "brief": "@Override\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        return String.format(\"TextStyle{%s, l:%s, i:%s, %s, min:%s, max:%s}\", alignment, leftPad, indent, scalable, minWidth,\n                maxWidth == UNSET_MAX_WIDTH ? \"unset\" : maxWidth);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "format(String, Object[])"
+    ]
+  },
+  "full_method_info": "@Override\npublic String toString() {\n    return String.format(\"TextStyle{%s, l:%s, i:%s, %s, min:%s, max:%s}\", alignment, leftPad, indent, scalable, minWidth, maxWidth == UNSET_MAX_WIDTH ? \"unset\" : maxWidth);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

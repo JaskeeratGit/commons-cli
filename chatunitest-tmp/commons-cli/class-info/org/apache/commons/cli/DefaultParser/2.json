@@ -1,0 +1,25 @@
+{
+  "className": "DefaultParser",
+  "methodName": "addArg",
+  "brief": "protected void addArg(final String token){}",
+  "methodSignature": "addArg(String)",
+  "sourceCode": "protected void addArg(final String token) {\n        cmd.addArg(token);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.CommandLine": [
+      "addArg(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds token to command line {@link CommandLine#addArg(String)}.\n *\n * @param token the unrecognized option/argument.\n * @since 1.10.0\n */\nprotected void addArg(final String token) {\n    cmd.addArg(token);\n}",
+  "method_comment": "\n     * Adds token to command line {@link CommandLine#addArg(String)}.\n     *\n     * @param token the unrecognized option/argument.\n     * @since 1.10.0\n     ",
+  "method_annotation": ""
+}

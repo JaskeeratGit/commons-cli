@@ -1,0 +1,156 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.function.Supplier;
+
+class CommandLine_getOptionValues_24_0_Test {
+
+    // Helper to create a CommandLine instance by invoking the private constructor via reflection
+    private CommandLine createCommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    // Helper to set the private 'deprecated' field of an Option instance to a non-null instance
+    // Attempts to instantiate the nested DeprecatedAttributes class if present, otherwise uses Unsafe as fallback.
+    private void markOptionDeprecated(final Option option) throws Exception {
+        Field deprecatedField = Option.class.getDeclaredField("deprecated");
+        deprecatedField.setAccessible(true);
+        Class<?> deprecatedClass = null;
+        for (Class<?> c : Option.class.getDeclaredClasses()) {
+            if ("DeprecatedAttributes".equals(c.getSimpleName())) {
+                deprecatedClass = c;
+                break;
+            }
+        }
+        Object instance = null;
+        if (deprecatedClass != null) {
+            // Try to instantiate via no-arg constructor
+            try {
+                Constructor<?> dc = deprecatedClass.getDeclaredConstructor();
+                dc.setAccessible(true);
+                instance = dc.newInstance();
+            } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+                // Fallback to Unsafe.allocateInstance if available
+                try {
+                    Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+                    Field f = unsafeClass.getDeclaredField("theUnsafe");
+                    f.setAccessible(true);
+                    Object unsafe = f.get(null);
+                    java.lang.reflect.Method allocateInstance = unsafeClass.getMethod("allocateInstance", Class.class);
+                    instance = allocateInstance.invoke(unsafe, deprecatedClass);
+                } catch (Exception ex) {
+                    // As a last resort, try to instantiate via an anonymous subclass if it's an interface
+                    if (deprecatedClass.isInterface()) {
+                        instance = java.lang.reflect.Proxy.newProxyInstance(deprecatedClass.getClassLoader(), new Class<?>[] { deprecatedClass }, (proxy, method, args) -> {
+                            // no-op for any invoked methods
+                            return null;
+                        });
+                    } else {
+                        // Give up with a descriptive exception for test failure
+                        throw new IllegalStateException("Unable to instantiate DeprecatedAttributes nested class", ex);
+                    }
+                }
+            }
+        } else {
+            // If there is no nested class (unexpected), set a simple Object if compatible (unlikely)
+            // Throwing an exception to make the situation explicit.
+            throw new IllegalStateException("DeprecatedAttributes nested class not found on Option; cannot mark deprecated");
+        }
+        deprecatedField.set(option, instance);
+    }
+
+    @Test
+    void testNullOptionReturnsNull() throws Exception {
+        CommandLine cl = createCommandLine(new LinkedList<>(), new ArrayList<>(), null);
+        assertNull(cl.getOptionValues(null), "getOptionValues should return null for null argument");
+    }
+
+    @Test
+    void testNoMatchingOptionReturnsNull() throws Exception {
+        List<Option> options = new ArrayList<>();
+        Option o1 = new Option("a", false, "opt a");
+        options.add(o1);
+        CommandLine cl = createCommandLine(new LinkedList<>(), options, null);
+        // Create an option that is different (different short opt)
+        Option query = new Option("b", false, "opt b");
+        assertNull(cl.getOptionValues(query), "No matching processed option -> should return null");
+    }
+
+    @Test
+    void testMatchingOptionWithEmptyValuesReturnsNull() throws Exception {
+        List<Option> options = new ArrayList<>();
+        // values list initially empty
+        Option processed = new Option("x", false, "opt x");
+        options.add(processed);
+        CommandLine cl = createCommandLine(new LinkedList<>(), options, null);
+        // equals by opt string
+        Option query = new Option("x", false, "another opt x");
+        assertNull(cl.getOptionValues(query), "Matching option but no values -> should return null");
+    }
+
+    @Test
+    void testReturnsValuesForMatchingOption() throws Exception {
+        List<Option> options = new ArrayList<>();
+        Option processed = new Option("v", false, "opt v");
+        processed.getValuesList().add("one");
+        processed.getValuesList().add("two");
+        options.add(processed);
+        CommandLine cl = createCommandLine(new LinkedList<>(), options, null);
+        // Use a different Option instance but equal by option string
+        Option query = new Option("v", false, "other");
+        String[] values = cl.getOptionValues(query);
+        assertNotNull(values, "Should return array of values");
+        assertArrayEquals(new String[] { "one", "two" }, values, "Returned values should match those in processed option");
+    }
+
+    @Test
+    void testAggregatesValuesFromMultipleProcessedOptions() throws Exception {
+        List<Option> options = new ArrayList<>();
+        Option p1 = new Option("m", false, "m1");
+        p1.getValuesList().add("a");
+        p1.getValuesList().add("b");
+        Option p2 = new Option("m", false, "m2");
+        p2.getValuesList().add("c");
+        options.add(p1);
+        options.add(p2);
+        CommandLine cl = createCommandLine(new LinkedList<>(), options, null);
+        // Query option equal to both p1 and p2
+        Option query = new Option("m", false, "q");
+        String[] values = cl.getOptionValues(query);
+        assertNotNull(values, "Should return aggregated values");
+        assertArrayEquals(new String[] { "a", "b", "c" }, values, "Values should be aggregated from all matching processed options in order");
+    }
+
+    @Test
+    void testDeprecatedHandlerInvokedWhenOptionDeprecated() throws Exception {
+        List<Option> options = new ArrayList<>();
+        Option processed = new Option("d", false, "deprecated processed");
+        processed.getValuesList().add("x");
+        options.add(processed);
+        // Prepare a separate Option instance that is equal but will be marked deprecated
+        Option query = new Option("d", false, "deprecated query");
+        markOptionDeprecated(query);
+        AtomicReference<Option> handled = new AtomicReference<>(null);
+        Consumer<Option> handler = handled::set;
+        CommandLine cl = createCommandLine(new LinkedList<>(), options, handler);
+        String[] values = cl.getOptionValues(query);
+        assertNotNull(values, "Should return values even for deprecated option");
+        assertArrayEquals(new String[] { "x" }, values);
+        assertSame(query, handled.get(), "Deprecated handler should be invoked with the supplied option instance");
+    }
+}

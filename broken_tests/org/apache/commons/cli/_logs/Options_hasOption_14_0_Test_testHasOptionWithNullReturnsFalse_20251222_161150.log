@@ -1,0 +1,755 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< commons-cli:commons-cli >-----------------------
+[INFO] Building Apache Commons CLI 1.10.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-maven-version) @ commons-cli ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-java-version) @ commons-cli ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- apache-rat:0.16.1:check (rat-check) @ commons-cli ---
+[INFO] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[INFO] 
+[INFO] --- artifact:3.6.0:check-buildplan (check-buildplan) @ commons-cli ---
+[INFO] No known issue in 21 plugins
+[INFO] 
+[INFO] --- build-helper:3.6.1:parse-version (parse-version) @ commons-cli ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (javadoc.resources) @ commons-cli ---
+[INFO] Executing tasks
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- remote-resources:3.3.0:process (process-resource-bundles) @ commons-cli ---
+[INFO] Skipping remote resources execution.
+[INFO] 
+[INFO] --- buildnumber:3.2.1:create (default) @ commons-cli ---
+[INFO] Executing: /bin/sh -c cd '/Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli' && 'git' 'log' '-1' '--no-merges' '--format=format:%H %aI %aE %aN'
+[INFO] Working directory: /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli
+[WARNING] Cannot get the revision information from the scm repository, proceeding with revision of ?????? : 
+Exception while executing SCM command.
+[INFO] Storing buildNumber: ?????? at timestamp: 1766445109672
+[INFO] Executing: /bin/sh -c cd '/Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli' && 'git' 'symbolic-ref' 'HEAD'
+[INFO] Working directory: /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli
+[WARNING] Cannot get the branch information from the git repository: 
+Detecting the current branch failed: fatal: not a git repository: /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/../../../.git/modules/final_projects/cli_latest_stable/commons-cli
+
+[INFO] Executing: /bin/sh -c cd '/Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli' && 'git' 'log' '-1' '--no-merges' '--format=format:%H %aI %aE %aN'
+[INFO] Working directory: /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli
+[WARNING] Cannot get the branch information from the scm repository, proceeding with UNKNOWN_BRANCH : 
+Exception while executing SCM command.
+[INFO] Storing scmBranch: UNKNOWN_BRANCH
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ commons-cli ---
+[INFO] skip non existing resourceDirectory /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/main/resources
+[INFO] Copying 2 resources from  to target/classes/META-INF
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ commons-cli ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- bundle:5.1.9:manifest (bundle-manifest) @ commons-cli ---
+[INFO] Writing manifest: /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/target/osgi/MANIFEST.MF
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ commons-cli ---
+[INFO] skip non existing resourceDirectory /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/resources
+[INFO] Copying 2 resources from  to target/test-classes/META-INF
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ commons-cli ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 269 source files with javac [debug target 1.8] to target/test-classes
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/OptionBuilder_hasArg_4_0_Test_testFluentChain_updatesArgCount.java: Some input files use or override a deprecated API.
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/OptionBuilder_hasArg_4_0_Test_testFluentChain_updatesArgCount.java: Recompile with -Xlint:deprecation for details.
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_builder_0_0_Test_testBuilderAndPrivateConstructorInteroperability.java: Some input files use unchecked or unsafe operations.
+[INFO] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_builder_0_0_Test_testBuilderAndPrivateConstructorInteroperability.java: Recompile with -Xlint:unchecked for details.
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test_testBuilderReturnsDistinctBuilderInstances.java:[3,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test_testPrivateConstructorAndPublicAccessorsDoNotThrow.java:[3,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_handlesDelimitersContainingMultipleCharacters.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_withEmptyText_returnsEmptyString.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_withNullText_returnsEmptyString.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_wrapsWithCustomDelimiters.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_wrapsWithDefaultLikeDelimiters.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_defaultSyntaxFunction_producesExpectedStructure.java:[7,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_defaultSyntaxFunction_producesExpectedStructure.java:[26,59] cannot find symbol
+  symbol:   class Option
+  location: class org.apache.commons.cli.help.OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_defaultSyntaxFunction_producesExpectedStructure
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredFalse.java:[7,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredFalse.java:[26,59] cannot find symbol
+  symbol:   class Option
+  location: class org.apache.commons.cli.help.OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredFalse
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredTrue.java:[7,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredTrue.java:[26,59] cannot find symbol
+  symbol:   class Option
+  location: class org.apache.commons.cli.help.OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredTrue
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEmptyWhenOptionNotPresent.java:[33,26] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEmptyWhenOptionNotPresent.java:[38,29] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEqualDifferentInstanceMatches.java:[35,25] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEqualDifferentInstanceMatches.java:[36,15] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable stored of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEqualDifferentInstanceMatches.java:[41,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[36,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[37,14] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable first of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[38,25] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[39,15] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable second of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[44,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[33,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[35,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[36,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[37,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[37,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[38,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[39,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[37,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[40,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[41,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[38,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[39,13] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt1 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[40,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[41,13] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt2 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[42,13] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt2 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[34,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[35,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[36,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsNullWhenOptionPresentButNoValues.java:[35,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_invokePublicMethodViaReflection_and_checkResults.java:[52,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_returnsDefaultWhenOptionNotPresent.java:[51,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_returnsOptionValueWhenOptionPresent.java:[50,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsDefaultWhenOptionMissing.java:[29,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsDefaultWhenOptionPresentButNoValues.java:[30,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsOptionValueWhenPresent.java:[28,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsNull_whenOptionHasNoValues.java:[36,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_longOptionReturnsItsValue.java:[63,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_optionWithoutValueReturnsDefault.java:[64,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_shortOptionReturnsItsValue.java:[62,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[84,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[85,11] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable p1 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[86,11] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable p1 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[87,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[88,11] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable p2 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[93,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testDeprecatedHandlerInvokedWhenOptionDeprecated.java:[85,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testDeprecatedHandlerInvokedWhenOptionDeprecated.java:[86,18] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable processed of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testDeprecatedHandlerInvokedWhenOptionDeprecated.java:[89,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testMatchingOptionWithEmptyValuesReturnsNull.java:[83,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testMatchingOptionWithEmptyValuesReturnsNull.java:[87,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testNoMatchingOptionReturnsNull.java:[81,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testNoMatchingOptionReturnsNull.java:[85,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[83,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[84,18] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable processed of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[85,18] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable processed of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[89,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_25_0_Test_testGetOptionValues_NotSelected_ReturnsNull.java:[42,26] cannot find symbol
+  symbol:   method isSelected()
+  location: variable group of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_25_0_Test_testGetOptionValues_Selected_DelegatesAndReturns.java:[46,25] cannot find symbol
+  symbol:   method isSelected()
+  location: variable group of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testGetOptionValues_DeprecatedHandlerInvoked.java:[57,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testGetOptionValues_MatchingShortAndLongOption_ReturnsValues.java:[56,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testGetOptionValues_NoMatchingOption_ReturnsNull.java:[56,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testResolveOption_PrivateMethodBehavior.java:[59,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testResolveOption_PrivateMethodBehavior.java:[61,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_30_0_Test_testPublicMethodDelegatesToTwoArgWithNullSupplier.java:[35,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_30_0_Test_testPublicMethodDelegatesToTwoArgWithNullSupplier.java:[36,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_30_0_Test_testTwoArgSupplierUsedWhenNoValuesPresent.java:[43,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_conversionSuccess_returnsConvertedValue.java:[27,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_conversionSuccess_returnsConvertedValue.java:[29,12] cannot find symbol
+  symbol:   method setConverter(org.apache.commons.cli.Converter<java.lang.Integer,java.lang.RuntimeException>)
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_converterThrows_throwsParseException.java:[28,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_converterThrows_throwsParseException.java:[30,12] cannot find symbol
+  symbol:   method setConverter(org.apache.commons.cli.Converter<java.lang.Object,java.lang.RuntimeException>)
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_optionNonNull_getOptionValueNull_returnsDefault.java:[26,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_32_0_Test_testDelegatesToSupplierAndReturnsDefault.java:[50,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_32_0_Test_testPrivateConstructorViaReflectionAndDefaultReturn.java:[57,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_34_0_Test_testNotSelectedOptionGroup_returnsDefault.java:[46,23] cannot find symbol
+  symbol:   method isSelected()
+  location: variable og of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_34_0_Test_testSelectedOptionGroup_delegatesToStringOverload.java:[50,22] cannot find symbol
+  symbol:   method isSelected()
+  location: variable og of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testNullOptionNamePassedResultsInNullOptionResolved.java:[69,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedLongOptionNameWithHyphensIsPassedToGetParsedOptionValue.java:[66,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedLongOptionNameWithHyphensIsPassedToGetParsedOptionValue.java:[75,42] cannot find symbol
+  symbol:   method getLongOpt()
+  location: variable captured of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedShortOptionNameIsPassedToGetParsedOptionValue.java:[65,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedShortOptionNameIsPassedToGetParsedOptionValue.java:[74,39] cannot find symbol
+  symbol:   method getLongOpt()
+  location: variable captured of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_37_1_Test_test_getParsedOptionValue_resolvesShortOption_and_delegates.java:[68,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_38_0_Test_testDelegatesToOptionVariant_withLongOption.java:[51,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_38_0_Test_testDelegatesToOptionVariant_withShortOption.java:[51,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_38_0_Test_testResolveOption_privateMethod_behavior.java:[53,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_withValues_returnsValues.java:[30,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+  required: java.lang.String
+  found: java.lang.String,boolean,java.lang.String
+  reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_withValues_returnsValues.java:[31,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_withValues_returnsValues.java:[32,12] cannot find symbol
+  symbol:   method getValuesList()
+  location: variable opt of type org.apache.commons.cli.Option
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.396 s
+[INFO] Finished at: 2025-12-22T16:11:50-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure: Compilation failure: 
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test_testBuilderReturnsDistinctBuilderInstances.java:[3,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test_testPrivateConstructorAndPublicAccessorsDoNotThrow.java:[3,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_handlesDelimitersContainingMultipleCharacters.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_withEmptyText_returnsEmptyString.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_withNullText_returnsEmptyString.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_wrapsWithCustomDelimiters.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toOptional_9_0_Test_testToOptional_wrapsWithDefaultLikeDelimiters.java:[16,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_defaultSyntaxFunction_producesExpectedStructure.java:[7,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_defaultSyntaxFunction_producesExpectedStructure.java:[26,59] cannot find symbol
+[ERROR]   symbol:   class Option
+[ERROR]   location: class org.apache.commons.cli.help.OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_defaultSyntaxFunction_producesExpectedStructure
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredFalse.java:[7,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredFalse.java:[26,59] cannot find symbol
+[ERROR]   symbol:   class Option
+[ERROR]   location: class org.apache.commons.cli.help.OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredFalse
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredTrue.java:[7,30] org.apache.commons.cli.Option is not public in org.apache.commons.cli; cannot be accessed from outside package
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/help/OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredTrue.java:[26,59] cannot find symbol
+[ERROR]   symbol:   class Option
+[ERROR]   location: class org.apache.commons.cli.help.OptionFormatter_toSyntaxOption_10_0_Test_testToSyntaxOption_usesCustomSyntaxFunction_whenRequiredTrue
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEmptyWhenOptionNotPresent.java:[33,26] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEmptyWhenOptionNotPresent.java:[38,29] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEqualDifferentInstanceMatches.java:[35,25] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEqualDifferentInstanceMatches.java:[36,15] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable stored of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEqualDifferentInstanceMatches.java:[41,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[36,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[37,14] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable first of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[38,25] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[39,15] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable second of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[44,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[33,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[35,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[36,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[37,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[37,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[38,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[39,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[37,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[40,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[41,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[38,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[39,13] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt1 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[40,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[41,13] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt2 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[42,13] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt2 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[34,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[35,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[36,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsNullWhenOptionPresentButNoValues.java:[35,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_invokePublicMethodViaReflection_and_checkResults.java:[52,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_returnsDefaultWhenOptionNotPresent.java:[51,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_returnsOptionValueWhenOptionPresent.java:[50,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsDefaultWhenOptionMissing.java:[29,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsDefaultWhenOptionPresentButNoValues.java:[30,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsOptionValueWhenPresent.java:[28,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsNull_whenOptionHasNoValues.java:[36,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_longOptionReturnsItsValue.java:[63,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_optionWithoutValueReturnsDefault.java:[64,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_shortOptionReturnsItsValue.java:[62,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[84,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[85,11] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable p1 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[86,11] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable p1 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[87,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[88,11] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable p2 of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testAggregatesValuesFromMultipleProcessedOptions.java:[93,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testDeprecatedHandlerInvokedWhenOptionDeprecated.java:[85,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testDeprecatedHandlerInvokedWhenOptionDeprecated.java:[86,18] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable processed of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testDeprecatedHandlerInvokedWhenOptionDeprecated.java:[89,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testMatchingOptionWithEmptyValuesReturnsNull.java:[83,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testMatchingOptionWithEmptyValuesReturnsNull.java:[87,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testNoMatchingOptionReturnsNull.java:[81,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testNoMatchingOptionReturnsNull.java:[85,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[83,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[84,18] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable processed of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[85,18] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable processed of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_24_0_Test_testReturnsValuesForMatchingOption.java:[89,24] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_25_0_Test_testGetOptionValues_NotSelected_ReturnsNull.java:[42,26] cannot find symbol
+[ERROR]   symbol:   method isSelected()
+[ERROR]   location: variable group of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_25_0_Test_testGetOptionValues_Selected_DelegatesAndReturns.java:[46,25] cannot find symbol
+[ERROR]   symbol:   method isSelected()
+[ERROR]   location: variable group of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testGetOptionValues_DeprecatedHandlerInvoked.java:[57,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testGetOptionValues_MatchingShortAndLongOption_ReturnsValues.java:[56,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testGetOptionValues_NoMatchingOption_ReturnsNull.java:[56,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testResolveOption_PrivateMethodBehavior.java:[59,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getOptionValues_26_0_Test_testResolveOption_PrivateMethodBehavior.java:[61,21] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_30_0_Test_testPublicMethodDelegatesToTwoArgWithNullSupplier.java:[35,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_30_0_Test_testPublicMethodDelegatesToTwoArgWithNullSupplier.java:[36,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_30_0_Test_testTwoArgSupplierUsedWhenNoValuesPresent.java:[43,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_conversionSuccess_returnsConvertedValue.java:[27,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_conversionSuccess_returnsConvertedValue.java:[29,12] cannot find symbol
+[ERROR]   symbol:   method setConverter(org.apache.commons.cli.Converter<java.lang.Integer,java.lang.RuntimeException>)
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_converterThrows_throwsParseException.java:[28,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_converterThrows_throwsParseException.java:[30,12] cannot find symbol
+[ERROR]   symbol:   method setConverter(org.apache.commons.cli.Converter<java.lang.Object,java.lang.RuntimeException>)
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_optionNonNull_getOptionValueNull_returnsDefault.java:[26,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_32_0_Test_testDelegatesToSupplierAndReturnsDefault.java:[50,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_32_0_Test_testPrivateConstructorViaReflectionAndDefaultReturn.java:[57,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_34_0_Test_testNotSelectedOptionGroup_returnsDefault.java:[46,23] cannot find symbol
+[ERROR]   symbol:   method isSelected()
+[ERROR]   location: variable og of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_34_0_Test_testSelectedOptionGroup_delegatesToStringOverload.java:[50,22] cannot find symbol
+[ERROR]   symbol:   method isSelected()
+[ERROR]   location: variable og of type org.apache.commons.cli.OptionGroup
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testNullOptionNamePassedResultsInNullOptionResolved.java:[69,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedLongOptionNameWithHyphensIsPassedToGetParsedOptionValue.java:[66,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedLongOptionNameWithHyphensIsPassedToGetParsedOptionValue.java:[75,42] cannot find symbol
+[ERROR]   symbol:   method getLongOpt()
+[ERROR]   location: variable captured of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedShortOptionNameIsPassedToGetParsedOptionValue.java:[65,28] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_36_0_Test_testResolvedShortOptionNameIsPassedToGetParsedOptionValue.java:[74,39] cannot find symbol
+[ERROR]   symbol:   method getLongOpt()
+[ERROR]   location: variable captured of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_37_1_Test_test_getParsedOptionValue_resolvesShortOption_and_delegates.java:[68,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_38_0_Test_testDelegatesToOptionVariant_withLongOption.java:[51,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_38_0_Test_testDelegatesToOptionVariant_withShortOption.java:[51,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValue_38_0_Test_testResolveOption_privateMethod_behavior.java:[53,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_withValues_returnsValues.java:[30,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+[ERROR]   required: java.lang.String
+[ERROR]   found: java.lang.String,boolean,java.lang.String
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_withValues_returnsValues.java:[31,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] /Users/jaskeeratsingh/Work/remote-machine-folders/final_projects/cli_latest_stable/new_extractor/verify_broken/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_withValues_returnsValues.java:[32,12] cannot find symbol
+[ERROR]   symbol:   method getValuesList()
+[ERROR]   location: variable opt of type org.apache.commons.cli.Option
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

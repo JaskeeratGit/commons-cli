@@ -1,0 +1,32 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleOption",
+  "brief": "private void handleOption(final Option option) throws ParseException{}",
+  "methodSignature": "handleOption(Option)",
+  "sourceCode": "private void handleOption(final Option option) throws ParseException {\n        // check the previous option before handling the next one\n        checkRequiredArgs();\n        final Option copy = (Option) option.clone();\n        updateRequiredOptions(copy);\n        cmd.addOption(copy);\n        currentOption = copy.hasArg() ? copy : null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "hasArg()",
+      "clone()"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "updateRequiredOptions(Option)",
+      "checkRequiredArgs()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "addOption(Option)"
+    ]
+  },
+  "full_method_info": "private void handleOption(final Option option) throws ParseException {\n    // check the previous option before handling the next one\n    checkRequiredArgs();\n    final Option copy = (Option) option.clone();\n    updateRequiredOptions(copy);\n    cmd.addOption(copy);\n    currentOption = copy.hasArg() ? copy : null;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

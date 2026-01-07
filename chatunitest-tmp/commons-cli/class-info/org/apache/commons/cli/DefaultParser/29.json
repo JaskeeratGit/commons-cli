@@ -1,0 +1,35 @@
+{
+  "className": "DefaultParser",
+  "methodName": "updateRequiredOptions",
+  "brief": "private void updateRequiredOptions(final Option option) throws AlreadySelectedException{}",
+  "methodSignature": "updateRequiredOptions(Option)",
+  "sourceCode": "private void updateRequiredOptions(final Option option) throws AlreadySelectedException {\n        if (option.isRequired()) {\n            expectedOpts.remove(option.getKey());\n        }\n        // if the option is in an OptionGroup make that option the selected option of the group\n        if (options.getOptionGroup(option) != null) {\n            final OptionGroup optionGroup = options.getOptionGroup(option);\n            if (optionGroup.isRequired()) {\n                expectedOpts.remove(optionGroup);\n            }\n            optionGroup.setSelected(option);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "isRequired()",
+      "getKey()"
+    ],
+    "java.util.List": [
+      "remove(Object)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "getOptionGroup(Option)"
+    ],
+    "org.apache.commons.cli.OptionGroup": [
+      "isRequired()",
+      "setSelected(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Removes the option or its group from the list of expected elements.\n *\n * @param option\n */\nprivate void updateRequiredOptions(final Option option) throws AlreadySelectedException {\n    if (option.isRequired()) {\n        expectedOpts.remove(option.getKey());\n    }\n    // if the option is in an OptionGroup make that option the selected option of the group\n    if (options.getOptionGroup(option) != null) {\n        final OptionGroup optionGroup = options.getOptionGroup(option);\n        if (optionGroup.isRequired()) {\n            expectedOpts.remove(optionGroup);\n        }\n        optionGroup.setSelected(option);\n    }\n}",
+  "method_comment": "\n     * Removes the option or its group from the list of expected elements.\n     *\n     * @param option\n     ",
+  "method_annotation": ""
+}

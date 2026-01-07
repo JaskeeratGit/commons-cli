@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "hasArg",
+  "brief": "public boolean hasArg(){}",
+  "methodSignature": "hasArg()",
+  "sourceCode": "public boolean hasArg() {\n        return argCount > 0 || argCount == UNLIMITED_VALUES;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether this Option requires an argument.\n *\n * @return boolean flag indicating if an argument is required.\n */\npublic boolean hasArg() {\n    return argCount > 0 || argCount == UNLIMITED_VALUES;\n}",
+  "method_comment": "\n     * Tests whether this Option requires an argument.\n     *\n     * @return boolean flag indicating if an argument is required.\n     ",
+  "method_annotation": ""
+}

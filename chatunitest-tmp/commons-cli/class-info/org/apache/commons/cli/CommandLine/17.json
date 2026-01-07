@@ -1,0 +1,25 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionValue",
+  "brief": "public String getOptionValue(final OptionGroup optionGroup){}",
+  "methodSignature": "getOptionValue(OptionGroup)",
+  "sourceCode": "public String getOptionValue(final OptionGroup optionGroup) {\n        final String[] values = getOptionValues(optionGroup);\n        return values == null ? null : values[0];\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionGroup"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionGroup": [],
+    "org.apache.commons.cli.CommandLine": [
+      "getOptionValues(OptionGroup)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the first argument, if any, of this option group.\n *\n * @param optionGroup the option group.\n * @return Value of the argument if option group is selected, and has an argument, otherwise null.\n * @since 1.9.0\n */\npublic String getOptionValue(final OptionGroup optionGroup) {\n    final String[] values = getOptionValues(optionGroup);\n    return values == null ? null : values[0];\n}",
+  "method_comment": "\n     * Gets the first argument, if any, of this option group.\n     *\n     * @param optionGroup the option group.\n     * @return Value of the argument if option group is selected, and has an argument, otherwise null.\n     * @since 1.9.0\n     ",
+  "method_annotation": ""
+}

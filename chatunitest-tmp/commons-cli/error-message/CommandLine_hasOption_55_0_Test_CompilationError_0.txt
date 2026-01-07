@@ -1,0 +1,188 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+/**
+ * JUnit 5 tests for CommandLine.hasOption(String).
+ * Uses reflection to construct CommandLine via its private constructor and to invoke its private resolveOption method.
+ */
+public class CommandLine_hasOption_55_0_Test {
+
+    // Helper to create an instance of CommandLine using its private constructor:
+    private static CommandLine createCommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler) {
+        try {
+            Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+            ctor.setAccessible(true);
+            return ctor.newInstance(args, options, deprecatedHandler);
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException("Failed to construct CommandLine", e);
+        }
+    }
+
+    // Helper to call private resolveOption(String) reflectively
+    private static Option invokeResolveOption(CommandLine cmd, String name) {
+        try {
+            Method m = CommandLine.class.getDeclaredMethod("resolveOption", String.class);
+            m.setAccessible(true);
+            return (Option) m.invoke(cmd, name);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException("Failed to invoke resolveOption", e);
+        }
+    }
+
+    @Test
+    public void testHasOption_nullName_returnsFalse_and_resolveOption_null() {
+        List<Option> options = new ArrayList<>();
+        AtomicBoolean called = new AtomicBoolean(false);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, o -> called.set(true));
+        // public hasOption should return false for null without throwing
+        assertFalse(cmd.hasOption(null));
+        // private resolveOption should return null for null input
+        Option resolved = invokeResolveOption(cmd, null);
+        assertNull(resolved);
+        // deprecated handler should not have been called
+        assertFalse(called.get());
+    }
+
+    @Test
+    public void testHasOption_notFound_returnsFalse() {
+        Option o = new Option("a", "alpha", false);
+        List<Option> options = new ArrayList<>();
+        options.add(o);
+        AtomicBoolean called = new AtomicBoolean(false);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, p -> called.set(true));
+        // unknown short name
+        assertFalse(cmd.hasOption("b"));
+        // unknown with leading hyphen
+        assertFalse(cmd.hasOption("-b"));
+        // unknown long name
+        assertFalse(cmd.hasOption("--beta"));
+        // resolveOption for unknown should be null
+        assertNull(invokeResolveOption(cmd, "b"));
+        assertNull(invokeResolveOption(cmd, "-b"));
+        assertNull(invokeResolveOption(cmd, "--beta"));
+        assertFalse(called.get());
+    }
+
+    @Test
+    public void testHasOption_shortOption_found_NotDeprecated() {
+        Option o = new Option("a", "alpha", false);
+        List<Option> options = new ArrayList<>();
+        options.add(o);
+        AtomicBoolean called = new AtomicBoolean(false);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, p -> called.set(true));
+        // hasOption should accept names with leading hyphens; short option
+        assertTrue(cmd.hasOption("-a"));
+        // resolveOption should return the actual Option instance
+        Option resolved = invokeResolveOption(cmd, "-a");
+        assertSame(o, resolved);
+        // deprecated handler should not be called
+        assertFalse(called.get());
+    }
+
+    @Test
+    public void testHasOption_longOption_found_Deprecated_callsHandler() {
+        Option o = new Option("b", "beta", true);
+        List<Option> options = new ArrayList<>();
+        options.add(o);
+        AtomicBoolean called = new AtomicBoolean(false);
+        // deprecatedHandler should be invoked by hasOption when option is deprecated
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, p -> {
+            // ensure the handler receives the expected option instance
+            assertSame(o, p);
+            called.set(true);
+        });
+        // long option with two hyphens
+        assertTrue(cmd.hasOption("--beta"));
+        // ensure resolveOption returns same option
+        Option resolved = invokeResolveOption(cmd, "--beta");
+        assertSame(o, resolved);
+        // handler should have been invoked
+        assertTrue(called.get());
+    }
+
+    // Minimal stub of Option used for testing. Placed in same package as CommandLine so it matches expected type.
+    static class Option {
+
+        private final String opt;
+
+        private final String longOpt;
+
+        private final boolean deprecated;
+
+        Option(String opt, String longOpt, boolean deprecated) {
+            this.opt = opt;
+            this.longOpt = longOpt;
+            this.deprecated = deprecated;
+        }
+
+        public String getOpt() {
+            return opt;
+        }
+
+        public String getLongOpt() {
+            return longOpt;
+        }
+
+        public boolean isDeprecated() {
+            return deprecated;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            if (!(o instanceof Option))
+                return false;
+            Option option = (Option) o;
+            return deprecated == option.deprecated && Objects.equals(opt, option.opt) && Objects.equals(longOpt, option.longOpt);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(opt, longOpt, deprecated);
+        }
+    }
+
+    // Minimal Util stub to satisfy CommandLine.resolveOption's call to Util.stripLeadingHyphens
+    static final class Util {
+
+        private Util() {
+        }
+
+        public static String stripLeadingHyphens(String name) {
+            if (name == null) {
+                return null;
+            }
+            int i = 0;
+            while (i < name.length() && name.charAt(i) == '-') {
+                i++;
+            }
+            // If all characters were hyphens, return empty string (non-null)
+            return name.substring(i);
+        }
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_hasOption_55_0_Test: line 58 : reference to hasOption is ambiguous
+  both method hasOption(org.apache.commons.cli.OptionGroup) in org.apache.commons.cli.CommandLine and method hasOption(java.lang.String) in org.apache.commons.cli.CommandLine match

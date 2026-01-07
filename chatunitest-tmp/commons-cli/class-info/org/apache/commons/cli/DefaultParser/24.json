@@ -1,0 +1,28 @@
+{
+  "className": "DefaultParser",
+  "methodName": "parse",
+  "brief": "@Override\n    public CommandLine parse(final Options options, final String[] arguments, final boolean stopAtNonOption) throws ParseException{}",
+  "methodSignature": "parse(Options, String[], boolean)",
+  "sourceCode": "@Override\n    public CommandLine parse(final Options options, final String[] arguments, final boolean stopAtNonOption) throws ParseException {\n        return parse(options, arguments, null, stopAtNonOption);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": [],
+    "org.apache.commons.cli.DefaultParser": [
+      "parse(Options, String[], Properties, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * @see #parse(Options, Properties, NonOptionAction, String[])\n */\n@Override\npublic CommandLine parse(final Options options, final String[] arguments, final boolean stopAtNonOption) throws ParseException {\n    return parse(options, arguments, null, stopAtNonOption);\n}",
+  "method_comment": "\n     * @see #parse(Options, Properties, NonOptionAction, String[])\n     ",
+  "method_annotation": "@Override\n"
+}

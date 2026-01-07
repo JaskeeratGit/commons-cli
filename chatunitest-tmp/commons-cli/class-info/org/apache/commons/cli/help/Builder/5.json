@@ -1,0 +1,24 @@
+{
+  "className": "Builder",
+  "methodName": "setComparator",
+  "brief": "public B setComparator(final Comparator<Option> comparator){}",
+  "methodSignature": "setComparator(Comparator)",
+  "sourceCode": "public B setComparator(final Comparator<Option> comparator) {\n            this.comparator = comparator;\n            return asThis();\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Comparator<Option>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.AbstractHelpFormatter.Builder": [
+      "asThis()"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the comparator to use for sorting options. If set to {@code null} no sorting is performed.\n *\n * @param comparator The comparator to use for sorting options.\n * @return this\n */\npublic B setComparator(final Comparator<Option> comparator) {\n    this.comparator = comparator;\n    return asThis();\n}",
+  "method_comment": "\n         * Sets the comparator to use for sorting options. If set to {@code null} no sorting is performed.\n         *\n         * @param comparator The comparator to use for sorting options.\n         * @return this\n         ",
+  "method_annotation": ""
+}

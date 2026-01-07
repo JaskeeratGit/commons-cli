@@ -1,0 +1,18 @@
+{
+  "className": "TextStyle",
+  "methodName": "getMaxWidth",
+  "brief": "public int getMaxWidth(){}",
+  "methodSignature": "getMaxWidth()",
+  "sourceCode": "public int getMaxWidth() {\n        return maxWidth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * gets the maximum width.\n *\n * @return The maximum width.\n */\npublic int getMaxWidth() {\n    return maxWidth;\n}",
+  "method_comment": "\n     * gets the maximum width.\n     *\n     * @return The maximum width.\n     ",
+  "method_annotation": ""
+}

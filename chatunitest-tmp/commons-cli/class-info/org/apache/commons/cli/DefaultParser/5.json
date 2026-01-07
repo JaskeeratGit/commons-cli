@@ -1,0 +1,31 @@
+{
+  "className": "DefaultParser",
+  "methodName": "getLongPrefix",
+  "brief": "private String getLongPrefix(final String token){}",
+  "methodSignature": "getLongPrefix(String)",
+  "sourceCode": "private String getLongPrefix(final String token) {\n        final String t = Util.stripLeadingHyphens(token);\n        int i;\n        String opt = null;\n        for (i = t.length() - 2; i > 1; i--) {\n            final String prefix = t.substring(0, i);\n            if (options.hasLongOption(prefix)) {\n                opt = prefix;\n                break;\n            }\n        }\n        return opt;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int, int)",
+      "length()"
+    ],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingHyphens(String)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "hasLongOption(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Searches for a prefix that is the long name of an option (-Xmx512m).\n *\n * @param token\n */\nprivate String getLongPrefix(final String token) {\n    final String t = Util.stripLeadingHyphens(token);\n    int i;\n    String opt = null;\n    for (i = t.length() - 2; i > 1; i--) {\n        final String prefix = t.substring(0, i);\n        if (options.hasLongOption(prefix)) {\n            opt = prefix;\n            break;\n        }\n    }\n    return opt;\n}",
+  "method_comment": "\n     * Searches for a prefix that is the long name of an option (-Xmx512m).\n     *\n     * @param token\n     ",
+  "method_annotation": ""
+}

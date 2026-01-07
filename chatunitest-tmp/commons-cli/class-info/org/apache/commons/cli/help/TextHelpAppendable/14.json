@@ -1,0 +1,27 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "printQueue",
+  "brief": "private void printQueue(final Queue<String> queue) throws IOException{}",
+  "methodSignature": "printQueue(Queue)",
+  "sourceCode": "private void printQueue(final Queue<String> queue) throws IOException {\n        for (final String s : queue) {\n            appendFormat(\"%s%n\", Util.rtrim(s));\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Queue<String>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.HelpAppendable": [
+      "appendFormat(String, Object[])"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "rtrim(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints a queue of text.\n *\n * @param queue the queue of text to print.\n * @throws IOException on output error.\n */\nprivate void printQueue(final Queue<String> queue) throws IOException {\n    for (final String s : queue) {\n        appendFormat(\"%s%n\", Util.rtrim(s));\n    }\n}",
+  "method_comment": "\n     * Prints a queue of text.\n     *\n     * @param queue the queue of text to print.\n     * @throws IOException on output error.\n     ",
+  "method_annotation": ""
+}

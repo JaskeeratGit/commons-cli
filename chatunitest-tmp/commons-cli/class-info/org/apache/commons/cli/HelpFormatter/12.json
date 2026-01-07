@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getLeftPadding",
+  "brief": "public int getLeftPadding(){}",
+  "methodSignature": "getLeftPadding()",
+  "sourceCode": "public int getLeftPadding() {\n        return defaultLeftPad;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the 'leftPadding'.\n *\n * @return the 'leftPadding'\n */\npublic int getLeftPadding() {\n    return defaultLeftPad;\n}",
+  "method_comment": "\n     * Gets the 'leftPadding'.\n     *\n     * @return the 'leftPadding'\n     ",
+  "method_annotation": ""
+}

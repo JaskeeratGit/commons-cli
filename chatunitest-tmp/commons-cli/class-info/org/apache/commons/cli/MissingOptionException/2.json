@@ -1,0 +1,24 @@
+{
+  "className": "MissingOptionException",
+  "methodName": "MissingOptionException",
+  "brief": "public MissingOptionException(final List missingOptions){}",
+  "methodSignature": "MissingOptionException(List)",
+  "sourceCode": "public MissingOptionException(final List missingOptions) {\n        this(createMessage(missingOptions));\n        this.missingOptions = missingOptions;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.MissingOptionException": [
+      "createMessage(List<?>)"
+    ]
+  },
+  "full_method_info": "public MissingOptionException(final List missingOptions) {\n    this(createMessage(missingOptions));\n    this.missingOptions = missingOptions;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

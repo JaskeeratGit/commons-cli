@@ -1,0 +1,25 @@
+{
+  "className": "Option",
+  "methodName": "getValue",
+  "brief": "public String getValue(final String defaultValue){}",
+  "methodSignature": "getValue(String)",
+  "sourceCode": "public String getValue(final String defaultValue) {\n        final String value = getValue();\n        return value != null ? value : defaultValue;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Option": [
+      "getValue()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the value/first value of this Option or the {@code defaultValue} if there is no value.\n *\n * @param defaultValue The value to be returned if there is no value.\n * @return the value/first value of this Option or the {@code defaultValue} if there are no values.\n */\npublic String getValue(final String defaultValue) {\n    final String value = getValue();\n    return value != null ? value : defaultValue;\n}",
+  "method_comment": "\n     * Gets the value/first value of this Option or the {@code defaultValue} if there is no value.\n     *\n     * @param defaultValue The value to be returned if there is no value.\n     * @return the value/first value of this Option or the {@code defaultValue} if there are no values.\n     ",
+  "method_annotation": ""
+}

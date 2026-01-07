@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getArgName",
+  "brief": "public String getArgName(){}",
+  "methodSignature": "getArgName()",
+  "sourceCode": "public String getArgName() {\n        return defaultArgName;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the 'argName'.\n *\n * @return the 'argName'\n */\npublic String getArgName() {\n    return defaultArgName;\n}",
+  "method_comment": "\n     * Gets the 'argName'.\n     *\n     * @return the 'argName'\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "PosixParser",
+  "methodName": "processOptionToken",
+  "brief": "private void processOptionToken(final String token, final boolean stopAtNonOption){}",
+  "methodSignature": "processOptionToken(String, boolean)",
+  "sourceCode": "private void processOptionToken(final String token, final boolean stopAtNonOption) {\n        if (stopAtNonOption && !options.hasOption(token)) {\n            eatTheRest = true;\n        }\n\n        if (options.hasOption(token)) {\n            currentOption = options.getOption(token);\n        }\n\n        tokens.add(token);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [
+      "getOption(String)",
+      "hasOption(String)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * <p>\n * If an {@link Option} exists for {@code token} then add the token to the processed list.\n * </p>\n *\n * <p>\n * If an {@link Option} does not exist and {@code stopAtNonOption} is set then add the remaining tokens to the\n * processed tokens list directly.\n * </p>\n *\n * @param token The current option token\n * @param stopAtNonOption Specifies whether flattening should halt at the first non option.\n */\nprivate void processOptionToken(final String token, final boolean stopAtNonOption) {\n    if (stopAtNonOption && !options.hasOption(token)) {\n        eatTheRest = true;\n    }\n    if (options.hasOption(token)) {\n        currentOption = options.getOption(token);\n    }\n    tokens.add(token);\n}",
+  "method_comment": "\n     * <p>\n     * If an {@link Option} exists for {@code token} then add the token to the processed list.\n     * </p>\n     *\n     * <p>\n     * If an {@link Option} does not exist and {@code stopAtNonOption} is set then add the remaining tokens to the\n     * processed tokens list directly.\n     * </p>\n     *\n     * @param token The current option token\n     * @param stopAtNonOption Specifies whether flattening should halt at the first non option.\n     ",
+  "method_annotation": ""
+}

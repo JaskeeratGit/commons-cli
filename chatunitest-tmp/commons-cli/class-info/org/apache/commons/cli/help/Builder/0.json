@@ -1,0 +1,18 @@
+{
+  "className": "Builder",
+  "methodName": "get",
+  "brief": "@Override\n        public HelpFormatter get(){}",
+  "methodSignature": "get()",
+  "sourceCode": "@Override\n        public HelpFormatter get() {\n            return new HelpFormatter(this);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "@Override\npublic HelpFormatter get() {\n    return new HelpFormatter(this);\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

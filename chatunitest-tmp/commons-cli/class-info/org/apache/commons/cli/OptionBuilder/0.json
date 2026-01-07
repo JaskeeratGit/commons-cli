@@ -1,0 +1,23 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "create",
+  "brief": "public static Option create() throws IllegalArgumentException{}",
+  "methodSignature": "create()",
+  "sourceCode": "public static Option create() throws IllegalArgumentException {\n        if (longOption == null) {\n            reset();\n            throw new IllegalStateException(\"must specify longopt\");\n        }\n\n        return create(null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionBuilder": [
+      "reset()",
+      "create(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates an Option using the current settings\n *\n * @return the Option instance\n * @throws IllegalArgumentException if {@code longOpt} has not been set.\n */\npublic static Option create() throws IllegalArgumentException {\n    if (longOption == null) {\n        reset();\n        throw new IllegalStateException(\"must specify longopt\");\n    }\n    return create(null);\n}",
+  "method_comment": "\n     * Creates an Option using the current settings\n     *\n     * @return the Option instance\n     * @throws IllegalArgumentException if {@code longOpt} has not been set.\n     ",
+  "method_annotation": ""
+}

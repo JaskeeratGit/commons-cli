@@ -1,0 +1,29 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "renderWrappedText",
+  "brief": "protected StringBuffer renderWrappedText(final StringBuffer sb, final int width, final int nextLineTabStop, final String text){}",
+  "methodSignature": "renderWrappedText(StringBuffer, int, int, String)",
+  "sourceCode": "protected StringBuffer renderWrappedText(final StringBuffer sb, final int width, final int nextLineTabStop, final String text) {\n        try {\n            return appendWrappedText(sb, width, nextLineTabStop, text);\n        } catch (final IOException e) {\n            // Cannot happen.\n            throw new UncheckedIOException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringBuffer",
+    "int",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.StringBuffer": [],
+    "java.lang.String": [],
+    "org.apache.commons.cli.HelpFormatter": [
+      "appendWrappedText(A, int, int, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Renders the specified text and return the rendered Options in a StringBuffer.\n *\n * @param sb The StringBuffer to place the rendered text into.\n * @param width The number of characters to display per line\n * @param nextLineTabStop The position on the next line for the first tab.\n * @param text The text to be rendered.\n * @return the StringBuffer with the rendered Options contents.\n */\nprotected StringBuffer renderWrappedText(final StringBuffer sb, final int width, final int nextLineTabStop, final String text) {\n    try {\n        return appendWrappedText(sb, width, nextLineTabStop, text);\n    } catch (final IOException e) {\n        // Cannot happen.\n        throw new UncheckedIOException(e);\n    }\n}",
+  "method_comment": "\n     * Renders the specified text and return the rendered Options in a StringBuffer.\n     *\n     * @param sb The StringBuffer to place the rendered text into.\n     * @param width The number of characters to display per line\n     * @param nextLineTabStop The position on the next line for the first tab.\n     * @param text The text to be rendered.\n     * @return the StringBuffer with the rendered Options contents.\n     ",
+  "method_annotation": ""
+}

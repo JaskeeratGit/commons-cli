@@ -1,0 +1,37 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleToken",
+  "brief": "private void handleToken(final String token) throws ParseException{}",
+  "methodSignature": "handleToken(String)",
+  "sourceCode": "private void handleToken(final String token) throws ParseException {\n        if (token != null) {\n            currentToken = token;\n            if (skipParsing) {\n                addArg(token);\n            } else if (\"--\".equals(token)) {\n                skipParsing = true;\n            } else if (currentOption != null && currentOption.acceptsArg() && isArgument(token)) {\n                currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOn(token));\n            } else if (token.startsWith(\"--\")) {\n                handleLongOption(token);\n            } else if (token.startsWith(\"-\") && !\"-\".equals(token)) {\n                handleShortAndLongOption(token);\n            } else {\n                handleUnknownToken(token);\n            }\n            if (currentOption != null && !currentOption.acceptsArg()) {\n                currentOption = null;\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)",
+      "startsWith(String)"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "handleLongOption(String)",
+      "handleUnknownToken(String)",
+      "stripLeadingAndTrailingQuotesDefaultOn(String)",
+      "isArgument(String)",
+      "addArg(String)",
+      "handleShortAndLongOption(String)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "acceptsArg()",
+      "processValue(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Handles any command line token.\n *\n * @param token the command line token to handle.\n * @throws ParseException\n */\nprivate void handleToken(final String token) throws ParseException {\n    if (token != null) {\n        currentToken = token;\n        if (skipParsing) {\n            addArg(token);\n        } else if (\"--\".equals(token)) {\n            skipParsing = true;\n        } else if (currentOption != null && currentOption.acceptsArg() && isArgument(token)) {\n            currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOn(token));\n        } else if (token.startsWith(\"--\")) {\n            handleLongOption(token);\n        } else if (token.startsWith(\"-\") && !\"-\".equals(token)) {\n            handleShortAndLongOption(token);\n        } else {\n            handleUnknownToken(token);\n        }\n        if (currentOption != null && !currentOption.acceptsArg()) {\n            currentOption = null;\n        }\n    }\n}",
+  "method_comment": "\n     * Handles any command line token.\n     *\n     * @param token the command line token to handle.\n     * @throws ParseException\n     ",
+  "method_annotation": ""
+}

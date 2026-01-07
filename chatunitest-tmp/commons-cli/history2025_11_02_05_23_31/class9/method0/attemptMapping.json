@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "TextHelpAppendable_indexOfWrap_0_0_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_indexOfWrap_0_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_indexOfWrap_0_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "indexOfWrap",
+    "methodSig": "indexOfWrap(CharSequence, int, int)"
+  },
+  "attempt1": {
+    "testClassName": "TextHelpAppendable_indexOfWrap_0_1_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_indexOfWrap_0_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_indexOfWrap_0_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "indexOfWrap",
+    "methodSig": "indexOfWrap(CharSequence, int, int)"
+  },
+  "attempt2": {
+    "testClassName": "TextHelpAppendable_indexOfWrap_0_2_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_indexOfWrap_0_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_indexOfWrap_0_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "indexOfWrap",
+    "methodSig": "indexOfWrap(CharSequence, int, int)"
+  },
+  "attempt3": {
+    "testClassName": "TextHelpAppendable_indexOfWrap_0_3_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_indexOfWrap_0_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_indexOfWrap_0_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "indexOfWrap",
+    "methodSig": "indexOfWrap(CharSequence, int, int)"
+  },
+  "attempt4": {
+    "testClassName": "TextHelpAppendable_indexOfWrap_0_4_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_indexOfWrap_0_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_indexOfWrap_0_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "indexOfWrap",
+    "methodSig": "indexOfWrap(CharSequence, int, int)"
+  }
+}

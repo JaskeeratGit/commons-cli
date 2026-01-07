@@ -1,0 +1,18 @@
+{
+  "className": "TableDefinition",
+  "methodName": "columnTextStyles",
+  "brief": "List<TextStyle> columnTextStyles();",
+  "methodSignature": "columnTextStyles()",
+  "sourceCode": "List<TextStyle> columnTextStyles();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the list TextStyles. One for each column in order.\n *\n * @return the list of TextStyles.\n */\nList<TextStyle> columnTextStyles();",
+  "method_comment": "\n     * Gets the list TextStyles. One for each column in order.\n     *\n     * @return the list of TextStyles.\n     ",
+  "method_annotation": ""
+}

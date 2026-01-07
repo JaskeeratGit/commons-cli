@@ -1,0 +1,24 @@
+{
+  "className": "PatternOptionBuilder",
+  "methodName": "getValueClass",
+  "brief": "@Deprecated // since=\"1.7.0\"\n    public static Object getValueClass(final char ch){}",
+  "methodSignature": "getValueClass(char)",
+  "sourceCode": "@Deprecated // since=\"1.7.0\"\n    public static Object getValueClass(final char ch) {\n        return getValueType(ch);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.PatternOptionBuilder": [
+      "getValueType(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Retrieve the class that {@code ch} represents.\n *\n * @param ch the specified character\n * @return The class that {@code ch} represents\n * @deprecated use {@link #getValueType(char)}\n */\n// since=\"1.7.0\"\n@Deprecated\npublic static Object getValueClass(final char ch) {\n    return getValueType(ch);\n}",
+  "method_comment": "\n     * Retrieve the class that {@code ch} represents.\n     *\n     * @param ch the specified character\n     * @return The class that {@code ch} represents\n     * @deprecated use {@link #getValueType(char)}\n     ",
+  "method_annotation": "// since=\"1.7.0\"\n@Deprecated\n"
+}

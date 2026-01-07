@@ -1,0 +1,23 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "toSyntaxOption",
+  "brief": "public String toSyntaxOption(){}",
+  "methodSignature": "toSyntaxOption()",
+  "sourceCode": "public String toSyntaxOption() {\n        return toSyntaxOption(isRequired());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.OptionFormatter": [
+      "isRequired()",
+      "toSyntaxOption(boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the syntax format for this option.\n *\n * @return the syntax format for this option as specified by the syntaxFormatFunction.\n */\npublic String toSyntaxOption() {\n    return toSyntaxOption(isRequired());\n}",
+  "method_comment": "\n     * Gets the syntax format for this option.\n     *\n     * @return the syntax format for this option as specified by the syntaxFormatFunction.\n     ",
+  "method_annotation": ""
+}

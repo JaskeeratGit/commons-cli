@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Option_clone_6_0_Test",
+    "fullName": "org.apache.commons.cli.Option_clone_6_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_clone_6_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "clone",
+    "methodSig": "clone()"
+  },
+  "attempt1": {
+    "testClassName": "Option_clone_6_1_Test",
+    "fullName": "org.apache.commons.cli.Option_clone_6_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_clone_6_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "clone",
+    "methodSig": "clone()"
+  },
+  "attempt2": {
+    "testClassName": "Option_clone_6_2_Test",
+    "fullName": "org.apache.commons.cli.Option_clone_6_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_clone_6_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "clone",
+    "methodSig": "clone()"
+  },
+  "attempt3": {
+    "testClassName": "Option_clone_6_3_Test",
+    "fullName": "org.apache.commons.cli.Option_clone_6_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_clone_6_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "clone",
+    "methodSig": "clone()"
+  },
+  "attempt4": {
+    "testClassName": "Option_clone_6_4_Test",
+    "fullName": "org.apache.commons.cli.Option_clone_6_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Option_clone_6_0_Test.java",
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "clone",
+    "methodSig": "clone()"
+  }
+}

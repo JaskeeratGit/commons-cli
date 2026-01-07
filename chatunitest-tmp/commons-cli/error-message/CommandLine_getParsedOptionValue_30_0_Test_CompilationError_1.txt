@@ -1,0 +1,141 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class CommandLine_getOptionValues_24_0_Test {
+
+    private CommandLine createCommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    @Test
+    void getOptionValues_nullOption_returnsNull() throws Exception {
+        CommandLine cmd = createCommandLine(new ArrayList<>(), new ArrayList<>(), null);
+        assertNull(cmd.getOptionValues((Option) null));
+    }
+
+    @Test
+    void getOptionValues_noMatchingOption_returnsNull() throws Exception {
+        Option processed = new Option("a", "description");
+        List<Option> options = new ArrayList<>();
+        options.add(processed);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, null);
+        Option query = new Option("b", "other");
+        assertNull(cmd.getOptionValues(query));
+    }
+
+    @Test
+    void getOptionValues_matchingOptionNoValues_returnsNull() throws Exception {
+        Option processed = new Option("x", "desc");
+        // ensure no values
+        processed.getValuesList().clear();
+        List<Option> options = Arrays.asList(processed);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, null);
+        Option query = new Option("x", "desc");
+        assertNull(cmd.getOptionValues(query));
+    }
+
+    @Test
+    void getOptionValues_matchingOptionWithValues_returnsArray() throws Exception {
+        Option processed = new Option("o", "desc");
+        processed.getValuesList().add("v1");
+        processed.getValuesList().add("v2");
+        List<Option> options = Arrays.asList(processed);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, null);
+        Option query = new Option("o", "desc");
+        String[] values = cmd.getOptionValues(query);
+        assertNotNull(values);
+        assertArrayEquals(new String[] { "v1", "v2" }, values);
+    }
+
+    @Test
+    void getOptionValues_multipleMatchingOptions_collectsAllValuesInOrder() throws Exception {
+        Option proc1 = new Option("m", "desc");
+        proc1.getValuesList().add("a");
+        Option proc2 = new Option("m", "desc");
+        proc2.getValuesList().add("b");
+        proc2.getValuesList().add("c");
+        List<Option> options = Arrays.asList(proc1, new Option("other", "x"), proc2);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, null);
+        Option query = new Option("m", "desc");
+        String[] values = cmd.getOptionValues(query);
+        assertNotNull(values);
+        assertArrayEquals(new String[] { "a", "b", "c" }, values);
+    }
+
+    @Test
+    void getOptionValues_deprecatedHandlerInvoked_whenOptionIsDeprecated() throws Exception {
+        // Build a query Option that reports deprecated = true by overriding isDeprecated()
+        Option query = new Option("d", "desc") {
+
+            @Override
+            public boolean isDeprecated() {
+                return true;
+            }
+        };
+        // processed option equal to query
+        Option processed = new Option("d", "desc");
+        processed.getValuesList().add("val");
+        AtomicInteger invoked = new AtomicInteger(0);
+        Consumer<Option> handler = opt -> invoked.incrementAndGet();
+        List<Option> options = Arrays.asList(processed);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, handler);
+        String[] values = cmd.getOptionValues(query);
+        assertNotNull(values);
+        assertArrayEquals(new String[] { "val" }, values);
+        // handler should have been invoked once for the single matching processed option
+        assertEquals(1, invoked.get());
+    }
+
+    @Test
+    void getOptionValues_deprecatedHandlerInvokedForEachMatch_whenMultipleMatches() throws Exception {
+        Option query = new Option("z", "desc") {
+
+            @Override
+            public boolean isDeprecated() {
+                return true;
+            }
+        };
+        Option proc1 = new Option("z", "desc");
+        proc1.getValuesList().add("v1");
+        Option proc2 = new Option("z", "desc");
+        proc2.getValuesList().add("v2");
+        AtomicInteger invoked = new AtomicInteger(0);
+        Consumer<Option> handler = opt -> invoked.incrementAndGet();
+        List<Option> options = Arrays.asList(proc1, proc2);
+        CommandLine cmd = createCommandLine(new ArrayList<>(), options, handler);
+        String[] values = cmd.getOptionValues(query);
+        assertNotNull(values);
+        assertArrayEquals(new String[] { "v1", "v2" }, values);
+        // handler invoked once per matching processed option (2 matches)
+        assertEquals(2, invoked.get());
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getOptionValues_24_0_Test: line 26 : class CommandLine_getParsedOptionValue_37_0_Test is public, should be declared in a file named CommandLine_getParsedOptionValue_37_0_Test.java
+Error in CommandLine_getOptionValues_24_0_Test: line 100 : reference to getParsedOptionValue is ambiguous
+  both method <T>getParsedOptionValue(java.lang.String,T) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValue(org.apache.commons.cli.Option,java.util.function.Supplier<T>) in org.apache.commons.cli.CommandLine_getParsedOptionValue_37_0_Test.TestCommandLine match
+Error in CommandLine_getOptionValues_24_0_Test: line 100 : incompatible types: inference variable T has incompatible bounds
+    upper bounds: java.lang.String,java.lang.Object
+    lower bounds: java.util.function.Supplier<java.lang.String>

@@ -1,0 +1,18 @@
+{
+  "className": "TextStyle",
+  "methodName": "getAlignment",
+  "brief": "public Alignment getAlignment(){}",
+  "methodSignature": "getAlignment()",
+  "sourceCode": "public Alignment getAlignment() {\n        return alignment;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the alignment.\n *\n * @return the alignment.\n */\npublic Alignment getAlignment() {\n    return alignment;\n}",
+  "method_comment": "\n     * Gets the alignment.\n     *\n     * @return the alignment.\n     ",
+  "method_annotation": ""
+}

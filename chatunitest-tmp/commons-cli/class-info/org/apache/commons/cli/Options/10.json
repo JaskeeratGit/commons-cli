@@ -1,0 +1,22 @@
+{
+  "className": "Options",
+  "methodName": "getOptionGroups",
+  "brief": "Collection<OptionGroup> getOptionGroups(){}",
+  "methodSignature": "getOptionGroups()",
+  "sourceCode": "Collection<OptionGroup> getOptionGroups() {\n\n        // The optionGroups map will have duplicates in the values() results. We\n        // use the HashSet to filter out duplicates and return a collection of\n        // OpitonGroup. The decision to return a Collection rather than a set\n        // was probably to keep symmetry with the getOptions() method.\n        return new HashSet<>(optionGroups.values());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "values()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the OptionGroups that are members of this Options instance.\n *\n * @return a Collection of OptionGroup instances.\n */\nCollection<OptionGroup> getOptionGroups() {\n    // The optionGroups map will have duplicates in the values() results. We\n    // use the HashSet to filter out duplicates and return a collection of\n    // OpitonGroup. The decision to return a Collection rather than a set\n    // was probably to keep symmetry with the getOptions() method.\n    return new HashSet<>(optionGroups.values());\n}",
+  "method_comment": "\n     * Gets the OptionGroups that are members of this Options instance.\n     *\n     * @return a Collection of OptionGroup instances.\n     ",
+  "method_annotation": ""
+}

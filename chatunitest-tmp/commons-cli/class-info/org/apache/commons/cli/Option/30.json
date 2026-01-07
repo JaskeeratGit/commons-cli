@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "hasNoValues",
+  "brief": "private boolean hasNoValues(){}",
+  "methodSignature": "hasNoValues()",
+  "sourceCode": "private boolean hasNoValues() {\n        return values.isEmpty();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.List": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether this Option has any values.\n *\n * @return whether this Option has any values.\n */\nprivate boolean hasNoValues() {\n    return values.isEmpty();\n}",
+  "method_comment": "\n     * Tests whether this Option has any values.\n     *\n     * @return whether this Option has any values.\n     ",
+  "method_annotation": ""
+}

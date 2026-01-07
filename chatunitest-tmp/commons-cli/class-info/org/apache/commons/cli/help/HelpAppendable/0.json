@@ -1,0 +1,29 @@
+{
+  "className": "HelpAppendable",
+  "methodName": "appendFormat",
+  "brief": "default void appendFormat(final String format, final Object... args) throws IOException{}",
+  "methodSignature": "appendFormat(String, Object[])",
+  "sourceCode": "default void appendFormat(final String format, final Object... args) throws IOException {\n        append(String.format(format, args));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "format(String, Object[])"
+    ],
+    "java.lang.Object...": [],
+    "java.lang.Appendable": [
+      "append(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * Appends a formatted string using the specified format string and arguments.\n * <p>\n * Short-hand for calling:\n * </p>\n *\n * <pre>\n * helpAppendable.{@link #append(CharSequence) append.}({@link String#format(String, Object...) String.format}(format, args));\n * </pre>\n *\n * @param format The format string for {@link String#format(String, Object...)}.\n * @param args   Arguments to {@link String#format(String, Object...)}.\n * @throws IllegalFormatException See {@link String#format(String, Object...)}.\n * @throws IOException            If an output error occurs.\n * @see String#format(String, Object...)\n * @see Formatter\n * @see #append(CharSequence)\n */\ndefault void appendFormat(final String format, final Object... args) throws IOException {\n    append(String.format(format, args));\n}",
+  "method_comment": "\n     * Appends a formatted string using the specified format string and arguments.\n     * <p>\n     * Short-hand for calling:\n     * </p>\n     *\n     * <pre>\n     * helpAppendable.{@link #append(CharSequence) append.}({@link String#format(String, Object...) String.format}(format, args));\n     * </pre>\n     *\n     * @param format The format string for {@link String#format(String, Object...)}.\n     * @param args   Arguments to {@link String#format(String, Object...)}.\n     * @throws IllegalFormatException See {@link String#format(String, Object...)}.\n     * @throws IOException            If an output error occurs.\n     * @see String#format(String, Object...)\n     * @see Formatter\n     * @see #append(CharSequence)\n     ",
+  "method_annotation": ""
+}

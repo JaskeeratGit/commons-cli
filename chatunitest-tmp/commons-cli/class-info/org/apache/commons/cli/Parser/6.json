@@ -1,0 +1,29 @@
+{
+  "className": "Parser",
+  "methodName": "parse",
+  "brief": "public CommandLine parse(final Options options, final String[] arguments, final Properties properties) throws ParseException{}",
+  "methodSignature": "parse(Options, String[], Properties)",
+  "sourceCode": "public CommandLine parse(final Options options, final String[] arguments, final Properties properties) throws ParseException {\n        return parse(options, arguments, properties, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]",
+    "Properties"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": [],
+    "java.util.Properties": [],
+    "org.apache.commons.cli.Parser": [
+      "parse(Options, String[], Properties, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Parse the arguments according to the specified options and properties.\n *\n * @param options the specified Options\n * @param arguments the command line arguments\n * @param properties command line option name-value pairs\n * @return the list of atomic option and value tokens\n * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n * @since 1.1\n */\npublic CommandLine parse(final Options options, final String[] arguments, final Properties properties) throws ParseException {\n    return parse(options, arguments, properties, false);\n}",
+  "method_comment": "\n     * Parse the arguments according to the specified options and properties.\n     *\n     * @param options the specified Options\n     * @param arguments the command line arguments\n     * @param properties command line option name-value pairs\n     * @return the list of atomic option and value tokens\n     * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n     * @since 1.1\n     ",
+  "method_annotation": ""
+}

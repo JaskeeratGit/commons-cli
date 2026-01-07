@@ -1,0 +1,30 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "renderOptions",
+  "brief": "protected StringBuffer renderOptions(final StringBuffer sb, final int width, final Options options, final int leftPad, final int descPad){}",
+  "methodSignature": "renderOptions(StringBuffer, int, Options, int, int)",
+  "sourceCode": "protected StringBuffer renderOptions(final StringBuffer sb, final int width, final Options options, final int leftPad, final int descPad) {\n        try {\n            return appendOptions(sb, width, options, leftPad, descPad);\n        } catch (final IOException e) {\n            // Cannot happen\n            throw new UncheckedIOException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringBuffer",
+    "int",
+    "Options",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.StringBuffer": [],
+    "org.apache.commons.cli.Options": [],
+    "org.apache.commons.cli.HelpFormatter": [
+      "appendOptions(A, int, Options, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Renders the specified Options and return the rendered Options in a StringBuffer.\n *\n * @param sb The StringBuffer to place the rendered Options into.\n * @param width The number of characters to display per line\n * @param options The command line Options\n * @param leftPad the number of characters of padding to be prefixed to each line\n * @param descPad the number of characters of padding to be prefixed to each description line\n * @return the StringBuffer with the rendered Options contents.\n */\nprotected StringBuffer renderOptions(final StringBuffer sb, final int width, final Options options, final int leftPad, final int descPad) {\n    try {\n        return appendOptions(sb, width, options, leftPad, descPad);\n    } catch (final IOException e) {\n        // Cannot happen\n        throw new UncheckedIOException(e);\n    }\n}",
+  "method_comment": "\n     * Renders the specified Options and return the rendered Options in a StringBuffer.\n     *\n     * @param sb The StringBuffer to place the rendered Options into.\n     * @param width The number of characters to display per line\n     * @param options The command line Options\n     * @param leftPad the number of characters of padding to be prefixed to each line\n     * @param descPad the number of characters of padding to be prefixed to each description line\n     * @return the StringBuffer with the rendered Options contents.\n     ",
+  "method_annotation": ""
+}

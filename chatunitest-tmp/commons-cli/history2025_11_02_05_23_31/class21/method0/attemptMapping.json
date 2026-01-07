@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "TypeHandler_createClass_0_0_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createClass_0_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createClass_0_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createClass",
+    "methodSig": "createClass(String)"
+  },
+  "attempt1": {
+    "testClassName": "TypeHandler_createClass_0_1_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createClass_0_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createClass_0_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createClass",
+    "methodSig": "createClass(String)"
+  },
+  "attempt2": {
+    "testClassName": "TypeHandler_createClass_0_2_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createClass_0_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createClass_0_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createClass",
+    "methodSig": "createClass(String)"
+  },
+  "attempt3": {
+    "testClassName": "TypeHandler_createClass_0_3_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createClass_0_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createClass_0_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createClass",
+    "methodSig": "createClass(String)"
+  },
+  "attempt4": {
+    "testClassName": "TypeHandler_createClass_0_4_Test",
+    "fullName": "org.apache.commons.cli.TypeHandler_createClass_0_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/TypeHandler_createClass_0_0_Test.java",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "createClass",
+    "methodSig": "createClass(String)"
+  }
+}

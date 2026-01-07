@@ -1,0 +1,40 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "appendWrappedText",
+  "brief": "<A extends Appendable> A appendWrappedText(final A appendable, final int width, final int nextLineTabStop, final String text) throws IOException{}",
+  "methodSignature": "appendWrappedText(A, int, int, String)",
+  "sourceCode": "<A extends Appendable> A appendWrappedText(final A appendable, final int width, final int nextLineTabStop, final String text) throws IOException {\n        if (width <= 0) {\n            return appendable;\n        }\n        String render = text;\n        int nextLineTabStopPos = nextLineTabStop;\n        int pos = findWrapPos(render, width, 0);\n        if (pos == -1) {\n            appendable.append(rtrim(render));\n            return appendable;\n        }\n        appendable.append(rtrim(render.substring(0, pos))).append(getNewLine());\n        if (nextLineTabStopPos >= width) {\n            // stops infinite loop happening\n            nextLineTabStopPos = 1;\n        }\n        // all following lines must be padded with nextLineTabStop space characters\n        final String padding = createPadding(nextLineTabStopPos);\n        while (true) {\n            render = padding + render.substring(pos).trim();\n            pos = findWrapPos(render, width, 0);\n            if (pos == -1) {\n                appendable.append(render);\n                return appendable;\n            }\n            if (render.length() > width && pos == nextLineTabStopPos - 1) {\n                pos = width;\n            }\n            appendable.append(rtrim(render.substring(0, pos))).append(getNewLine());\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "A",
+    "int",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "A": [],
+    "java.lang.String": [
+      "substring(int)",
+      "substring(int, int)",
+      "trim()",
+      "length()"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "getNewLine()",
+      "rtrim(String)",
+      "createPadding(int)",
+      "findWrapPos(String, int, int)"
+    ],
+    "java.lang.Appendable": [
+      "append(CharSequence)"
+    ]
+  },
+  "full_method_info": "/**\n * Renders the specified text and return the rendered Options in a StringBuffer.\n *\n * @param <A> The Appendable implementation.\n * @param appendable The StringBuffer to place the rendered text into.\n * @param width The number of characters to display per line\n * @param nextLineTabStop The position on the next line for the first tab.\n * @param text The text to be rendered.\n * @return the StringBuffer with the rendered Options contents.\n * @throws IOException if an I/O error occurs.\n */\n<A extends Appendable> A appendWrappedText(final A appendable, final int width, final int nextLineTabStop, final String text) throws IOException {\n    if (width <= 0) {\n        return appendable;\n    }\n    String render = text;\n    int nextLineTabStopPos = nextLineTabStop;\n    int pos = findWrapPos(render, width, 0);\n    if (pos == -1) {\n        appendable.append(rtrim(render));\n        return appendable;\n    }\n    appendable.append(rtrim(render.substring(0, pos))).append(getNewLine());\n    if (nextLineTabStopPos >= width) {\n        // stops infinite loop happening\n        nextLineTabStopPos = 1;\n    }\n    // all following lines must be padded with nextLineTabStop space characters\n    final String padding = createPadding(nextLineTabStopPos);\n    while (true) {\n        render = padding + render.substring(pos).trim();\n        pos = findWrapPos(render, width, 0);\n        if (pos == -1) {\n            appendable.append(render);\n            return appendable;\n        }\n        if (render.length() > width && pos == nextLineTabStopPos - 1) {\n            pos = width;\n        }\n        appendable.append(rtrim(render.substring(0, pos))).append(getNewLine());\n    }\n}",
+  "method_comment": "\n     * Renders the specified text and return the rendered Options in a StringBuffer.\n     *\n     * @param <A> The Appendable implementation.\n     * @param appendable The StringBuffer to place the rendered text into.\n     * @param width The number of characters to display per line\n     * @param nextLineTabStop The position on the next line for the first tab.\n     * @param text The text to be rendered.\n     * @return the StringBuffer with the rendered Options contents.\n     * @throws IOException if an I/O error occurs.\n     ",
+  "method_annotation": ""
+}

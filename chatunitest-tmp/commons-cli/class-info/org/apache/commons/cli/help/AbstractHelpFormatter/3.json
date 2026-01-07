@@ -1,0 +1,25 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "getOptionFormatter",
+  "brief": "public final OptionFormatter getOptionFormatter(final Option option){}",
+  "methodSignature": "getOptionFormatter(Option)",
+  "sourceCode": "public final OptionFormatter getOptionFormatter(final Option option) {\n        return optionFormatBuilder.build(option);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [],
+    "org.apache.commons.cli.help.OptionFormatter.Builder": [
+      "build(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Constructs an {@link OptionFormatter} for the specified {@link Option}.\n *\n * @param option The Option to format.\n * @return an {@link OptionFormatter} for the specified {@link Option}.\n */\npublic final OptionFormatter getOptionFormatter(final Option option) {\n    return optionFormatBuilder.build(option);\n}",
+  "method_comment": "\n     * Constructs an {@link OptionFormatter} for the specified {@link Option}.\n     *\n     * @param option The Option to format.\n     * @return an {@link OptionFormatter} for the specified {@link Option}.\n     ",
+  "method_annotation": ""
+}

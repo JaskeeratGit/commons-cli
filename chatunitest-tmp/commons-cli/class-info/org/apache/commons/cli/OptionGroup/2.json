@@ -1,0 +1,22 @@
+{
+  "className": "OptionGroup",
+  "methodName": "getOptions",
+  "brief": "public Collection<Option> getOptions(){}",
+  "methodSignature": "getOptions()",
+  "sourceCode": "public Collection<Option> getOptions() {\n        // the values are the collection of options\n        return optionMap.values();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Map": [
+      "values()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the options in this group as a {@code Collection}.\n *\n * @return the options in this group as a {@code Collection}.\n */\npublic Collection<Option> getOptions() {\n    // the values are the collection of options\n    return optionMap.values();\n}",
+  "method_comment": "\n     * Gets the options in this group as a {@code Collection}.\n     *\n     * @return the options in this group as a {@code Collection}.\n     ",
+  "method_annotation": ""
+}

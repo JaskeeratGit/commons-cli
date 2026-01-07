@@ -1,0 +1,22 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setOptPrefix",
+  "brief": "public void setOptPrefix(final String prefix){}",
+  "methodSignature": "setOptPrefix(String)",
+  "sourceCode": "public void setOptPrefix(final String prefix) {\n        this.defaultOptPrefix = prefix;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the 'optPrefix'.\n *\n * @param prefix the new value of 'optPrefix'\n */\npublic void setOptPrefix(final String prefix) {\n    this.defaultOptPrefix = prefix;\n}",
+  "method_comment": "\n     * Sets the 'optPrefix'.\n     *\n     * @param prefix the new value of 'optPrefix'\n     ",
+  "method_annotation": ""
+}

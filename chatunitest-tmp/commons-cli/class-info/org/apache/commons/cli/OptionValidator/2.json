@@ -1,0 +1,23 @@
+{
+  "className": "OptionValidator",
+  "methodName": "search",
+  "brief": "private static boolean search(final char[] chars, final char c){}",
+  "methodSignature": "search(char[], char)",
+  "sourceCode": "private static boolean search(final char[] chars, final char c) {\n        for (final char a : chars) {\n            if (a == c) {\n                return true;\n            }\n        }\n        return false;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char[]",
+    "char"
+  ],
+  "dependentMethods": {
+    "char": []
+  },
+  "full_method_info": "/**\n * Checks the char array for a matching char.\n * @param chars the char array to search\n * @param c the char to look for.\n * @return {@code true} if {@code c} was in {@code ary}, {@code false} otherwise.\n */\nprivate static boolean search(final char[] chars, final char c) {\n    for (final char a : chars) {\n        if (a == c) {\n            return true;\n        }\n    }\n    return false;\n}",
+  "method_comment": "\n     * Checks the char array for a matching char.\n     * @param chars the char array to search\n     * @param c the char to look for.\n     * @return {@code true} if {@code c} was in {@code ary}, {@code false} otherwise.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "required",
+  "brief": "public Builder required(final boolean required){}",
+  "methodSignature": "required(boolean)",
+  "sourceCode": "public Builder required(final boolean required) {\n            this.required = required;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether the Option is required.\n *\n * @param required specifies whether the Option is required.\n * @return this builder.\n */\npublic Builder required(final boolean required) {\n    this.required = required;\n    return this;\n}",
+  "method_comment": "\n         * Sets whether the Option is required.\n         *\n         * @param required specifies whether the Option is required.\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

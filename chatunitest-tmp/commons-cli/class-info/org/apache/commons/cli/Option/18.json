@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getType",
+  "brief": "public Object getType(){}",
+  "methodSignature": "getType()",
+  "sourceCode": "public Object getType() {\n        return type;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the type of this Option.\n *\n * @return The type of this option.\n */\npublic Object getType() {\n    return type;\n}",
+  "method_comment": "\n     * Gets the type of this Option.\n     *\n     * @return The type of this option.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,49 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "writeColumnQueues",
+  "brief": "protected void writeColumnQueues(final List<Queue<String>> columnQueues, final List<TextStyle> styles) throws IOException{}",
+  "methodSignature": "writeColumnQueues(List, List)",
+  "sourceCode": "protected void writeColumnQueues(final List<Queue<String>> columnQueues, final List<TextStyle> styles) throws IOException {\n        boolean moreData = true;\n        final String lPad = Util.repeatSpace(textStyleBuilder.get().getLeftPad());\n        while (moreData) {\n            output.append(lPad);\n            moreData = false;\n            for (int i = 0; i < columnQueues.size(); i++) {\n                final TextStyle style = styles.get(i);\n                final Queue<String> columnQueue = columnQueues.get(i);\n                final String line = columnQueue.poll();\n                if (Util.isEmpty(line)) {\n                    output.append(Util.repeatSpace(style.getMaxWidth() + style.getLeftPad()));\n                } else {\n                    output.append(line);\n                }\n                moreData |= !columnQueue.isEmpty();\n            }\n            output.append(System.lineSeparator());\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<Queue<String>>",
+    "List<TextStyle>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.Util": [
+      "repeatSpace(int)",
+      "isEmpty(CharSequence)"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "getLeftPad()",
+      "getMaxWidth()"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "get()"
+    ],
+    "java.lang.Appendable": [
+      "append(CharSequence)"
+    ],
+    "java.util.List": [
+      "get(int)",
+      "size()"
+    ],
+    "java.util.Queue": [
+      "poll()"
+    ],
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "java.lang.System": [
+      "lineSeparator()"
+    ]
+  },
+  "full_method_info": "/**\n * Writes one line from each of the {@code columnQueues} until all the queues are exhausted. If an exhausted queue is encountered while other queues\n * continue to have content the exhausted queue will produce empty text for the output width of the column (maximum width + left pad).\n *\n * @param columnQueues the List of queues that represent the columns of data.\n * @param styles       the TextStyle for each column.\n * @throws IOException on output error.\n */\nprotected void writeColumnQueues(final List<Queue<String>> columnQueues, final List<TextStyle> styles) throws IOException {\n    boolean moreData = true;\n    final String lPad = Util.repeatSpace(textStyleBuilder.get().getLeftPad());\n    while (moreData) {\n        output.append(lPad);\n        moreData = false;\n        for (int i = 0; i < columnQueues.size(); i++) {\n            final TextStyle style = styles.get(i);\n            final Queue<String> columnQueue = columnQueues.get(i);\n            final String line = columnQueue.poll();\n            if (Util.isEmpty(line)) {\n                output.append(Util.repeatSpace(style.getMaxWidth() + style.getLeftPad()));\n            } else {\n                output.append(line);\n            }\n            moreData |= !columnQueue.isEmpty();\n        }\n        output.append(System.lineSeparator());\n    }\n}",
+  "method_comment": "\n     * Writes one line from each of the {@code columnQueues} until all the queues are exhausted. If an exhausted queue is encountered while other queues\n     * continue to have content the exhausted queue will produce empty text for the output width of the column (maximum width + left pad).\n     *\n     * @param columnQueues the List of queues that represent the columns of data.\n     * @param styles       the TextStyle for each column.\n     * @throws IOException on output error.\n     ",
+  "method_annotation": ""
+}

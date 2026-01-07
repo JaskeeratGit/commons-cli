@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionValues",
+  "brief": "public String[] getOptionValues(final char optionChar){}",
+  "methodSignature": "getOptionValues(char)",
+  "sourceCode": "public String[] getOptionValues(final char optionChar) {\n        return getOptionValues(String.valueOf(optionChar));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.CommandLine": [
+      "getOptionValues(String)"
+    ],
+    "java.lang.String": [
+      "valueOf(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the array of values, if any, of an option.\n *\n * @param optionChar character name of the option.\n * @return Values of the argument if option is set, and has an argument, otherwise null.\n */\npublic String[] getOptionValues(final char optionChar) {\n    return getOptionValues(String.valueOf(optionChar));\n}",
+  "method_comment": "\n     * Gets the array of values, if any, of an option.\n     *\n     * @param optionChar character name of the option.\n     * @return Values of the argument if option is set, and has an argument, otherwise null.\n     ",
+  "method_annotation": ""
+}

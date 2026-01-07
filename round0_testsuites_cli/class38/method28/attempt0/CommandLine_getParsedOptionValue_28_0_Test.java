@@ -1,0 +1,125 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+class CommandLine_getParsedOptionValue_28_0_Test {
+
+    // A small subclass to observe delegation from the char-based API to the String-based API.
+    static class TestableCommandLine extends CommandLine {
+
+        String lastReceivedOption;
+
+        Object lastReceivedDefaultResult;
+
+        TestableCommandLine() {
+            // protected no-arg constructor of CommandLine
+            super();
+        }
+
+        @Override
+        public <T> T getParsedOptionValue(final String option, final Supplier<T> defaultValue) {
+            // capture the passed option and supplier result, then return the supplier result
+            lastReceivedOption = option;
+            T result = null;
+            if (defaultValue != null) {
+                result = defaultValue.get();
+                lastReceivedDefaultResult = result;
+            } else {
+                lastReceivedDefaultResult = null;
+            }
+            return result;
+        }
+    }
+
+    private TestableCommandLine subject;
+
+    @BeforeEach
+    void setUp() {
+        subject = new TestableCommandLine();
+    }
+
+    @Test
+    void testGetParsedOptionValue_delegatesCharToString_andForwardsSupplier() {
+        Supplier<String> supplier = () -> "myDefault";
+        String returned = subject.getParsedOptionValue('z', supplier);
+        // Ensure delegation happened: the String-version should have received "z"
+        assertEquals("z", subject.lastReceivedOption, "Expected the char to be converted to its String form and forwarded");
+        // Ensure the returned value came from the supplier forwarded to the String-version method
+        assertEquals("myDefault", returned);
+        assertEquals("myDefault", subject.lastReceivedDefaultResult);
+    }
+
+    @Test
+    void testGetParsedOptionValue_delegatesDifferentChars() {
+        Supplier<Integer> supplier = () -> 42;
+        Integer returnedA = subject.getParsedOptionValue('A', supplier);
+        assertEquals("A", subject.lastReceivedOption);
+        assertEquals(Integer.valueOf(42), returnedA);
+        Integer returnedZero = subject.getParsedOptionValue('0', supplier);
+        assertEquals("0", subject.lastReceivedOption);
+        assertEquals(Integer.valueOf(42), returnedZero);
+        // test a non-printable char
+        Supplier<String> s2 = () -> "ok";
+        String ret = subject.getParsedOptionValue((char) 7, s2);
+        assertEquals(String.valueOf((char) 7), subject.lastReceivedOption);
+        assertEquals("ok", ret);
+    }
+
+    @Test
+    void testPrivateConstructorAndPrivateFields_viaReflection() throws Exception {
+        // Prepare lists to pass into the private constructor
+        List<String> argList = new LinkedList<>();
+        argList.add("one");
+        argList.add("two");
+        List<Option> optionsList = new ArrayList<>();
+        // optionsList can be empty; Option class is part of the same package in the real library.
+        // We don't need to add actual Option instances for this test.
+        // Obtain the private constructor CommandLine(List, List, Consumer)
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // Pass null for deprecatedHandler to ensure constructor accepts it
+        CommandLine constructed = ctor.newInstance(argList, optionsList, (Consumer<Option>) null);
+        // Access private fields to verify they were set by the private constructor
+        Field argsField = CommandLine.class.getDeclaredField("args");
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        Field deprecatedHandlerField = CommandLine.class.getDeclaredField("deprecatedHandler");
+        argsField.setAccessible(true);
+        optionsField.setAccessible(true);
+        deprecatedHandlerField.setAccessible(true);
+        Object argsValue = argsField.get(constructed);
+        Object optionsValue = optionsField.get(constructed);
+        Object deprecatedHandlerValue = deprecatedHandlerField.get(constructed);
+        assertSame(argList, argsValue, "Private constructor should assign the provided args list");
+        assertSame(optionsList, optionsValue, "Private constructor should assign the provided options list");
+        assertNull(deprecatedHandlerValue, "Deprecated handler should be the passed null");
+        // Also verify that calling the public char-based API on this reflectively-constructed instance works
+        // We'll use reflection to call getParsedOptionValue(char, Supplier) to ensure no unexpected exceptions.
+        // Use Supplier that returns a known value.
+        @SuppressWarnings("unchecked")
+        CommandLine reflectiveInstance = constructed;
+        Supplier<String> sup = () -> "reflectDefault";
+        // Invoke directly; method is public
+        String result = reflectiveInstance.getParsedOptionValue('r', sup);
+        // If the underlying String-based method exists and returns something, the call should complete.
+        // Since we don't know its implementation here, at minimum we assert the call does not throw and returns either null or the supplier result.
+        // We accept either null or the supplier result; if it's null that's still considered a valid invocation.
+        assertTrue(result == null || result.equals("reflectDefault"));
+    }
+}

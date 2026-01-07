@@ -1,0 +1,31 @@
+{
+  "className": "Options",
+  "methodName": "addRequiredOption",
+  "brief": "public Options addRequiredOption(final String opt, final String longOpt, final boolean hasArg, final String description){}",
+  "methodSignature": "addRequiredOption(String, String, boolean, String)",
+  "sourceCode": "public Options addRequiredOption(final String opt, final String longOpt, final boolean hasArg, final String description) {\n        final Option option = new Option(opt, longOpt, hasArg, description);\n        option.setRequired(true);\n        addOption(option);\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "boolean",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Option": [
+      "setRequired(boolean)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "addOption(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds an option that contains a short-name and a long-name.\n * <p>\n * The added option is set as required. It may be specified as requiring an argument. This method is a shortcut for:\n * </p>\n * <pre>\n * <code>\n * Options option = new Option(opt, longOpt, hasArg, description);\n * option.setRequired(true);\n * options.add(option);\n * </code>\n * </pre>\n *\n * @param opt Short single-character name of the option.\n * @param longOpt Long multi-character name of the option.\n * @param hasArg flag signaling if an argument is required after this option.\n * @param description Self-documenting description.\n * @return the resulting Options instance.\n * @since 1.4\n */\npublic Options addRequiredOption(final String opt, final String longOpt, final boolean hasArg, final String description) {\n    final Option option = new Option(opt, longOpt, hasArg, description);\n    option.setRequired(true);\n    addOption(option);\n    return this;\n}",
+  "method_comment": "\n     * Adds an option that contains a short-name and a long-name.\n     * <p>\n     * The added option is set as required. It may be specified as requiring an argument. This method is a shortcut for:\n     * </p>\n     * <pre>\n     * <code>\n     * Options option = new Option(opt, longOpt, hasArg, description);\n     * option.setRequired(true);\n     * options.add(option);\n     * </code>\n     * </pre>\n     *\n     * @param opt Short single-character name of the option.\n     * @param longOpt Long multi-character name of the option.\n     * @param hasArg flag signaling if an argument is required after this option.\n     * @param description Self-documenting description.\n     * @return the resulting Options instance.\n     * @since 1.4\n     ",
+  "method_annotation": ""
+}

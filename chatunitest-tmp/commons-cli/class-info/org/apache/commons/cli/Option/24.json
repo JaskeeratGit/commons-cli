@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getValuesList",
+  "brief": "public List<String> getValuesList(){}",
+  "methodSignature": "getValuesList()",
+  "sourceCode": "public List<String> getValuesList() {\n        return values;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the values of this Option as a List.  Will return an empty list if there are no values.\n *\n * @return the values of this Option as a List or an empty List if there are no values.\n */\npublic List<String> getValuesList() {\n    return values;\n}",
+  "method_comment": "\n     * Gets the values of this Option as a List.  Will return an empty list if there are no values.\n     *\n     * @return the values of this Option as a List or an empty List if there are no values.\n     ",
+  "method_annotation": ""
+}

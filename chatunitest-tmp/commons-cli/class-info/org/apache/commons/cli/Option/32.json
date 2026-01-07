@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "hasValueSeparator",
+  "brief": "public boolean hasValueSeparator(){}",
+  "methodSignature": "hasValueSeparator()",
+  "sourceCode": "public boolean hasValueSeparator() {\n        return valueSeparator > 0;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether this Option has specified a value separator.\n *\n * @return whether this Option has specified a value separator.\n * @since 1.1\n */\npublic boolean hasValueSeparator() {\n    return valueSeparator > 0;\n}",
+  "method_comment": "\n     * Tests whether this Option has specified a value separator.\n     *\n     * @return whether this Option has specified a value separator.\n     * @since 1.1\n     ",
+  "method_annotation": ""
+}

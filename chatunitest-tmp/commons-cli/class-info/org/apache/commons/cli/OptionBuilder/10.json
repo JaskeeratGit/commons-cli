@@ -1,0 +1,18 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "isRequired",
+  "brief": "public static OptionBuilder isRequired(){}",
+  "methodSignature": "isRequired()",
+  "sourceCode": "public static OptionBuilder isRequired() {\n        required = true;\n        return INSTANCE;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The next Option created will be required.\n *\n * @return the OptionBuilder instance\n */\npublic static OptionBuilder isRequired() {\n    required = true;\n    return INSTANCE;\n}",
+  "method_comment": "\n     * The next Option created will be required.\n     *\n     * @return the OptionBuilder instance\n     ",
+  "method_annotation": ""
+}

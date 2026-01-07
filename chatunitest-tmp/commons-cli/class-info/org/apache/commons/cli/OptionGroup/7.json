@@ -1,0 +1,27 @@
+{
+  "className": "OptionGroup",
+  "methodName": "setSelected",
+  "brief": "public void setSelected(final Option option) throws AlreadySelectedException{}",
+  "methodSignature": "setSelected(Option)",
+  "sourceCode": "public void setSelected(final Option option) throws AlreadySelectedException {\n        if (option == null) {\n            // reset the option previously selected\n            selected = null;\n            return;\n        }\n        // if no option has already been selected or the\n        // same option is being reselected then set the\n        // selected member variable\n        if (selected != null && !selected.equals(option.getKey())) {\n            throw new AlreadySelectedException(this, option);\n        }\n        selected = option.getKey();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ],
+    "java.lang.String": [
+      "equals(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the selected option of this group to {@code name}.\n *\n * If the selected option is deprecated <em>no warning is logged</em>.\n * @param option the option that is selected.\n * @throws AlreadySelectedException if an option from this group has already been selected.\n */\npublic void setSelected(final Option option) throws AlreadySelectedException {\n    if (option == null) {\n        // reset the option previously selected\n        selected = null;\n        return;\n    }\n    // if no option has already been selected or the\n    // same option is being reselected then set the\n    // selected member variable\n    if (selected != null && !selected.equals(option.getKey())) {\n        throw new AlreadySelectedException(this, option);\n    }\n    selected = option.getKey();\n}",
+  "method_comment": "\n     * Sets the selected option of this group to {@code name}.\n     *\n     * If the selected option is deprecated <em>no warning is logged</em>.\n     * @param option the option that is selected.\n     * @throws AlreadySelectedException if an option from this group has already been selected.\n     ",
+  "method_annotation": ""
+}

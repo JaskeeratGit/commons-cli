@@ -1,0 +1,18 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "hasArg",
+  "brief": "public static OptionBuilder hasArg(){}",
+  "methodSignature": "hasArg()",
+  "sourceCode": "public static OptionBuilder hasArg() {\n        argCount = 1;\n        return INSTANCE;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The next Option created will require an argument value.\n *\n * @return the OptionBuilder instance\n */\npublic static OptionBuilder hasArg() {\n    argCount = 1;\n    return INSTANCE;\n}",
+  "method_comment": "\n     * The next Option created will require an argument value.\n     *\n     * @return the OptionBuilder instance\n     ",
+  "method_annotation": ""
+}

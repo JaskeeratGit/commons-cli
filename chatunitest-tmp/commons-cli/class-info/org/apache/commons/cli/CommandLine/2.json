@@ -1,0 +1,25 @@
+{
+  "className": "CommandLine",
+  "methodName": "addOption",
+  "brief": "protected void addOption(final Option option){}",
+  "methodSignature": "addOption(Option)",
+  "sourceCode": "protected void addOption(final Option option) {\n        if (option != null) {\n            options.add(option);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds an option to the command line. The values of the option are stored.\n *\n * @param option the processed option.\n */\nprotected void addOption(final Option option) {\n    if (option != null) {\n        options.add(option);\n    }\n}",
+  "method_comment": "\n     * Adds an option to the command line. The values of the option are stored.\n     *\n     * @param option the processed option.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "setMinWidth",
+  "brief": "public Builder setMinWidth(final int minWidth){}",
+  "methodSignature": "setMinWidth(int)",
+  "sourceCode": "public Builder setMinWidth(final int minWidth) {\n            this.minWidth = minWidth;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the currently specified minimum width.\n *\n * @param minWidth The currently specified minimum width.\n * @return this\n */\npublic Builder setMinWidth(final int minWidth) {\n    this.minWidth = minWidth;\n    return this;\n}",
+  "method_comment": "\n         * Sets the currently specified minimum width.\n         *\n         * @param minWidth The currently specified minimum width.\n         * @return this\n         ",
+  "method_annotation": ""
+}

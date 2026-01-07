@@ -1,0 +1,28 @@
+{
+  "className": "Options",
+  "methodName": "hasLongOption",
+  "brief": "public boolean hasLongOption(final String opt){}",
+  "methodSignature": "hasLongOption(String)",
+  "sourceCode": "public boolean hasLongOption(final String opt) {\n        return longOpts.containsKey(Util.stripLeadingHyphens(opt));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.Map": [
+      "containsKey(Object)"
+    ],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingHyphens(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether the named {@link Option} is a member of this {@link Options}.\n *\n * @param opt long name of the {@link Option}.\n * @return true if the named {@link Option} is a member of this {@link Options}.\n * @since 1.3\n */\npublic boolean hasLongOption(final String opt) {\n    return longOpts.containsKey(Util.stripLeadingHyphens(opt));\n}",
+  "method_comment": "\n     * Tests whether the named {@link Option} is a member of this {@link Options}.\n     *\n     * @param opt long name of the {@link Option}.\n     * @return true if the named {@link Option} is a member of this {@link Options}.\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

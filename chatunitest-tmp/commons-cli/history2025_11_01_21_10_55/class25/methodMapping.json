@@ -1,0 +1,86 @@
+{
+  "method0": {
+    "methodName": "checkRequiredOptions",
+    "signature": "checkRequiredOptions()",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "flatten",
+    "signature": "flatten(Options, String[], boolean)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method10": {
+    "methodName": "processProperties",
+    "signature": "processProperties(Properties)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method11": {
+    "methodName": "setOptions",
+    "signature": "setOptions(Options)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method12": {
+    "methodName": "updateRequiredOptions",
+    "signature": "updateRequiredOptions(Option)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method13": {
+    "methodName": "Parser",
+    "signature": "Parser()",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "getOptions",
+    "signature": "getOptions()",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "getRequiredOptions",
+    "signature": "getRequiredOptions()",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[])",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[], boolean)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[], Properties)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "parse",
+    "signature": "parse(Options, String[], Properties, boolean)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "processArgs",
+    "signature": "processArgs(Option, ListIterator)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "processOption",
+    "signature": "processOption(String, ListIterator)",
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli"
+  }
+}

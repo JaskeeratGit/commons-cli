@@ -1,0 +1,29 @@
+{
+  "className": "PosixParser",
+  "methodName": "processNonOptionToken",
+  "brief": "private void processNonOptionToken(final String value, final boolean stopAtNonOption){}",
+  "methodSignature": "processNonOptionToken(String, boolean)",
+  "sourceCode": "private void processNonOptionToken(final String value, final boolean stopAtNonOption) {\n        if (stopAtNonOption && (currentOption == null || !currentOption.hasArg())) {\n            eatTheRest = true;\n            tokens.add(\"--\");\n        }\n\n        tokens.add(value);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Option": [
+      "hasArg()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Add the special token \"<strong>--</strong>\" and the current {@code value} to the processed tokens list. Then add all the\n * remaining {@code argument} values to the processed tokens list.\n *\n * @param value The current token\n */\nprivate void processNonOptionToken(final String value, final boolean stopAtNonOption) {\n    if (stopAtNonOption && (currentOption == null || !currentOption.hasArg())) {\n        eatTheRest = true;\n        tokens.add(\"--\");\n    }\n    tokens.add(value);\n}",
+  "method_comment": "\n     * Add the special token \"<strong>--</strong>\" and the current {@code value} to the processed tokens list. Then add all the\n     * remaining {@code argument} values to the processed tokens list.\n     *\n     * @param value The current token\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "builder",
+  "brief": "public static Builder builder(final String option){}",
+  "methodSignature": "builder(String)",
+  "sourceCode": "public static Builder builder(final String option) {\n        return new Builder(option);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Returns a {@link Builder} to create an {@link Option} using descriptive methods.\n *\n * @param option short representation of the option.\n * @return a new {@link Builder} instance.\n * @throws IllegalArgumentException if there are any non valid Option characters in {@code opt}.\n * @since 1.3\n */\npublic static Builder builder(final String option) {\n    return new Builder(option);\n}",
+  "method_comment": "\n     * Returns a {@link Builder} to create an {@link Option} using descriptive methods.\n     *\n     * @param option short representation of the option.\n     * @return a new {@link Builder} instance.\n     * @throws IllegalArgumentException if there are any non valid Option characters in {@code opt}.\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,29 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printHelp",
+  "brief": "public void printHelp(final String cmdLineSyntax, final Options options, final boolean autoUsage){}",
+  "methodSignature": "printHelp(String, Options, boolean)",
+  "sourceCode": "public void printHelp(final String cmdLineSyntax, final Options options, final boolean autoUsage) {\n        printHelp(getWidth(), cmdLineSyntax, null, options, null, autoUsage);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Options",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [],
+    "org.apache.commons.cli.HelpFormatter": [
+      "getWidth()",
+      "printHelp(int, String, String, Options, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the help for {@code options} with the specified command line syntax. This method prints help information\n * to {@link System#out} by default.\n *\n * @param cmdLineSyntax the syntax for this application\n * @param options the Options instance\n * @param autoUsage whether to print an automatically generated usage statement\n */\npublic void printHelp(final String cmdLineSyntax, final Options options, final boolean autoUsage) {\n    printHelp(getWidth(), cmdLineSyntax, null, options, null, autoUsage);\n}",
+  "method_comment": "\n     * Prints the help for {@code options} with the specified command line syntax. This method prints help information\n     * to {@link System#out} by default.\n     *\n     * @param cmdLineSyntax the syntax for this application\n     * @param options the Options instance\n     * @param autoUsage whether to print an automatically generated usage statement\n     ",
+  "method_annotation": ""
+}

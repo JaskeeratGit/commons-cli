@@ -1,0 +1,57 @@
+{
+  "fullClassName": "org.apache.commons.cli.help.Util",
+  "className": "Util",
+  "index": 8,
+  "modifier": "[final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.commons.cli.help",
+  "packageDeclaration": "package org.apache.commons.cli.help;",
+  "classSignature": "final class Util",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.Arrays;"
+  ],
+  "fields": [
+    "private static final int NOT_FOUND = -1;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "defaultValue(T, T)": "0",
+    "indexOfNonWhitespace(CharSequence, int)": "1",
+    "isEmpty(CharSequence)": "2",
+    "isWhitespace(char)": "3",
+    "ltrim(String)": "4",
+    "repeat(int, char)": "5",
+    "repeatSpace(int)": "6",
+    "rtrim(String)": "7",
+    "Util()": "8"
+  },
+  "methodsBrief": [
+    "static <T extends CharSequence> T defaultValue(final T str, final T defaultValue){}",
+    "static int indexOfNonWhitespace(final CharSequence text, final int startPos){}",
+    "static boolean isEmpty(final CharSequence str){}",
+    "static boolean isWhitespace(final char c){}",
+    "static String ltrim(final String s){}",
+    "static String repeat(final int len, final char fillChar){}",
+    "static String repeatSpace(final int len){}",
+    "static String rtrim(final String s){}",
+    "private Util(){}"
+  ],
+  "constructorSigs": [
+    "Util()"
+  ],
+  "constructorBrief": [
+    "private Util(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli.help;\n\nimport java.util.Arrays;\n\n/**\n * Contains useful helper methods for classes within this package.\n */\nfinal class Util {\n\n    /**\n     * A special value for index not found.\n     */\n    private static final int NOT_FOUND = -1;\n\n    /**\n     * Returns the {@code defaultValue} if {@code str} is empty.\n     *\n     * @param str          The string to check\n     * @param defaultValue the default value if the string is empty.\n     * @param <T>          The type of arguments.\n     * @return the {@code defaultValue} if {@code str} is empty,\n     */\n    static <T extends CharSequence> T defaultValue(final T str, final T defaultValue) {\n        return isEmpty(str) ? defaultValue : str;\n    }\n\n    /**\n     * Finds the index of the first non whitespace character.\n     *\n     * @param text     the text to search in.\n     * @param startPos the starting position to search from.\n     * @return the index of the first non whitespace character or -1 if non found.\n     */\n    static int indexOfNonWhitespace(final CharSequence text, final int startPos) {\n        if (isEmpty(text)) {\n            return NOT_FOUND;\n        }\n        // the line ends before the max wrap pos or a new line char found\n        int idx = startPos;\n        while (idx < text.length() && isWhitespace(text.charAt(idx))) {\n            idx++;\n        }\n        return idx < text.length() ? idx : NOT_FOUND;\n    }\n\n    /**\n     * Tests whether the given string is null or empty.\n     *\n     * @param str The string to test.\n     * @return Whether the given string is null or empty.\n     */\n    static boolean isEmpty(final CharSequence str) {\n        return str == null || str.length() == 0;\n    }\n\n    /**\n     * Works around https://bugs.java.com/bugdatabase/view_bug?bug_id=8341522\n     *\n     * Affected Version: 8, 11, 17, 21, 24.\n     */\n    static boolean isWhitespace(final char c) {\n        return Character.isWhitespace(c) || Character.PARAGRAPH_SEPARATOR == c;\n    }\n\n    /**\n     * Removes the leading whitespace from the specified String.\n     *\n     * @param s The String to remove the leading padding from.\n     * @return The String of without the leading padding.\n     */\n    static String ltrim(final String s) {\n        final int pos = indexOfNonWhitespace(s, 0);\n        return pos == NOT_FOUND ? \"\" : s.substring(pos);\n    }\n\n    /**\n     * Constructs a string of specified length filled with the specified char.\n     *\n     * @param len      the length of the final string.\n     * @param fillChar the character to file it will.\n     * @return A string of specified length filled with the specified char.\n     */\n    static String repeat(final int len, final char fillChar) {\n        final char[] padding = new char[len];\n        Arrays.fill(padding, fillChar);\n        return new String(padding);\n    }\n\n    /**\n     * Creates a String of padding of length {@code len}.\n     *\n     * @param len The length of the String of padding to create.\n     * @return The String of padding.\n     */\n    static String repeatSpace(final int len) {\n        return repeat(len, ' ');\n    }\n\n    /**\n     * Removes the trailing whitespace from the specified String.\n     *\n     * @param s The String to remove the trailing padding from.\n     * @return The String of without the trailing padding.\n     */\n    static String rtrim(final String s) {\n        if (isEmpty(s)) {\n            return s;\n        }\n        int pos = s.length();\n        while (pos > 0 && isWhitespace(s.charAt(pos - 1))) {\n            --pos;\n        }\n        return s.substring(0, pos);\n    }\n\n    private Util() {\n        // no instances\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Contains useful helper methods for classes within this package.\n */\nfinal class Util {\n\n    /**\n     * A special value for index not found.\n     */\n    private static final int NOT_FOUND = -1;\n\n    /**\n     * Returns the {@code defaultValue} if {@code str} is empty.\n     *\n     * @param str          The string to check\n     * @param defaultValue the default value if the string is empty.\n     * @param <T>          The type of arguments.\n     * @return the {@code defaultValue} if {@code str} is empty,\n     */\n    static <T extends CharSequence> T defaultValue(final T str, final T defaultValue) {\n        return isEmpty(str) ? defaultValue : str;\n    }\n\n    /**\n     * Finds the index of the first non whitespace character.\n     *\n     * @param text     the text to search in.\n     * @param startPos the starting position to search from.\n     * @return the index of the first non whitespace character or -1 if non found.\n     */\n    static int indexOfNonWhitespace(final CharSequence text, final int startPos) {\n        if (isEmpty(text)) {\n            return NOT_FOUND;\n        }\n        // the line ends before the max wrap pos or a new line char found\n        int idx = startPos;\n        while (idx < text.length() && isWhitespace(text.charAt(idx))) {\n            idx++;\n        }\n        return idx < text.length() ? idx : NOT_FOUND;\n    }\n\n    /**\n     * Tests whether the given string is null or empty.\n     *\n     * @param str The string to test.\n     * @return Whether the given string is null or empty.\n     */\n    static boolean isEmpty(final CharSequence str) {\n        return str == null || str.length() == 0;\n    }\n\n    /**\n     * Works around https://bugs.java.com/bugdatabase/view_bug?bug_id=8341522\n     *\n     * Affected Version: 8, 11, 17, 21, 24.\n     */\n    static boolean isWhitespace(final char c) {\n        return Character.isWhitespace(c) || Character.PARAGRAPH_SEPARATOR == c;\n    }\n\n    /**\n     * Removes the leading whitespace from the specified String.\n     *\n     * @param s The String to remove the leading padding from.\n     * @return The String of without the leading padding.\n     */\n    static String ltrim(final String s) {\n        final int pos = indexOfNonWhitespace(s, 0);\n        return pos == NOT_FOUND ? \"\" : s.substring(pos);\n    }\n\n    /**\n     * Constructs a string of specified length filled with the specified char.\n     *\n     * @param len      the length of the final string.\n     * @param fillChar the character to file it will.\n     * @return A string of specified length filled with the specified char.\n     */\n    static String repeat(final int len, final char fillChar) {\n        final char[] padding = new char[len];\n        Arrays.fill(padding, fillChar);\n        return new String(padding);\n    }\n\n    /**\n     * Creates a String of padding of length {@code len}.\n     *\n     * @param len The length of the String of padding to create.\n     * @return The String of padding.\n     */\n    static String repeatSpace(final int len) {\n        return repeat(len, ' ');\n    }\n\n    /**\n     * Removes the trailing whitespace from the specified String.\n     *\n     * @param s The String to remove the trailing padding from.\n     * @return The String of without the trailing padding.\n     */\n    static String rtrim(final String s) {\n        if (isEmpty(s)) {\n            return s;\n        }\n        int pos = s.length();\n        while (pos > 0 && isWhitespace(s.charAt(pos - 1))) {\n            --pos;\n        }\n        return s.substring(0, pos);\n    }\n\n    private Util() {\n        // no instances\n    }\n}",
+  "subClasses": []
+}

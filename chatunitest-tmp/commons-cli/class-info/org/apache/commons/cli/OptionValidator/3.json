@@ -1,0 +1,31 @@
+{
+  "className": "OptionValidator",
+  "methodName": "validate",
+  "brief": "static String validate(final String option) throws IllegalArgumentException{}",
+  "methodSignature": "validate(String)",
+  "sourceCode": "static String validate(final String option) throws IllegalArgumentException {\n        // if opt is null do not check further.\n        if (option == null) {\n            return null;\n        }\n        if (option.isEmpty()) {\n            throw new IllegalArgumentException(\"Empty option name.\");\n        }\n        final char[] chars = option.toCharArray();\n        final char ch0 = chars[0];\n        if (!isValidOpt(ch0)) {\n            throw new IllegalArgumentException(String.format(\"Illegal option name '%s'.\", ch0));\n        }\n        // handle the multi-character opt\n        if (option.length() > 1) {\n            for (int i = 1; i < chars.length; i++) {\n                final char ch = chars[i];\n                if (!isValidChar(ch)) {\n                    throw new IllegalArgumentException(String.format(\"The option '%s' contains an illegal character : '%s'.\", option, ch));\n                }\n            }\n        }\n        return option;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()",
+      "toCharArray()",
+      "format(String, Object[])",
+      "length()"
+    ],
+    "org.apache.commons.cli.OptionValidator": [
+      "isValidOpt(char)",
+      "isValidChar(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Validates whether {@code opt} is a permissible Option shortOpt. The rules that specify if the {@code opt}\n * is valid are:\n *\n * <ul>\n * <li>a single character {@code opt} that is either Chars.SP(special case), '?', '@' or a letter</li>\n * <li>a multi character {@code opt} that only contains valid characters</li>\n * </ul>\n * </p><p>\n * A character is valid if any of the following conditions are true:\n * <ul>\n * <li>it is a letter</li>\n * <li>it is a currency symbol (such as '$')</li>\n * <li>it is a connecting punctuation character (such as '_')</li>\n * <li>it is a digit</li>\n * <li>it is a numeric letter (such as a Roman numeral character)</li>\n * <li>it is a combining mark</li>\n * <li>it is a non-spacing mark</li>\n * <li>isIdentifierIgnorable returns true for the character</li>\n * <li>it is a hyphen/dash ('-')</li>\n * </ul>\n * </p><p>\n * In case {@code opt} is {@code null} no further validation is performed.\n *\n * @param option The option string to validate, may be null\n * @throws IllegalArgumentException if the Option is not valid.\n */\nstatic String validate(final String option) throws IllegalArgumentException {\n    // if opt is null do not check further.\n    if (option == null) {\n        return null;\n    }\n    if (option.isEmpty()) {\n        throw new IllegalArgumentException(\"Empty option name.\");\n    }\n    final char[] chars = option.toCharArray();\n    final char ch0 = chars[0];\n    if (!isValidOpt(ch0)) {\n        throw new IllegalArgumentException(String.format(\"Illegal option name '%s'.\", ch0));\n    }\n    // handle the multi-character opt\n    if (option.length() > 1) {\n        for (int i = 1; i < chars.length; i++) {\n            final char ch = chars[i];\n            if (!isValidChar(ch)) {\n                throw new IllegalArgumentException(String.format(\"The option '%s' contains an illegal character : '%s'.\", option, ch));\n            }\n        }\n    }\n    return option;\n}",
+  "method_comment": "\n     * Validates whether {@code opt} is a permissible Option shortOpt. The rules that specify if the {@code opt}\n     * is valid are:\n     *\n     * <ul>\n     * <li>a single character {@code opt} that is either Chars.SP(special case), '?', '@' or a letter</li>\n     * <li>a multi character {@code opt} that only contains valid characters</li>\n     * </ul>\n     * </p><p>\n     * A character is valid if any of the following conditions are true:\n     * <ul>\n     * <li>it is a letter</li>\n     * <li>it is a currency symbol (such as '$')</li>\n     * <li>it is a connecting punctuation character (such as '_')</li>\n     * <li>it is a digit</li>\n     * <li>it is a numeric letter (such as a Roman numeral character)</li>\n     * <li>it is a combining mark</li>\n     * <li>it is a non-spacing mark</li>\n     * <li>isIdentifierIgnorable returns true for the character</li>\n     * <li>it is a hyphen/dash ('-')</li>\n     * </ul>\n     * </p><p>\n     * In case {@code opt} is {@code null} no further validation is performed.\n     *\n     * @param option The option string to validate, may be null\n     * @throws IllegalArgumentException if the Option is not valid.\n     ",
+  "method_annotation": ""
+}

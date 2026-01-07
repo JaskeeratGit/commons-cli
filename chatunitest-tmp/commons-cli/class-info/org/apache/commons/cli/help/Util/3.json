@@ -1,0 +1,24 @@
+{
+  "className": "Util",
+  "methodName": "isWhitespace",
+  "brief": "static boolean isWhitespace(final char c){}",
+  "methodSignature": "isWhitespace(char)",
+  "sourceCode": "static boolean isWhitespace(final char c) {\n        return Character.isWhitespace(c) || Character.PARAGRAPH_SEPARATOR == c;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "java.lang.Character": [
+      "isWhitespace(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Works around https://bugs.java.com/bugdatabase/view_bug?bug_id=8341522\n *\n * Affected Version: 8, 11, 17, 21, 24.\n */\nstatic boolean isWhitespace(final char c) {\n    return Character.isWhitespace(c) || Character.PARAGRAPH_SEPARATOR == c;\n}",
+  "method_comment": "\n     * Works around https://bugs.java.com/bugdatabase/view_bug?bug_id=8341522\n     *\n     * Affected Version: 8, 11, 17, 21, 24.\n     ",
+  "method_annotation": ""
+}

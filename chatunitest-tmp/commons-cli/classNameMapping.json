@@ -1,0 +1,107 @@
+{
+  "FilterHelpAppendable": [
+    "org.apache.commons.cli.help.FilterHelpAppendable"
+  ],
+  "Options": [
+    "org.apache.commons.cli.Options"
+  ],
+  "PatternOptionBuilder": [
+    "org.apache.commons.cli.PatternOptionBuilder"
+  ],
+  "OptionValidator": [
+    "org.apache.commons.cli.OptionValidator"
+  ],
+  "AmbiguousOptionException": [
+    "org.apache.commons.cli.AmbiguousOptionException"
+  ],
+  "Builder": [
+    "org.apache.commons.cli.help.Builder",
+    "org.apache.commons.cli.Builder"
+  ],
+  "PosixParser": [
+    "org.apache.commons.cli.PosixParser"
+  ],
+  "GnuParser": [
+    "org.apache.commons.cli.GnuParser"
+  ],
+  "AlreadySelectedException": [
+    "org.apache.commons.cli.AlreadySelectedException"
+  ],
+  "OptionComparator": [
+    "org.apache.commons.cli.OptionComparator"
+  ],
+  "Util": [
+    "org.apache.commons.cli.help.Util",
+    "org.apache.commons.cli.Util"
+  ],
+  "AbstractHelpFormatter": [
+    "org.apache.commons.cli.help.AbstractHelpFormatter"
+  ],
+  "UnrecognizedOptionException": [
+    "org.apache.commons.cli.UnrecognizedOptionException"
+  ],
+  "HelpAppendable": [
+    "org.apache.commons.cli.help.HelpAppendable"
+  ],
+  "HelpFormatter": [
+    "org.apache.commons.cli.help.HelpFormatter",
+    "org.apache.commons.cli.HelpFormatter"
+  ],
+  "OptionGroup": [
+    "org.apache.commons.cli.OptionGroup"
+  ],
+  "TextStyle": [
+    "org.apache.commons.cli.help.TextStyle"
+  ],
+  "TextHelpAppendable": [
+    "org.apache.commons.cli.help.TextHelpAppendable"
+  ],
+  "Char": [
+    "org.apache.commons.cli.Char"
+  ],
+  "OptionBuilder": [
+    "org.apache.commons.cli.OptionBuilder"
+  ],
+  "TableDefinition": [
+    "org.apache.commons.cli.help.TableDefinition"
+  ],
+  "Converter": [
+    "org.apache.commons.cli.Converter"
+  ],
+  "CommandLineParser": [
+    "org.apache.commons.cli.CommandLineParser"
+  ],
+  "TypeHandler": [
+    "org.apache.commons.cli.TypeHandler"
+  ],
+  "MissingOptionException": [
+    "org.apache.commons.cli.MissingOptionException"
+  ],
+  "DefaultParser": [
+    "org.apache.commons.cli.DefaultParser"
+  ],
+  "MissingArgumentException": [
+    "org.apache.commons.cli.MissingArgumentException"
+  ],
+  "OptionFormatter": [
+    "org.apache.commons.cli.help.OptionFormatter"
+  ],
+  "DeprecatedAttributes": [
+    "org.apache.commons.cli.DeprecatedAttributes"
+  ],
+  "Parser": [
+    "org.apache.commons.cli.Parser"
+  ],
+  "BasicParser": [
+    "org.apache.commons.cli.BasicParser"
+  ],
+  "CommandLine": [
+    "org.apache.commons.cli.CommandLine"
+  ],
+  "Option": [
+    "org.apache.commons.cli.Option"
+  ],
+  "ParseException": [
+    "org.apache.commons.cli.ParseException"
+  ]
+}

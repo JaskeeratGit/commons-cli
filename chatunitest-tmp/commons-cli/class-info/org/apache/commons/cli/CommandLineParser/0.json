@@ -1,0 +1,24 @@
+{
+  "className": "CommandLineParser",
+  "methodName": "parse",
+  "brief": "CommandLine parse(Options options, String[] arguments) throws ParseException;",
+  "methodSignature": "parse(Options, String[])",
+  "sourceCode": "CommandLine parse(Options options, String[] arguments) throws ParseException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Parses the arguments according to the specified options.\n *\n * @param options the specified Options\n * @param arguments the command line arguments\n * @return the list of atomic option and value tokens\n * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n */\nCommandLine parse(Options options, String[] arguments) throws ParseException;",
+  "method_comment": "\n     * Parses the arguments according to the specified options.\n     *\n     * @param options the specified Options\n     * @param arguments the command line arguments\n     * @return the list of atomic option and value tokens\n     * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "getComparator",
+  "brief": "protected Comparator<Option> getComparator(){}",
+  "methodSignature": "getComparator()",
+  "sourceCode": "protected Comparator<Option> getComparator() {\n        return comparator;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the comparator for sorting options.\n *\n * @return The comparator for sorting options.\n */\nprotected Comparator<Option> getComparator() {\n    return comparator;\n}",
+  "method_comment": "\n     * Gets the comparator for sorting options.\n     *\n     * @return The comparator for sorting options.\n     ",
+  "method_annotation": ""
+}

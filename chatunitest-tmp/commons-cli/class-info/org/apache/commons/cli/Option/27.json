@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "hasArgs",
+  "brief": "public boolean hasArgs(){}",
+  "methodSignature": "hasArgs()",
+  "sourceCode": "public boolean hasArgs() {\n        return argCount > 1 || argCount == UNLIMITED_VALUES;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether this Option can take many values.\n *\n * @return boolean flag indicating if multiple values are allowed.\n */\npublic boolean hasArgs() {\n    return argCount > 1 || argCount == UNLIMITED_VALUES;\n}",
+  "method_comment": "\n     * Tests whether this Option can take many values.\n     *\n     * @return boolean flag indicating if multiple values are allowed.\n     ",
+  "method_annotation": ""
+}

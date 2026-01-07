@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "longOpt",
+  "brief": "public Builder longOpt(final String longOption){}",
+  "methodSignature": "longOpt(String)",
+  "sourceCode": "public Builder longOpt(final String longOption) {\n            this.longOption = longOption;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the long name of the Option.\n *\n * @param longOption the long name of the Option\n * @return this builder.\n */\npublic Builder longOpt(final String longOption) {\n    this.longOption = longOption;\n    return this;\n}",
+  "method_comment": "\n         * Sets the long name of the Option.\n         *\n         * @param longOption the long name of the Option\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

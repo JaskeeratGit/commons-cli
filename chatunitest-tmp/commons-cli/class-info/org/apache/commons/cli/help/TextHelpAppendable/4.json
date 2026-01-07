@@ -1,0 +1,56 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "appendList",
+  "brief": "@Override\n    public void appendList(final boolean ordered, final Collection<CharSequence> list) throws IOException{}",
+  "methodSignature": "appendList(boolean, Collection)",
+  "sourceCode": "@Override\n    public void appendList(final boolean ordered, final Collection<CharSequence> list) throws IOException {\n        if (list != null && !list.isEmpty()) {\n            final TextStyle.Builder builder = TextStyle.builder().setLeftPad(textStyleBuilder.getLeftPad()).setIndent(DEFAULT_LIST_INDENT);\n            int i = 1;\n            for (final CharSequence line : list) {\n                final String entry = ordered ? String.format(\" %s. %s\", i++, Util.defaultValue(line, BLANK_LINE))\n                        : String.format(\" * %s\", Util.defaultValue(line, BLANK_LINE));\n                builder.setMaxWidth(Math.min(textStyleBuilder.getMaxWidth(), entry.length()));\n                printQueue(makeColumnQueue(entry, builder.get()));\n            }\n            output.append(System.lineSeparator());\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean",
+    "Collection<CharSequence>"
+  ],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "isEmpty()"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "setMaxWidth(int)",
+      "getLeftPad()",
+      "setLeftPad(int)",
+      "setIndent(int)",
+      "getMaxWidth()",
+      "get()"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "builder()"
+    ],
+    "java.lang.String": [
+      "format(String, Object[])",
+      "length()"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "defaultValue(T, T)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "printQueue(String>)",
+      "makeColumnQueue(CharSequence, TextStyle)"
+    ],
+    "java.lang.Appendable": [
+      "append(CharSequence)"
+    ],
+    "java.lang.System": [
+      "lineSeparator()"
+    ]
+  },
+  "full_method_info": "@Override\npublic void appendList(final boolean ordered, final Collection<CharSequence> list) throws IOException {\n    if (list != null && !list.isEmpty()) {\n        final TextStyle.Builder builder = TextStyle.builder().setLeftPad(textStyleBuilder.getLeftPad()).setIndent(DEFAULT_LIST_INDENT);\n        int i = 1;\n        for (final CharSequence line : list) {\n            final String entry = ordered ? String.format(\" %s. %s\", i++, Util.defaultValue(line, BLANK_LINE)) : String.format(\" * %s\", Util.defaultValue(line, BLANK_LINE));\n            builder.setMaxWidth(Math.min(textStyleBuilder.getMaxWidth(), entry.length()));\n            printQueue(makeColumnQueue(entry, builder.get()));\n        }\n        output.append(System.lineSeparator());\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

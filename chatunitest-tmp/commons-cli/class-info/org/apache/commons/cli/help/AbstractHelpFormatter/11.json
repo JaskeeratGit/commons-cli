@@ -1,0 +1,27 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "printOptions",
+  "brief": "public final void printOptions(final Options options) throws IOException{}",
+  "methodSignature": "printOptions(Options)",
+  "sourceCode": "public final void printOptions(final Options options) throws IOException {\n        printOptions(options.getOptions());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "getOptions()"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "printOptions(Option>)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the option table for the specified {@link Options} to the {@link HelpAppendable}.\n *\n * @param options the Options to print in the table.\n * @throws IOException If the output could not be written to the {@link HelpAppendable}\n */\npublic final void printOptions(final Options options) throws IOException {\n    printOptions(options.getOptions());\n}",
+  "method_comment": "\n     * Prints the option table for the specified {@link Options} to the {@link HelpAppendable}.\n     *\n     * @param options the Options to print in the table.\n     * @throws IOException If the output could not be written to the {@link HelpAppendable}\n     ",
+  "method_annotation": ""
+}

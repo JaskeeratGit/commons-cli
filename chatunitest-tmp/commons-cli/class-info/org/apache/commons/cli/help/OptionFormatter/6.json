@@ -1,0 +1,25 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "getOpt",
+  "brief": "public String getOpt(){}",
+  "methodSignature": "getOpt()",
+  "sourceCode": "public String getOpt() {\n        return Util.isEmpty(option.getOpt()) ? \"\" : optPrefix + option.getOpt();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.Util": [
+      "isEmpty(CharSequence)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getOpt()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the Opt from the @{link Option} with the associate prefix.\n *\n * @return The Opt from the @{link Option} with the associate prefix or an empty string.\n */\npublic String getOpt() {\n    return Util.isEmpty(option.getOpt()) ? \"\" : optPrefix + option.getOpt();\n}",
+  "method_comment": "\n     * Gets the Opt from the @{link Option} with the associate prefix.\n     *\n     * @return The Opt from the @{link Option} with the associate prefix or an empty string.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,146 @@
+{
+  "method0": {
+    "methodName": "indexOfWrap",
+    "signature": "indexOfWrap(CharSequence, int, int)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method1": {
+    "methodName": "systemOut",
+    "signature": "systemOut()",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method10": {
+    "methodName": "getMaxWidth",
+    "signature": "getMaxWidth()",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method11": {
+    "methodName": "getTextStyleBuilder",
+    "signature": "getTextStyleBuilder()",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method12": {
+    "methodName": "makeColumnQueue",
+    "signature": "makeColumnQueue(CharSequence, TextStyle)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method13": {
+    "methodName": "makeColumnQueues",
+    "signature": "makeColumnQueues(List, List)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method14": {
+    "methodName": "printQueue",
+    "signature": "printQueue(Queue)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method15": {
+    "methodName": "printWrapped",
+    "signature": "printWrapped(String)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method16": {
+    "methodName": "printWrapped",
+    "signature": "printWrapped(String, TextStyle)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method17": {
+    "methodName": "resize",
+    "signature": "resize(int, double)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method18": {
+    "methodName": "resize",
+    "signature": "resize(TextStyle.Builder, double)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method19": {
+    "methodName": "setIndent",
+    "signature": "setIndent(int)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method2": {
+    "methodName": "adjustTableFormat",
+    "signature": "adjustTableFormat(TableDefinition)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method20": {
+    "methodName": "setLeftPad",
+    "signature": "setLeftPad(int)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method21": {
+    "methodName": "setMaxWidth",
+    "signature": "setMaxWidth(int)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method22": {
+    "methodName": "writeColumnQueues",
+    "signature": "writeColumnQueues(List, List)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method23": {
+    "methodName": "TextHelpAppendable",
+    "signature": "TextHelpAppendable(Appendable)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method3": {
+    "methodName": "appendHeader",
+    "signature": "appendHeader(int, CharSequence)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method4": {
+    "methodName": "appendList",
+    "signature": "appendList(boolean, Collection)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method5": {
+    "methodName": "appendParagraph",
+    "signature": "appendParagraph(CharSequence)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method6": {
+    "methodName": "appendTable",
+    "signature": "appendTable(TableDefinition)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method7": {
+    "methodName": "appendTitle",
+    "signature": "appendTitle(CharSequence)",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method8": {
+    "methodName": "getIndent",
+    "signature": "getIndent()",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method9": {
+    "methodName": "getLeftPad",
+    "signature": "getLeftPad()",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help"
+  }
+}

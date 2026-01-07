@@ -1,0 +1,27 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "sort",
+  "brief": "public List<Option> sort(final Options options){}",
+  "methodSignature": "sort(Options)",
+  "sourceCode": "public List<Option> sort(final Options options) {\n        return sort(options == null ? null : options.getOptions());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "getOptions()"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "sort(Option>)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a new list of options ordered by the comparator.\n *\n * @param options the Options to sort.\n * @return a new list of options ordered by the comparator.\n */\npublic List<Option> sort(final Options options) {\n    return sort(options == null ? null : options.getOptions());\n}",
+  "method_comment": "\n     * Creates a new list of options ordered by the comparator.\n     *\n     * @param options the Options to sort.\n     * @return a new list of options ordered by the comparator.\n     ",
+  "method_annotation": ""
+}

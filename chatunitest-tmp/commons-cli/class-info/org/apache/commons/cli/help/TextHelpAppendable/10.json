@@ -1,0 +1,22 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "getMaxWidth",
+  "brief": "public int getMaxWidth(){}",
+  "methodSignature": "getMaxWidth()",
+  "sourceCode": "public int getMaxWidth() {\n        return textStyleBuilder.getMaxWidth();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "getMaxWidth()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the maximum width for the output\n *\n * @return the maximum width for the output.\n */\npublic int getMaxWidth() {\n    return textStyleBuilder.getMaxWidth();\n}",
+  "method_comment": "\n     * Gets the maximum width for the output\n     *\n     * @return the maximum width for the output.\n     ",
+  "method_annotation": ""
+}

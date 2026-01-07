@@ -1,0 +1,22 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "withArgName",
+  "brief": "public static OptionBuilder withArgName(final String name){}",
+  "methodSignature": "withArgName(String)",
+  "sourceCode": "public static OptionBuilder withArgName(final String name) {\n        argName = name;\n        return INSTANCE;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * The next Option created will have the specified argument value name.\n *\n * @param name the name for the argument value\n * @return the OptionBuilder instance\n */\npublic static OptionBuilder withArgName(final String name) {\n    argName = name;\n    return INSTANCE;\n}",
+  "method_comment": "\n     * The next Option created will have the specified argument value name.\n     *\n     * @param name the name for the argument value\n     * @return the OptionBuilder instance\n     ",
+  "method_annotation": ""
+}

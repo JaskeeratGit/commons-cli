@@ -1,0 +1,23 @@
+{
+  "className": "Option",
+  "methodName": "getConverter",
+  "brief": "public Converter<?, ?> getConverter(){}",
+  "methodSignature": "getConverter()",
+  "sourceCode": "public Converter<?, ?> getConverter() {\n        return converter == null ? TypeHandler.getDefault().getConverter(type) : converter;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.TypeHandler": [
+      "getConverter(Class<T>)",
+      "getDefault()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the value to type converter.\n *\n * @return the value to type converter.\n * @since 1.7.0\n */\npublic Converter<?, ?> getConverter() {\n    return converter == null ? TypeHandler.getDefault().getConverter(type) : converter;\n}",
+  "method_comment": "\n     * Gets the value to type converter.\n     *\n     * @return the value to type converter.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

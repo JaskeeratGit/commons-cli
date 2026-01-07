@@ -1,0 +1,23 @@
+{
+  "className": "Option",
+  "methodName": "Option",
+  "brief": "public Option(final String option, final String description) throws IllegalArgumentException{}",
+  "methodSignature": "Option(String, String)",
+  "sourceCode": "public Option(final String option, final String description) throws IllegalArgumentException {\n        this(option, null, false, description);\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "public Option(final String option, final String description) throws IllegalArgumentException {\n    this(option, null, false, description);\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

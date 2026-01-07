@@ -1,0 +1,26 @@
+{
+  "className": "CommandLine",
+  "methodName": "CommandLine",
+  "brief": "private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}",
+  "methodSignature": "CommandLine(List, List, Consumer)",
+  "sourceCode": "private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler) {\n        this.args = Objects.requireNonNull(args, \"args\");\n        this.options = Objects.requireNonNull(options, \"options\");\n        this.deprecatedHandler = deprecatedHandler;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>",
+    "List<Option>",
+    "Consumer<Option>"
+  ],
+  "dependentMethods": {
+    "java.util.Objects": [
+      "requireNonNull(T, String)"
+    ]
+  },
+  "full_method_info": "private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler) {\n    this.args = Objects.requireNonNull(args, \"args\");\n    this.options = Objects.requireNonNull(options, \"options\");\n    this.deprecatedHandler = deprecatedHandler;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

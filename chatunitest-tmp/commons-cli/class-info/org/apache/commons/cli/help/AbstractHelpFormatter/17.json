@@ -1,0 +1,24 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "toSyntaxOptions",
+  "brief": "public String toSyntaxOptions(final Iterable<Option> options){}",
+  "methodSignature": "toSyntaxOptions(Iterable)",
+  "sourceCode": "public String toSyntaxOptions(final Iterable<Option> options) {\n        return toSyntaxOptions(options, o -> null);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<Option>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "toSyntaxOptions(Option>, OptionGroup>)"
+    ]
+  },
+  "full_method_info": "/**\n * Return the string representation of the options as used in the syntax display.\n *\n * @param options The collection of {@link Option} instances to create the string representation for.\n * @return the string representation of the options as used in the syntax display.\n */\npublic String toSyntaxOptions(final Iterable<Option> options) {\n    return toSyntaxOptions(options, o -> null);\n}",
+  "method_comment": "\n     * Return the string representation of the options as used in the syntax display.\n     *\n     * @param options The collection of {@link Option} instances to create the string representation for.\n     * @return the string representation of the options as used in the syntax display.\n     ",
+  "method_annotation": ""
+}

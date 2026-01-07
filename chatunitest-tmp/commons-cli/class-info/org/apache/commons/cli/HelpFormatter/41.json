@@ -1,0 +1,22 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setLongOptSeparator",
+  "brief": "public void setLongOptSeparator(final String longOptSeparator){}",
+  "methodSignature": "setLongOptSeparator(String)",
+  "sourceCode": "public void setLongOptSeparator(final String longOptSeparator) {\n        this.longOptSeparator = longOptSeparator;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the separator displayed between a long option and its value. Ensure that the separator specified is supported by\n * the parser used, typically ' ' or '='.\n *\n * @param longOptSeparator the separator, typically ' ' or '='.\n * @since 1.3\n */\npublic void setLongOptSeparator(final String longOptSeparator) {\n    this.longOptSeparator = longOptSeparator;\n}",
+  "method_comment": "\n     * Sets the separator displayed between a long option and its value. Ensure that the separator specified is supported by\n     * the parser used, typically ' ' or '='.\n     *\n     * @param longOptSeparator the separator, typically ' ' or '='.\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

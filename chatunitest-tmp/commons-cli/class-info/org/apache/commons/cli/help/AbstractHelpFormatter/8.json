@@ -1,0 +1,38 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "printHelp",
+  "brief": "public void printHelp(final String cmdLineSyntax, final String header, final Iterable<Option> options, final String footer, final boolean autoUsage)\n            throws IOException{}",
+  "methodSignature": "printHelp(String, String, Iterable, String, boolean)",
+  "sourceCode": "public void printHelp(final String cmdLineSyntax, final String header, final Iterable<Option> options, final String footer, final boolean autoUsage)\n            throws IOException {\n        if (Util.isEmpty(cmdLineSyntax)) {\n            throw new IllegalArgumentException(\"cmdLineSyntax not provided\");\n        }\n        if (autoUsage) {\n            helpAppendable.appendParagraphFormat(\"%s %s %s\", syntaxPrefix, cmdLineSyntax, toSyntaxOptions(options));\n        } else {\n            helpAppendable.appendParagraphFormat(\"%s %s\", syntaxPrefix, cmdLineSyntax);\n        }\n        if (!Util.isEmpty(header)) {\n            helpAppendable.appendParagraph(header);\n        }\n        helpAppendable.appendTable(getTableDefinition(options));\n        if (!Util.isEmpty(footer)) {\n            helpAppendable.appendParagraph(footer);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Iterable<Option>",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.help.Util": [
+      "isEmpty(CharSequence)"
+    ],
+    "org.apache.commons.cli.help.HelpAppendable": [
+      "appendTable(TableDefinition)",
+      "appendParagraph(CharSequence)",
+      "appendParagraphFormat(String, Object[])"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "getTableDefinition(Option>)",
+      "toSyntaxOptions(Option>)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the help for a collection of {@link Option}s with the specified command line syntax.\n *\n * @param cmdLineSyntax the syntax for this application\n * @param header        the banner to display at the beginning of the help\n * @param options       the collection of {@link Option} objects to print.\n * @param footer        the banner to display at the end of the help\n * @param autoUsage     whether to print an automatically generated usage statement\n * @throws IOException If the output could not be written to the {@link HelpAppendable}\n */\npublic void printHelp(final String cmdLineSyntax, final String header, final Iterable<Option> options, final String footer, final boolean autoUsage) throws IOException {\n    if (Util.isEmpty(cmdLineSyntax)) {\n        throw new IllegalArgumentException(\"cmdLineSyntax not provided\");\n    }\n    if (autoUsage) {\n        helpAppendable.appendParagraphFormat(\"%s %s %s\", syntaxPrefix, cmdLineSyntax, toSyntaxOptions(options));\n    } else {\n        helpAppendable.appendParagraphFormat(\"%s %s\", syntaxPrefix, cmdLineSyntax);\n    }\n    if (!Util.isEmpty(header)) {\n        helpAppendable.appendParagraph(header);\n    }\n    helpAppendable.appendTable(getTableDefinition(options));\n    if (!Util.isEmpty(footer)) {\n        helpAppendable.appendParagraph(footer);\n    }\n}",
+  "method_comment": "\n     * Prints the help for a collection of {@link Option}s with the specified command line syntax.\n     *\n     * @param cmdLineSyntax the syntax for this application\n     * @param header        the banner to display at the beginning of the help\n     * @param options       the collection of {@link Option} objects to print.\n     * @param footer        the banner to display at the end of the help\n     * @param autoUsage     whether to print an automatically generated usage statement\n     * @throws IOException If the output could not be written to the {@link HelpAppendable}\n     ",
+  "method_annotation": ""
+}

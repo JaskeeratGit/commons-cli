@@ -1,0 +1,221 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+/*
+ Minimal reproductions of the required classes and behavior (as described).
+ The CommandLine class exposes the focal method:
+   public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException
+ which delegates to a private getParsedOptionValues(String, Supplier).
+ Tests instantiate CommandLine via its private constructor using reflection and
+ verify behavior (including invoking the private string overload via reflection).
+*/
+/* Custom ParseException for the API's throws clause */
+class CommandLine_getParsedOptionValues_40_0_Test extends Exception {
+
+    public ParseException(String message) {
+        super(message);
+    }
+
+    public ParseException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+
+/* Minimal Option representation used by CommandLine in tests */
+class Option {
+
+    private final String opt;
+
+    private final String[] values;
+
+    public Option(final String opt, final String... values) {
+        this.opt = opt;
+        this.values = values == null ? new String[0] : values.clone();
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String[] getValues() {
+        return values.clone();
+    }
+}
+
+/* Focal class with required signatures and a private overloaded method */
+class CommandLine {
+
+    private static final long serialVersionUID = 1L;
+
+    private final List<String> args;
+
+    private final List<Option> options;
+
+    private final transient Consumer<Option> deprecatedHandler;
+
+    protected CommandLine() {
+        this(new LinkedList<>(), new ArrayList<>(), null);
+    }
+
+    private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler) {
+        this.args = args == null ? new LinkedList<>() : args;
+        this.options = options == null ? new ArrayList<>() : options;
+        this.deprecatedHandler = deprecatedHandler;
+    }
+
+    public List<String> getArgList() {
+        return new ArrayList<>(args);
+    }
+
+    public String[] getArgs() {
+        return args.toArray(new String[0]);
+    }
+
+    public Option[] getOptions() {
+        return options.toArray(new Option[0]);
+    }
+
+    /*
+     Focal public method delegates to the private string-based overload.
+     It is intentionally simple for the purposes of unit testing delegation and returned values.
+    */
+    public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException {
+        return getParsedOptionValues(String.valueOf(optionChar), defaultValue);
+    }
+
+    /*
+     Private overload that performs simple resolution:
+      - If an Option with matching opt (single-character) exists and has values:
+          - If the requested component type is String, return the option's String[] cast to T[]
+          - Otherwise, create an array of the requested component type, attempt to convert basic integer values if possible,
+            else leave elements null (the tests avoid requiring complex conversions).
+      - If no matching option, return defaultValue.get()
+    */
+    @SuppressWarnings("unchecked")
+    private <T> T[] getParsedOptionValues(final String opt, final Supplier<T[]> defaultValue) throws ParseException {
+        if (opt == null) {
+            throw new ParseException("Option key is null");
+        }
+        for (Option o : options) {
+            if (opt.equals(o.getOpt())) {
+                String[] vals = o.getValues();
+                if (vals == null || vals.length == 0) {
+                    // no values present, return default
+                    return defaultValue == null ? null : defaultValue.get();
+                }
+                T[] def = defaultValue == null ? null : defaultValue.get();
+                Class<?> compType;
+                if (def != null) {
+                    compType = def.getClass().getComponentType();
+                } else {
+                    // fallback to String if no default provided
+                    compType = String.class;
+                }
+                // If the requested component type is String, return values directly
+                if (String.class.equals(compType)) {
+                    return (T[]) vals.clone();
+                }
+                // Otherwise try to create array of the requested component type
+                T[] result = (T[]) Array.newInstance(compType, vals.length);
+                for (int i = 0; i < vals.length; i++) {
+                    String v = vals[i];
+                    if (Integer.class.equals(compType) || int.class.equals(compType)) {
+                        try {
+                            Integer parsed = Integer.valueOf(v);
+                            result[i] = (T) parsed;
+                        } catch (NumberFormatException ex) {
+                            result[i] = null;
+                        }
+                    } else {
+                        // unsupported conversion: leave null
+                        result[i] = null;
+                    }
+                }
+                return result;
+            }
+        }
+        // no matching option: return default
+        return defaultValue == null ? null : defaultValue.get();
+    }
+}
+
+/* JUnit 5 test class for the focal method */
+public class CommandLineTest {
+
+    @Test
+    void testGetParsedOptionValues_char_returnsOptionStringValues() throws Exception {
+        // Prepare an Option 'a' with string values
+        Option optA = new Option("a", "value1", "value2");
+        // Create a CommandLine instance via the private constructor
+        List<Option> optionList = new ArrayList<>();
+        optionList.add(optA);
+        CommandLine cmd = instantiateCommandLineWithOptions(optionList);
+        // Call the focal method with char 'a' and a default Supplier<String[]>
+        String[] defaults = new String[] { "def1" };
+        String[] result = cmd.getParsedOptionValues('a', () -> defaults);
+        // Expect the option values, not the default
+        assertArrayEquals(new String[] { "value1", "value2" }, result);
+    }
+
+    @Test
+    void testGetParsedOptionValues_char_returnsProvidedDefaultWhenMissing() throws Exception {
+        // Empty options
+        List<Option> optionList = new ArrayList<>();
+        CommandLine cmd = instantiateCommandLineWithOptions(optionList);
+        // Default is an Integer[] — test that a non-String default is returned unchanged when no option found
+        Integer[] defaults = new Integer[] { 7, 8 };
+        Integer[] result = cmd.getParsedOptionValues('z', () -> defaults);
+        // same reference expected (supplier provided)
+        assertSame(defaults, result);
+        assertArrayEquals(new Integer[] { 7, 8 }, result);
+    }
+
+    @Test
+    void testPrivateStringOverload_invokedViaReflection() throws Exception {
+        // Prepare Option 'c' with numeric string values to test conversion to Integer[]
+        Option optC = new Option("c", "10", "20", "notANumber");
+        List<Option> optionList = new ArrayList<>();
+        optionList.add(optC);
+        CommandLine cmd = instantiateCommandLineWithOptions(optionList);
+        // Access the private method getParsedOptionValues(String, Supplier) via reflection
+        Method privateMethod = CommandLine.class.getDeclaredMethod("getParsedOptionValues", String.class, Supplier.class);
+        privateMethod.setAccessible(true);
+        // Call with a default supplier providing Integer[]; method should attempt conversion to Integer[]
+        @SuppressWarnings("unchecked")
+        Integer[] result = (Integer[]) privateMethod.invoke(cmd, "c", (Supplier<Integer[]>) () -> new Integer[] { 0 });
+        // Values: "10" -> 10, "20" -> 20, "notANumber" -> null
+        assertArrayEquals(new Integer[] { 10, 20, null }, result);
+    }
+
+    // Helper to instantiate CommandLine using its private constructor
+    private CommandLine instantiateCommandLineWithOptions(List<Option> options) throws Exception {
+        Class<CommandLine> cls = CommandLine.class;
+        Constructor<CommandLine> ctor = cls.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // args list can be empty
+        List<String> args = new ArrayList<>();
+        // third parameter deprecatedHandler is not used in tests, pass null
+        return ctor.newInstance(args, options, null);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getParsedOptionValues_40_0_Test: line 31 : class CommandLine_getParsedOptionValues_45_0_Test is public, should be declared in a file named CommandLine_getParsedOptionValues_45_0_Test.java

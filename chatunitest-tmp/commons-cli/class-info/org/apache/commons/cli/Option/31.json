@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "hasOptionalArg",
+  "brief": "public boolean hasOptionalArg(){}",
+  "methodSignature": "hasOptionalArg()",
+  "sourceCode": "public boolean hasOptionalArg() {\n        return optionalArg;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether this Option can have an optional argument.\n *\n * @return whether this Option can have an optional argument.\n */\npublic boolean hasOptionalArg() {\n    return optionalArg;\n}",
+  "method_comment": "\n     * Tests whether this Option can have an optional argument.\n     *\n     * @return whether this Option can have an optional argument.\n     ",
+  "method_annotation": ""
+}

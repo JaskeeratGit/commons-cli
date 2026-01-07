@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "since",
+  "brief": "public Builder since(final String since){}",
+  "methodSignature": "since(String)",
+  "sourceCode": "public Builder since(final String since) {\n            this.since = since;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the version number when this option was first defined.\"\n *\n * @param since the version number when this option was first defined.\n * @return this builder.\n */\npublic Builder since(final String since) {\n    this.since = since;\n    return this;\n}",
+  "method_comment": " Sets the version number when this option was first defined.\"\n         *\n         * @param since the version number when this option was first defined.\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

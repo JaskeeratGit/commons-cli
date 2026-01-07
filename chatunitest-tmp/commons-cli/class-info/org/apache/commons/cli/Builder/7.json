@@ -1,0 +1,18 @@
+{
+  "className": "Builder",
+  "methodName": "get",
+  "brief": "@Override\n        public Option get(){}",
+  "methodSignature": "get()",
+  "sourceCode": "@Override\n        public Option get() {\n            return new Option(this);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Constructs an Option with the values declared by this {@link Builder}.\n *\n * @return the new {@link Option}.\n * @throws IllegalStateException if neither {@code opt} or {@code longOpt} has been set.\n */\n@Override\npublic Option get() {\n    return new Option(this);\n}",
+  "method_comment": "\n         * Constructs an Option with the values declared by this {@link Builder}.\n         *\n         * @return the new {@link Option}.\n         * @throws IllegalStateException if neither {@code opt} or {@code longOpt} has been set.\n         ",
+  "method_annotation": "@Override\n"
+}

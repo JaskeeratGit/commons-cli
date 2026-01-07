@@ -1,0 +1,28 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionProperties",
+  "brief": "public Properties getOptionProperties(final Option option){}",
+  "methodSignature": "getOptionProperties(Option)",
+  "sourceCode": "public Properties getOptionProperties(final Option option) {\n        final Properties props = new Properties();\n        for (final Option processedOption : options) {\n            if (processedOption.equals(option)) {\n                processPropertiesFromValues(props, processedOption.getValuesList());\n            }\n        }\n        return props;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "equals(Object)",
+      "getValuesList()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "processPropertiesFromValues(Properties, String>)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the map of values associated to the option. This is convenient for options specifying Java properties like\n * <code>-Dparam1=value1\n * -Dparam2=value2</code>. All odd numbered values are property keys\n * and even numbered values are property values.  If there are an odd number of values\n * the last value is assumed to be a boolean flag and the value is \"true\".\n *\n * @param option name of the option.\n * @return The Properties mapped by the option, never {@code null} even if the option doesn't exists.\n * @since 1.5.0\n */\npublic Properties getOptionProperties(final Option option) {\n    final Properties props = new Properties();\n    for (final Option processedOption : options) {\n        if (processedOption.equals(option)) {\n            processPropertiesFromValues(props, processedOption.getValuesList());\n        }\n    }\n    return props;\n}",
+  "method_comment": "\n     * Gets the map of values associated to the option. This is convenient for options specifying Java properties like\n     * <code>-Dparam1=value1\n     * -Dparam2=value2</code>. All odd numbered values are property keys\n     * and even numbered values are property values.  If there are an odd number of values\n     * the last value is assumed to be a boolean flag and the value is \"true\".\n     *\n     * @param option name of the option.\n     * @return The Properties mapped by the option, never {@code null} even if the option doesn't exists.\n     * @since 1.5.0\n     ",
+  "method_annotation": ""
+}

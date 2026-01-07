@@ -1,0 +1,31 @@
+{
+  "className": "DefaultParser",
+  "methodName": "isJavaProperty",
+  "brief": "private boolean isJavaProperty(final String token){}",
+  "methodSignature": "isJavaProperty(String)",
+  "sourceCode": "private boolean isJavaProperty(final String token) {\n        final String opt = token.isEmpty() ? null : token.substring(0, 1);\n        final Option option = options.getOption(opt);\n        return option != null && (option.getArgs() >= 2 || option.getArgs() == Option.UNLIMITED_VALUES);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "isEmpty()",
+      "substring(int, int)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "getOption(String)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getArgs()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests if the specified token is a Java-like property (-Dkey=value).\n */\nprivate boolean isJavaProperty(final String token) {\n    final String opt = token.isEmpty() ? null : token.substring(0, 1);\n    final Option option = options.getOption(opt);\n    return option != null && (option.getArgs() >= 2 || option.getArgs() == Option.UNLIMITED_VALUES);\n}",
+  "method_comment": "\n     * Tests if the specified token is a Java-like property (-Dkey=value).\n     ",
+  "method_annotation": ""
+}

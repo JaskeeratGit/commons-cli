@@ -1,0 +1,36 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "renderWrappedTextBlock",
+  "brief": "private <A extends Appendable> A renderWrappedTextBlock(final A appendable, final int width, final int nextLineTabStop, final String text){}",
+  "methodSignature": "renderWrappedTextBlock(A, int, int, String)",
+  "sourceCode": "private <A extends Appendable> A renderWrappedTextBlock(final A appendable, final int width, final int nextLineTabStop, final String text) {\n        try {\n            final BufferedReader in = new BufferedReader(new StringReader(text));\n            String line;\n            boolean firstLine = true;\n            while ((line = in.readLine()) != null) {\n                if (!firstLine) {\n                    appendable.append(getNewLine());\n                } else {\n                    firstLine = false;\n                }\n                appendWrappedText(appendable, width, nextLineTabStop, line);\n            }\n        } catch (final IOException e) { // NOPMD\n            // cannot happen\n        }\n        return appendable;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "A",
+    "int",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "A": [],
+    "java.lang.String": [],
+    "java.io.BufferedReader": [
+      "readLine()"
+    ],
+    "java.lang.Appendable": [
+      "append(CharSequence)"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "getNewLine()",
+      "appendWrappedText(A, int, int, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Renders the specified text width a maximum width. This method differs from renderWrappedText by not removing leading\n * spaces after a new line.\n *\n * @param appendable The StringBuffer to place the rendered text into.\n * @param width The number of characters to display per line\n * @param nextLineTabStop The position on the next line for the first tab.\n * @param text The text to be rendered.\n */\nprivate <A extends Appendable> A renderWrappedTextBlock(final A appendable, final int width, final int nextLineTabStop, final String text) {\n    try {\n        final BufferedReader in = new BufferedReader(new StringReader(text));\n        String line;\n        boolean firstLine = true;\n        while ((line = in.readLine()) != null) {\n            if (!firstLine) {\n                appendable.append(getNewLine());\n            } else {\n                firstLine = false;\n            }\n            appendWrappedText(appendable, width, nextLineTabStop, line);\n        }\n    } catch (final IOException e) {\n        // NOPMD\n        // cannot happen\n    }\n    return appendable;\n}",
+  "method_comment": "\n     * Renders the specified text width a maximum width. This method differs from renderWrappedText by not removing leading\n     * spaces after a new line.\n     *\n     * @param appendable The StringBuffer to place the rendered text into.\n     * @param width The number of characters to display per line\n     * @param nextLineTabStop The position on the next line for the first tab.\n     * @param text The text to be rendered.\n     ",
+  "method_annotation": ""
+}

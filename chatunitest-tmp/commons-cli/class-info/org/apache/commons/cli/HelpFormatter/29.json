@@ -1,0 +1,32 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printUsage",
+  "brief": "public void printUsage(final PrintWriter pw, final int width, final String cmdLineSyntax){}",
+  "methodSignature": "printUsage(PrintWriter, int, String)",
+  "sourceCode": "public void printUsage(final PrintWriter pw, final int width, final String cmdLineSyntax) {\n        final int argPos = cmdLineSyntax.indexOf(' ') + 1;\n        printWrapped(pw, width, getSyntaxPrefix().length() + argPos, getSyntaxPrefix() + cmdLineSyntax);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PrintWriter",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.io.PrintWriter": [],
+    "java.lang.String": [
+      "indexOf(int)",
+      "length()"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "printWrapped(PrintWriter, int, int, String)",
+      "getSyntaxPrefix()"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the cmdLineSyntax to the specified writer, using the specified width.\n *\n * @param pw The printWriter to write the help to\n * @param width The number of characters per line for the usage statement.\n * @param cmdLineSyntax The usage statement.\n */\npublic void printUsage(final PrintWriter pw, final int width, final String cmdLineSyntax) {\n    final int argPos = cmdLineSyntax.indexOf(' ') + 1;\n    printWrapped(pw, width, getSyntaxPrefix().length() + argPos, getSyntaxPrefix() + cmdLineSyntax);\n}",
+  "method_comment": "\n     * Prints the cmdLineSyntax to the specified writer, using the specified width.\n     *\n     * @param pw The printWriter to write the help to\n     * @param width The number of characters per line for the usage statement.\n     * @param cmdLineSyntax The usage statement.\n     ",
+  "method_annotation": ""
+}

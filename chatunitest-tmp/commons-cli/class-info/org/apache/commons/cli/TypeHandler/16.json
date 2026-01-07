@@ -1,0 +1,24 @@
+{
+  "className": "TypeHandler",
+  "methodName": "TypeHandler",
+  "brief": "public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}",
+  "methodSignature": "TypeHandler(Map)",
+  "sourceCode": "public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap) {\n        this.converterMap = Objects.requireNonNull(converterMap, \"converterMap\");\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<Class<?>,Converter<?,? extends Throwable>>"
+  ],
+  "dependentMethods": {
+    "java.util.Objects": [
+      "requireNonNull(T, String)"
+    ]
+  },
+  "full_method_info": "public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap) {\n    this.converterMap = Objects.requireNonNull(converterMap, \"converterMap\");\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

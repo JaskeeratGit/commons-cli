@@ -1,0 +1,28 @@
+{
+  "className": "CommandLine",
+  "methodName": "hasOption",
+  "brief": "public boolean hasOption(final OptionGroup optionGroup){}",
+  "methodSignature": "hasOption(OptionGroup)",
+  "sourceCode": "public boolean hasOption(final OptionGroup optionGroup) {\n        if (optionGroup == null || !optionGroup.isSelected()) {\n            return false;\n        }\n        return hasOption(optionGroup.getSelected());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionGroup"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionGroup": [
+      "getSelected()",
+      "isSelected()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "hasOption(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests to see if an option has been set.\n *\n * @param optionGroup the option group to check.\n * @return true if set, false if not.\n * @since 1.9.0\n */\npublic boolean hasOption(final OptionGroup optionGroup) {\n    if (optionGroup == null || !optionGroup.isSelected()) {\n        return false;\n    }\n    return hasOption(optionGroup.getSelected());\n}",
+  "method_comment": "\n     * Tests to see if an option has been set.\n     *\n     * @param optionGroup the option group to check.\n     * @return true if set, false if not.\n     * @since 1.9.0\n     ",
+  "method_annotation": ""
+}

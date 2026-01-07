@@ -1,0 +1,36 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "resize",
+  "brief": "protected TextStyle.Builder resize(final TextStyle.Builder builder, final double fraction){}",
+  "methodSignature": "resize(TextStyle.Builder, double)",
+  "sourceCode": "protected TextStyle.Builder resize(final TextStyle.Builder builder, final double fraction) {\n        final double indentFrac = builder.getIndent() * 1.0 / builder.getMaxWidth();\n        builder.setMaxWidth(Math.max(resize(builder.getMaxWidth(), fraction), builder.getMinWidth()));\n        final int maxAdjust = builder.getMaxWidth() / 3;\n        int newIndent = builder.getMaxWidth() == 1 ? 0 : builder.getIndent();\n        if (newIndent > maxAdjust) {\n            newIndent = Math.min(resize(builder.getIndent(), indentFrac), maxAdjust);\n        }\n        builder.setIndent(newIndent);\n        return builder;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TextStyle.Builder",
+    "double"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "getMinWidth()",
+      "setMaxWidth(int)",
+      "getIndent()",
+      "getMaxWidth()",
+      "setIndent(int)"
+    ],
+    "java.lang.Math": [
+      "min(int, int)",
+      "max(int, int)"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "resize(int, double)"
+    ]
+  },
+  "full_method_info": "/**\n * Resizes a TextStyle builder based on the fractional size.\n *\n * @param builder  the builder to adjust.\n * @param fraction the fractional size (for example percentage of the current size) that the builder should be.\n * @return the builder with the maximum width and indent values resized.\n */\nprotected TextStyle.Builder resize(final TextStyle.Builder builder, final double fraction) {\n    final double indentFrac = builder.getIndent() * 1.0 / builder.getMaxWidth();\n    builder.setMaxWidth(Math.max(resize(builder.getMaxWidth(), fraction), builder.getMinWidth()));\n    final int maxAdjust = builder.getMaxWidth() / 3;\n    int newIndent = builder.getMaxWidth() == 1 ? 0 : builder.getIndent();\n    if (newIndent > maxAdjust) {\n        newIndent = Math.min(resize(builder.getIndent(), indentFrac), maxAdjust);\n    }\n    builder.setIndent(newIndent);\n    return builder;\n}",
+  "method_comment": "\n     * Resizes a TextStyle builder based on the fractional size.\n     *\n     * @param builder  the builder to adjust.\n     * @param fraction the fractional size (for example percentage of the current size) that the builder should be.\n     * @return the builder with the maximum width and indent values resized.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,21 @@
+{
+  "className": "HelpAppendable",
+  "methodName": "appendList",
+  "brief": "void appendList(boolean ordered, Collection<CharSequence> list) throws IOException;",
+  "methodSignature": "appendList(boolean, Collection)",
+  "sourceCode": "void appendList(boolean ordered, Collection<CharSequence> list) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean",
+    "Collection<CharSequence>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Appends a list.\n *\n * @param ordered {@code true} if the list should be ordered.\n * @param list    the list to write, null is a noop.\n * @throws IOException If an output error occurs.\n */\nvoid appendList(boolean ordered, Collection<CharSequence> list) throws IOException;",
+  "method_comment": "\n     * Appends a list.\n     *\n     * @param ordered {@code true} if the list should be ordered.\n     * @param list    the list to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     ",
+  "method_annotation": ""
+}

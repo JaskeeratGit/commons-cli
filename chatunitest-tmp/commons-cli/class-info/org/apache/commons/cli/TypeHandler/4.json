@@ -1,0 +1,22 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createFiles",
+  "brief": "@Deprecated // since 1.7.0\n    public static File[] createFiles(final String string){}",
+  "methodSignature": "createFiles(String)",
+  "sourceCode": "@Deprecated // since 1.7.0\n    public static File[] createFiles(final String string) {\n        // to implement/port:\n        // return FileW.findFiles(string);\n        throw new UnsupportedOperationException(\"Not yet implemented\");\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Creates the File[] represented by {@code string}.\n *\n * <p>\n * This method is not yet implemented and always throws an {@link UnsupportedOperationException}.\n * </p>\n *\n * @param string the paths to the files\n * @return The File[] represented by {@code string}.\n * @throws UnsupportedOperationException always\n * @deprecated with no replacement\n */\n// since 1.7.0\n@Deprecated\npublic static File[] createFiles(final String string) {\n    // to implement/port:\n    // return FileW.findFiles(string);\n    throw new UnsupportedOperationException(\"Not yet implemented\");\n}",
+  "method_comment": "\n     * Creates the File[] represented by {@code string}.\n     *\n     * <p>\n     * This method is not yet implemented and always throws an {@link UnsupportedOperationException}.\n     * </p>\n     *\n     * @param string the paths to the files\n     * @return The File[] represented by {@code string}.\n     * @throws UnsupportedOperationException always\n     * @deprecated with no replacement\n     ",
+  "method_annotation": "// since 1.7.0\n@Deprecated\n"
+}

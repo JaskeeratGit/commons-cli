@@ -1,0 +1,25 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "toArgName",
+  "brief": "public final String toArgName(final String argName){}",
+  "methodSignature": "toArgName(String)",
+  "sourceCode": "public final String toArgName(final String argName) {\n        return optionFormatBuilder.toArgName(argName);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.help.OptionFormatter.Builder": [
+      "toArgName(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Formats the {@code argName} as an argument a defined in the enclosed {@link OptionFormatter.Builder}\n *\n * @param argName the string to format as an argument.\n * @return the {@code argName} formatted as an argument.\n */\npublic final String toArgName(final String argName) {\n    return optionFormatBuilder.toArgName(argName);\n}",
+  "method_comment": "\n     * Formats the {@code argName} as an argument a defined in the enclosed {@link OptionFormatter.Builder}\n     *\n     * @param argName the string to format as an argument.\n     * @return the {@code argName} formatted as an argument.\n     ",
+  "method_annotation": ""
+}

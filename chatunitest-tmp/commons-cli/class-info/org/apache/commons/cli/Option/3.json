@@ -1,0 +1,28 @@
+{
+  "className": "Option",
+  "methodName": "add",
+  "brief": "private void add(final String value){}",
+  "methodSignature": "add(String)",
+  "sourceCode": "private void add(final String value) {\n        if (!acceptsArg()) {\n            throw new IllegalArgumentException(\"Cannot add value, list full.\");\n        }\n        // store value\n        values.add(value);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Option": [
+      "acceptsArg()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the value to this Option. If the number of arguments is greater than zero and there is enough space in the list then add the value. Otherwise, throw\n * a runtime exception.\n *\n * @param value The value to be added to this Option.\n */\nprivate void add(final String value) {\n    if (!acceptsArg()) {\n        throw new IllegalArgumentException(\"Cannot add value, list full.\");\n    }\n    // store value\n    values.add(value);\n}",
+  "method_comment": "\n     * Adds the value to this Option. If the number of arguments is greater than zero and there is enough space in the list then add the value. Otherwise, throw\n     * a runtime exception.\n     *\n     * @param value The value to be added to this Option.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "withType",
+  "brief": "public static OptionBuilder withType(final Class<?> newType){}",
+  "methodSignature": "withType(Class)",
+  "sourceCode": "public static OptionBuilder withType(final Class<?> newType) {\n        type = newType;\n        return INSTANCE;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<?>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The next Option created will have a value that will be an instance of {@code type}.\n *\n * @param newType the type of the Options argument value\n * @return the OptionBuilder instance\n * @since 1.3\n */\npublic static OptionBuilder withType(final Class<?> newType) {\n    type = newType;\n    return INSTANCE;\n}",
+  "method_comment": "\n     * The next Option created will have a value that will be an instance of {@code type}.\n     *\n     * @param newType the type of the Options argument value\n     * @return the OptionBuilder instance\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "DefaultParser",
+  "methodName": "parse",
+  "brief": "public CommandLine parse(final Options options, final String[] arguments, final Properties properties, final boolean stopAtNonOption)\n        throws ParseException{}",
+  "methodSignature": "parse(Options, String[], Properties, boolean)",
+  "sourceCode": "public CommandLine parse(final Options options, final String[] arguments, final Properties properties, final boolean stopAtNonOption)\n        throws ParseException {\n        return parse(options, properties, stopAtNonOption ? NonOptionAction.STOP : NonOptionAction.THROW, arguments);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]",
+    "Properties",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": [],
+    "java.util.Properties": [],
+    "org.apache.commons.cli.DefaultParser": [
+      "parse(Options, Properties, NonOptionAction, String[])"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the arguments according to the specified options and properties.\n *\n * @param options the specified Options.\n * @param arguments the command line arguments.\n * @param properties command line option name-value pairs.\n * @param stopAtNonOption if {@code true} an unrecognized argument stops the parsing and the remaining arguments\n *        are added to the {@link CommandLine}s args list. If {@code false} an unrecognized argument triggers a\n *        ParseException.\n * @return the list of atomic option and value tokens.\n * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n * @see #parse(Options, Properties, NonOptionAction, String[])\n */\npublic CommandLine parse(final Options options, final String[] arguments, final Properties properties, final boolean stopAtNonOption) throws ParseException {\n    return parse(options, properties, stopAtNonOption ? NonOptionAction.STOP : NonOptionAction.THROW, arguments);\n}",
+  "method_comment": "\n     * Parses the arguments according to the specified options and properties.\n     *\n     * @param options the specified Options.\n     * @param arguments the command line arguments.\n     * @param properties command line option name-value pairs.\n     * @param stopAtNonOption if {@code true} an unrecognized argument stops the parsing and the remaining arguments\n     *        are added to the {@link CommandLine}s args list. If {@code false} an unrecognized argument triggers a\n     *        ParseException.\n     * @return the list of atomic option and value tokens.\n     * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n     * @see #parse(Options, Properties, NonOptionAction, String[])\n     ",
+  "method_annotation": ""
+}

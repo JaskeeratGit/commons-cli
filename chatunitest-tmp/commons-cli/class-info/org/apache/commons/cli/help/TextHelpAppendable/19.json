@@ -1,0 +1,24 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "setIndent",
+  "brief": "public void setIndent(final int indent){}",
+  "methodSignature": "setIndent(int)",
+  "sourceCode": "public void setIndent(final int indent) {\n        textStyleBuilder.setIndent(indent);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "setIndent(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the indent for the output.\n *\n * @param indent the indent used for paragraphs.\n */\npublic void setIndent(final int indent) {\n    textStyleBuilder.setIndent(indent);\n}",
+  "method_comment": "\n     * Sets the indent for the output.\n     *\n     * @param indent the indent used for paragraphs.\n     ",
+  "method_annotation": ""
+}

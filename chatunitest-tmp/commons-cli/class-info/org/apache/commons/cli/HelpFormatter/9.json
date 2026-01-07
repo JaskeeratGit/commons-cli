@@ -1,0 +1,28 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "findWrapPos",
+  "brief": "protected int findWrapPos(final String text, final int width, final int startPos){}",
+  "methodSignature": "findWrapPos(String, int, int)",
+  "sourceCode": "protected int findWrapPos(final String text, final int width, final int startPos) {\n        // the line ends before the max wrap pos or a new line char found\n        int pos = text.indexOf(Char.LF, startPos);\n        if (pos != -1 && pos <= width) {\n            return pos + 1;\n        }\n        pos = text.indexOf(Char.TAB, startPos);\n        if (pos != -1 && pos <= width) {\n            return pos + 1;\n        }\n        if (startPos + width >= text.length()) {\n            return -1;\n        }\n        // look for the last whitespace character before startPos+width\n        for (pos = startPos + width; pos >= startPos; --pos) {\n            final char c = text.charAt(pos);\n            if (c == Char.SP || c == Char.LF || c == Char.CR) {\n                break;\n            }\n        }\n        // if we found it - just return\n        if (pos > startPos) {\n            return pos;\n        }\n        // if we didn't find one, simply chop at startPos+width\n        pos = startPos + width;\n        return pos == text.length() ? -1 : pos;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "indexOf(int, int)",
+      "length()",
+      "charAt(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Finds the next text wrap position after {@code startPos} for the text in {@code text} with the column width\n * {@code width}. The wrap point is the last position before startPos+width having a whitespace character (space,\n * \\n, \\r). If there is no whitespace character before startPos+width, it will return startPos+width.\n *\n * @param text The text being searched for the wrap position\n * @param width width of the wrapped text\n * @param startPos position from which to start the lookup whitespace character\n * @return position on which the text must be wrapped or -1 if the wrap position is at the end of the text\n */\nprotected int findWrapPos(final String text, final int width, final int startPos) {\n    // the line ends before the max wrap pos or a new line char found\n    int pos = text.indexOf(Char.LF, startPos);\n    if (pos != -1 && pos <= width) {\n        return pos + 1;\n    }\n    pos = text.indexOf(Char.TAB, startPos);\n    if (pos != -1 && pos <= width) {\n        return pos + 1;\n    }\n    if (startPos + width >= text.length()) {\n        return -1;\n    }\n    // look for the last whitespace character before startPos+width\n    for (pos = startPos + width; pos >= startPos; --pos) {\n        final char c = text.charAt(pos);\n        if (c == Char.SP || c == Char.LF || c == Char.CR) {\n            break;\n        }\n    }\n    // if we found it - just return\n    if (pos > startPos) {\n        return pos;\n    }\n    // if we didn't find one, simply chop at startPos+width\n    pos = startPos + width;\n    return pos == text.length() ? -1 : pos;\n}",
+  "method_comment": "\n     * Finds the next text wrap position after {@code startPos} for the text in {@code text} with the column width\n     * {@code width}. The wrap point is the last position before startPos+width having a whitespace character (space,\n     * \\n, \\r). If there is no whitespace character before startPos+width, it will return startPos+width.\n     *\n     * @param text The text being searched for the wrap position\n     * @param width width of the wrapped text\n     * @param startPos position from which to start the lookup whitespace character\n     * @return position on which the text must be wrapped or -1 if the wrap position is at the end of the text\n     ",
+  "method_annotation": ""
+}

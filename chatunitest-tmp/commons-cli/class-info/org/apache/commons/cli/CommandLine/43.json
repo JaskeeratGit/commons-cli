@@ -1,0 +1,42 @@
+{
+  "className": "CommandLine",
+  "methodName": "getParsedOptionValues",
+  "brief": "@SuppressWarnings(\"unchecked\")\n    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}",
+  "methodSignature": "getParsedOptionValues(Option, Supplier)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException {\n        if (option == null) {\n            return get(defaultValue);\n        }\n        final Class<? extends T> clazz = (Class<? extends T>) option.getType();\n        final String[] values = getOptionValues(option);\n        if (values == null) {\n            return get(defaultValue);\n        }\n        final T[] result = (T[]) Array.newInstance(clazz, values.length);\n        try {\n            for (int i = 0; i < values.length; i++) {\n                result[i] = clazz.cast(option.getConverter().apply(values[i]));\n            }\n            return result;\n        } catch (final Exception t) {\n            throw ParseException.wrap(t);\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option",
+    "Supplier<T[]>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getType()",
+      "getConverter()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "get(Supplier<T>)",
+      "getOptionValues(Option)"
+    ],
+    "java.lang.reflect.Array": [
+      "newInstance(Object>, int)"
+    ],
+    "java.lang.Class": [
+      "cast(Object)"
+    ],
+    "org.apache.commons.cli.Converter": [
+      "apply(String)"
+    ],
+    "org.apache.commons.cli.ParseException": [
+      "wrap(Throwable)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a version of this {@code Option} converted to an array of a particular type.\n *\n * @param option the option.\n * @param defaultValue the default value to return if opt is not set.\n * @param <T> The array type for the return value.\n * @return the values parsed into an array of objects or the defaultValue if the option is not set.\n * @throws ParseException if there are problems turning the option value into the desired type\n * @see PatternOptionBuilder\n * @since 1.10.0\n */\n@SuppressWarnings(\"unchecked\")\npublic <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException {\n    if (option == null) {\n        return get(defaultValue);\n    }\n    final Class<? extends T> clazz = (Class<? extends T>) option.getType();\n    final String[] values = getOptionValues(option);\n    if (values == null) {\n        return get(defaultValue);\n    }\n    final T[] result = (T[]) Array.newInstance(clazz, values.length);\n    try {\n        for (int i = 0; i < values.length; i++) {\n            result[i] = clazz.cast(option.getConverter().apply(values[i]));\n        }\n        return result;\n    } catch (final Exception t) {\n        throw ParseException.wrap(t);\n    }\n}",
+  "method_comment": "\n     * Gets a version of this {@code Option} converted to an array of a particular type.\n     *\n     * @param option the option.\n     * @param defaultValue the default value to return if opt is not set.\n     * @param <T> The array type for the return value.\n     * @return the values parsed into an array of objects or the defaultValue if the option is not set.\n     * @throws ParseException if there are problems turning the option value into the desired type\n     * @see PatternOptionBuilder\n     * @since 1.10.0\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

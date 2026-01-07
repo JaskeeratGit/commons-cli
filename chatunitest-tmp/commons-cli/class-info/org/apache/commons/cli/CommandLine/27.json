@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getParsedOptionValue",
+  "brief": "public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}",
+  "methodSignature": "getParsedOptionValue(char)",
+  "sourceCode": "public <T> T getParsedOptionValue(final char optionChar) throws ParseException {\n        return getParsedOptionValue(String.valueOf(optionChar));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.CommandLine": [
+      "getParsedOptionValue(String)"
+    ],
+    "java.lang.String": [
+      "valueOf(char)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a version of this {@code Option} converted to a particular type.\n *\n * @param optionChar the name of the option.\n * @param <T> The return type for the method.\n * @return the value parsed into a particular object or null if the option is not set.\n * @throws ParseException if there are problems turning the option value into the desired type\n * @see PatternOptionBuilder\n * @since 1.5.0\n */\npublic <T> T getParsedOptionValue(final char optionChar) throws ParseException {\n    return getParsedOptionValue(String.valueOf(optionChar));\n}",
+  "method_comment": "\n     * Gets a version of this {@code Option} converted to a particular type.\n     *\n     * @param optionChar the name of the option.\n     * @param <T> The return type for the method.\n     * @return the value parsed into a particular object or null if the option is not set.\n     * @throws ParseException if there are problems turning the option value into the desired type\n     * @see PatternOptionBuilder\n     * @since 1.5.0\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,68 @@
+{
+  "fullClassName": "org.apache.commons.cli.DeprecatedAttributes",
+  "className": "DeprecatedAttributes",
+  "index": 44,
+  "modifier": "[public , final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.commons.cli",
+  "packageDeclaration": "package org.apache.commons.cli;",
+  "classSignature": "public final class DeprecatedAttributes",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.function.Supplier;"
+  ],
+  "fields": [
+    "static final DeprecatedAttributes DEFAULT = new DeprecatedAttributes(\"\", \"\", false);",
+    "private static final String EMPTY_STRING = \"\";",
+    "private final String description;",
+    "private final boolean forRemoval;",
+    "private final String since;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "builder()": "0",
+    "getDescription()": "1",
+    "getSince()": "2",
+    "isForRemoval()": "3",
+    "toEmpty(String)": "4",
+    "toString()": "5",
+    "DeprecatedAttributes(String, String, boolean)": "6"
+  },
+  "methodsBrief": [
+    "public static Builder builder(){}",
+    "public String getDescription(){}",
+    "public String getSince(){}",
+    "public boolean isForRemoval(){}",
+    "private String toEmpty(final String since){}",
+    "@Override\n    public String toString(){}",
+    "private DeprecatedAttributes(final String description, final String since, final boolean forRemoval){}"
+  ],
+  "constructorSigs": [
+    "DeprecatedAttributes(String, String, boolean)"
+  ],
+  "constructorBrief": [
+    "private DeprecatedAttributes(final String description, final String since, final boolean forRemoval){}"
+  ],
+  "getterSetterSigs": [
+    "getDescription()",
+    "getSince()"
+  ],
+  "getterSetterBrief": [
+    "public String getDescription(){}",
+    "public String getSince(){}"
+  ],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.DeprecatedAttributes": [
+      "toEmpty(String)"
+    ]
+  },
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli;\n\nimport java.util.function.Supplier;\n\n/**\n * Deprecated attributes.\n * <p>\n * Note: This class isn't called \"Deprecated\" to avoid clashing with \"java.lang.Deprecated\".\n * </p>\n * <p>\n * If you want to serialize this class, use a serialization proxy.\n * </p>\n *\n * @since 1.7.0\n * @see Deprecated\n */\npublic final class DeprecatedAttributes {\n\n    /**\n     * Builds {@link DeprecatedAttributes}.\n     */\n    public static class Builder implements Supplier<DeprecatedAttributes> {\n\n        /**\n         * The description.\n         */\n        private String description;\n\n        /**\n         * Whether this option is subject to removal in a future version.\n         *\n         * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.forRemoval</a>\n         */\n        private boolean forRemoval;\n\n        /**\n         * The version in which the option became deprecated.\n         *\n         * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.since</a>\n         */\n        private String since;\n\n        /**\n         * Constructs a new instance.\n         *\n         * @deprecated Use {@link #builder()}.\n         */\n        @Deprecated\n        public Builder() {\n            // empty\n        }\n\n        @Override\n        public DeprecatedAttributes get() {\n            return new DeprecatedAttributes(description, since, forRemoval);\n        }\n\n        /**\n         * Sets the description.\n         *\n         * @param description the description.\n         * @return {@code this} instance.\n         */\n        public Builder setDescription(final String description) {\n            this.description = description;\n            return this;\n        }\n\n        /**\n         * Sets whether this option is subject to removal in a future version.\n         *\n         * @param forRemoval whether this is subject to removal in a future version.\n         * @return {@code this} instance.\n         * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.forRemoval</a>\n         */\n        public Builder setForRemoval(final boolean forRemoval) {\n            this.forRemoval = forRemoval;\n            return this;\n        }\n\n        /**\n         * Sets the version in which the option became deprecated.\n         *\n         * @param since the version in which the option became deprecated.\n         * @return {@code this} instance.\n         */\n        public Builder setSince(final String since) {\n            this.since = since;\n            return this;\n        }\n    }\n\n    /**\n     * The default value for a DeprecatedAttributes.\n     */\n    static final DeprecatedAttributes DEFAULT = new DeprecatedAttributes(\"\", \"\", false);\n\n    /**\n     * The empty string.\n     */\n    private static final String EMPTY_STRING = \"\";\n\n    /**\n     * Creates a new builder.\n     *\n     * @return a new builder.\n     */\n    public static Builder builder() {\n        return new Builder();\n    }\n\n    /**\n     * The description.\n     */\n    private final String description;\n\n    /**\n     * Whether this option will be removed.\n     */\n    private final boolean forRemoval;\n\n    /**\n     * The version label for removal.\n     */\n    private final String since;\n\n    private DeprecatedAttributes(final String description, final String since, final boolean forRemoval) {\n        this.description = toEmpty(description);\n        this.since = toEmpty(since);\n        this.forRemoval = forRemoval;\n    }\n\n    /**\n     * Gets the descriptions.\n     *\n     * @return the descriptions.\n     */\n    public String getDescription() {\n        return description;\n    }\n\n    /**\n     * Gets version in which the option became deprecated.\n     *\n     * @return the version in which the option became deprecated.\n     */\n    public String getSince() {\n        return since;\n    }\n\n    /**\n     * Tests whether this option is subject to removal in a future version.\n     *\n     * @return whether this option is subject to removal in a future version.\n     */\n    public boolean isForRemoval() {\n        return forRemoval;\n    }\n\n    private String toEmpty(final String since) {\n        return since != null ? since : EMPTY_STRING;\n    }\n\n    @Override\n    public String toString() {\n        final StringBuilder builder = new StringBuilder(\"Deprecated\");\n        if (forRemoval) {\n            builder.append(\" for removal\");\n        }\n        if (!since.isEmpty()) {\n            builder.append(\" since \");\n            builder.append(since);\n        }\n        if (!description.isEmpty()) {\n            builder.append(\": \");\n            builder.append(description);\n        }\n        return builder.toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Deprecated attributes.\n * <p>\n * Note: This class isn't called \"Deprecated\" to avoid clashing with \"java.lang.Deprecated\".\n * </p>\n * <p>\n * If you want to serialize this class, use a serialization proxy.\n * </p>\n *\n * @since 1.7.0\n * @see Deprecated\n */\npublic final class DeprecatedAttributes {\n\n    /**\n     * Builds {@link DeprecatedAttributes}.\n     */\n    public static class Builder implements Supplier<DeprecatedAttributes> {\n\n        /**\n         * The description.\n         */\n        private String description;\n\n        /**\n         * Whether this option is subject to removal in a future version.\n         *\n         * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.forRemoval</a>\n         */\n        private boolean forRemoval;\n\n        /**\n         * The version in which the option became deprecated.\n         *\n         * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.since</a>\n         */\n        private String since;\n\n        /**\n         * Constructs a new instance.\n         *\n         * @deprecated Use {@link #builder()}.\n         */\n        @Deprecated\n        public Builder() {\n            // empty\n        }\n\n        @Override\n        public DeprecatedAttributes get() {\n            return new DeprecatedAttributes(description, since, forRemoval);\n        }\n\n        /**\n         * Sets the description.\n         *\n         * @param description the description.\n         * @return {@code this} instance.\n         */\n        public Builder setDescription(final String description) {\n            this.description = description;\n            return this;\n        }\n\n        /**\n         * Sets whether this option is subject to removal in a future version.\n         *\n         * @param forRemoval whether this is subject to removal in a future version.\n         * @return {@code this} instance.\n         * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.forRemoval</a>\n         */\n        public Builder setForRemoval(final boolean forRemoval) {\n            this.forRemoval = forRemoval;\n            return this;\n        }\n\n        /**\n         * Sets the version in which the option became deprecated.\n         *\n         * @param since the version in which the option became deprecated.\n         * @return {@code this} instance.\n         */\n        public Builder setSince(final String since) {\n            this.since = since;\n            return this;\n        }\n    }\n\n    /**\n     * The default value for a DeprecatedAttributes.\n     */\n    static final DeprecatedAttributes DEFAULT = new DeprecatedAttributes(\"\", \"\", false);\n\n    /**\n     * The empty string.\n     */\n    private static final String EMPTY_STRING = \"\";\n\n    /**\n     * Creates a new builder.\n     *\n     * @return a new builder.\n     */\n    public static Builder builder() {\n        return new Builder();\n    }\n\n    /**\n     * The description.\n     */\n    private final String description;\n\n    /**\n     * Whether this option will be removed.\n     */\n    private final boolean forRemoval;\n\n    /**\n     * The version label for removal.\n     */\n    private final String since;\n\n    private DeprecatedAttributes(final String description, final String since, final boolean forRemoval) {\n        this.description = toEmpty(description);\n        this.since = toEmpty(since);\n        this.forRemoval = forRemoval;\n    }\n\n    /**\n     * Gets the descriptions.\n     *\n     * @return the descriptions.\n     */\n    public String getDescription() {\n        return description;\n    }\n\n    /**\n     * Gets version in which the option became deprecated.\n     *\n     * @return the version in which the option became deprecated.\n     */\n    public String getSince() {\n        return since;\n    }\n\n    /**\n     * Tests whether this option is subject to removal in a future version.\n     *\n     * @return whether this option is subject to removal in a future version.\n     */\n    public boolean isForRemoval() {\n        return forRemoval;\n    }\n\n    private String toEmpty(final String since) {\n        return since != null ? since : EMPTY_STRING;\n    }\n\n    @Override\n    public String toString() {\n        final StringBuilder builder = new StringBuilder(\"Deprecated\");\n        if (forRemoval) {\n            builder.append(\" for removal\");\n        }\n        if (!since.isEmpty()) {\n            builder.append(\" since \");\n            builder.append(since);\n        }\n        if (!description.isEmpty()) {\n            builder.append(\": \");\n            builder.append(description);\n        }\n        return builder.toString();\n    }\n}",
+  "subClasses": []
+}

@@ -1,0 +1,28 @@
+{
+  "className": "PosixParser",
+  "methodName": "gobble",
+  "brief": "private void gobble(final Iterator<String> iter){}",
+  "methodSignature": "gobble(Iterator)",
+  "sourceCode": "private void gobble(final Iterator<String> iter) {\n        if (eatTheRest) {\n            while (iter.hasNext()) {\n                tokens.add(iter.next());\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterator<String>"
+  ],
+  "dependentMethods": {
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the remaining tokens to the processed tokens list.\n *\n * @param iter An iterator over the remaining tokens\n */\nprivate void gobble(final Iterator<String> iter) {\n    if (eatTheRest) {\n        while (iter.hasNext()) {\n            tokens.add(iter.next());\n        }\n    }\n}",
+  "method_comment": "\n     * Adds the remaining tokens to the processed tokens list.\n     *\n     * @param iter An iterator over the remaining tokens\n     ",
+  "method_annotation": ""
+}

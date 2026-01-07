@@ -1,0 +1,25 @@
+{
+  "className": "Option",
+  "methodName": "requiresArg",
+  "brief": "boolean requiresArg(){}",
+  "methodSignature": "requiresArg()",
+  "sourceCode": "boolean requiresArg() {\n        if (optionalArg) {\n            return false;\n        }\n        if (argCount == UNLIMITED_VALUES) {\n            return values.isEmpty();\n        }\n        return acceptsArg();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.List": [
+      "isEmpty()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "acceptsArg()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether the option requires more arguments to be valid.\n *\n * @return false if the option doesn't require more arguments.\n */\nboolean requiresArg() {\n    if (optionalArg) {\n        return false;\n    }\n    if (argCount == UNLIMITED_VALUES) {\n        return values.isEmpty();\n    }\n    return acceptsArg();\n}",
+  "method_comment": "\n     * Tests whether the option requires more arguments to be valid.\n     *\n     * @return false if the option doesn't require more arguments.\n     ",
+  "method_annotation": ""
+}

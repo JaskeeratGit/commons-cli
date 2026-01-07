@@ -1,0 +1,26 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "getArgName",
+  "brief": "public String getArgName(){}",
+  "methodSignature": "getArgName()",
+  "sourceCode": "public String getArgName() {\n        return option.hasArg() ? argNameDelimiters[0] + Util.defaultValue(option.getArgName(), defaultArgName) + argNameDelimiters[1] : \"\";\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "hasArg()",
+      "getArgName()"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "defaultValue(T, T)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the argument name wrapped in the argument name delimiters.\n * <ul>\n * <li>If option has no arguments an empty string is returned</li>\n * <li>If the argument name is not set the default argument name is used.</li>\n * </ul>\n *\n * @return The argument name wrapped in the argument name delimiters or an empty string.\n */\npublic String getArgName() {\n    return option.hasArg() ? argNameDelimiters[0] + Util.defaultValue(option.getArgName(), defaultArgName) + argNameDelimiters[1] : \"\";\n}",
+  "method_comment": "\n     * Gets the argument name wrapped in the argument name delimiters.\n     * <ul>\n     * <li>If option has no arguments an empty string is returned</li>\n     * <li>If the argument name is not set the default argument name is used.</li>\n     * </ul>\n     *\n     * @return The argument name wrapped in the argument name delimiters or an empty string.\n     ",
+  "method_annotation": ""
+}

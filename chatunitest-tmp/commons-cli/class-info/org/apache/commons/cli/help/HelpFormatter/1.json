@@ -1,0 +1,62 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getTableDefinition",
+  "brief": "@Override\n    public TableDefinition getTableDefinition(final Iterable<Option> options){}",
+  "methodSignature": "getTableDefinition(Iterable)",
+  "sourceCode": "@Override\n    public TableDefinition getTableDefinition(final Iterable<Option> options) {\n        // set up the base TextStyle for the columns configured for the Option opt and arg values.\n        final TextStyle.Builder builder = TextStyle.builder().setAlignment(TextStyle.Alignment.LEFT).setIndent(DEFAULT_LEFT_PAD).setScalable(false);\n        final List<TextStyle> styles = new ArrayList<>();\n        styles.add(builder.get());\n        // set up showSince column\n        builder.setScalable(true).setLeftPad(DEFAULT_COLUMN_SPACING);\n        if (showSince) {\n            builder.setAlignment(TextStyle.Alignment.CENTER);\n            styles.add(builder.get());\n        }\n        // set up the description column.\n        builder.setAlignment(TextStyle.Alignment.LEFT);\n        styles.add(builder.get());\n        // setup the rows for the table.\n        final List<List<String>> rows = new ArrayList<>();\n        final StringBuilder sb = new StringBuilder();\n        for (final Option option : options) {\n            final List<String> row = new ArrayList<>();\n            // create an option formatter to correctly format the parts of the option\n            final OptionFormatter formatter = getOptionFormatBuilder().build(option);\n            sb.setLength(0);\n            // append the opt values.\n            sb.append(formatter.getBothOpt());\n            // append the arg name if it exists.\n            if (option.hasArg()) {\n                sb.append(\" \").append(formatter.getArgName());\n            }\n            row.add(sb.toString());\n            // append the \"since\" value if desired.\n            if (showSince) {\n                row.add(formatter.getSince());\n            }\n            // add the option description\n            row.add(formatter.getDescription());\n            rows.add(row);\n        }\n        // return the TableDefinition with the proper column headers.\n        return TableDefinition.from(\"\", styles, showSince ? Arrays.asList(\"Options\", \"Since\", \"Description\") : Arrays.asList(\"Options\", \"Description\"), rows);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<Option>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "setAlignment(Alignment)",
+      "setScalable(boolean)",
+      "setLeftPad(int)",
+      "setIndent(int)",
+      "get()"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "builder()"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.commons.cli.help.OptionFormatter.Builder": [
+      "build(Option)"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "getOptionFormatBuilder()"
+    ],
+    "java.lang.AbstractStringBuilder": [
+      "setLength(int)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ],
+    "org.apache.commons.cli.help.OptionFormatter": [
+      "getDescription()",
+      "getBothOpt()",
+      "getSince()",
+      "getArgName()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "hasArg()"
+    ],
+    "org.apache.commons.cli.help.TableDefinition": [
+      "from(String, TextStyle>, String>, String>>)"
+    ],
+    "java.util.Arrays": [
+      "asList(T[])"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the table definition for the options.\n *\n * @param options the collection of {@link Option} instances to create the table from.\n * @return A {@link TableDefinition} to display the options.\n */\n@Override\npublic TableDefinition getTableDefinition(final Iterable<Option> options) {\n    // set up the base TextStyle for the columns configured for the Option opt and arg values.\n    final TextStyle.Builder builder = TextStyle.builder().setAlignment(TextStyle.Alignment.LEFT).setIndent(DEFAULT_LEFT_PAD).setScalable(false);\n    final List<TextStyle> styles = new ArrayList<>();\n    styles.add(builder.get());\n    // set up showSince column\n    builder.setScalable(true).setLeftPad(DEFAULT_COLUMN_SPACING);\n    if (showSince) {\n        builder.setAlignment(TextStyle.Alignment.CENTER);\n        styles.add(builder.get());\n    }\n    // set up the description column.\n    builder.setAlignment(TextStyle.Alignment.LEFT);\n    styles.add(builder.get());\n    // setup the rows for the table.\n    final List<List<String>> rows = new ArrayList<>();\n    final StringBuilder sb = new StringBuilder();\n    for (final Option option : options) {\n        final List<String> row = new ArrayList<>();\n        // create an option formatter to correctly format the parts of the option\n        final OptionFormatter formatter = getOptionFormatBuilder().build(option);\n        sb.setLength(0);\n        // append the opt values.\n        sb.append(formatter.getBothOpt());\n        // append the arg name if it exists.\n        if (option.hasArg()) {\n            sb.append(\" \").append(formatter.getArgName());\n        }\n        row.add(sb.toString());\n        // append the \"since\" value if desired.\n        if (showSince) {\n            row.add(formatter.getSince());\n        }\n        // add the option description\n        row.add(formatter.getDescription());\n        rows.add(row);\n    }\n    // return the TableDefinition with the proper column headers.\n    return TableDefinition.from(\"\", styles, showSince ? Arrays.asList(\"Options\", \"Since\", \"Description\") : Arrays.asList(\"Options\", \"Description\"), rows);\n}",
+  "method_comment": "\n     * Gets the table definition for the options.\n     *\n     * @param options the collection of {@link Option} instances to create the table from.\n     * @return A {@link TableDefinition} to display the options.\n     ",
+  "method_annotation": "@Override\n"
+}

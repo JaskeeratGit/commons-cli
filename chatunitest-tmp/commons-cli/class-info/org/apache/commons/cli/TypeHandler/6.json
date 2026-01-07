@@ -1,0 +1,25 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createObject",
+  "brief": "@Deprecated // since 1.7.0\n    public static Object createObject(final String className) throws ParseException{}",
+  "methodSignature": "createObject(String)",
+  "sourceCode": "@Deprecated // since 1.7.0\n    public static Object createObject(final String className) throws ParseException {\n        return createValue(className, Object.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValue(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates an Object from the class name and empty constructor.\n *\n * @param className the argument value\n * @return the initialized object\n * @throws ParseException if the class could not be found or the object could not be created\n * @deprecated use {@link #createValue(String, Class)}\n */\n// since 1.7.0\n@Deprecated\npublic static Object createObject(final String className) throws ParseException {\n    return createValue(className, Object.class);\n}",
+  "method_comment": "\n     * Creates an Object from the class name and empty constructor.\n     *\n     * @param className the argument value\n     * @return the initialized object\n     * @throws ParseException if the class could not be found or the object could not be created\n     * @deprecated use {@link #createValue(String, Class)}\n     ",
+  "method_annotation": "// since 1.7.0\n@Deprecated\n"
+}

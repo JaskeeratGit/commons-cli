@@ -1,0 +1,22 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createDefaultMap",
+  "brief": "public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap(){}",
+  "methodSignature": "createDefaultMap()",
+  "sourceCode": "public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap() {\n        return putDefaultMap(new HashMap<>());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.TypeHandler": [
+      "putDefaultMap(Throwable>>)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a default converter map.\n *\n * @return a default converter map.\n * @since 1.7.0\n */\npublic static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap() {\n    return putDefaultMap(new HashMap<>());\n}",
+  "method_comment": "\n     * Creates a default converter map.\n     *\n     * @return a default converter map.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

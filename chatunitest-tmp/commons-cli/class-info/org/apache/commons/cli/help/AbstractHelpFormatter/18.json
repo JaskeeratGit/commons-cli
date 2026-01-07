@@ -1,0 +1,43 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "toSyntaxOptions",
+  "brief": "protected String toSyntaxOptions(final Iterable<Option> options, final Function<Option, OptionGroup> lookup){}",
+  "methodSignature": "toSyntaxOptions(Iterable, Function)",
+  "sourceCode": "protected String toSyntaxOptions(final Iterable<Option> options, final Function<Option, OptionGroup> lookup) {\n        // list of groups that have been processed.\n        final Collection<OptionGroup> processedGroups = new ArrayList<>();\n        final List<Option> optList = sort(options);\n        final StringBuilder buff = new StringBuilder();\n        String prefix = \"\";\n        // iterate over the options\n        for (final Option option : optList) {\n            // get the next Option\n            // check if the option is part of an OptionGroup\n            final OptionGroup optionGroup = lookup.apply(option);\n            // if the option is part of a group\n            if (optionGroup != null) {\n                // and if the group has not already been processed\n                if (!processedGroups.contains(optionGroup)) {\n                    // add the group to the processed list\n                    processedGroups.add(optionGroup);\n                    // add the usage clause\n                    buff.append(prefix).append(toSyntaxOptions(optionGroup));\n                    prefix = \" \";\n                }\n                // otherwise the option was displayed in the group previously so ignore it.\n            }\n            // if the Option is not part of an OptionGroup\n            else {\n                buff.append(prefix).append(optionFormatBuilder.build(option).toSyntaxOption());\n                prefix = \" \";\n            }\n        }\n        return buff.toString();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<Option>",
+    "Function<Option,OptionGroup>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "toSyntaxOptions(OptionGroup)",
+      "sort(Option>)"
+    ],
+    "java.util.function.Function": [
+      "apply(T)"
+    ],
+    "java.util.Collection": [
+      "contains(Object)",
+      "add(E)"
+    ],
+    "java.lang.StringBuilder": [
+      "toString()",
+      "append(String)"
+    ],
+    "org.apache.commons.cli.help.OptionFormatter": [
+      "toSyntaxOption()"
+    ],
+    "org.apache.commons.cli.help.OptionFormatter.Builder": [
+      "build(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Return the string representation of the options as used in the syntax display.\n *\n * @param options The options to create the string representation for.\n * @param lookup  a function to determine if the Option is part of an OptionGroup that has already been processed.\n * @return the string representation of the options as used in the syntax display.\n */\nprotected String toSyntaxOptions(final Iterable<Option> options, final Function<Option, OptionGroup> lookup) {\n    // list of groups that have been processed.\n    final Collection<OptionGroup> processedGroups = new ArrayList<>();\n    final List<Option> optList = sort(options);\n    final StringBuilder buff = new StringBuilder();\n    String prefix = \"\";\n    // iterate over the options\n    for (final Option option : optList) {\n        // get the next Option\n        // check if the option is part of an OptionGroup\n        final OptionGroup optionGroup = lookup.apply(option);\n        // if the option is part of a group\n        if (optionGroup != null) {\n            // and if the group has not already been processed\n            if (!processedGroups.contains(optionGroup)) {\n                // add the group to the processed list\n                processedGroups.add(optionGroup);\n                // add the usage clause\n                buff.append(prefix).append(toSyntaxOptions(optionGroup));\n                prefix = \" \";\n            }\n            // otherwise the option was displayed in the group previously so ignore it.\n        } else // if the Option is not part of an OptionGroup\n        {\n            buff.append(prefix).append(optionFormatBuilder.build(option).toSyntaxOption());\n            prefix = \" \";\n        }\n    }\n    return buff.toString();\n}",
+  "method_comment": "\n     * Return the string representation of the options as used in the syntax display.\n     *\n     * @param options The options to create the string representation for.\n     * @param lookup  a function to determine if the Option is part of an OptionGroup that has already been processed.\n     * @return the string representation of the options as used in the syntax display.\n     ",
+  "method_annotation": ""
+}

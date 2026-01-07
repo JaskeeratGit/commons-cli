@@ -1,0 +1,25 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createClass",
+  "brief": "public static Class<?> createClass(final String className) throws ParseException{}",
+  "methodSignature": "createClass(String)",
+  "sourceCode": "public static Class<?> createClass(final String className) throws ParseException {\n        return createValue(className, Class.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValue(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the class whose name is {@code className}.\n *\n * @param className the class name\n * @return The class if it is found\n * @throws ParseException if the class could not be found\n */\npublic static Class<?> createClass(final String className) throws ParseException {\n    return createValue(className, Class.class);\n}",
+  "method_comment": "\n     * Returns the class whose name is {@code className}.\n     *\n     * @param className the class name\n     * @return The class if it is found\n     * @throws ParseException if the class could not be found\n     ",
+  "method_annotation": ""
+}

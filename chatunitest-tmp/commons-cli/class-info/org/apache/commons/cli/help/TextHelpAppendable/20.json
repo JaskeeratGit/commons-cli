@@ -1,0 +1,24 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "setLeftPad",
+  "brief": "public void setLeftPad(final int leftPad){}",
+  "methodSignature": "setLeftPad(int)",
+  "sourceCode": "public void setLeftPad(final int leftPad) {\n        textStyleBuilder.setLeftPad(leftPad);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "setLeftPad(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the left padding: the number of characters from the left edge to start output.\n *\n * @param leftPad the left padding.\n */\npublic void setLeftPad(final int leftPad) {\n    textStyleBuilder.setLeftPad(leftPad);\n}",
+  "method_comment": "\n     * Sets the left padding: the number of characters from the left edge to start output.\n     *\n     * @param leftPad the left padding.\n     ",
+  "method_annotation": ""
+}

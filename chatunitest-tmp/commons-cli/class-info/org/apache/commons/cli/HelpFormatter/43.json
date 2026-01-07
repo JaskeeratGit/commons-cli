@@ -1,0 +1,20 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setOptionComparator",
+  "brief": "public void setOptionComparator(final Comparator<Option> comparator){}",
+  "methodSignature": "setOptionComparator(Comparator)",
+  "sourceCode": "public void setOptionComparator(final Comparator<Option> comparator) {\n        this.optionComparator = comparator;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Comparator<Option>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the comparator used to sort the options when they output in help text. Passing in a null comparator will keep the\n * options in the order they were declared.\n *\n * @param comparator the {@link Comparator} to use for sorting the options\n * @since 1.2\n */\npublic void setOptionComparator(final Comparator<Option> comparator) {\n    this.optionComparator = comparator;\n}",
+  "method_comment": "\n     * Sets the comparator used to sort the options when they output in help text. Passing in a null comparator will keep the\n     * options in the order they were declared.\n     *\n     * @param comparator the {@link Comparator} to use for sorting the options\n     * @since 1.2\n     ",
+  "method_annotation": ""
+}

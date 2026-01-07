@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "OptionFormatter_builder_0_0_Test",
+    "fullName": "org.apache.commons.cli.help.OptionFormatter_builder_0_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test.java",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt1": {
+    "testClassName": "OptionFormatter_builder_0_1_Test",
+    "fullName": "org.apache.commons.cli.help.OptionFormatter_builder_0_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test.java",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt2": {
+    "testClassName": "OptionFormatter_builder_0_2_Test",
+    "fullName": "org.apache.commons.cli.help.OptionFormatter_builder_0_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test.java",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt3": {
+    "testClassName": "OptionFormatter_builder_0_3_Test",
+    "fullName": "org.apache.commons.cli.help.OptionFormatter_builder_0_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test.java",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  },
+  "attempt4": {
+    "testClassName": "OptionFormatter_builder_0_4_Test",
+    "fullName": "org.apache.commons.cli.help.OptionFormatter_builder_0_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/OptionFormatter_builder_0_0_Test.java",
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "builder",
+    "methodSig": "builder()"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "makeColumnQueue",
+  "brief": "protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style){}",
+  "methodSignature": "makeColumnQueue(CharSequence, TextStyle)",
+  "sourceCode": "protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {\n        final String lpad = Util.repeatSpace(style.getLeftPad());\n        final String indent = Util.repeatSpace(style.getIndent());\n        final Queue<String> result = new LinkedList<>();\n        int wrapPos = 0;\n        int nextPos;\n        final int wrappedMaxWidth = style.getMaxWidth() - indent.length();\n        while (wrapPos < columnData.length()) {\n            final int workingWidth = wrapPos == 0 ? style.getMaxWidth() : wrappedMaxWidth;\n            nextPos = indexOfWrap(columnData, workingWidth, wrapPos);\n            final CharSequence working = columnData.subSequence(wrapPos, nextPos);\n            result.add(lpad + style.pad(wrapPos > 0, working));\n            wrapPos = Util.indexOfNonWhitespace(columnData, nextPos);\n            wrapPos = wrapPos == -1 ? nextPos : wrapPos;\n        }\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence",
+    "TextStyle"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "subSequence(int, int)",
+      "length()"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "getLeftPad()",
+      "pad(boolean, CharSequence)",
+      "getIndent()",
+      "getMaxWidth()"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "indexOfNonWhitespace(CharSequence, int)",
+      "repeatSpace(int)"
+    ],
+    "java.lang.String": [
+      "length()"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "indexOfWrap(CharSequence, int, int)"
+    ],
+    "java.util.Queue": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a queue comprising strings extracted from columnData where the alignment and length are determined by the style.\n *\n * @param columnData The string to wrap\n * @param style      The TextStyle to guide the wrapping.\n * @return A queue of the string wrapped.\n */\nprotected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {\n    final String lpad = Util.repeatSpace(style.getLeftPad());\n    final String indent = Util.repeatSpace(style.getIndent());\n    final Queue<String> result = new LinkedList<>();\n    int wrapPos = 0;\n    int nextPos;\n    final int wrappedMaxWidth = style.getMaxWidth() - indent.length();\n    while (wrapPos < columnData.length()) {\n        final int workingWidth = wrapPos == 0 ? style.getMaxWidth() : wrappedMaxWidth;\n        nextPos = indexOfWrap(columnData, workingWidth, wrapPos);\n        final CharSequence working = columnData.subSequence(wrapPos, nextPos);\n        result.add(lpad + style.pad(wrapPos > 0, working));\n        wrapPos = Util.indexOfNonWhitespace(columnData, nextPos);\n        wrapPos = wrapPos == -1 ? nextPos : wrapPos;\n    }\n    return result;\n}",
+  "method_comment": "\n     * Creates a queue comprising strings extracted from columnData where the alignment and length are determined by the style.\n     *\n     * @param columnData The string to wrap\n     * @param style      The TextStyle to guide the wrapping.\n     * @return A queue of the string wrapped.\n     ",
+  "method_annotation": ""
+}

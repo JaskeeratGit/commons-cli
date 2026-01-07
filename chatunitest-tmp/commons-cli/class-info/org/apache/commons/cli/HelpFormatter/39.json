@@ -1,0 +1,20 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setLeftPadding",
+  "brief": "public void setLeftPadding(final int padding){}",
+  "methodSignature": "setLeftPadding(int)",
+  "sourceCode": "public void setLeftPadding(final int padding) {\n        this.defaultLeftPad = padding;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the 'leftPadding'.\n *\n * @param padding the new value of 'leftPadding'\n */\npublic void setLeftPadding(final int padding) {\n    this.defaultLeftPad = padding;\n}",
+  "method_comment": "\n     * Sets the 'leftPadding'.\n     *\n     * @param padding the new value of 'leftPadding'\n     ",
+  "method_annotation": ""
+}

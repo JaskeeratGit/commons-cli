@@ -1,0 +1,35 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "appendParagraph",
+  "brief": "@Override\n    public void appendParagraph(final CharSequence paragraph) throws IOException{}",
+  "methodSignature": "appendParagraph(CharSequence)",
+  "sourceCode": "@Override\n    public void appendParagraph(final CharSequence paragraph) throws IOException {\n        if (!Util.isEmpty(paragraph)) {\n            final Queue<String> queue = makeColumnQueue(paragraph, textStyleBuilder.get());\n            queue.add(BLANK_LINE);\n            printQueue(queue);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [],
+    "org.apache.commons.cli.help.Util": [
+      "isEmpty(CharSequence)"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "printQueue(String>)",
+      "makeColumnQueue(CharSequence, TextStyle)"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "get()"
+    ],
+    "java.util.Queue": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void appendParagraph(final CharSequence paragraph) throws IOException {\n    if (!Util.isEmpty(paragraph)) {\n        final Queue<String> queue = makeColumnQueue(paragraph, textStyleBuilder.get());\n        queue.add(BLANK_LINE);\n        printQueue(queue);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

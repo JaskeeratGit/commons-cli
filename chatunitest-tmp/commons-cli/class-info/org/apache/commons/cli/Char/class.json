@@ -1,0 +1,44 @@
+{
+  "fullClassName": "org.apache.commons.cli.Char",
+  "className": "Char",
+  "index": 33,
+  "modifier": "[final ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.commons.cli",
+  "packageDeclaration": "package org.apache.commons.cli;",
+  "classSignature": "final class Char",
+  "hasConstructor": true,
+  "isPublic": false,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "static final char APOS = '\\'';",
+    "static final char CR = '\\r';",
+    "static final char EQUAL = '=';",
+    "static final char LF = '\\n';",
+    "static final char SP = ' ';",
+    "static final char TAB = '\\t';"
+  ],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "Char()": "0"
+  },
+  "methodsBrief": [
+    "private Char(){}"
+  ],
+  "constructorSigs": [
+    "Char()"
+  ],
+  "constructorBrief": [
+    "private Char(){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli;\n\n/**\n * Package-private character constants.\n */\nfinal class Char {\n\n    /**\n     * Apostrophe\n     */\n    static final char APOS = '\\'';\n\n    /**\n     * Carriage return.\n     */\n    static final char CR = '\\r';\n\n    /**\n     * Equal sign.\n     */\n    static final char EQUAL = '=';\n\n    /**\n     * Line feed.\n     */\n    static final char LF = '\\n';\n\n    /**\n     * Space.\n     */\n    static final char SP = ' ';\n\n    /**\n     * Tab.\n     */\n    static final char TAB = '\\t';\n\n    private Char() {\n        // empty\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Package-private character constants.\n */\nfinal class Char {\n\n    /**\n     * Apostrophe\n     */\n    static final char APOS = '\\'';\n\n    /**\n     * Carriage return.\n     */\n    static final char CR = '\\r';\n\n    /**\n     * Equal sign.\n     */\n    static final char EQUAL = '=';\n\n    /**\n     * Line feed.\n     */\n    static final char LF = '\\n';\n\n    /**\n     * Space.\n     */\n    static final char SP = ' ';\n\n    /**\n     * Tab.\n     */\n    static final char TAB = '\\t';\n\n    private Char() {\n        // empty\n    }\n}",
+  "subClasses": []
+}

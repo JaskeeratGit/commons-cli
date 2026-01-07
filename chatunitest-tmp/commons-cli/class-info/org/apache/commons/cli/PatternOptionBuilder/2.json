@@ -1,0 +1,20 @@
+{
+  "className": "PatternOptionBuilder",
+  "methodName": "isValueCode",
+  "brief": "public static boolean isValueCode(final char ch){}",
+  "methodSignature": "isValueCode(char)",
+  "sourceCode": "public static boolean isValueCode(final char ch) {\n        return ch == '@' || ch == ':' || ch == '%' || ch == '+' || ch == '#' || ch == '<' || ch == '>' || ch == '*' || ch == '/' || ch == '!';\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Returns whether {@code ch} is a value code, i.e. whether it represents a class in a pattern.\n *\n * @param ch the specified character\n * @return true if {@code ch} is a value code, otherwise false.\n */\npublic static boolean isValueCode(final char ch) {\n    return ch == '@' || ch == ':' || ch == '%' || ch == '+' || ch == '#' || ch == '<' || ch == '>' || ch == '*' || ch == '/' || ch == '!';\n}",
+  "method_comment": "\n     * Returns whether {@code ch} is a value code, i.e. whether it represents a class in a pattern.\n     *\n     * @param ch the specified character\n     * @return true if {@code ch} is a value code, otherwise false.\n     ",
+  "method_annotation": ""
+}

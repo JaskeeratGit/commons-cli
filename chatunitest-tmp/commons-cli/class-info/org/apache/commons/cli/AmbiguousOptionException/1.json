@@ -1,0 +1,18 @@
+{
+  "className": "AmbiguousOptionException",
+  "methodName": "getMatchingOptions",
+  "brief": "public Collection<String> getMatchingOptions(){}",
+  "methodSignature": "getMatchingOptions()",
+  "sourceCode": "public Collection<String> getMatchingOptions() {\n        return matchingOptions;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the options matching the partial name.\n *\n * @return a collection of options matching the name\n */\npublic Collection<String> getMatchingOptions() {\n    return matchingOptions;\n}",
+  "method_comment": "\n     * Gets the options matching the partial name.\n     *\n     * @return a collection of options matching the name\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,28 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "printWrapped",
+  "brief": "public void printWrapped(final String text, final TextStyle style) throws IOException{}",
+  "methodSignature": "printWrapped(String, TextStyle)",
+  "sourceCode": "public void printWrapped(final String text, final TextStyle style) throws IOException {\n        printQueue(makeColumnQueue(text, style));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "TextStyle"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.help.TextStyle": [],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "printQueue(String>)",
+      "makeColumnQueue(CharSequence, TextStyle)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints wrapped text.\n *\n * @param text  the text to wrap\n * @param style the style for the wrapped text.\n * @throws IOException on output error.\n */\npublic void printWrapped(final String text, final TextStyle style) throws IOException {\n    printQueue(makeColumnQueue(text, style));\n}",
+  "method_comment": "\n     * Prints wrapped text.\n     *\n     * @param text  the text to wrap\n     * @param style the style for the wrapped text.\n     * @throws IOException on output error.\n     ",
+  "method_annotation": ""
+}

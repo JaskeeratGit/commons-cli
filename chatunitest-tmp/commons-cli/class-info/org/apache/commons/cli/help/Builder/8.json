@@ -1,0 +1,28 @@
+{
+  "className": "Builder",
+  "methodName": "setOptionGroupSeparator",
+  "brief": "public B setOptionGroupSeparator(final String optionGroupSeparator){}",
+  "methodSignature": "setOptionGroupSeparator(String)",
+  "sourceCode": "public B setOptionGroupSeparator(final String optionGroupSeparator) {\n            this.optionGroupSeparator = Util.defaultValue(optionGroupSeparator, \"\");\n            return asThis();\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.help.Util": [
+      "defaultValue(T, T)"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter.Builder": [
+      "asThis()"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the OptionGroup separator. Normally \" | \" or something similar to denote that only one option may be chosen.\n *\n * @param optionGroupSeparator the string to separate option group elements with.\n * @return this\n */\npublic B setOptionGroupSeparator(final String optionGroupSeparator) {\n    this.optionGroupSeparator = Util.defaultValue(optionGroupSeparator, \"\");\n    return asThis();\n}",
+  "method_comment": "\n         * Sets the OptionGroup separator. Normally \" | \" or something similar to denote that only one option may be chosen.\n         *\n         * @param optionGroupSeparator the string to separate option group elements with.\n         * @return this\n         ",
+  "method_annotation": ""
+}

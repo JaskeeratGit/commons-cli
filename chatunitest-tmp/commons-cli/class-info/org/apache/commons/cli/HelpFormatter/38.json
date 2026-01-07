@@ -1,0 +1,20 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setDescPadding",
+  "brief": "public void setDescPadding(final int padding){}",
+  "methodSignature": "setDescPadding(int)",
+  "sourceCode": "public void setDescPadding(final int padding) {\n        this.defaultDescPad = padding;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the 'descPadding'.\n *\n * @param padding the new value of 'descPadding'\n */\npublic void setDescPadding(final int padding) {\n    this.defaultDescPad = padding;\n}",
+  "method_comment": "\n     * Sets the 'descPadding'.\n     *\n     * @param padding the new value of 'descPadding'\n     ",
+  "method_annotation": ""
+}

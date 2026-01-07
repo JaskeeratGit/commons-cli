@@ -1,0 +1,26 @@
+{
+  "className": "Options",
+  "methodName": "addOption",
+  "brief": "public Options addOption(final String opt, final String description){}",
+  "methodSignature": "addOption(String, String)",
+  "sourceCode": "public Options addOption(final String opt, final String description) {\n        addOption(opt, null, false, description);\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [
+      "addOption(String, String, boolean, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds an option that only contains a short name.\n * <p>\n * The option does not take an argument.\n * </p>\n *\n * @param opt Short single-character name of the option.\n * @param description Self-documenting description.\n * @return the resulting Options instance.\n * @since 1.3\n */\npublic Options addOption(final String opt, final String description) {\n    addOption(opt, null, false, description);\n    return this;\n}",
+  "method_comment": "\n     * Adds an option that only contains a short name.\n     * <p>\n     * The option does not take an argument.\n     * </p>\n     *\n     * @param opt Short single-character name of the option.\n     * @param description Self-documenting description.\n     * @return the resulting Options instance.\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

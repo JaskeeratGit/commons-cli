@@ -1,0 +1,44 @@
+{
+  "method0": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "getDescription",
+    "signature": "getDescription()",
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "getSince",
+    "signature": "getSince()",
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "isForRemoval",
+    "signature": "isForRemoval()",
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "toEmpty",
+    "signature": "toEmpty(String)",
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "DeprecatedAttributes",
+    "signature": "DeprecatedAttributes(String, String, boolean)",
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "hasArg",
+  "brief": "public Builder hasArg(){}",
+  "methodSignature": "hasArg()",
+  "sourceCode": "public Builder hasArg() {\n            return hasArg(true);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option.Builder": [
+      "hasArg(boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether the Option will require an argument.\n *\n * @return {@code this} instance..\n */\npublic Builder hasArg() {\n    return hasArg(true);\n}",
+  "method_comment": "\n         * Tests whether the Option will require an argument.\n         *\n         * @return {@code this} instance..\n         ",
+  "method_annotation": ""
+}

@@ -1,0 +1,30 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "makeColumnQueues",
+  "brief": "protected List<Queue<String>> makeColumnQueues(final List<String> columnData, final List<TextStyle> styles){}",
+  "methodSignature": "makeColumnQueues(List, List)",
+  "sourceCode": "protected List<Queue<String>> makeColumnQueues(final List<String> columnData, final List<TextStyle> styles) {\n        final List<Queue<String>> result = new ArrayList<>();\n        for (int i = 0; i < columnData.size(); i++) {\n            result.add(makeColumnQueue(columnData.get(i), styles.get(i)));\n        }\n        return result;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "List<String>",
+    "List<TextStyle>"
+  ],
+  "dependentMethods": {
+    "java.util.List": [
+      "get(int)",
+      "add(E)",
+      "size()"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "makeColumnQueue(CharSequence, TextStyle)"
+    ]
+  },
+  "full_method_info": "/**\n * For each column in the {@code columnData} apply the associated {@link TextStyle} and generated a queue of strings that are the maximum size of the column\n * + the left pad.\n *\n * @param columnData The column data to output.\n * @param styles     the styles to apply.\n * @return A list of queues of strings that represent each column in the table.\n */\nprotected List<Queue<String>> makeColumnQueues(final List<String> columnData, final List<TextStyle> styles) {\n    final List<Queue<String>> result = new ArrayList<>();\n    for (int i = 0; i < columnData.size(); i++) {\n        result.add(makeColumnQueue(columnData.get(i), styles.get(i)));\n    }\n    return result;\n}",
+  "method_comment": "\n     * For each column in the {@code columnData} apply the associated {@link TextStyle} and generated a queue of strings that are the maximum size of the column\n     * + the left pad.\n     *\n     * @param columnData The column data to output.\n     * @param styles     the styles to apply.\n     * @return A list of queues of strings that represent each column in the table.\n     ",
+  "method_annotation": ""
+}

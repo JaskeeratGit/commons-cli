@@ -1,0 +1,27 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createValue",
+  "brief": "@Deprecated // since 1.7.0\n    public static Object createValue(final String string, final Object obj) throws ParseException{}",
+  "methodSignature": "createValue(String, Object)",
+  "sourceCode": "@Deprecated // since 1.7.0\n    public static Object createValue(final String string, final Object obj) throws ParseException {\n        return createValue(string, (Class<?>) obj);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.Object": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValue(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates the {@code Object} of type {@code obj} with the value of {@code string}.\n *\n * @param string the command line value\n * @param obj    the type of argument\n * @return The instance of {@code obj} initialized with the value of {@code string}.\n * @throws ParseException if the value creation for the given object type failed\n * @deprecated use {@link #createValue(String, Class)}\n */\n// since 1.7.0\n@Deprecated\npublic static Object createValue(final String string, final Object obj) throws ParseException {\n    return createValue(string, (Class<?>) obj);\n}",
+  "method_comment": "\n     * Creates the {@code Object} of type {@code obj} with the value of {@code string}.\n     *\n     * @param string the command line value\n     * @param obj    the type of argument\n     * @return The instance of {@code obj} initialized with the value of {@code string}.\n     * @throws ParseException if the value creation for the given object type failed\n     * @deprecated use {@link #createValue(String, Class)}\n     ",
+  "method_annotation": "// since 1.7.0\n@Deprecated\n"
+}

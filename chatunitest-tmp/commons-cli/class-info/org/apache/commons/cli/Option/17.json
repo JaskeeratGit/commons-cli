@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getSince",
+  "brief": "public String getSince(){}",
+  "methodSignature": "getSince()",
+  "sourceCode": "public String getSince() {\n        return since;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the version when this option was added.\n * @return the version when this option was added, or {@code null} if not set.\n */\npublic String getSince() {\n    return since;\n}",
+  "method_comment": "\n     * Gets the version when this option was added.\n     * @return the version when this option was added, or {@code null} if not set.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,23 @@
+{
+  "className": "HelpAppendable",
+  "methodName": "appendHeader",
+  "brief": "void appendHeader(int level, CharSequence text) throws IOException;",
+  "methodSignature": "appendHeader(int, CharSequence)",
+  "sourceCode": "void appendHeader(int level, CharSequence text) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": []
+  },
+  "full_method_info": "/**\n * Appends a header.\n *\n * @param level the level of the header. This is equivalent to the \"1\", \"2\", or \"3\" in the HTML \"h1\", \"h2\", \"h3\" tags.\n * @param text  the text for the header, null is a noop.\n * @throws IOException If an output error occurs.\n */\nvoid appendHeader(int level, CharSequence text) throws IOException;",
+  "method_comment": "\n     * Appends a header.\n     *\n     * @param level the level of the header. This is equivalent to the \"1\", \"2\", or \"3\" in the HTML \"h1\", \"h2\", \"h3\" tags.\n     * @param text  the text for the header, null is a noop.\n     * @throws IOException If an output error occurs.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,22 @@
+{
+  "className": "Options",
+  "methodName": "getRequiredOptions",
+  "brief": "public List<?> getRequiredOptions(){}",
+  "methodSignature": "getRequiredOptions()",
+  "sourceCode": "public List<?> getRequiredOptions() {\n        return Collections.unmodifiableList(requiredOpts);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collections": [
+      "unmodifiableList(List<? extends T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the required options.\n *\n * @return read-only List of required options.\n */\npublic List<?> getRequiredOptions() {\n    return Collections.unmodifiableList(requiredOpts);\n}",
+  "method_comment": "\n     * Gets the required options.\n     *\n     * @return read-only List of required options.\n     ",
+  "method_annotation": ""
+}

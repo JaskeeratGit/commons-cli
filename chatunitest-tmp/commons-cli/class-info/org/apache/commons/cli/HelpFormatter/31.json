@@ -1,0 +1,33 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printWrapped",
+  "brief": "public void printWrapped(final PrintWriter pw, final int width, final int nextLineTabStop, final String text){}",
+  "methodSignature": "printWrapped(PrintWriter, int, int, String)",
+  "sourceCode": "public void printWrapped(final PrintWriter pw, final int width, final int nextLineTabStop, final String text) {\n        pw.println(renderWrappedTextBlock(new StringBuilder(text.length()), width, nextLineTabStop, text));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PrintWriter",
+    "int",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.io.PrintWriter": [
+      "println(Object)"
+    ],
+    "java.lang.String": [
+      "length()"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "renderWrappedTextBlock(A, int, int, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the specified text to the specified PrintWriter.\n *\n * @param pw The printWriter to write the help to\n * @param width The number of characters to display per line\n * @param nextLineTabStop The position on the next line for the first tab.\n * @param text The text to be written to the PrintWriter\n */\npublic void printWrapped(final PrintWriter pw, final int width, final int nextLineTabStop, final String text) {\n    pw.println(renderWrappedTextBlock(new StringBuilder(text.length()), width, nextLineTabStop, text));\n}",
+  "method_comment": "\n     * Prints the specified text to the specified PrintWriter.\n     *\n     * @param pw The printWriter to write the help to\n     * @param width The number of characters to display per line\n     * @param nextLineTabStop The position on the next line for the first tab.\n     * @param text The text to be written to the PrintWriter\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "ParseException_wrap_0_0_Test",
+    "fullName": "org.apache.commons.cli.ParseException_wrap_0_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/ParseException_wrap_0_0_Test.java",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "wrap",
+    "methodSig": "wrap(Throwable)"
+  },
+  "attempt1": {
+    "testClassName": "ParseException_wrap_0_1_Test",
+    "fullName": "org.apache.commons.cli.ParseException_wrap_0_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/ParseException_wrap_0_0_Test.java",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "wrap",
+    "methodSig": "wrap(Throwable)"
+  },
+  "attempt2": {
+    "testClassName": "ParseException_wrap_0_2_Test",
+    "fullName": "org.apache.commons.cli.ParseException_wrap_0_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/ParseException_wrap_0_0_Test.java",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "wrap",
+    "methodSig": "wrap(Throwable)"
+  },
+  "attempt3": {
+    "testClassName": "ParseException_wrap_0_3_Test",
+    "fullName": "org.apache.commons.cli.ParseException_wrap_0_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/ParseException_wrap_0_0_Test.java",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "wrap",
+    "methodSig": "wrap(Throwable)"
+  },
+  "attempt4": {
+    "testClassName": "ParseException_wrap_0_4_Test",
+    "fullName": "org.apache.commons.cli.ParseException_wrap_0_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/ParseException_wrap_0_0_Test.java",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "wrap",
+    "methodSig": "wrap(Throwable)"
+  }
+}

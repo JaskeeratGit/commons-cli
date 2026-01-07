@@ -1,0 +1,18 @@
+{
+  "className": "CommandLine",
+  "methodName": "builder",
+  "brief": "public static Builder builder(){}",
+  "methodSignature": "builder()",
+  "sourceCode": "public static Builder builder() {\n        return new Builder();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Creates a new builder.\n *\n * @return a new builder.\n * @since 1.7.0\n */\npublic static Builder builder() {\n    return new Builder();\n}",
+  "method_comment": "\n     * Creates a new builder.\n     *\n     * @return a new builder.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

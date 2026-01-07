@@ -1,0 +1,324 @@
+{
+  "class19": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , static , final ]",
+    "extend": "[]",
+    "implement": "[Supplier<DefaultParser>]"
+  },
+  "class9": {
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public ]",
+    "extend": "[FilterHelpAppendable]",
+    "implement": "[]"
+  },
+  "class8": {
+    "className": "Util",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class41": {
+    "className": "HelpFormatter",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class40": {
+    "className": "Converter",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class21": {
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class43": {
+    "className": "OptionComparator",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[private , static , final ]",
+    "extend": "[]",
+    "implement": "[Comparator<Option>, Serializable]"
+  },
+  "class20": {
+    "className": "NonOptionAction",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "",
+    "implement": "[]"
+  },
+  "class42": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[Supplier<HelpFormatter>]"
+  },
+  "class23": {
+    "className": "CommandLineParser",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class45": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , static ]",
+    "extend": "[]",
+    "implement": "[Supplier<DeprecatedAttributes>]"
+  },
+  "class22": {
+    "className": "GnuParser",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[Parser]",
+    "implement": "[]"
+  },
+  "class44": {
+    "className": "DeprecatedAttributes",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class25": {
+    "className": "Parser",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[CommandLineParser]"
+  },
+  "class24": {
+    "className": "OptionGroup",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class27": {
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class26": {
+    "className": "BasicParser",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[Parser]",
+    "implement": "[]"
+  },
+  "class29": {
+    "className": "Option",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Cloneable, Serializable]"
+  },
+  "class28": {
+    "className": "UnrecognizedOptionException",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[ParseException]",
+    "implement": "[]"
+  },
+  "class7": {
+    "className": "Alignment",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public ]",
+    "extend": "",
+    "implement": "[]"
+  },
+  "class6": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , static , final ]",
+    "extend": "[]",
+    "implement": "[Supplier<TextStyle>]"
+  },
+  "class5": {
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class4": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , static , final ]",
+    "extend": "[]",
+    "implement": "[Supplier<OptionFormatter>]"
+  },
+  "class3": {
+    "className": "OptionFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class30": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , static , final ]",
+    "extend": "[]",
+    "implement": "[Supplier<Option>]"
+  },
+  "class2": {
+    "className": "HelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public ]",
+    "extend": "[Appendable]",
+    "implement": "[]"
+  },
+  "class1": {
+    "className": "FilterHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[HelpAppendable]"
+  },
+  "class10": {
+    "className": "AbstractHelpFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , abstract ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class32": {
+    "className": "PosixParser",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[Parser]",
+    "implement": "[]"
+  },
+  "class0": {
+    "className": "TableDefinition",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class31": {
+    "className": "OptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class12": {
+    "className": "HelpFormatter",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public ]",
+    "extend": "[AbstractHelpFormatter]",
+    "implement": "[]"
+  },
+  "class34": {
+    "className": "AlreadySelectedException",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[ParseException]",
+    "implement": "[]"
+  },
+  "class11": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , abstract , static ]",
+    "extend": "[]",
+    "implement": "[Supplier<T>]"
+  },
+  "class33": {
+    "className": "Char",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class14": {
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class36": {
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[Exception]",
+    "implement": "[]"
+  },
+  "class13": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli.help",
+    "modifier": "[public , static ]",
+    "extend": "[AbstractHelpFormatter.Builder<Builder, HelpFormatter>]",
+    "implement": "[]"
+  },
+  "class35": {
+    "className": "AmbiguousOptionException",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[UnrecognizedOptionException]",
+    "implement": "[]"
+  },
+  "class16": {
+    "className": "MissingArgumentException",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[ParseException]",
+    "implement": "[]"
+  },
+  "class38": {
+    "className": "CommandLine",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[Serializable]"
+  },
+  "class15": {
+    "className": "MissingOptionException",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[ParseException]",
+    "implement": "[]"
+  },
+  "class37": {
+    "className": "Util",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class18": {
+    "className": "DefaultParser",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public ]",
+    "extend": "[]",
+    "implement": "[CommandLineParser]"
+  },
+  "class17": {
+    "className": "OptionValidator",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[final ]",
+    "extend": "[]",
+    "implement": "[]"
+  },
+  "class39": {
+    "className": "Builder",
+    "packageName": "org.apache.commons.cli",
+    "modifier": "[public , static , final ]",
+    "extend": "[]",
+    "implement": "[Supplier<CommandLine>]"
+  }
+}

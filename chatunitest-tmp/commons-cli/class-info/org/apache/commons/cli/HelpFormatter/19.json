@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getWidth",
+  "brief": "public int getWidth(){}",
+  "methodSignature": "getWidth()",
+  "sourceCode": "public int getWidth() {\n        return defaultWidth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the 'width'.\n *\n * @return the 'width'\n */\npublic int getWidth() {\n    return defaultWidth;\n}",
+  "method_comment": "\n     * Gets the 'width'.\n     *\n     * @return the 'width'\n     ",
+  "method_annotation": ""
+}

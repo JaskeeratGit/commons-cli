@@ -1,0 +1,22 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setSyntaxPrefix",
+  "brief": "public void setSyntaxPrefix(final String prefix){}",
+  "methodSignature": "setSyntaxPrefix(String)",
+  "sourceCode": "public void setSyntaxPrefix(final String prefix) {\n        this.defaultSyntaxPrefix = prefix;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the 'syntaxPrefix'.\n *\n * @param prefix the new value of 'syntaxPrefix'\n */\npublic void setSyntaxPrefix(final String prefix) {\n    this.defaultSyntaxPrefix = prefix;\n}",
+  "method_comment": "\n     * Sets the 'syntaxPrefix'.\n     *\n     * @param prefix the new value of 'syntaxPrefix'\n     ",
+  "method_annotation": ""
+}

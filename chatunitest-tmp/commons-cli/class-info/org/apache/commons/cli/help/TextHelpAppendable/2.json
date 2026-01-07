@@ -1,0 +1,54 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "adjustTableFormat",
+  "brief": "protected TableDefinition adjustTableFormat(final TableDefinition table){}",
+  "methodSignature": "adjustTableFormat(TableDefinition)",
+  "sourceCode": "protected TableDefinition adjustTableFormat(final TableDefinition table) {\n        final List<TextStyle.Builder> styleBuilders = new ArrayList<>();\n        for (int i = 0; i < table.columnTextStyles().size(); i++) {\n            final TextStyle style = table.columnTextStyles().get(i);\n            final TextStyle.Builder builder = TextStyle.builder().setTextStyle(style);\n            styleBuilders.add(builder);\n            final String header = table.headers().get(i);\n\n            if (style.getMaxWidth() < header.length() || style.getMaxWidth() == TextStyle.UNSET_MAX_WIDTH) {\n                builder.setMaxWidth(header.length());\n            }\n            if (style.getMinWidth() < header.length()) {\n                builder.setMinWidth(header.length());\n            }\n            for (final List<String> row : table.rows()) {\n                final String cell = row.get(i);\n                if (cell.length() > builder.getMaxWidth()) {\n                    builder.setMaxWidth(cell.length());\n                }\n            }\n        }\n        // calculate the total width.\n        int calcWidth = 0;\n        int adjustedMaxWidth = textStyleBuilder.getMaxWidth();\n        for (final TextStyle.Builder builder : styleBuilders) {\n            adjustedMaxWidth -= builder.getLeftPad();\n            if (builder.isScalable()) {\n                calcWidth += builder.getMaxWidth();\n            } else {\n                adjustedMaxWidth -= builder.getMaxWidth();\n            }\n        }\n        // rescale if necessary\n        if (calcWidth > adjustedMaxWidth) {\n            final double fraction = adjustedMaxWidth * 1.0 / calcWidth;\n            for (int i = 0; i < styleBuilders.size(); i++) {\n                final TextStyle.Builder builder = styleBuilders.get(i);\n                if (builder.isScalable()) {\n                    // resize and remove the padding from the maxWidth calculation.\n                    styleBuilders.set(i, resize(builder, fraction));\n                }\n            }\n        }\n        // regenerate the styles\n        final List<TextStyle> styles = new ArrayList<>();\n        for (final TextStyle.Builder builder : styleBuilders) {\n            // adjust by removing the padding as it was not accounted for above.\n            styles.add(builder.get());\n        }\n        return TableDefinition.from(table.caption(), styles, table.headers(), table.rows());\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "TableDefinition"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TableDefinition": [
+      "columnTextStyles()",
+      "rows()",
+      "caption()",
+      "from(String, TextStyle>, String>, String>>)",
+      "headers()"
+    ],
+    "java.util.List": [
+      "set(int, E)",
+      "get(int)",
+      "add(E)",
+      "size()"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "isScalable()",
+      "setMaxWidth(int)",
+      "setMinWidth(int)",
+      "getLeftPad()",
+      "setTextStyle(TextStyle)",
+      "getMaxWidth()",
+      "get()"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "getMinWidth()",
+      "builder()",
+      "getMaxWidth()"
+    ],
+    "java.lang.String": [
+      "length()"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "resize(Builder, double)"
+    ]
+  },
+  "full_method_info": "/**\n * Adjusts the table format.\n * <p>\n * Given the width of the page and the size of the table attempt to resize the columns to fit the page width if necessary. Adjustments are made as follows:\n * </p>\n * <ul>\n * <li>The minimum size for a column may not be smaller than the length of the column header</li>\n * <li>The maximum size is set to the maximum of the length of the header or the longest line length.</li>\n * <li>If the total size of the columns is greater than the page wight, adjust the size of VARIABLE columns to attempt reduce the width to the the maximum\n * size.\n * </ul>\n * <p>\n * Note: it is possible for the size of the columns to exceed the declared page width. In this case the table will extend beyond the desired page width.\n * </p>\n *\n * @param table the table to adjust.\n * @return a new TableDefinition with adjusted values.\n */\nprotected TableDefinition adjustTableFormat(final TableDefinition table) {\n    final List<TextStyle.Builder> styleBuilders = new ArrayList<>();\n    for (int i = 0; i < table.columnTextStyles().size(); i++) {\n        final TextStyle style = table.columnTextStyles().get(i);\n        final TextStyle.Builder builder = TextStyle.builder().setTextStyle(style);\n        styleBuilders.add(builder);\n        final String header = table.headers().get(i);\n        if (style.getMaxWidth() < header.length() || style.getMaxWidth() == TextStyle.UNSET_MAX_WIDTH) {\n            builder.setMaxWidth(header.length());\n        }\n        if (style.getMinWidth() < header.length()) {\n            builder.setMinWidth(header.length());\n        }\n        for (final List<String> row : table.rows()) {\n            final String cell = row.get(i);\n            if (cell.length() > builder.getMaxWidth()) {\n                builder.setMaxWidth(cell.length());\n            }\n        }\n    }\n    // calculate the total width.\n    int calcWidth = 0;\n    int adjustedMaxWidth = textStyleBuilder.getMaxWidth();\n    for (final TextStyle.Builder builder : styleBuilders) {\n        adjustedMaxWidth -= builder.getLeftPad();\n        if (builder.isScalable()) {\n            calcWidth += builder.getMaxWidth();\n        } else {\n            adjustedMaxWidth -= builder.getMaxWidth();\n        }\n    }\n    // rescale if necessary\n    if (calcWidth > adjustedMaxWidth) {\n        final double fraction = adjustedMaxWidth * 1.0 / calcWidth;\n        for (int i = 0; i < styleBuilders.size(); i++) {\n            final TextStyle.Builder builder = styleBuilders.get(i);\n            if (builder.isScalable()) {\n                // resize and remove the padding from the maxWidth calculation.\n                styleBuilders.set(i, resize(builder, fraction));\n            }\n        }\n    }\n    // regenerate the styles\n    final List<TextStyle> styles = new ArrayList<>();\n    for (final TextStyle.Builder builder : styleBuilders) {\n        // adjust by removing the padding as it was not accounted for above.\n        styles.add(builder.get());\n    }\n    return TableDefinition.from(table.caption(), styles, table.headers(), table.rows());\n}",
+  "method_comment": "\n     * Adjusts the table format.\n     * <p>\n     * Given the width of the page and the size of the table attempt to resize the columns to fit the page width if necessary. Adjustments are made as follows:\n     * </p>\n     * <ul>\n     * <li>The minimum size for a column may not be smaller than the length of the column header</li>\n     * <li>The maximum size is set to the maximum of the length of the header or the longest line length.</li>\n     * <li>If the total size of the columns is greater than the page wight, adjust the size of VARIABLE columns to attempt reduce the width to the the maximum\n     * size.\n     * </ul>\n     * <p>\n     * Note: it is possible for the size of the columns to exceed the declared page width. In this case the table will extend beyond the desired page width.\n     * </p>\n     *\n     * @param table the table to adjust.\n     * @return a new TableDefinition with adjusted values.\n     ",
+  "method_annotation": ""
+}

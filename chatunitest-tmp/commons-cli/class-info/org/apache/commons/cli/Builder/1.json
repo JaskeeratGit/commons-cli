@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "setDescription",
+  "brief": "public Builder setDescription(final String description){}",
+  "methodSignature": "setDescription(String)",
+  "sourceCode": "public Builder setDescription(final String description) {\n            this.description = description;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the description.\n *\n * @param description the description.\n * @return {@code this} instance.\n */\npublic Builder setDescription(final String description) {\n    this.description = description;\n    return this;\n}",
+  "method_comment": "\n         * Sets the description.\n         *\n         * @param description the description.\n         * @return {@code this} instance.\n         ",
+  "method_annotation": ""
+}

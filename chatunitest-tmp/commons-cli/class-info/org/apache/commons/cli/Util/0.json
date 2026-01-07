@@ -1,0 +1,22 @@
+{
+  "className": "Util",
+  "methodName": "isEmpty",
+  "brief": "static boolean isEmpty(final Object[] array){}",
+  "methodSignature": "isEmpty(Object[])",
+  "sourceCode": "static boolean isEmpty(final Object[] array) {\n        return array == null || array.length == 0;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object[]"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": []
+  },
+  "full_method_info": "/**\n * Tests whether the given array is null or empty.\n *\n * @param array the array to test.\n * @return the given array is null or empty.\n */\nstatic boolean isEmpty(final Object[] array) {\n    return array == null || array.length == 0;\n}",
+  "method_comment": "\n     * Tests whether the given array is null or empty.\n     *\n     * @param array the array to test.\n     * @return the given array is null or empty.\n     ",
+  "method_annotation": ""
+}

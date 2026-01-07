@@ -1,0 +1,25 @@
+{
+  "className": "Option",
+  "methodName": "getId",
+  "brief": "public int getId(){}",
+  "methodSignature": "getId()",
+  "sourceCode": "public int getId() {\n        return getKey().charAt(0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.lang.String": [
+      "charAt(int)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the id of this Option. This is only set when the Option shortOpt is a single character. This is used for switch statements.\n *\n * @return the id of this Option.\n */\npublic int getId() {\n    return getKey().charAt(0);\n}",
+  "method_comment": "\n     * Gets the id of this Option. This is only set when the Option shortOpt is a single character. This is used for switch statements.\n     *\n     * @return the id of this Option.\n     ",
+  "method_annotation": ""
+}

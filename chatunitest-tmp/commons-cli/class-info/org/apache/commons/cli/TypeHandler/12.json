@@ -1,0 +1,25 @@
+{
+  "className": "TypeHandler",
+  "methodName": "openFile",
+  "brief": "@Deprecated // since 1.7.0\n    public static FileInputStream openFile(final String string) throws ParseException{}",
+  "methodSignature": "openFile(String)",
+  "sourceCode": "@Deprecated // since 1.7.0\n    public static FileInputStream openFile(final String string) throws ParseException {\n        return createValue(string, FileInputStream.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValue(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the opened FileInputStream represented by {@code string}.\n *\n * @param string the file location\n * @return The file input stream represented by {@code string}.\n * @throws ParseException if the file is not exist or not readable\n * @deprecated use {@link #createValue(String, Class)}\n */\n// since 1.7.0\n@Deprecated\npublic static FileInputStream openFile(final String string) throws ParseException {\n    return createValue(string, FileInputStream.class);\n}",
+  "method_comment": "\n     * Returns the opened FileInputStream represented by {@code string}.\n     *\n     * @param string the file location\n     * @return The file input stream represented by {@code string}.\n     * @throws ParseException if the file is not exist or not readable\n     * @deprecated use {@link #createValue(String, Class)}\n     ",
+  "method_annotation": "// since 1.7.0\n@Deprecated\n"
+}

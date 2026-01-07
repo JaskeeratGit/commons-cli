@@ -1,0 +1,24 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "setMaxWidth",
+  "brief": "public void setMaxWidth(final int maxWidth){}",
+  "methodSignature": "setMaxWidth(int)",
+  "sourceCode": "public void setMaxWidth(final int maxWidth) {\n        textStyleBuilder.setMaxWidth(maxWidth);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "setMaxWidth(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the maximum width for the output.\n *\n * @param maxWidth the maximum width for the output.\n */\npublic void setMaxWidth(final int maxWidth) {\n    textStyleBuilder.setMaxWidth(maxWidth);\n}",
+  "method_comment": "\n     * Sets the maximum width for the output.\n     *\n     * @param maxWidth the maximum width for the output.\n     ",
+  "method_annotation": ""
+}

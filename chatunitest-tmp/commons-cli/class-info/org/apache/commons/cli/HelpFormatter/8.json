@@ -1,0 +1,40 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "determineMaxSinceLength",
+  "brief": "private int determineMaxSinceLength(final Options options){}",
+  "methodSignature": "determineMaxSinceLength(Options)",
+  "sourceCode": "private int determineMaxSinceLength(final Options options) {\n        final int minLen = HEADER_SINCE.length();\n        final int len = options.getOptions().stream().map(o -> o.getSince() == null ? minLen : o.getSince().length()).max(Integer::compareTo).orElse(minLen);\n        return len < minLen ? minLen : len;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "getOptions()"
+    ],
+    "java.lang.String": [
+      "length()"
+    ],
+    "java.util.Optional": [
+      "orElse(T)"
+    ],
+    "java.util.stream.Stream": [
+      "max(Comparator<? super T>)",
+      "map(Function<? super T, ? extends R>)"
+    ],
+    "java.util.Collection": [
+      "stream()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getSince()"
+    ]
+  },
+  "full_method_info": "private int determineMaxSinceLength(final Options options) {\n    final int minLen = HEADER_SINCE.length();\n    final int len = options.getOptions().stream().map(o -> o.getSince() == null ? minLen : o.getSince().length()).max(Integer::compareTo).orElse(minLen);\n    return len < minLen ? minLen : len;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

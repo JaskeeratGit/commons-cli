@@ -1,0 +1,25 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createURL",
+  "brief": "public static URL createURL(final String string) throws ParseException{}",
+  "methodSignature": "createURL(String)",
+  "sourceCode": "public static URL createURL(final String string) throws ParseException {\n        return createValue(string, URL.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValue(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates the URL represented by {@code string}.\n *\n * @param string the URL string\n * @return The URL in {@code string} is well-formed\n * @throws ParseException if the URL in {@code string} is not well-formed\n */\npublic static URL createURL(final String string) throws ParseException {\n    return createValue(string, URL.class);\n}",
+  "method_comment": "\n     * Creates the URL represented by {@code string}.\n     *\n     * @param string the URL string\n     * @return The URL in {@code string} is well-formed\n     * @throws ParseException if the URL in {@code string} is not well-formed\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,35 @@
+{
+  "className": "AmbiguousOptionException",
+  "methodName": "createMessage",
+  "brief": "private static String createMessage(final String option, final Collection<String> matchingOptions){}",
+  "methodSignature": "createMessage(String, Collection)",
+  "sourceCode": "private static String createMessage(final String option, final Collection<String> matchingOptions) {\n        final StringBuilder buf = new StringBuilder(\"Ambiguous option: '\");\n        buf.append(option);\n        buf.append(\"'  (could be: \");\n\n        final Iterator<String> it = matchingOptions.iterator();\n        while (it.hasNext()) {\n            buf.append(Char.APOS);\n            buf.append(it.next());\n            buf.append(Char.APOS);\n            if (it.hasNext()) {\n                buf.append(\", \");\n            }\n        }\n        buf.append(\")\");\n\n        return buf.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "Collection<String>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(String)"
+    ],
+    "java.util.Collection": [
+      "iterator()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ]
+  },
+  "full_method_info": "/**\n * Build the exception message from the specified list of options.\n *\n * @param option\n * @param matchingOptions\n * @return\n */\nprivate static String createMessage(final String option, final Collection<String> matchingOptions) {\n    final StringBuilder buf = new StringBuilder(\"Ambiguous option: '\");\n    buf.append(option);\n    buf.append(\"'  (could be: \");\n    final Iterator<String> it = matchingOptions.iterator();\n    while (it.hasNext()) {\n        buf.append(Char.APOS);\n        buf.append(it.next());\n        buf.append(Char.APOS);\n        if (it.hasNext()) {\n            buf.append(\", \");\n        }\n    }\n    buf.append(\")\");\n    return buf.toString();\n}",
+  "method_comment": "\n     * Build the exception message from the specified list of options.\n     *\n     * @param option\n     * @param matchingOptions\n     * @return\n     ",
+  "method_annotation": ""
+}

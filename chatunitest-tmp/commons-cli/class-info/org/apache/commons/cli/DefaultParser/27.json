@@ -1,0 +1,25 @@
+{
+  "className": "DefaultParser",
+  "methodName": "stripLeadingAndTrailingQuotesDefaultOff",
+  "brief": "private String stripLeadingAndTrailingQuotesDefaultOff(final String token){}",
+  "methodSignature": "stripLeadingAndTrailingQuotesDefaultOff(String)",
+  "sourceCode": "private String stripLeadingAndTrailingQuotesDefaultOff(final String token) {\n        if (stripLeadingAndTrailingQuotes != null && stripLeadingAndTrailingQuotes) {\n            return Util.stripLeadingAndTrailingQuotes(token);\n        }\n        return token;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingAndTrailingQuotes(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Strips balanced leading and trailing quotes if the stripLeadingAndTrailingQuotes is set\n * If stripLeadingAndTrailingQuotes is null, then do not strip\n *\n * @param token a string.\n * @return token with the quotes stripped (if set).\n */\nprivate String stripLeadingAndTrailingQuotesDefaultOff(final String token) {\n    if (stripLeadingAndTrailingQuotes != null && stripLeadingAndTrailingQuotes) {\n        return Util.stripLeadingAndTrailingQuotes(token);\n    }\n    return token;\n}",
+  "method_comment": "\n     * Strips balanced leading and trailing quotes if the stripLeadingAndTrailingQuotes is set\n     * If stripLeadingAndTrailingQuotes is null, then do not strip\n     *\n     * @param token a string.\n     * @return token with the quotes stripped (if set).\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,52 @@
+{
+  "fullClassName": "org.apache.commons.cli.help.HelpAppendable",
+  "className": "HelpAppendable",
+  "index": 2,
+  "modifier": "[public ]",
+  "extend": "[Appendable]",
+  "implement": "[]",
+  "packageName": "org.apache.commons.cli.help",
+  "packageDeclaration": "package org.apache.commons.cli.help;",
+  "classSignature": "public interface HelpAppendable",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.IOException;",
+    "import java.util.Collection;",
+    "import java.util.Formatter;",
+    "import java.util.IllegalFormatException;"
+  ],
+  "fields": [],
+  "superClasses": [
+    "Appendable"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "appendFormat(String, Object[])": "0",
+    "appendHeader(int, CharSequence)": "1",
+    "appendList(boolean, Collection)": "2",
+    "appendParagraph(CharSequence)": "3",
+    "appendParagraphFormat(String, Object[])": "4",
+    "appendTable(TableDefinition)": "5",
+    "appendTitle(CharSequence)": "6"
+  },
+  "methodsBrief": [
+    "default void appendFormat(final String format, final Object... args) throws IOException{}",
+    "void appendHeader(int level, CharSequence text) throws IOException;",
+    "void appendList(boolean ordered, Collection<CharSequence> list) throws IOException;",
+    "void appendParagraph(CharSequence paragraph) throws IOException;",
+    "default void appendParagraphFormat(final String format, final Object... args) throws IOException{}",
+    "void appendTable(TableDefinition table) throws IOException;",
+    "void appendTitle(CharSequence title) throws IOException;"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli.help;\n\nimport java.io.IOException;\nimport java.util.Collection;\nimport java.util.Formatter;\nimport java.util.IllegalFormatException;\n\n/**\n * Defines a semantic scribe. The semantic scribe appends text to an output based on the semantic meaning of the type of string. For example, a Paragraph versus\n * a Heading.\n * <p>\n * The representation of the semantics is dependent upon the format being output. For example, the plain text output for a paragraph may print the text followed\n * by two line breaks, while an XHTML output would print the text surrounded by &lt;p&gt; and &lt;/p&gt;.\n * </p>\n * <p>\n * Note the {@link Appendable} documentation on the topics of Unicode and threading, these comments also apply here.\n * </p>\n *\n * @since 1.10.0\n */\npublic interface HelpAppendable extends Appendable {\n\n    /**\n     * Appends a formatted string using the specified format string and arguments.\n     * <p>\n     * Short-hand for calling:\n     * </p>\n     *\n     * <pre>\n     * helpAppendable.{@link #append(CharSequence) append.}({@link String#format(String, Object...) String.format}(format, args));\n     * </pre>\n     *\n     * @param format The format string for {@link String#format(String, Object...)}.\n     * @param args   Arguments to {@link String#format(String, Object...)}.\n     * @throws IllegalFormatException See {@link String#format(String, Object...)}.\n     * @throws IOException            If an output error occurs.\n     * @see String#format(String, Object...)\n     * @see Formatter\n     * @see #append(CharSequence)\n     */\n    default void appendFormat(final String format, final Object... args) throws IOException {\n        append(String.format(format, args));\n    }\n\n    /**\n     * Appends a header.\n     *\n     * @param level the level of the header. This is equivalent to the \"1\", \"2\", or \"3\" in the HTML \"h1\", \"h2\", \"h3\" tags.\n     * @param text  the text for the header, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendHeader(int level, CharSequence text) throws IOException;\n\n    /**\n     * Appends a list.\n     *\n     * @param ordered {@code true} if the list should be ordered.\n     * @param list    the list to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendList(boolean ordered, Collection<CharSequence> list) throws IOException;\n\n    /**\n     * Appends a paragraph.\n     *\n     * @param paragraph the paragraph to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendParagraph(CharSequence paragraph) throws IOException;\n\n    /**\n     * Appends a formatted string as a paragraph.\n     *\n     * <pre>\n     * helpAppendable.{@link #appendParagraph(CharSequence) appendParagraph.}({@link String#format(String, Object...) String.format}(format, args));\n     * </pre>\n     *\n     * @param format The format string for {@link String#format(String, Object...)}.\n     * @param args   Arguments to {@link String#format(String, Object...)}.\n     * @throws IllegalFormatException See {@link String#format(String, Object...)}.\n     * @throws IOException            If an output error occurs.\n     * @see String#format(String, Object...)\n     * @see Formatter\n     * @see #append(CharSequence)\n     */\n    default void appendParagraphFormat(final String format, final Object... args) throws IOException {\n        appendParagraph(String.format(format, args));\n    }\n\n    /**\n     * Appends a table.\n     *\n     * @param table the table definition to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendTable(TableDefinition table) throws IOException;\n\n    /**\n     * Appends a title.\n     *\n     * @param title the title to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendTitle(CharSequence title) throws IOException;\n}\n",
+  "classDeclarationCode": "/**\n * Defines a semantic scribe. The semantic scribe appends text to an output based on the semantic meaning of the type of string. For example, a Paragraph versus\n * a Heading.\n * <p>\n * The representation of the semantics is dependent upon the format being output. For example, the plain text output for a paragraph may print the text followed\n * by two line breaks, while an XHTML output would print the text surrounded by &lt;p&gt; and &lt;/p&gt;.\n * </p>\n * <p>\n * Note the {@link Appendable} documentation on the topics of Unicode and threading, these comments also apply here.\n * </p>\n *\n * @since 1.10.0\n */\npublic interface HelpAppendable extends Appendable {\n\n    /**\n     * Appends a formatted string using the specified format string and arguments.\n     * <p>\n     * Short-hand for calling:\n     * </p>\n     *\n     * <pre>\n     * helpAppendable.{@link #append(CharSequence) append.}({@link String#format(String, Object...) String.format}(format, args));\n     * </pre>\n     *\n     * @param format The format string for {@link String#format(String, Object...)}.\n     * @param args   Arguments to {@link String#format(String, Object...)}.\n     * @throws IllegalFormatException See {@link String#format(String, Object...)}.\n     * @throws IOException            If an output error occurs.\n     * @see String#format(String, Object...)\n     * @see Formatter\n     * @see #append(CharSequence)\n     */\n    default void appendFormat(final String format, final Object... args) throws IOException {\n        append(String.format(format, args));\n    }\n\n    /**\n     * Appends a header.\n     *\n     * @param level the level of the header. This is equivalent to the \"1\", \"2\", or \"3\" in the HTML \"h1\", \"h2\", \"h3\" tags.\n     * @param text  the text for the header, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendHeader(int level, CharSequence text) throws IOException;\n\n    /**\n     * Appends a list.\n     *\n     * @param ordered {@code true} if the list should be ordered.\n     * @param list    the list to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendList(boolean ordered, Collection<CharSequence> list) throws IOException;\n\n    /**\n     * Appends a paragraph.\n     *\n     * @param paragraph the paragraph to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendParagraph(CharSequence paragraph) throws IOException;\n\n    /**\n     * Appends a formatted string as a paragraph.\n     *\n     * <pre>\n     * helpAppendable.{@link #appendParagraph(CharSequence) appendParagraph.}({@link String#format(String, Object...) String.format}(format, args));\n     * </pre>\n     *\n     * @param format The format string for {@link String#format(String, Object...)}.\n     * @param args   Arguments to {@link String#format(String, Object...)}.\n     * @throws IllegalFormatException See {@link String#format(String, Object...)}.\n     * @throws IOException            If an output error occurs.\n     * @see String#format(String, Object...)\n     * @see Formatter\n     * @see #append(CharSequence)\n     */\n    default void appendParagraphFormat(final String format, final Object... args) throws IOException {\n        appendParagraph(String.format(format, args));\n    }\n\n    /**\n     * Appends a table.\n     *\n     * @param table the table definition to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendTable(TableDefinition table) throws IOException;\n\n    /**\n     * Appends a title.\n     *\n     * @param title the title to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     */\n    void appendTitle(CharSequence title) throws IOException;\n}",
+  "subClasses": []
+}

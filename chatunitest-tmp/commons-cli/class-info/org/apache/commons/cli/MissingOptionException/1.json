@@ -1,0 +1,18 @@
+{
+  "className": "MissingOptionException",
+  "methodName": "getMissingOptions",
+  "brief": "public List getMissingOptions(){}",
+  "methodSignature": "getMissingOptions()",
+  "sourceCode": "public List getMissingOptions() {\n        return missingOptions;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the list of options or option groups missing in the command line parsed.\n *\n * @return the missing options, consisting of String instances for simple options, and OptionGroup instances for\n *         required option groups.\n * @since 1.2\n */\npublic List getMissingOptions() {\n    return missingOptions;\n}",
+  "method_comment": "\n     * Gets the list of options or option groups missing in the command line parsed.\n     *\n     * @return the missing options, consisting of String instances for simple options, and OptionGroup instances for\n     *         required option groups.\n     * @since 1.2\n     ",
+  "method_annotation": ""
+}

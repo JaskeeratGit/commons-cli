@@ -1,0 +1,46 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "appendTitle",
+  "brief": "@Override\n    public void appendTitle(final CharSequence title) throws IOException{}",
+  "methodSignature": "appendTitle(CharSequence)",
+  "sourceCode": "@Override\n    public void appendTitle(final CharSequence title) throws IOException {\n        if (!Util.isEmpty(title)) {\n            final TextStyle style = textStyleBuilder.get();\n            final Queue<String> queue = makeColumnQueue(title, style);\n            queue.add(Util.repeatSpace(style.getLeftPad()) + Util.repeat(Math.min(title.length(), style.getMaxWidth()), '#'));\n            queue.add(BLANK_LINE);\n            printQueue(queue);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "length()"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "repeat(int, char)",
+      "repeatSpace(int)",
+      "isEmpty(CharSequence)"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "get()"
+    ],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "printQueue(String>)",
+      "makeColumnQueue(CharSequence, TextStyle)"
+    ],
+    "java.util.Queue": [
+      "add(E)"
+    ],
+    "org.apache.commons.cli.help.TextStyle": [
+      "getLeftPad()",
+      "getMaxWidth()"
+    ],
+    "java.lang.Math": [
+      "min(int, int)"
+    ]
+  },
+  "full_method_info": "@Override\npublic void appendTitle(final CharSequence title) throws IOException {\n    if (!Util.isEmpty(title)) {\n        final TextStyle style = textStyleBuilder.get();\n        final Queue<String> queue = makeColumnQueue(title, style);\n        queue.add(Util.repeatSpace(style.getLeftPad()) + Util.repeat(Math.min(title.length(), style.getMaxWidth()), '#'));\n        queue.add(BLANK_LINE);\n        printQueue(queue);\n    }\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,80 @@
+{
+  "fullClassName": "org.apache.commons.cli.OptionGroup",
+  "className": "OptionGroup",
+  "index": 24,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[Serializable]",
+  "packageName": "org.apache.commons.cli",
+  "packageDeclaration": "package org.apache.commons.cli;",
+  "classSignature": "public class OptionGroup",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [
+    "import java.io.Serializable;",
+    "import java.util.Collection;",
+    "import java.util.Iterator;",
+    "import java.util.LinkedHashMap;",
+    "import java.util.Map;"
+  ],
+  "fields": [
+    "private static final long serialVersionUID = 1L;",
+    "private final Map<String, Option> optionMap = new LinkedHashMap<>();",
+    "private String selected;",
+    "private boolean required;"
+  ],
+  "superClasses": [],
+  "implementedTypes": [
+    "Serializable"
+  ],
+  "methodSigs": {
+    "addOption(Option)": "0",
+    "getNames()": "1",
+    "getOptions()": "2",
+    "getSelected()": "3",
+    "isRequired()": "4",
+    "isSelected()": "5",
+    "setRequired(boolean)": "6",
+    "setSelected(Option)": "7",
+    "toString()": "8",
+    "OptionGroup()": "9"
+  },
+  "methodsBrief": [
+    "public OptionGroup addOption(final Option option){}",
+    "public Collection<String> getNames(){}",
+    "public Collection<Option> getOptions(){}",
+    "public String getSelected(){}",
+    "public boolean isRequired(){}",
+    "public boolean isSelected(){}",
+    "public void setRequired(final boolean required){}",
+    "public void setSelected(final Option option) throws AlreadySelectedException{}",
+    "@Override\n    public String toString(){}",
+    "public OptionGroup(){}"
+  ],
+  "constructorSigs": [
+    "OptionGroup()"
+  ],
+  "constructorBrief": [
+    "public OptionGroup(){}"
+  ],
+  "getterSetterSigs": [
+    "getNames()",
+    "getOptions()",
+    "getSelected()",
+    "setRequired(boolean)",
+    "setSelected(Option)"
+  ],
+  "getterSetterBrief": [
+    "public Collection<String> getNames(){}",
+    "public Collection<Option> getOptions(){}",
+    "public String getSelected(){}",
+    "public void setRequired(final boolean required){}",
+    "public void setSelected(final Option option) throws AlreadySelectedException{}"
+  ],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli;\n\nimport java.io.Serializable;\nimport java.util.Collection;\nimport java.util.Iterator;\nimport java.util.LinkedHashMap;\nimport java.util.Map;\n\n/**\n * A group of mutually exclusive options.\n */\npublic class OptionGroup implements Serializable {\n\n    /**\n     * The serial version UID.\n     */\n    private static final long serialVersionUID = 1L;\n\n    /**\n     * Maps options where keys are option name and values are the options.\n     */\n    private final Map<String, Option> optionMap = new LinkedHashMap<>();\n\n    /**\n     * The name of the selected option.\n     */\n    private String selected;\n\n    /**\n     * Specified whether this group is required.\n     */\n    private boolean required;\n\n    public OptionGroup() {\n        // empty\n    }\n\n    /**\n     * Adds the given {@code Option} to this group.\n     *\n     * @param option the option to add to this group.\n     * @return this option group with the option added.\n     */\n    public OptionGroup addOption(final Option option) {\n        optionMap.put(option.getKey(), option);\n        return this;\n    }\n\n    /**\n     * Gets the names of the options in this group as a {@code Collection}.\n     *\n     * @return the names of the options in this group as a {@code Collection}.\n     */\n    public Collection<String> getNames() {\n        // the key set is the collection of names\n        return optionMap.keySet();\n    }\n\n    /**\n     * Gets the options in this group as a {@code Collection}.\n     *\n     * @return the options in this group as a {@code Collection}.\n     */\n    public Collection<Option> getOptions() {\n        // the values are the collection of options\n        return optionMap.values();\n    }\n\n    /**\n     * Gets the selected option name.\n     *\n     * If the selected option is deprecated <em>no warning is logged</em>.\n     * @return the selected option name.\n     */\n    public String getSelected() {\n        return selected;\n    }\n\n    /**\n     * Tests whether this option group is required.\n     *\n     * @return whether this option group is required.\n     */\n    public boolean isRequired() {\n        return required;\n    }\n\n    /**\n     * Tests whether an option is selected.\n     *\n     *  If an option is selected and is deprecated <em>no warning is logged</em>.\n     * @return whether whether an option is selected.\n     * @since 1.9.0\n     */\n    public boolean isSelected() {\n        return selected != null;\n    }\n\n    /**\n     * Sets whether this group is required.\n     *\n     * @param required whether this group is required.\n     */\n    public void setRequired(final boolean required) {\n        this.required = required;\n    }\n\n    /**\n     * Sets the selected option of this group to {@code name}.\n     *\n     * If the selected option is deprecated <em>no warning is logged</em>.\n     * @param option the option that is selected.\n     * @throws AlreadySelectedException if an option from this group has already been selected.\n     */\n    public void setSelected(final Option option) throws AlreadySelectedException {\n        if (option == null) {\n            // reset the option previously selected\n            selected = null;\n            return;\n        }\n        // if no option has already been selected or the\n        // same option is being reselected then set the\n        // selected member variable\n        if (selected != null && !selected.equals(option.getKey())) {\n            throw new AlreadySelectedException(this, option);\n        }\n        selected = option.getKey();\n    }\n\n    /**\n     * Returns the stringified version of this OptionGroup.\n     *\n     * @return the stringified representation of this group.\n     */\n    @Override\n    public String toString() {\n        final StringBuilder buff = new StringBuilder();\n        final Iterator<Option> iter = getOptions().iterator();\n        buff.append(\"[\");\n        while (iter.hasNext()) {\n            final Option option = iter.next();\n            if (option.getOpt() != null) {\n                buff.append(\"-\");\n                buff.append(option.getOpt());\n            } else {\n                buff.append(\"--\");\n                buff.append(option.getLongOpt());\n            }\n            if (option.getDescription() != null) {\n                buff.append(Char.SP);\n                buff.append(option.getDescription());\n            }\n            if (iter.hasNext()) {\n                buff.append(\", \");\n            }\n        }\n        buff.append(\"]\");\n        return buff.toString();\n    }\n}\n",
+  "classDeclarationCode": "/**\n * A group of mutually exclusive options.\n */\npublic class OptionGroup implements Serializable {\n\n    /**\n     * The serial version UID.\n     */\n    private static final long serialVersionUID = 1L;\n\n    /**\n     * Maps options where keys are option name and values are the options.\n     */\n    private final Map<String, Option> optionMap = new LinkedHashMap<>();\n\n    /**\n     * The name of the selected option.\n     */\n    private String selected;\n\n    /**\n     * Specified whether this group is required.\n     */\n    private boolean required;\n\n    public OptionGroup() {\n        // empty\n    }\n\n    /**\n     * Adds the given {@code Option} to this group.\n     *\n     * @param option the option to add to this group.\n     * @return this option group with the option added.\n     */\n    public OptionGroup addOption(final Option option) {\n        optionMap.put(option.getKey(), option);\n        return this;\n    }\n\n    /**\n     * Gets the names of the options in this group as a {@code Collection}.\n     *\n     * @return the names of the options in this group as a {@code Collection}.\n     */\n    public Collection<String> getNames() {\n        // the key set is the collection of names\n        return optionMap.keySet();\n    }\n\n    /**\n     * Gets the options in this group as a {@code Collection}.\n     *\n     * @return the options in this group as a {@code Collection}.\n     */\n    public Collection<Option> getOptions() {\n        // the values are the collection of options\n        return optionMap.values();\n    }\n\n    /**\n     * Gets the selected option name.\n     *\n     * If the selected option is deprecated <em>no warning is logged</em>.\n     * @return the selected option name.\n     */\n    public String getSelected() {\n        return selected;\n    }\n\n    /**\n     * Tests whether this option group is required.\n     *\n     * @return whether this option group is required.\n     */\n    public boolean isRequired() {\n        return required;\n    }\n\n    /**\n     * Tests whether an option is selected.\n     *\n     *  If an option is selected and is deprecated <em>no warning is logged</em>.\n     * @return whether whether an option is selected.\n     * @since 1.9.0\n     */\n    public boolean isSelected() {\n        return selected != null;\n    }\n\n    /**\n     * Sets whether this group is required.\n     *\n     * @param required whether this group is required.\n     */\n    public void setRequired(final boolean required) {\n        this.required = required;\n    }\n\n    /**\n     * Sets the selected option of this group to {@code name}.\n     *\n     * If the selected option is deprecated <em>no warning is logged</em>.\n     * @param option the option that is selected.\n     * @throws AlreadySelectedException if an option from this group has already been selected.\n     */\n    public void setSelected(final Option option) throws AlreadySelectedException {\n        if (option == null) {\n            // reset the option previously selected\n            selected = null;\n            return;\n        }\n        // if no option has already been selected or the\n        // same option is being reselected then set the\n        // selected member variable\n        if (selected != null && !selected.equals(option.getKey())) {\n            throw new AlreadySelectedException(this, option);\n        }\n        selected = option.getKey();\n    }\n\n    /**\n     * Returns the stringified version of this OptionGroup.\n     *\n     * @return the stringified representation of this group.\n     */\n    @Override\n    public String toString() {\n        final StringBuilder buff = new StringBuilder();\n        final Iterator<Option> iter = getOptions().iterator();\n        buff.append(\"[\");\n        while (iter.hasNext()) {\n            final Option option = iter.next();\n            if (option.getOpt() != null) {\n                buff.append(\"-\");\n                buff.append(option.getOpt());\n            } else {\n                buff.append(\"--\");\n                buff.append(option.getLongOpt());\n            }\n            if (option.getDescription() != null) {\n                buff.append(Char.SP);\n                buff.append(option.getDescription());\n            }\n            if (iter.hasNext()) {\n                buff.append(\", \");\n            }\n        }\n        buff.append(\"]\");\n        return buff.toString();\n    }\n}",
+  "subClasses": []
+}

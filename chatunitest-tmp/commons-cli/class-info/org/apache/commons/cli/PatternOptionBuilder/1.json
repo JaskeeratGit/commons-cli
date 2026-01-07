@@ -1,0 +1,20 @@
+{
+  "className": "PatternOptionBuilder",
+  "methodName": "getValueType",
+  "brief": "public static Class<?> getValueType(final char ch){}",
+  "methodSignature": "getValueType(char)",
+  "sourceCode": "public static Class<?> getValueType(final char ch) {\n        switch (ch) {\n        case '@':\n            return OBJECT_VALUE;\n        case ':':\n            return STRING_VALUE;\n        case '%':\n            return NUMBER_VALUE;\n        case '+':\n            return CLASS_VALUE;\n        case '#':\n            return DATE_VALUE;\n        case '<':\n            return EXISTING_FILE_VALUE;\n        case '>':\n            return FILE_VALUE;\n        case '*':\n            return FILES_VALUE;\n        case '/':\n            return URL_VALUE;\n        }\n\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Retrieve the class that {@code ch} represents.\n *\n * @param ch the specified character\n * @return The class that {@code ch} represents\n * @since 1.7.0\n */\npublic static Class<?> getValueType(final char ch) {\n    switch(ch) {\n        case '@':\n            return OBJECT_VALUE;\n        case ':':\n            return STRING_VALUE;\n        case '%':\n            return NUMBER_VALUE;\n        case '+':\n            return CLASS_VALUE;\n        case '#':\n            return DATE_VALUE;\n        case '<':\n            return EXISTING_FILE_VALUE;\n        case '>':\n            return FILE_VALUE;\n        case '*':\n            return FILES_VALUE;\n        case '/':\n            return URL_VALUE;\n    }\n    return null;\n}",
+  "method_comment": "\n     * Retrieve the class that {@code ch} represents.\n     *\n     * @param ch the specified character\n     * @return The class that {@code ch} represents\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

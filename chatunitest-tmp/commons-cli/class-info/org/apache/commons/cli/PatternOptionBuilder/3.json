@@ -1,0 +1,51 @@
+{
+  "className": "PatternOptionBuilder",
+  "methodName": "parsePattern",
+  "brief": "public static Options parsePattern(final String pattern){}",
+  "methodSignature": "parsePattern(String)",
+  "sourceCode": "public static Options parsePattern(final String pattern) {\n        char opt = Char.SP;\n        boolean required = false;\n        Class<?> type = null;\n        Converter<?, ?> converter = Converter.DEFAULT;\n\n        final Options options = new Options();\n\n        for (int i = 0; i < pattern.length(); i++) {\n            final char ch = pattern.charAt(i);\n\n            // a value code comes after an option and specifies\n            // details about it\n            if (!isValueCode(ch)) {\n                if (opt != Char.SP) {\n                    // @formatter:off\n                    final Option option = Option.builder(String.valueOf(opt))\n                            .hasArg(type != null)\n                            .required(required)\n                            .type(type)\n                            .converter(converter)\n                            .get();\n                    // @formatter:on\n                    // we have a previous one to deal with\n                    options.addOption(option);\n                    required = false;\n                    type = null;\n                    converter = Converter.DEFAULT;\n                }\n\n                opt = ch;\n            } else if (ch == '!') {\n                required = true;\n            } else {\n                type = getValueType(ch);\n                final Map<Class<?>, Converter<?, ? extends Throwable>> map = TypeHandler.createDefaultMap();\n                // Backward compatibility (probably).\n                map.put(FILES_VALUE, unsupported());\n                converter = new TypeHandler(map).getConverter(getValueType(ch));\n            }\n        }\n\n        if (opt != Char.SP) {\n            final Option option = Option.builder(String.valueOf(opt)).hasArg(type != null).required(required).type(type).get();\n\n            // we have a final one to deal with\n            options.addOption(option);\n        }\n\n        return options;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "length()",
+      "valueOf(char)",
+      "charAt(int)"
+    ],
+    "org.apache.commons.cli.PatternOptionBuilder": [
+      "getValueType(char)",
+      "unsupported()",
+      "isValueCode(char)"
+    ],
+    "org.apache.commons.cli.Option.Builder": [
+      "type(Class<?>)",
+      "required(boolean)",
+      "hasArg(boolean)",
+      "converter(Converter<?, ?>)",
+      "get()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "builder(String)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "addOption(Option)"
+    ],
+    "org.apache.commons.cli.TypeHandler": [
+      "getConverter(Class<T>)",
+      "createDefaultMap()"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the {@link Options} instance represented by {@code pattern}.\n *\n * @param pattern the pattern string\n * @return The {@link Options} instance\n */\npublic static Options parsePattern(final String pattern) {\n    char opt = Char.SP;\n    boolean required = false;\n    Class<?> type = null;\n    Converter<?, ?> converter = Converter.DEFAULT;\n    final Options options = new Options();\n    for (int i = 0; i < pattern.length(); i++) {\n        final char ch = pattern.charAt(i);\n        // a value code comes after an option and specifies\n        // details about it\n        if (!isValueCode(ch)) {\n            if (opt != Char.SP) {\n                // @formatter:off\n                final Option option = Option.builder(String.valueOf(opt)).hasArg(type != null).required(required).type(type).converter(converter).get();\n                // @formatter:on\n                // we have a previous one to deal with\n                options.addOption(option);\n                required = false;\n                type = null;\n                converter = Converter.DEFAULT;\n            }\n            opt = ch;\n        } else if (ch == '!') {\n            required = true;\n        } else {\n            type = getValueType(ch);\n            final Map<Class<?>, Converter<?, ? extends Throwable>> map = TypeHandler.createDefaultMap();\n            // Backward compatibility (probably).\n            map.put(FILES_VALUE, unsupported());\n            converter = new TypeHandler(map).getConverter(getValueType(ch));\n        }\n    }\n    if (opt != Char.SP) {\n        final Option option = Option.builder(String.valueOf(opt)).hasArg(type != null).required(required).type(type).get();\n        // we have a final one to deal with\n        options.addOption(option);\n    }\n    return options;\n}",
+  "method_comment": "\n     * Returns the {@link Options} instance represented by {@code pattern}.\n     *\n     * @param pattern the pattern string\n     * @return The {@link Options} instance\n     ",
+  "method_annotation": ""
+}

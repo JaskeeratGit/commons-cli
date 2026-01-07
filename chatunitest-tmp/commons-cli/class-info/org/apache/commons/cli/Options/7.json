@@ -1,0 +1,37 @@
+{
+  "className": "Options",
+  "methodName": "getMatchingOptions",
+  "brief": "public List<String> getMatchingOptions(final String opt){}",
+  "methodSignature": "getMatchingOptions(String)",
+  "sourceCode": "public List<String> getMatchingOptions(final String opt) {\n        final String clean = Util.stripLeadingHyphens(opt);\n        final List<String> matchingOpts = new ArrayList<>();\n        // for a perfect match return the single option only\n        if (longOpts.containsKey(clean)) {\n            return Collections.singletonList(clean);\n        }\n        for (final String longOpt : longOpts.keySet()) {\n            if (longOpt.startsWith(clean)) {\n                matchingOpts.add(longOpt);\n            }\n        }\n        return matchingOpts;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "startsWith(String)"
+    ],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingHyphens(String)"
+    ],
+    "java.util.Map": [
+      "keySet()",
+      "containsKey(Object)"
+    ],
+    "java.util.Collections": [
+      "singletonList(T)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the options with a long name starting with the name specified.\n *\n * @param opt the partial name of the option.\n * @return the options matching the partial name specified, or an empty list if none matches.\n * @since 1.3\n */\npublic List<String> getMatchingOptions(final String opt) {\n    final String clean = Util.stripLeadingHyphens(opt);\n    final List<String> matchingOpts = new ArrayList<>();\n    // for a perfect match return the single option only\n    if (longOpts.containsKey(clean)) {\n        return Collections.singletonList(clean);\n    }\n    for (final String longOpt : longOpts.keySet()) {\n        if (longOpt.startsWith(clean)) {\n            matchingOpts.add(longOpt);\n        }\n    }\n    return matchingOpts;\n}",
+  "method_comment": "\n     * Gets the options with a long name starting with the name specified.\n     *\n     * @param opt the partial name of the option.\n     * @return the options matching the partial name specified, or an empty list if none matches.\n     * @since 1.3\n     ",
+  "method_annotation": ""
+}

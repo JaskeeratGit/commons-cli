@@ -1,0 +1,20 @@
+{
+  "method0": {
+    "methodName": "wrap",
+    "signature": "wrap(Throwable)",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "ParseException",
+    "signature": "ParseException(String)",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "ParseException",
+    "signature": "ParseException(Throwable)",
+    "className": "ParseException",
+    "packageName": "org.apache.commons.cli"
+  }
+}

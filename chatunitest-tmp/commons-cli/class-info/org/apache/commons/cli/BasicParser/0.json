@@ -1,0 +1,25 @@
+{
+  "className": "BasicParser",
+  "methodName": "flatten",
+  "brief": "@Override\n    protected String[] flatten(@SuppressWarnings(\"unused\") final Options options, final String[] arguments,\n        @SuppressWarnings(\"unused\") final boolean stopAtNonOption){}",
+  "methodSignature": "flatten(Options, String[], boolean)",
+  "sourceCode": "@Override\n    protected String[] flatten(@SuppressWarnings(\"unused\") final Options options, final String[] arguments,\n        @SuppressWarnings(\"unused\") final boolean stopAtNonOption) {\n        // just echo the arguments\n        return arguments;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * <p>\n * A simple implementation of {@link Parser}'s abstract {@link Parser#flatten(Options, String[], boolean) flatten}\n * method.\n * </p>\n *\n * <p>\n * <strong>Note:</strong> {@code options} and {@code stopAtNonOption} are not used in this {@code flatten} method.\n * </p>\n *\n * @param options The command line {@link Options}\n * @param arguments The command line arguments to be parsed\n * @param stopAtNonOption Specifies whether to stop flattening when an non option is found.\n * @return The {@code arguments} String array.\n */\n@Override\nprotected String[] flatten(@SuppressWarnings(\"unused\") final Options options, final String[] arguments, @SuppressWarnings(\"unused\") final boolean stopAtNonOption) {\n    // just echo the arguments\n    return arguments;\n}",
+  "method_comment": "\n     * <p>\n     * A simple implementation of {@link Parser}'s abstract {@link Parser#flatten(Options, String[], boolean) flatten}\n     * method.\n     * </p>\n     *\n     * <p>\n     * <strong>Note:</strong> {@code options} and {@code stopAtNonOption} are not used in this {@code flatten} method.\n     * </p>\n     *\n     * @param options The command line {@link Options}\n     * @param arguments The command line arguments to be parsed\n     * @param stopAtNonOption Specifies whether to stop flattening when an non option is found.\n     * @return The {@code arguments} String array.\n     ",
+  "method_annotation": "@Override\n"
+}

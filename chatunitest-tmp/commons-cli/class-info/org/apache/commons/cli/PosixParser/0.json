@@ -1,0 +1,41 @@
+{
+  "className": "PosixParser",
+  "methodName": "burstToken",
+  "brief": "protected void burstToken(final String token, final boolean stopAtNonOption){}",
+  "methodSignature": "burstToken(String, boolean)",
+  "sourceCode": "protected void burstToken(final String token, final boolean stopAtNonOption) {\n        for (int i = 1; i < token.length(); i++) {\n            final String ch = String.valueOf(token.charAt(i));\n\n            if (!options.hasOption(ch)) {\n                if (stopAtNonOption) {\n                    processNonOptionToken(token.substring(i), true);\n                } else {\n                    tokens.add(token);\n                }\n                break;\n            }\n            tokens.add(\"-\" + ch);\n            currentOption = options.getOption(ch);\n\n            if (currentOption.hasArg() && token.length() != i + 1) {\n                tokens.add(token.substring(i + 1));\n\n                break;\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "length()",
+      "valueOf(char)",
+      "charAt(int)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "getOption(String)",
+      "hasOption(String)"
+    ],
+    "org.apache.commons.cli.PosixParser": [
+      "processNonOptionToken(String, boolean)"
+    ],
+    "java.util.List": [
+      "add(E)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "hasArg()"
+    ]
+  },
+  "full_method_info": "/**\n * Breaks {@code token} into its constituent parts using the following algorithm.\n *\n * <ul>\n * <li>ignore the first character (\"<strong>-</strong>\")</li>\n * <li>for each remaining character check if an {@link Option} exists with that id.</li>\n * <li>if an {@link Option} does exist then add that character prepended with \"<strong>-</strong>\" to the list of processed\n * tokens.</li>\n * <li>if the {@link Option} can have an argument value and there are remaining characters in the token then add the\n * remaining characters as a token to the list of processed tokens.</li>\n * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS</strong> set then add the\n * special token \"<strong>--</strong>\" followed by the remaining characters and also the remaining tokens directly to the\n * processed tokens list.</li>\n * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS NOT</strong> set then add\n * that character prepended with \"<strong>-</strong>\".</li>\n * </ul>\n *\n * @param token The current token to be <strong>burst</strong>\n * @param stopAtNonOption Specifies whether to stop processing at the first non-Option encountered.\n */\nprotected void burstToken(final String token, final boolean stopAtNonOption) {\n    for (int i = 1; i < token.length(); i++) {\n        final String ch = String.valueOf(token.charAt(i));\n        if (!options.hasOption(ch)) {\n            if (stopAtNonOption) {\n                processNonOptionToken(token.substring(i), true);\n            } else {\n                tokens.add(token);\n            }\n            break;\n        }\n        tokens.add(\"-\" + ch);\n        currentOption = options.getOption(ch);\n        if (currentOption.hasArg() && token.length() != i + 1) {\n            tokens.add(token.substring(i + 1));\n            break;\n        }\n    }\n}",
+  "method_comment": "\n     * Breaks {@code token} into its constituent parts using the following algorithm.\n     *\n     * <ul>\n     * <li>ignore the first character (\"<strong>-</strong>\")</li>\n     * <li>for each remaining character check if an {@link Option} exists with that id.</li>\n     * <li>if an {@link Option} does exist then add that character prepended with \"<strong>-</strong>\" to the list of processed\n     * tokens.</li>\n     * <li>if the {@link Option} can have an argument value and there are remaining characters in the token then add the\n     * remaining characters as a token to the list of processed tokens.</li>\n     * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS</strong> set then add the\n     * special token \"<strong>--</strong>\" followed by the remaining characters and also the remaining tokens directly to the\n     * processed tokens list.</li>\n     * <li>if an {@link Option} does <strong>NOT</strong> exist <strong>AND</strong> {@code stopAtNonOption} <strong>IS NOT</strong> set then add\n     * that character prepended with \"<strong>-</strong>\".</li>\n     * </ul>\n     *\n     * @param token The current token to be <strong>burst</strong>\n     * @param stopAtNonOption Specifies whether to stop processing at the first non-Option encountered.\n     ",
+  "method_annotation": ""
+}

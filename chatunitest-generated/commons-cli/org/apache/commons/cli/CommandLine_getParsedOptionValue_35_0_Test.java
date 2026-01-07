@@ -1,0 +1,83 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+public class CommandLine_getParsedOptionValue_35_0_Test {
+
+    /**
+     * Create a CommandLine instance by reflectively invoking the non-public constructor:
+     * CommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler)
+     */
+    private CommandLine createCommandLine() throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // Provide empty lists and a null deprecatedHandler to avoid depending on Builder
+        return ctor.newInstance(new LinkedList<String>(), new ArrayList<Option>(), null);
+    }
+
+    @Test
+    public void returnsProvidedDefaultString() throws Exception {
+        CommandLine cmd = createCommandLine();
+        OptionGroup group = new OptionGroup();
+        String defaultValue = "default";
+        String result = cmd.getParsedOptionValue(group, defaultValue);
+        // Should return the exact default value supplied
+        assertSame(defaultValue, result);
+    }
+
+    @Test
+    public void returnsProvidedDefaultInteger() throws Exception {
+        CommandLine cmd = createCommandLine();
+        OptionGroup group = new OptionGroup();
+        Integer defaultValue = Integer.valueOf(42);
+        Integer result = cmd.getParsedOptionValue(group, defaultValue);
+        assertSame(defaultValue, result);
+        assertEquals(42, result.intValue());
+    }
+
+    @Test
+    public void returnsProvidedDefaultNull() throws Exception {
+        CommandLine cmd = createCommandLine();
+        OptionGroup group = new OptionGroup();
+        // Passing a null default should result in a null return (no NPE)
+        String result = cmd.getParsedOptionValue(group, (String) null);
+        assertNull(result);
+    }
+
+    @Test
+    public void worksWhenOptionGroupIsNull() throws Exception {
+        CommandLine cmd = createCommandLine();
+        String defaultValue = "noGroup";
+        // Cast the first null argument to OptionGroup to avoid ambiguity with overloaded methods
+        String result = cmd.getParsedOptionValue((OptionGroup) null, defaultValue);
+        // Even with a null OptionGroup, method should delegate to the supplier and return the default
+        assertSame(defaultValue, result);
+    }
+
+    @Test
+    public void supportsArrayDefaultValues() throws Exception {
+        CommandLine cmd = createCommandLine();
+        OptionGroup group = new OptionGroup();
+        String[] defaultArray = new String[] { "a", "b" };
+        String[] result = cmd.getParsedOptionValue(group, defaultArray);
+        // Ensure arrays are returned as-is (same reference)
+        assertSame(defaultArray, result);
+        assertArrayEquals(new String[] { "a", "b" }, result);
+    }
+}

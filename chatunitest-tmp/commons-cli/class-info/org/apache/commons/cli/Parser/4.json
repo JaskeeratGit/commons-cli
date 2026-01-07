@@ -1,0 +1,27 @@
+{
+  "className": "Parser",
+  "methodName": "parse",
+  "brief": "@Override\n    public CommandLine parse(final Options options, final String[] arguments) throws ParseException{}",
+  "methodSignature": "parse(Options, String[])",
+  "sourceCode": "@Override\n    public CommandLine parse(final Options options, final String[] arguments) throws ParseException {\n        return parse(options, arguments, null, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options",
+    "String[]"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [],
+    "java.lang.String": [],
+    "org.apache.commons.cli.Parser": [
+      "parse(Options, String[], Properties, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Parses the specified {@code arguments} based on the specified {@link Options}.\n *\n * @param options the {@code Options}\n * @param arguments the {@code arguments}\n * @return the {@code CommandLine}\n * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n */\n@Override\npublic CommandLine parse(final Options options, final String[] arguments) throws ParseException {\n    return parse(options, arguments, null, false);\n}",
+  "method_comment": "\n     * Parses the specified {@code arguments} based on the specified {@link Options}.\n     *\n     * @param options the {@code Options}\n     * @param arguments the {@code arguments}\n     * @return the {@code CommandLine}\n     * @throws ParseException if there are any problems encountered while parsing the command line tokens.\n     ",
+  "method_annotation": "@Override\n"
+}

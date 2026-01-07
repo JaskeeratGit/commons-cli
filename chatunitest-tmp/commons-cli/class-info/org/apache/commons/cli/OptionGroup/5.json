@@ -1,0 +1,18 @@
+{
+  "className": "OptionGroup",
+  "methodName": "isSelected",
+  "brief": "public boolean isSelected(){}",
+  "methodSignature": "isSelected()",
+  "sourceCode": "public boolean isSelected() {\n        return selected != null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether an option is selected.\n *\n *  If an option is selected and is deprecated <em>no warning is logged</em>.\n * @return whether whether an option is selected.\n * @since 1.9.0\n */\npublic boolean isSelected() {\n    return selected != null;\n}",
+  "method_comment": "\n     * Tests whether an option is selected.\n     *\n     *  If an option is selected and is deprecated <em>no warning is logged</em>.\n     * @return whether whether an option is selected.\n     * @since 1.9.0\n     ",
+  "method_annotation": ""
+}

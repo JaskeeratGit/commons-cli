@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getDescPadding",
+  "brief": "public int getDescPadding(){}",
+  "methodSignature": "getDescPadding()",
+  "sourceCode": "public int getDescPadding() {\n        return defaultDescPad;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the 'descPadding'.\n *\n * @return the 'descPadding'\n */\npublic int getDescPadding() {\n    return defaultDescPad;\n}",
+  "method_comment": "\n     * Gets the 'descPadding'.\n     *\n     * @return the 'descPadding'\n     ",
+  "method_annotation": ""
+}

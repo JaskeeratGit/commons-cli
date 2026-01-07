@@ -1,0 +1,18 @@
+{
+  "className": "Parser",
+  "methodName": "getRequiredOptions",
+  "brief": "protected List getRequiredOptions(){}",
+  "methodSignature": "getRequiredOptions()",
+  "sourceCode": "protected List getRequiredOptions() {\n        return requiredOptions;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the required options.\n *\n * @return the required options.\n */\nprotected List getRequiredOptions() {\n    return requiredOptions;\n}",
+  "method_comment": "\n     * Gets the required options.\n     *\n     * @return the required options.\n     ",
+  "method_annotation": ""
+}

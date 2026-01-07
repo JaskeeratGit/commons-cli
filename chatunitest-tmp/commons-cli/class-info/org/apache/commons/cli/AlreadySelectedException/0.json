@@ -1,0 +1,18 @@
+{
+  "className": "AlreadySelectedException",
+  "methodName": "getOption",
+  "brief": "public Option getOption(){}",
+  "methodSignature": "getOption()",
+  "sourceCode": "public Option getOption() {\n        return option;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the option that was added to the group and triggered the exception.\n *\n * @return the related option\n * @since 1.2\n */\npublic Option getOption() {\n    return option;\n}",
+  "method_comment": "\n     * Gets the option that was added to the group and triggered the exception.\n     *\n     * @return the related option\n     * @since 1.2\n     ",
+  "method_annotation": ""
+}

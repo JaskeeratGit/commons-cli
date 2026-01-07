@@ -1,0 +1,28 @@
+{
+  "className": "OptionComparator",
+  "methodName": "compare",
+  "brief": "@Override\n        public int compare(final Option opt1, final Option opt2){}",
+  "methodSignature": "compare(Option, Option)",
+  "sourceCode": "@Override\n        public int compare(final Option opt1, final Option opt2) {\n            return opt1.getKey().compareToIgnoreCase(opt2.getKey());\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option",
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ],
+    "java.lang.String": [
+      "compareToIgnoreCase(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Compares its two arguments for order. Returns a negative integer, zero, or a positive integer as the first argument\n * is less than, equal to, or greater than the second.\n *\n * @param opt1 The first Option to be compared.\n * @param opt2 The second Option to be compared.\n * @return a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than\n *         the second.\n */\n@Override\npublic int compare(final Option opt1, final Option opt2) {\n    return opt1.getKey().compareToIgnoreCase(opt2.getKey());\n}",
+  "method_comment": "\n         * Compares its two arguments for order. Returns a negative integer, zero, or a positive integer as the first argument\n         * is less than, equal to, or greater than the second.\n         *\n         * @param opt1 The first Option to be compared.\n         * @param opt2 The second Option to be compared.\n         * @return a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than\n         *         the second.\n         ",
+  "method_annotation": "@Override\n"
+}

@@ -1,0 +1,18 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "getSerializer",
+  "brief": "public final HelpAppendable getSerializer(){}",
+  "methodSignature": "getSerializer()",
+  "sourceCode": "public final HelpAppendable getSerializer() {\n        return helpAppendable;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the {@link HelpAppendable} associated with this help formatter.\n *\n * @return The {@link HelpAppendable} associated with this help formatter.\n */\npublic final HelpAppendable getSerializer() {\n    return helpAppendable;\n}",
+  "method_comment": "\n     * Gets the {@link HelpAppendable} associated with this help formatter.\n     *\n     * @return The {@link HelpAppendable} associated with this help formatter.\n     ",
+  "method_annotation": ""
+}

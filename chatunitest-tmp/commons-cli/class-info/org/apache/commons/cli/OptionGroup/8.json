@@ -1,0 +1,39 @@
+{
+  "className": "OptionGroup",
+  "methodName": "toString",
+  "brief": "@Override\n    public String toString(){}",
+  "methodSignature": "toString()",
+  "sourceCode": "@Override\n    public String toString() {\n        final StringBuilder buff = new StringBuilder();\n        final Iterator<Option> iter = getOptions().iterator();\n        buff.append(\"[\");\n        while (iter.hasNext()) {\n            final Option option = iter.next();\n            if (option.getOpt() != null) {\n                buff.append(\"-\");\n                buff.append(option.getOpt());\n            } else {\n                buff.append(\"--\");\n                buff.append(option.getLongOpt());\n            }\n\n            if (option.getDescription() != null) {\n                buff.append(Char.SP);\n                buff.append(option.getDescription());\n            }\n\n            if (iter.hasNext()) {\n                buff.append(\", \");\n            }\n        }\n        buff.append(\"]\");\n        return buff.toString();\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.Collection": [
+      "iterator()"
+    ],
+    "org.apache.commons.cli.OptionGroup": [
+      "getOptions()"
+    ],
+    "java.lang.StringBuilder": [
+      "append(char)",
+      "toString()",
+      "append(String)"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getOpt()",
+      "getDescription()",
+      "getLongOpt()"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the stringified version of this OptionGroup.\n *\n * @return the stringified representation of this group.\n */\n@Override\npublic String toString() {\n    final StringBuilder buff = new StringBuilder();\n    final Iterator<Option> iter = getOptions().iterator();\n    buff.append(\"[\");\n    while (iter.hasNext()) {\n        final Option option = iter.next();\n        if (option.getOpt() != null) {\n            buff.append(\"-\");\n            buff.append(option.getOpt());\n        } else {\n            buff.append(\"--\");\n            buff.append(option.getLongOpt());\n        }\n        if (option.getDescription() != null) {\n            buff.append(Char.SP);\n            buff.append(option.getDescription());\n        }\n        if (iter.hasNext()) {\n            buff.append(\", \");\n        }\n    }\n    buff.append(\"]\");\n    return buff.toString();\n}",
+  "method_comment": "\n     * Returns the stringified version of this OptionGroup.\n     *\n     * @return the stringified representation of this group.\n     ",
+  "method_annotation": "@Override\n"
+}

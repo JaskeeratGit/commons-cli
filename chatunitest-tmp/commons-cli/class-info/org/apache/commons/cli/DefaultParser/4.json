@@ -1,0 +1,22 @@
+{
+  "className": "DefaultParser",
+  "methodName": "checkRequiredOptions",
+  "brief": "protected void checkRequiredOptions() throws MissingOptionException{}",
+  "methodSignature": "checkRequiredOptions()",
+  "sourceCode": "protected void checkRequiredOptions() throws MissingOptionException {\n        // if there are required options that have not been processed\n        if (!expectedOpts.isEmpty()) {\n            throw new MissingOptionException(expectedOpts);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.List": [
+      "isEmpty()"
+    ]
+  },
+  "full_method_info": "/**\n * Throws a {@link MissingOptionException} if all of the required options are not present.\n *\n * @throws MissingOptionException if any of the required Options are not present.\n */\nprotected void checkRequiredOptions() throws MissingOptionException {\n    // if there are required options that have not been processed\n    if (!expectedOpts.isEmpty()) {\n        throw new MissingOptionException(expectedOpts);\n    }\n}",
+  "method_comment": "\n     * Throws a {@link MissingOptionException} if all of the required options are not present.\n     *\n     * @throws MissingOptionException if any of the required Options are not present.\n     ",
+  "method_annotation": ""
+}

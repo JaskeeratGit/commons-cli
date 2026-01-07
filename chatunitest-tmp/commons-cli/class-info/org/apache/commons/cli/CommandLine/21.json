@@ -1,0 +1,27 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionValue",
+  "brief": "public String getOptionValue(final String optionName, final String defaultValue){}",
+  "methodSignature": "getOptionValue(String, String)",
+  "sourceCode": "public String getOptionValue(final String optionName, final String defaultValue) {\n        return getOptionValue(resolveOption(optionName), () -> defaultValue);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.CommandLine": [
+      "resolveOption(String)",
+      "getOptionValue(Option, String>)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the first argument, if any, of an option.\n *\n * @param optionName name of the option.\n * @param defaultValue is the default value to be returned if the option is not specified.\n * @return Value of the argument if option is set, and has an argument, otherwise {@code defaultValue}.\n */\npublic String getOptionValue(final String optionName, final String defaultValue) {\n    return getOptionValue(resolveOption(optionName), () -> defaultValue);\n}",
+  "method_comment": "\n     * Gets the first argument, if any, of an option.\n     *\n     * @param optionName name of the option.\n     * @param defaultValue is the default value to be returned if the option is not specified.\n     * @return Value of the argument if option is set, and has an argument, otherwise {@code defaultValue}.\n     ",
+  "method_annotation": ""
+}

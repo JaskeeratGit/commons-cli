@@ -1,0 +1,43 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printHelp",
+  "brief": "public void printHelp(final PrintWriter pw, final int width, final String cmdLineSyntax, final String header, final Options options, final int leftPad,\n        final int descPad, final String footer, final boolean autoUsage){}",
+  "methodSignature": "printHelp(PrintWriter, int, String, String, Options, int, int, String, boolean)",
+  "sourceCode": "public void printHelp(final PrintWriter pw, final int width, final String cmdLineSyntax, final String header, final Options options, final int leftPad,\n        final int descPad, final String footer, final boolean autoUsage) {\n        if (Util.isEmpty(cmdLineSyntax)) {\n            throw new IllegalArgumentException(\"cmdLineSyntax not provided\");\n        }\n        if (autoUsage) {\n            printUsage(pw, width, cmdLineSyntax, options);\n        } else {\n            printUsage(pw, width, cmdLineSyntax);\n        }\n        if (header != null && !header.isEmpty()) {\n            printWrapped(pw, width, header);\n        }\n        printOptions(pw, width, options, leftPad, descPad);\n        if (footer != null && !footer.isEmpty()) {\n            printWrapped(pw, width, footer);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PrintWriter",
+    "int",
+    "String",
+    "String",
+    "Options",
+    "int",
+    "int",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.io.PrintWriter": [],
+    "java.lang.String": [
+      "isEmpty()"
+    ],
+    "org.apache.commons.cli.Options": [],
+    "org.apache.commons.cli.Util": [
+      "isEmpty(String)"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "printUsage(PrintWriter, int, String, Options)",
+      "printUsage(PrintWriter, int, String)",
+      "printOptions(PrintWriter, int, Options, int, int)",
+      "printWrapped(PrintWriter, int, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the help for {@code options} with the specified command line syntax.\n *\n * @param pw the writer to which the help will be written\n * @param width the number of characters to be displayed on each line\n * @param cmdLineSyntax the syntax for this application\n * @param header the banner to display at the beginning of the help\n * @param options the Options instance\n * @param leftPad the number of characters of padding to be prefixed to each line\n * @param descPad the number of characters of padding to be prefixed to each description line\n * @param footer the banner to display at the end of the help\n * @param autoUsage whether to print an automatically generated usage statement\n * @throws IllegalStateException if there is no room to print a line\n */\npublic void printHelp(final PrintWriter pw, final int width, final String cmdLineSyntax, final String header, final Options options, final int leftPad, final int descPad, final String footer, final boolean autoUsage) {\n    if (Util.isEmpty(cmdLineSyntax)) {\n        throw new IllegalArgumentException(\"cmdLineSyntax not provided\");\n    }\n    if (autoUsage) {\n        printUsage(pw, width, cmdLineSyntax, options);\n    } else {\n        printUsage(pw, width, cmdLineSyntax);\n    }\n    if (header != null && !header.isEmpty()) {\n        printWrapped(pw, width, header);\n    }\n    printOptions(pw, width, options, leftPad, descPad);\n    if (footer != null && !footer.isEmpty()) {\n        printWrapped(pw, width, footer);\n    }\n}",
+  "method_comment": "\n     * Prints the help for {@code options} with the specified command line syntax.\n     *\n     * @param pw the writer to which the help will be written\n     * @param width the number of characters to be displayed on each line\n     * @param cmdLineSyntax the syntax for this application\n     * @param header the banner to display at the beginning of the help\n     * @param options the Options instance\n     * @param leftPad the number of characters of padding to be prefixed to each line\n     * @param descPad the number of characters of padding to be prefixed to each description line\n     * @param footer the banner to display at the end of the help\n     * @param autoUsage whether to print an automatically generated usage statement\n     * @throws IllegalStateException if there is no room to print a line\n     ",
+  "method_annotation": ""
+}

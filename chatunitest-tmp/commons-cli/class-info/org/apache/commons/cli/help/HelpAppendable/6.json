@@ -1,0 +1,22 @@
+{
+  "className": "HelpAppendable",
+  "methodName": "appendTitle",
+  "brief": "void appendTitle(CharSequence title) throws IOException;",
+  "methodSignature": "appendTitle(CharSequence)",
+  "sourceCode": "void appendTitle(CharSequence title) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": []
+  },
+  "full_method_info": "/**\n * Appends a title.\n *\n * @param title the title to write, null is a noop.\n * @throws IOException If an output error occurs.\n */\nvoid appendTitle(CharSequence title) throws IOException;",
+  "method_comment": "\n     * Appends a title.\n     *\n     * @param title the title to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     ",
+  "method_annotation": ""
+}

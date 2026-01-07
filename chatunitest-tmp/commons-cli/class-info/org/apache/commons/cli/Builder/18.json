@@ -1,0 +1,24 @@
+{
+  "className": "Builder",
+  "methodName": "type",
+  "brief": "public Builder type(final Class<?> type){}",
+  "methodSignature": "type(Class)",
+  "sourceCode": "public Builder type(final Class<?> type) {\n            this.type = toType(type);\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<?>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option.Builder": [
+      "toType(Class<?>)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the type of the Option.\n *\n * @param type the type of the Option.\n * @return this builder.\n */\npublic Builder type(final Class<?> type) {\n    this.type = toType(type);\n    return this;\n}",
+  "method_comment": "\n         * Sets the type of the Option.\n         *\n         * @param type the type of the Option.\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

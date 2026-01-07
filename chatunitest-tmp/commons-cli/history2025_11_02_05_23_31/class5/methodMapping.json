@@ -1,0 +1,62 @@
+{
+  "method0": {
+    "methodName": "builder",
+    "signature": "builder()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method1": {
+    "methodName": "getAlignment",
+    "signature": "getAlignment()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method2": {
+    "methodName": "getIndent",
+    "signature": "getIndent()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method3": {
+    "methodName": "getLeftPad",
+    "signature": "getLeftPad()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method4": {
+    "methodName": "getMaxWidth",
+    "signature": "getMaxWidth()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method5": {
+    "methodName": "getMinWidth",
+    "signature": "getMinWidth()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method6": {
+    "methodName": "isScalable",
+    "signature": "isScalable()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method7": {
+    "methodName": "pad",
+    "signature": "pad(boolean, CharSequence)",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method8": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  },
+  "method9": {
+    "methodName": "TextStyle",
+    "signature": "TextStyle(Builder)",
+    "className": "TextStyle",
+    "packageName": "org.apache.commons.cli.help"
+  }
+}

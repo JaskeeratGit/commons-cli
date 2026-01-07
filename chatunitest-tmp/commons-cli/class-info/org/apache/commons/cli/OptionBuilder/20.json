@@ -1,0 +1,18 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "OptionBuilder",
+  "brief": "private OptionBuilder(){}",
+  "methodSignature": "OptionBuilder()",
+  "sourceCode": "private OptionBuilder() {\n        // hide the constructor\n    }",
+  "useField": false,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "private OptionBuilder() {\n    // hide the constructor\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

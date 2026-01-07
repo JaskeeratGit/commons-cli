@@ -1,0 +1,32 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printOptions",
+  "brief": "public void printOptions(final PrintWriter pw, final int width, final Options options, final int leftPad, final int descPad){}",
+  "methodSignature": "printOptions(PrintWriter, int, Options, int, int)",
+  "sourceCode": "public void printOptions(final PrintWriter pw, final int width, final Options options, final int leftPad, final int descPad) {\n        try {\n            pw.println(appendOptions(new StringBuilder(), width, options, leftPad, descPad));\n        } catch (final IOException e) {\n            // Cannot happen\n            throw new UncheckedIOException(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PrintWriter",
+    "int",
+    "Options",
+    "int",
+    "int"
+  ],
+  "dependentMethods": {
+    "java.io.PrintWriter": [
+      "println(Object)"
+    ],
+    "org.apache.commons.cli.Options": [],
+    "org.apache.commons.cli.HelpFormatter": [
+      "appendOptions(A, int, Options, int, int)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the help for the specified Options to the specified writer, using the specified width, left padding and\n * description padding.\n *\n * @param pw The printWriter to write the help to\n * @param width The number of characters to display per line\n * @param options The command line Options\n * @param leftPad the number of characters of padding to be prefixed to each line\n * @param descPad the number of characters of padding to be prefixed to each description line\n */\npublic void printOptions(final PrintWriter pw, final int width, final Options options, final int leftPad, final int descPad) {\n    try {\n        pw.println(appendOptions(new StringBuilder(), width, options, leftPad, descPad));\n    } catch (final IOException e) {\n        // Cannot happen\n        throw new UncheckedIOException(e);\n    }\n}",
+  "method_comment": "\n     * Prints the help for the specified Options to the specified writer, using the specified width, left padding and\n     * description padding.\n     *\n     * @param pw The printWriter to write the help to\n     * @param width The number of characters to display per line\n     * @param options The command line Options\n     * @param leftPad the number of characters of padding to be prefixed to each line\n     * @param descPad the number of characters of padding to be prefixed to each description line\n     ",
+  "method_annotation": ""
+}

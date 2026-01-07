@@ -1,0 +1,24 @@
+{
+  "className": "FilterHelpAppendable",
+  "methodName": "append",
+  "brief": "@Override\n    public FilterHelpAppendable append(final char ch) throws IOException{}",
+  "methodSignature": "append(char)",
+  "sourceCode": "@Override\n    public FilterHelpAppendable append(final char ch) throws IOException {\n        output.append(ch);\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "char"
+  ],
+  "dependentMethods": {
+    "java.lang.Appendable": [
+      "append(char)"
+    ]
+  },
+  "full_method_info": "@Override\npublic FilterHelpAppendable append(final char ch) throws IOException {\n    output.append(ch);\n    return this;\n}",
+  "method_comment": "",
+  "method_annotation": "@Override\n"
+}

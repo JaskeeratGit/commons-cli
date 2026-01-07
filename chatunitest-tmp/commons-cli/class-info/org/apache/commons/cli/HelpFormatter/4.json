@@ -1,0 +1,43 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "appendOptionGroup",
+  "brief": "private void appendOptionGroup(final StringBuilder buff, final OptionGroup optionGroup){}",
+  "methodSignature": "appendOptionGroup(StringBuilder, OptionGroup)",
+  "sourceCode": "private void appendOptionGroup(final StringBuilder buff, final OptionGroup optionGroup) {\n        if (!optionGroup.isRequired()) {\n            buff.append(\"[\");\n        }\n        final List<Option> optList = new ArrayList<>(optionGroup.getOptions());\n        if (getOptionComparator() != null) {\n            Collections.sort(optList, getOptionComparator());\n        }\n        // for each option in the OptionGroup\n        for (final Iterator<Option> it = optList.iterator(); it.hasNext();) {\n            // whether the option is required or not is handled at group level\n            appendOption(buff, it.next(), true);\n\n            if (it.hasNext()) {\n                buff.append(\" | \");\n            }\n        }\n        if (!optionGroup.isRequired()) {\n            buff.append(\"]\");\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "StringBuilder",
+    "OptionGroup"
+  ],
+  "dependentMethods": {
+    "java.lang.StringBuilder": [
+      "append(String)"
+    ],
+    "org.apache.commons.cli.OptionGroup": [
+      "isRequired()",
+      "getOptions()"
+    ],
+    "org.apache.commons.cli.HelpFormatter": [
+      "appendOption(StringBuilder, Option, boolean)",
+      "getOptionComparator()"
+    ],
+    "java.util.Collections": [
+      "sort(List<T>, Comparator<? super T>)"
+    ],
+    "java.util.List": [
+      "iterator()"
+    ],
+    "java.util.Iterator": [
+      "hasNext()",
+      "next()"
+    ]
+  },
+  "full_method_info": "/**\n * Appends the usage clause for an OptionGroup to a StringBuffer. The clause is wrapped in square brackets if the group\n * is required. The display of the options is handled by appendOption\n *\n * @param buff the StringBuilder to append to\n * @param optionGroup the group to append\n * @see #appendOption(StringBuilder,Option,boolean)\n */\nprivate void appendOptionGroup(final StringBuilder buff, final OptionGroup optionGroup) {\n    if (!optionGroup.isRequired()) {\n        buff.append(\"[\");\n    }\n    final List<Option> optList = new ArrayList<>(optionGroup.getOptions());\n    if (getOptionComparator() != null) {\n        Collections.sort(optList, getOptionComparator());\n    }\n    // for each option in the OptionGroup\n    for (final Iterator<Option> it = optList.iterator(); it.hasNext(); ) {\n        // whether the option is required or not is handled at group level\n        appendOption(buff, it.next(), true);\n        if (it.hasNext()) {\n            buff.append(\" | \");\n        }\n    }\n    if (!optionGroup.isRequired()) {\n        buff.append(\"]\");\n    }\n}",
+  "method_comment": "\n     * Appends the usage clause for an OptionGroup to a StringBuffer. The clause is wrapped in square brackets if the group\n     * is required. The display of the options is handled by appendOption\n     *\n     * @param buff the StringBuilder to append to\n     * @param optionGroup the group to append\n     * @see #appendOption(StringBuilder,Option,boolean)\n     ",
+  "method_annotation": ""
+}

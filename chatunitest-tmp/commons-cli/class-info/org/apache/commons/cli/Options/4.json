@@ -1,0 +1,39 @@
+{
+  "className": "Options",
+  "methodName": "addOptionGroup",
+  "brief": "public Options addOptionGroup(final OptionGroup optionGroup){}",
+  "methodSignature": "addOptionGroup(OptionGroup)",
+  "sourceCode": "public Options addOptionGroup(final OptionGroup optionGroup) {\n        if (optionGroup.isRequired()) {\n            requiredOpts.add(optionGroup);\n        }\n        for (final Option option : optionGroup.getOptions()) {\n            // an Option cannot be required if it is in an\n            // OptionGroup, either the group is required or\n            // nothing is required\n            option.setRequired(false);\n            final String key = option.getKey();\n            requiredOpts.remove(key);\n            addOption(option);\n            optionGroups.put(key, optionGroup);\n        }\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionGroup"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionGroup": [
+      "isRequired()",
+      "getOptions()"
+    ],
+    "java.util.List": [
+      "remove(Object)",
+      "add(E)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "setRequired(boolean)",
+      "getKey()"
+    ],
+    "org.apache.commons.cli.Options": [
+      "addOption(Option)"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the specified option group.\n * <p>\n * An Option cannot be required if it is in an {@link OptionGroup}, either the group is required or nothing is required. This means that {@link Option} in\n * the given group are set to optional.\n * </p>\n *\n * @param optionGroup the OptionGroup that is to be added.\n * @return the resulting Options instance.\n */\npublic Options addOptionGroup(final OptionGroup optionGroup) {\n    if (optionGroup.isRequired()) {\n        requiredOpts.add(optionGroup);\n    }\n    for (final Option option : optionGroup.getOptions()) {\n        // an Option cannot be required if it is in an\n        // OptionGroup, either the group is required or\n        // nothing is required\n        option.setRequired(false);\n        final String key = option.getKey();\n        requiredOpts.remove(key);\n        addOption(option);\n        optionGroups.put(key, optionGroup);\n    }\n    return this;\n}",
+  "method_comment": "\n     * Adds the specified option group.\n     * <p>\n     * An Option cannot be required if it is in an {@link OptionGroup}, either the group is required or nothing is required. This means that {@link Option} in\n     * the given group are set to optional.\n     * </p>\n     *\n     * @param optionGroup the OptionGroup that is to be added.\n     * @return the resulting Options instance.\n     ",
+  "method_annotation": ""
+}

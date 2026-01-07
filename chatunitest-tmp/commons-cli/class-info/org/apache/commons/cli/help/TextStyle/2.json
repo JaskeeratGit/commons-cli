@@ -1,0 +1,18 @@
+{
+  "className": "TextStyle",
+  "methodName": "getIndent",
+  "brief": "public int getIndent(){}",
+  "methodSignature": "getIndent()",
+  "sourceCode": "public int getIndent() {\n        return indent;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the indent value.\n *\n * @return the indent value.\n */\npublic int getIndent() {\n    return indent;\n}",
+  "method_comment": "\n     * Gets the indent value.\n     *\n     * @return the indent value.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,52 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleShortAndLongOption",
+  "brief": "private void handleShortAndLongOption(final String hyphenToken) throws ParseException{}",
+  "methodSignature": "handleShortAndLongOption(String)",
+  "sourceCode": "private void handleShortAndLongOption(final String hyphenToken) throws ParseException {\n        final String token = Util.stripLeadingHyphens(hyphenToken);\n        final int pos = indexOfEqual(token);\n        if (token.length() == 1) {\n            // -S\n            if (options.hasShortOption(token)) {\n                handleOption(options.getOption(token));\n            } else {\n                handleUnknownToken(hyphenToken);\n            }\n        } else if (pos == -1) {\n            // no equal sign found (-xxx)\n            if (options.hasShortOption(token)) {\n                handleOption(options.getOption(token));\n            } else if (!getMatchingLongOptions(token).isEmpty()) {\n                // -L or -l\n                handleLongOptionWithoutEqual(hyphenToken);\n            } else {\n                // look for a long prefix (-Xmx512m)\n                final String opt = getLongPrefix(token);\n\n                if (opt != null && options.getOption(opt).acceptsArg()) {\n                    handleOption(options.getOption(opt));\n                    currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(token.substring(opt.length())));\n                    currentOption = null;\n                } else if (isJavaProperty(token)) {\n                    // -SV1 (-Dflag)\n                    handleOption(options.getOption(token.substring(0, 1)));\n                    currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(token.substring(1)));\n                    currentOption = null;\n                } else {\n                    // -S1S2S3 or -S1S2V\n                    handleConcatenatedOptions(hyphenToken);\n                }\n            }\n        } else {\n            // equal sign found (-xxx=yyy)\n            final String opt = token.substring(0, pos);\n            final String value = token.substring(pos + 1);\n\n            if (opt.length() == 1) {\n                // -S=V\n                final Option option = options.getOption(opt);\n                if (option != null && option.acceptsArg()) {\n                    handleOption(option);\n                    currentOption.processValue(value);\n                    currentOption = null;\n                } else {\n                    handleUnknownToken(hyphenToken);\n                }\n            } else if (isJavaProperty(opt)) {\n                // -SV1=V2 (-Dkey=value)\n                handleOption(options.getOption(opt.substring(0, 1)));\n                currentOption.processValue(opt.substring(1));\n                currentOption.processValue(value);\n                currentOption = null;\n            } else {\n                // -L=V or -l=V\n                handleLongOptionWithEqual(hyphenToken);\n            }\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "substring(int)",
+      "substring(int, int)",
+      "length()"
+    ],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingHyphens(String)"
+    ],
+    "org.apache.commons.cli.DefaultParser": [
+      "handleLongOptionWithEqual(String)",
+      "stripLeadingAndTrailingQuotesDefaultOff(String)",
+      "handleUnknownToken(String)",
+      "isJavaProperty(String)",
+      "indexOfEqual(String)",
+      "getLongPrefix(String)",
+      "handleLongOptionWithoutEqual(String)",
+      "handleOption(Option)",
+      "getMatchingLongOptions(String)",
+      "handleConcatenatedOptions(String)"
+    ],
+    "org.apache.commons.cli.Options": [
+      "hasShortOption(String)",
+      "getOption(String)"
+    ],
+    "java.util.List": [
+      "isEmpty()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "acceptsArg()",
+      "processValue(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Handles the following tokens:\n * <pre>\n * -S -SV -S V -S=V -S1S2 -S1S2 V -SV1=V2\n *\n * -L -LV -L V -L=V -l\n * </pre>\n *\n * @param hyphenToken the command line token to handle.\n */\nprivate void handleShortAndLongOption(final String hyphenToken) throws ParseException {\n    final String token = Util.stripLeadingHyphens(hyphenToken);\n    final int pos = indexOfEqual(token);\n    if (token.length() == 1) {\n        // -S\n        if (options.hasShortOption(token)) {\n            handleOption(options.getOption(token));\n        } else {\n            handleUnknownToken(hyphenToken);\n        }\n    } else if (pos == -1) {\n        // no equal sign found (-xxx)\n        if (options.hasShortOption(token)) {\n            handleOption(options.getOption(token));\n        } else if (!getMatchingLongOptions(token).isEmpty()) {\n            // -L or -l\n            handleLongOptionWithoutEqual(hyphenToken);\n        } else {\n            // look for a long prefix (-Xmx512m)\n            final String opt = getLongPrefix(token);\n            if (opt != null && options.getOption(opt).acceptsArg()) {\n                handleOption(options.getOption(opt));\n                currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(token.substring(opt.length())));\n                currentOption = null;\n            } else if (isJavaProperty(token)) {\n                // -SV1 (-Dflag)\n                handleOption(options.getOption(token.substring(0, 1)));\n                currentOption.processValue(stripLeadingAndTrailingQuotesDefaultOff(token.substring(1)));\n                currentOption = null;\n            } else {\n                // -S1S2S3 or -S1S2V\n                handleConcatenatedOptions(hyphenToken);\n            }\n        }\n    } else {\n        // equal sign found (-xxx=yyy)\n        final String opt = token.substring(0, pos);\n        final String value = token.substring(pos + 1);\n        if (opt.length() == 1) {\n            // -S=V\n            final Option option = options.getOption(opt);\n            if (option != null && option.acceptsArg()) {\n                handleOption(option);\n                currentOption.processValue(value);\n                currentOption = null;\n            } else {\n                handleUnknownToken(hyphenToken);\n            }\n        } else if (isJavaProperty(opt)) {\n            // -SV1=V2 (-Dkey=value)\n            handleOption(options.getOption(opt.substring(0, 1)));\n            currentOption.processValue(opt.substring(1));\n            currentOption.processValue(value);\n            currentOption = null;\n        } else {\n            // -L=V or -l=V\n            handleLongOptionWithEqual(hyphenToken);\n        }\n    }\n}",
+  "method_comment": "\n     * Handles the following tokens:\n     * <pre>\n     * -S -SV -S V -S=V -S1S2 -S1S2 V -SV1=V2\n     *\n     * -L -LV -L V -L=V -l\n     * </pre>\n     *\n     * @param hyphenToken the command line token to handle.\n     ",
+  "method_annotation": ""
+}

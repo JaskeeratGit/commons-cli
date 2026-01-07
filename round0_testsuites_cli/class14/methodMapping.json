@@ -1,0 +1,38 @@
+{
+  "method0": {
+    "methodName": "getValueClass",
+    "signature": "getValueClass(char)",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "getValueType",
+    "signature": "getValueType(char)",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "isValueCode",
+    "signature": "isValueCode(char)",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "parsePattern",
+    "signature": "parsePattern(String)",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "unsupported",
+    "signature": "unsupported()",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "PatternOptionBuilder",
+    "signature": "PatternOptionBuilder()",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli"
+  }
+}

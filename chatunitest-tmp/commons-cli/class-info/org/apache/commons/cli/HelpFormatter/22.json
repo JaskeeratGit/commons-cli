@@ -1,0 +1,34 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "printHelp",
+  "brief": "public void printHelp(final PrintWriter pw, final int width, final String cmdLineSyntax, final String header, final Options options, final int leftPad,\n        final int descPad, final String footer){}",
+  "methodSignature": "printHelp(PrintWriter, int, String, String, Options, int, int, String)",
+  "sourceCode": "public void printHelp(final PrintWriter pw, final int width, final String cmdLineSyntax, final String header, final Options options, final int leftPad,\n        final int descPad, final String footer) {\n        printHelp(pw, width, cmdLineSyntax, header, options, leftPad, descPad, footer, false);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "PrintWriter",
+    "int",
+    "String",
+    "String",
+    "Options",
+    "int",
+    "int",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.io.PrintWriter": [],
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [],
+    "org.apache.commons.cli.HelpFormatter": [
+      "printHelp(PrintWriter, int, String, String, Options, int, int, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the help for {@code options} with the specified command line syntax.\n *\n * @param pw the writer to which the help will be written\n * @param width the number of characters to be displayed on each line\n * @param cmdLineSyntax the syntax for this application\n * @param header the banner to display at the beginning of the help\n * @param options the Options instance\n * @param leftPad the number of characters of padding to be prefixed to each line\n * @param descPad the number of characters of padding to be prefixed to each description line\n * @param footer the banner to display at the end of the help\n * @throws IllegalStateException if there is no room to print a line\n */\npublic void printHelp(final PrintWriter pw, final int width, final String cmdLineSyntax, final String header, final Options options, final int leftPad, final int descPad, final String footer) {\n    printHelp(pw, width, cmdLineSyntax, header, options, leftPad, descPad, footer, false);\n}",
+  "method_comment": "\n     * Prints the help for {@code options} with the specified command line syntax.\n     *\n     * @param pw the writer to which the help will be written\n     * @param width the number of characters to be displayed on each line\n     * @param cmdLineSyntax the syntax for this application\n     * @param header the banner to display at the beginning of the help\n     * @param options the Options instance\n     * @param leftPad the number of characters of padding to be prefixed to each line\n     * @param descPad the number of characters of padding to be prefixed to each description line\n     * @param footer the banner to display at the end of the help\n     * @throws IllegalStateException if there is no room to print a line\n     ",
+  "method_annotation": ""
+}

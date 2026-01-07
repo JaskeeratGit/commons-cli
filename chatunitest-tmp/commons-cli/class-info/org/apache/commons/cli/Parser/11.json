@@ -1,0 +1,24 @@
+{
+  "className": "Parser",
+  "methodName": "setOptions",
+  "brief": "protected void setOptions(final Options options){}",
+  "methodSignature": "setOptions(Options)",
+  "sourceCode": "protected void setOptions(final Options options) {\n        this.options = options;\n        this.requiredOptions = new ArrayList<>(options.getRequiredOptions());\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "getRequiredOptions()"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the options.\n *\n * @param options the options.\n */\nprotected void setOptions(final Options options) {\n    this.options = options;\n    this.requiredOptions = new ArrayList<>(options.getRequiredOptions());\n}",
+  "method_comment": "\n     * Sets the options.\n     *\n     * @param options the options.\n     ",
+  "method_annotation": ""
+}

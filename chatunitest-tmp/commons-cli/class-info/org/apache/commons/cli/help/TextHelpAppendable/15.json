@@ -1,0 +1,29 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "printWrapped",
+  "brief": "public void printWrapped(final String text) throws IOException{}",
+  "methodSignature": "printWrapped(String)",
+  "sourceCode": "public void printWrapped(final String text) throws IOException {\n        printQueue(makeColumnQueue(text, this.textStyleBuilder.get()));\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.help.TextHelpAppendable": [
+      "printQueue(String>)",
+      "makeColumnQueue(CharSequence, TextStyle)"
+    ],
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "get()"
+    ]
+  },
+  "full_method_info": "/**\n * Prints wrapped text using the TextHelpAppendable output style.\n *\n * @param text the text to wrap\n * @throws IOException on output error.\n */\npublic void printWrapped(final String text) throws IOException {\n    printQueue(makeColumnQueue(text, this.textStyleBuilder.get()));\n}",
+  "method_comment": "\n     * Prints wrapped text using the TextHelpAppendable output style.\n     *\n     * @param text the text to wrap\n     * @throws IOException on output error.\n     ",
+  "method_annotation": ""
+}

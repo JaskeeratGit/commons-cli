@@ -1,0 +1,22 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "isRequired",
+  "brief": "public boolean isRequired(){}",
+  "methodSignature": "isRequired()",
+  "sourceCode": "public boolean isRequired() {\n        return option.isRequired();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": true,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "isRequired()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the required flag from the enclosed {@link Option}.\n *\n * @return The required flag from the enclosed {@link Option}.\n */\npublic boolean isRequired() {\n    return option.isRequired();\n}",
+  "method_comment": "\n     * Gets the required flag from the enclosed {@link Option}.\n     *\n     * @return The required flag from the enclosed {@link Option}.\n     ",
+  "method_annotation": ""
+}

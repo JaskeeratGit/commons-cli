@@ -1,0 +1,27 @@
+{
+  "className": "Options",
+  "methodName": "getOptionGroup",
+  "brief": "public OptionGroup getOptionGroup(final Option option){}",
+  "methodSignature": "getOptionGroup(Option)",
+  "sourceCode": "public OptionGroup getOptionGroup(final Option option) {\n        return optionGroups.get(option.getKey());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ],
+    "java.util.Map": [
+      "get(Object)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the OptionGroup the {@code opt} belongs to.\n *\n * @param option the option whose OptionGroup is being queried.\n * @return the OptionGroup if {@code opt} is part of an OptionGroup, otherwise return null.\n */\npublic OptionGroup getOptionGroup(final Option option) {\n    return optionGroups.get(option.getKey());\n}",
+  "method_comment": "\n     * Gets the OptionGroup the {@code opt} belongs to.\n     *\n     * @param option the option whose OptionGroup is being queried.\n     * @return the OptionGroup if {@code opt} is part of an OptionGroup, otherwise return null.\n     ",
+  "method_annotation": ""
+}

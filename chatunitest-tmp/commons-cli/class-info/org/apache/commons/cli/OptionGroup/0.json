@@ -1,0 +1,27 @@
+{
+  "className": "OptionGroup",
+  "methodName": "addOption",
+  "brief": "public OptionGroup addOption(final Option option){}",
+  "methodSignature": "addOption(Option)",
+  "sourceCode": "public OptionGroup addOption(final Option option) {\n        optionMap.put(option.getKey(), option);\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ],
+    "java.util.Map": [
+      "put(K, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds the given {@code Option} to this group.\n *\n * @param option the option to add to this group.\n * @return this option group with the option added.\n */\npublic OptionGroup addOption(final Option option) {\n    optionMap.put(option.getKey(), option);\n    return this;\n}",
+  "method_comment": "\n     * Adds the given {@code Option} to this group.\n     *\n     * @param option the option to add to this group.\n     * @return this option group with the option added.\n     ",
+  "method_annotation": ""
+}

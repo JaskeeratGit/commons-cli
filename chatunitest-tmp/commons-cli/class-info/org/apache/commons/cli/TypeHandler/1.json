@@ -1,0 +1,25 @@
+{
+  "className": "TypeHandler",
+  "methodName": "createDate",
+  "brief": "public static Date createDate(final String string){}",
+  "methodSignature": "createDate(String)",
+  "sourceCode": "public static Date createDate(final String string) {\n        return createValueUnchecked(string, Date.class);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.TypeHandler": [
+      "createValueUnchecked(String, Class<T>)"
+    ]
+  },
+  "full_method_info": "/**\n * Returns the date represented by {@code string}.\n * <p>\n * This method is not yet implemented and always throws an {@link UnsupportedOperationException}.\n * </p>\n *\n * @param string the date string\n * @return The date if {@code string} is a valid date string, otherwise return null.\n */\npublic static Date createDate(final String string) {\n    return createValueUnchecked(string, Date.class);\n}",
+  "method_comment": "\n     * Returns the date represented by {@code string}.\n     * <p>\n     * This method is not yet implemented and always throws an {@link UnsupportedOperationException}.\n     * </p>\n     *\n     * @param string the date string\n     * @return The date if {@code string} is a valid date string, otherwise return null.\n     ",
+  "method_annotation": ""
+}

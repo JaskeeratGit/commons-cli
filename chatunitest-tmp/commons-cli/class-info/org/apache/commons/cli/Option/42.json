@@ -1,0 +1,20 @@
+{
+  "className": "Option",
+  "methodName": "setOptionalArg",
+  "brief": "public void setOptionalArg(final boolean optionalArg){}",
+  "methodSignature": "setOptionalArg(boolean)",
+  "sourceCode": "public void setOptionalArg(final boolean optionalArg) {\n        this.optionalArg = optionalArg;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether this Option can have an optional argument.\n *\n * @param optionalArg specifies whether the Option can have an optional argument.\n */\npublic void setOptionalArg(final boolean optionalArg) {\n    this.optionalArg = optionalArg;\n}",
+  "method_comment": "\n     * Sets whether this Option can have an optional argument.\n     *\n     * @param optionalArg specifies whether the Option can have an optional argument.\n     ",
+  "method_annotation": ""
+}

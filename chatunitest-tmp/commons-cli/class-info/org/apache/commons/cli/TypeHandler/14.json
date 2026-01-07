@@ -1,0 +1,24 @@
+{
+  "className": "TypeHandler",
+  "methodName": "getConverter",
+  "brief": "@SuppressWarnings(\"unchecked\") // returned value will have type T because it is fixed by clazz\n    public <T> Converter<T, ?> getConverter(final Class<T> clazz){}",
+  "methodSignature": "getConverter(Class)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\") // returned value will have type T because it is fixed by clazz\n    public <T> Converter<T, ?> getConverter(final Class<T> clazz) {\n        return (Converter<T, ?>) converterMap.getOrDefault(clazz, Converter.DEFAULT);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Class<T>"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "getOrDefault(Object, V)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the registered converter for the the Class, or {@link Converter#DEFAULT} if absent.\n *\n * @param <T>   The Class parameter type.\n * @param clazz The Class to get the Converter for.\n * @return the registered converter if any, {@link Converter#DEFAULT} otherwise.\n * @since 1.7.0\n */\n// returned value will have type T because it is fixed by clazz\n@SuppressWarnings(\"unchecked\")\npublic <T> Converter<T, ?> getConverter(final Class<T> clazz) {\n    return (Converter<T, ?>) converterMap.getOrDefault(clazz, Converter.DEFAULT);\n}",
+  "method_comment": "\n     * Gets the registered converter for the the Class, or {@link Converter#DEFAULT} if absent.\n     *\n     * @param <T>   The Class parameter type.\n     * @param clazz The Class to get the Converter for.\n     * @return the registered converter if any, {@link Converter#DEFAULT} otherwise.\n     * @since 1.7.0\n     ",
+  "method_annotation": "// returned value will have type T because it is fixed by clazz\n@SuppressWarnings(\"unchecked\")\n"
+}

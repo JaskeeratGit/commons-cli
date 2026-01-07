@@ -1,0 +1,18 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "systemOut",
+  "brief": "protected static TextHelpAppendable systemOut(){}",
+  "methodSignature": "systemOut()",
+  "sourceCode": "protected static TextHelpAppendable systemOut() {\n        return new TextHelpAppendable(System.out);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Creates a new TextHelpAppendable on {@link System#out}.\n *\n * @return a new TextHelpAppendable on {@link System#out}.\n */\nprotected static TextHelpAppendable systemOut() {\n    return new TextHelpAppendable(System.out);\n}",
+  "method_comment": "\n     * Creates a new TextHelpAppendable on {@link System#out}.\n     *\n     * @return a new TextHelpAppendable on {@link System#out}.\n     ",
+  "method_annotation": ""
+}

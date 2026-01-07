@@ -1,0 +1,18 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "withValueSeparator",
+  "brief": "public static OptionBuilder withValueSeparator(){}",
+  "methodSignature": "withValueSeparator()",
+  "sourceCode": "public static OptionBuilder withValueSeparator() {\n        valueSeparator = Char.EQUAL;\n        return INSTANCE;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The next Option created uses '{@code =}' as a means to separate argument values.\n *\n * <strong>Example:</strong>\n *\n * <pre>\n * Option opt = withValueSeparator().create('D');\n *\n * CommandLine line = parser.parse(args);\n * String propertyName = opt.getValue(0);\n * String propertyValue = opt.getValue(1);\n * </pre>\n *\n * @return the OptionBuilder instance\n */\npublic static OptionBuilder withValueSeparator() {\n    valueSeparator = Char.EQUAL;\n    return INSTANCE;\n}",
+  "method_comment": "\n     * The next Option created uses '{@code =}' as a means to separate argument values.\n     *\n     * <strong>Example:</strong>\n     *\n     * <pre>\n     * Option opt = withValueSeparator().create('D');\n     *\n     * CommandLine line = parser.parse(args);\n     * String propertyName = opt.getValue(0);\n     * String propertyValue = opt.getValue(1);\n     * </pre>\n     *\n     * @return the OptionBuilder instance\n     ",
+  "method_annotation": ""
+}

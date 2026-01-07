@@ -1,0 +1,18 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "getOptPrefix",
+  "brief": "public String getOptPrefix(){}",
+  "methodSignature": "getOptPrefix()",
+  "sourceCode": "public String getOptPrefix() {\n        return defaultOptPrefix;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the 'optPrefix'.\n *\n * @return the 'optPrefix'\n */\npublic String getOptPrefix() {\n    return defaultOptPrefix;\n}",
+  "method_comment": "\n     * Gets the 'optPrefix'.\n     *\n     * @return the 'optPrefix'\n     ",
+  "method_annotation": ""
+}

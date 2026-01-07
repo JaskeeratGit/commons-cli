@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "setForRemoval",
+  "brief": "public Builder setForRemoval(final boolean forRemoval){}",
+  "methodSignature": "setForRemoval(boolean)",
+  "sourceCode": "public Builder setForRemoval(final boolean forRemoval) {\n            this.forRemoval = forRemoval;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether this option is subject to removal in a future version.\n *\n * @param forRemoval whether this is subject to removal in a future version.\n * @return {@code this} instance.\n * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.forRemoval</a>\n */\npublic Builder setForRemoval(final boolean forRemoval) {\n    this.forRemoval = forRemoval;\n    return this;\n}",
+  "method_comment": "\n         * Sets whether this option is subject to removal in a future version.\n         *\n         * @param forRemoval whether this is subject to removal in a future version.\n         * @return {@code this} instance.\n         * @see <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Deprecated.html#forRemoval()\">Deprecated.forRemoval</a>\n         ",
+  "method_annotation": ""
+}

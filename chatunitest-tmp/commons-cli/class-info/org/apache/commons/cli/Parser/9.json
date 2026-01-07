@@ -1,0 +1,39 @@
+{
+  "className": "Parser",
+  "methodName": "processOption",
+  "brief": "protected void processOption(final String arg, final ListIterator<String> iter) throws ParseException{}",
+  "methodSignature": "processOption(String, ListIterator)",
+  "sourceCode": "protected void processOption(final String arg, final ListIterator<String> iter) throws ParseException {\n        final boolean hasOption = getOptions().hasOption(arg);\n        // if there is no option throw an UnrecognizedOptionException\n        if (!hasOption) {\n            throw new UnrecognizedOptionException(\"Unrecognized option: \" + arg, arg);\n        }\n        // get the option represented by arg\n        final Option opt = (Option) getOptions().getOption(arg).clone();\n        // update the required options and groups\n        updateRequiredOptions(opt);\n        // if the option takes an argument value\n        if (opt.hasArg()) {\n            processArgs(opt, iter);\n        }\n        // set the option on the command line\n        cmd.addOption(opt);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "ListIterator<String>"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [
+      "getOption(String)",
+      "hasOption(String)"
+    ],
+    "org.apache.commons.cli.Parser": [
+      "updateRequiredOptions(Option)",
+      "processArgs(Option, String>)",
+      "getOptions()"
+    ],
+    "org.apache.commons.cli.Option": [
+      "hasArg()",
+      "clone()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "addOption(Option)"
+    ]
+  },
+  "full_method_info": "/**\n * Process the Option specified by {@code arg} using the values retrieved from the specified iterator\n * {@code iter}.\n *\n * @param arg The String value representing an Option\n * @param iter The iterator over the flattened command line arguments.\n * @throws ParseException if {@code arg} does not represent an Option\n */\nprotected void processOption(final String arg, final ListIterator<String> iter) throws ParseException {\n    final boolean hasOption = getOptions().hasOption(arg);\n    // if there is no option throw an UnrecognizedOptionException\n    if (!hasOption) {\n        throw new UnrecognizedOptionException(\"Unrecognized option: \" + arg, arg);\n    }\n    // get the option represented by arg\n    final Option opt = (Option) getOptions().getOption(arg).clone();\n    // update the required options and groups\n    updateRequiredOptions(opt);\n    // if the option takes an argument value\n    if (opt.hasArg()) {\n        processArgs(opt, iter);\n    }\n    // set the option on the command line\n    cmd.addOption(opt);\n}",
+  "method_comment": "\n     * Process the Option specified by {@code arg} using the values retrieved from the specified iterator\n     * {@code iter}.\n     *\n     * @param arg The String value representing an Option\n     * @param iter The iterator over the flattened command line arguments.\n     * @throws ParseException if {@code arg} does not represent an Option\n     ",
+  "method_annotation": ""
+}

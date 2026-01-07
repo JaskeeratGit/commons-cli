@@ -1,0 +1,18 @@
+{
+  "className": "Option",
+  "methodName": "getKey",
+  "brief": "public String getKey(){}",
+  "methodSignature": "getKey()",
+  "sourceCode": "public String getKey() {\n        // if 'opt' is null, then it is a 'long' option\n        return option == null ? longOption : option;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the 'unique' Option identifier. This is the option value if set or the long value if the options value is not set.\n *\n * @return the 'unique' Option identifier.\n * @since 1.7.0\n */\npublic String getKey() {\n    // if 'opt' is null, then it is a 'long' option\n    return option == null ? longOption : option;\n}",
+  "method_comment": "\n     * Gets the 'unique' Option identifier. This is the option value if set or the long value if the options value is not set.\n     *\n     * @return the 'unique' Option identifier.\n     * @since 1.7.0\n     ",
+  "method_annotation": ""
+}

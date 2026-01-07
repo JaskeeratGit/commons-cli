@@ -1,0 +1,43 @@
+{
+  "fullClassName": "org.apache.commons.cli.help.TableDefinition",
+  "className": "TableDefinition",
+  "index": 0,
+  "modifier": "[public ]",
+  "extend": "[]",
+  "implement": "[]",
+  "packageName": "org.apache.commons.cli.help",
+  "packageDeclaration": "package org.apache.commons.cli.help;",
+  "classSignature": "public interface TableDefinition",
+  "hasConstructor": false,
+  "isPublic": true,
+  "isInterface": true,
+  "isAbstract": false,
+  "imports": [
+    "import java.util.List;"
+  ],
+  "fields": [],
+  "superClasses": [],
+  "implementedTypes": [],
+  "methodSigs": {
+    "from(String, List, List, Iterable)": "0",
+    "caption()": "1",
+    "columnTextStyles()": "2",
+    "headers()": "3",
+    "rows()": "4"
+  },
+  "methodsBrief": [
+    "static TableDefinition from(final String caption, final List<TextStyle> columnStyle, final List<String> headers, final Iterable<List<String>> rows){}",
+    "String caption();",
+    "List<TextStyle> columnTextStyles();",
+    "List<String> headers();",
+    "Iterable<List<String>> rows();"
+  ],
+  "constructorSigs": [],
+  "constructorBrief": [],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {},
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli.help;\n\nimport java.util.List;\n\n/**\n * The definition of a table to display.\n * <p>\n * Aa table definition contains a caption and data that describes each column. Every column in the table may have\n * </p>\n * <ul>\n * <li>A caption.</li>\n * <li>A {@link TextStyle} that describes the width of the entry, its offset from the previous column (leftPad) and how much each line after the first should be\n * indented (indent).</li>\n * <li>A heading (String) is placed at the top of the column</li>\n * <li>A collection of rows</li>\n * </ul>\n *\n * @since 1.10.0\n */\npublic interface TableDefinition {\n\n    /**\n     * A helper function to create a table instance from the various components.\n     *\n     * @param caption     The caption, may be {@code null}.\n     * @param columnStyle a list of TextStyle elements defining the columns.\n     * @param headers     the list of column headers.\n     * @param rows        a collection of rows.\n     * @return A TableDefinition returning the parameters as appropriate.\n     */\n    static TableDefinition from(final String caption, final List<TextStyle> columnStyle, final List<String> headers, final Iterable<List<String>> rows) {\n        return new TableDefinition() {\n\n            @Override\n            public String caption() {\n                return caption;\n            }\n\n            @Override\n            public List<TextStyle> columnTextStyles() {\n                return columnStyle;\n            }\n\n            @Override\n            public List<String> headers() {\n                return headers;\n            }\n\n            @Override\n            public Iterable<List<String>> rows() {\n                return rows;\n            }\n        };\n    }\n\n    /**\n     * Gets the caption for the table. May be @{code null}.\n     *\n     * @return The caption for the table. May be @{code null}.\n     */\n    String caption();\n\n    /**\n     * Gets the list TextStyles. One for each column in order.\n     *\n     * @return the list of TextStyles.\n     */\n    List<TextStyle> columnTextStyles();\n\n    /**\n     * Gets the list of header strings. One for each column in order.\n     *\n     * @return The list of header strings.\n     */\n    List<String> headers();\n\n    /**\n     * Gets the collection of rows.\n     * <p>\n     * Each row is a list of Strings, one for each column in the table.\n     * </p>\n     *\n     * @return The collection of rows.\n     */\n    Iterable<List<String>> rows();\n}\n",
+  "classDeclarationCode": "/**\n * The definition of a table to display.\n * <p>\n * Aa table definition contains a caption and data that describes each column. Every column in the table may have\n * </p>\n * <ul>\n * <li>A caption.</li>\n * <li>A {@link TextStyle} that describes the width of the entry, its offset from the previous column (leftPad) and how much each line after the first should be\n * indented (indent).</li>\n * <li>A heading (String) is placed at the top of the column</li>\n * <li>A collection of rows</li>\n * </ul>\n *\n * @since 1.10.0\n */\npublic interface TableDefinition {\n\n    /**\n     * A helper function to create a table instance from the various components.\n     *\n     * @param caption     The caption, may be {@code null}.\n     * @param columnStyle a list of TextStyle elements defining the columns.\n     * @param headers     the list of column headers.\n     * @param rows        a collection of rows.\n     * @return A TableDefinition returning the parameters as appropriate.\n     */\n    static TableDefinition from(final String caption, final List<TextStyle> columnStyle, final List<String> headers, final Iterable<List<String>> rows) {\n        return new TableDefinition() {\n\n            @Override\n            public String caption() {\n                return caption;\n            }\n\n            @Override\n            public List<TextStyle> columnTextStyles() {\n                return columnStyle;\n            }\n\n            @Override\n            public List<String> headers() {\n                return headers;\n            }\n\n            @Override\n            public Iterable<List<String>> rows() {\n                return rows;\n            }\n        };\n    }\n\n    /**\n     * Gets the caption for the table. May be @{code null}.\n     *\n     * @return The caption for the table. May be @{code null}.\n     */\n    String caption();\n\n    /**\n     * Gets the list TextStyles. One for each column in order.\n     *\n     * @return the list of TextStyles.\n     */\n    List<TextStyle> columnTextStyles();\n\n    /**\n     * Gets the list of header strings. One for each column in order.\n     *\n     * @return The list of header strings.\n     */\n    List<String> headers();\n\n    /**\n     * Gets the collection of rows.\n     * <p>\n     * Each row is a list of Strings, one for each column in the table.\n     * </p>\n     *\n     * @return The collection of rows.\n     */\n    Iterable<List<String>> rows();\n}",
+  "subClasses": []
+}

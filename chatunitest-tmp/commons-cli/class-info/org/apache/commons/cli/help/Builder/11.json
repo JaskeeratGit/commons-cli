@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "setScalable",
+  "brief": "public Builder setScalable(final boolean scalable){}",
+  "methodSignature": "setScalable(boolean)",
+  "sourceCode": "public Builder setScalable(final boolean scalable) {\n            this.scalable = scalable;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets whether the column can be made wider or to narrower width to fit constraints of the HelpAppendable and formatting.\n *\n * @param scalable Whether the text width can be adjusted.\n * @return this instance.\n */\npublic Builder setScalable(final boolean scalable) {\n    this.scalable = scalable;\n    return this;\n}",
+  "method_comment": "\n         * Sets whether the column can be made wider or to narrower width to fit constraints of the HelpAppendable and formatting.\n         *\n         * @param scalable Whether the text width can be adjusted.\n         * @return this instance.\n         ",
+  "method_annotation": ""
+}

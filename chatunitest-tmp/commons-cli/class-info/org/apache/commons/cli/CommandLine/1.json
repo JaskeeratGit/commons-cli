@@ -1,0 +1,25 @@
+{
+  "className": "CommandLine",
+  "methodName": "addArg",
+  "brief": "protected void addArg(final String arg){}",
+  "methodSignature": "addArg(String)",
+  "sourceCode": "protected void addArg(final String arg) {\n        if (arg != null) {\n            args.add(arg);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "java.util.List": [
+      "add(E)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds left-over unrecognized option/argument.\n *\n * @param arg the unrecognized option/argument.\n */\nprotected void addArg(final String arg) {\n    if (arg != null) {\n        args.add(arg);\n    }\n}",
+  "method_comment": "\n     * Adds left-over unrecognized option/argument.\n     *\n     * @param arg the unrecognized option/argument.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,18 @@
+{
+  "className": "Parser",
+  "methodName": "getOptions",
+  "brief": "protected Options getOptions(){}",
+  "methodSignature": "getOptions()",
+  "sourceCode": "protected Options getOptions() {\n        return options;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the options.\n *\n * @return the options.\n */\nprotected Options getOptions() {\n    return options;\n}",
+  "method_comment": "\n     * Gets the options.\n     *\n     * @return the options.\n     ",
+  "method_annotation": ""
+}

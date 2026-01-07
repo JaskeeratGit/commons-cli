@@ -1,0 +1,35 @@
+{
+  "className": "CommandLine",
+  "methodName": "getParsedOptionValue",
+  "brief": "@SuppressWarnings(\"unchecked\")\n    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}",
+  "methodSignature": "getParsedOptionValue(Option, Supplier)",
+  "sourceCode": "@SuppressWarnings(\"unchecked\")\n    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException {\n        if (option == null) {\n            return get(defaultValue);\n        }\n        final String res = getOptionValue(option);\n        try {\n            if (res == null) {\n                return get(defaultValue);\n            }\n            return (T) option.getConverter().apply(res);\n        } catch (final Exception e) {\n            throw ParseException.wrap(e);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option",
+    "Supplier<T>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getConverter()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "get(Supplier<T>)",
+      "getOptionValue(Option)"
+    ],
+    "org.apache.commons.cli.Converter": [
+      "apply(String)"
+    ],
+    "org.apache.commons.cli.ParseException": [
+      "wrap(Throwable)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets a version of this {@code Option} converted to a particular type.\n *\n * @param option the option.\n * @param defaultValue the default value to return if opt is not set.\n * @param <T> The return type for the method.\n * @return the value parsed into a particular object or the defaultValue if the option is not set.\n * @throws ParseException if there are problems turning the option value into the desired type\n * @see PatternOptionBuilder\n * @since 1.7.0\n */\n@SuppressWarnings(\"unchecked\")\npublic <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException {\n    if (option == null) {\n        return get(defaultValue);\n    }\n    final String res = getOptionValue(option);\n    try {\n        if (res == null) {\n            return get(defaultValue);\n        }\n        return (T) option.getConverter().apply(res);\n    } catch (final Exception e) {\n        throw ParseException.wrap(e);\n    }\n}",
+  "method_comment": "\n     * Gets a version of this {@code Option} converted to a particular type.\n     *\n     * @param option the option.\n     * @param defaultValue the default value to return if opt is not set.\n     * @param <T> The return type for the method.\n     * @return the value parsed into a particular object or the defaultValue if the option is not set.\n     * @throws ParseException if there are problems turning the option value into the desired type\n     * @see PatternOptionBuilder\n     * @since 1.7.0\n     ",
+  "method_annotation": "@SuppressWarnings(\"unchecked\")\n"
+}

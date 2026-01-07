@@ -1,0 +1,18 @@
+{
+  "className": "TextStyle",
+  "methodName": "getMinWidth",
+  "brief": "public int getMinWidth(){}",
+  "methodSignature": "getMinWidth()",
+  "sourceCode": "public int getMinWidth() {\n        return minWidth;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * gets the minimum width.\n *\n * @return The minimum width.\n */\npublic int getMinWidth() {\n    return minWidth;\n}",
+  "method_comment": "\n     * gets the minimum width.\n     *\n     * @return The minimum width.\n     ",
+  "method_annotation": ""
+}

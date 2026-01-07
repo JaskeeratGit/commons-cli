@@ -1,0 +1,31 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionObject",
+  "brief": "@Deprecated\n    public Object getOptionObject(final String optionName){}",
+  "methodSignature": "getOptionObject(String)",
+  "sourceCode": "@Deprecated\n    public Object getOptionObject(final String optionName) {\n        try {\n            return getParsedOptionValue(optionName);\n        } catch (final ParseException pe) {\n            System.err.println(\"Exception found converting \" + optionName + \" to desired type: \" + pe.getMessage());\n            return null;\n        }\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.CommandLine": [
+      "getParsedOptionValue(String)"
+    ],
+    "java.io.PrintStream": [
+      "println(String)"
+    ],
+    "java.lang.Throwable": [
+      "getMessage()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the {@code Object} type of this {@code Option}.\n *\n * @param optionName the name of the option.\n * @return the type of this {@code Option}.\n * @deprecated due to System.err message. Instead use getParsedOptionValue(String)\n */\n@Deprecated\npublic Object getOptionObject(final String optionName) {\n    try {\n        return getParsedOptionValue(optionName);\n    } catch (final ParseException pe) {\n        System.err.println(\"Exception found converting \" + optionName + \" to desired type: \" + pe.getMessage());\n        return null;\n    }\n}",
+  "method_comment": "\n     * Gets the {@code Object} type of this {@code Option}.\n     *\n     * @param optionName the name of the option.\n     * @return the type of this {@code Option}.\n     * @deprecated due to System.err message. Instead use getParsedOptionValue(String)\n     ",
+  "method_annotation": "@Deprecated\n"
+}

@@ -1,0 +1,21 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "resize",
+  "brief": "private int resize(final int orig, final double fraction){}",
+  "methodSignature": "resize(int, double)",
+  "sourceCode": "private int resize(final int orig, final double fraction) {\n        return (int) (orig * fraction);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int",
+    "double"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Resizes an original width based on the fractional size it should be.\n *\n * @param orig     the original size.\n * @param fraction the fractional adjustment.\n * @return the resized value.\n */\nprivate int resize(final int orig, final double fraction) {\n    return (int) (orig * fraction);\n}",
+  "method_comment": "\n     * Resizes an original width based on the fractional size it should be.\n     *\n     * @param orig     the original size.\n     * @param fraction the fractional adjustment.\n     * @return the resized value.\n     ",
+  "method_annotation": ""
+}

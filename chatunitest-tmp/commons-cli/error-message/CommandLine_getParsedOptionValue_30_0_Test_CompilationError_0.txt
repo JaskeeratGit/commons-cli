@@ -1,0 +1,77 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Method;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+
+public class CommandLine_getParsedOptionValue_32_0_Test {
+
+    @Test
+    public void testReturnsDefaultValue_whenOptionNotPresent() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Option opt = new Option("a", false, "desc");
+        // public method should delegate and return the provided default value
+        String def = "defaultValue";
+        String result = cmd.getParsedOptionValue(opt, def);
+        assertEquals(def, result);
+    }
+
+    @Test
+    public void testReturnsNullDefaultValue_whenNullPassed() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Option opt = new Option("b", false, "desc");
+        // null default should be returned unchanged
+        String result = cmd.getParsedOptionValue(opt, (String) null);
+        assertNull(result);
+    }
+
+    @Test
+    public void testHandlesArrayDefaultValue() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Option opt = new Option("c", true, "desc");
+        String[] defArray = new String[] { "x", "y" };
+        String[] result = cmd.getParsedOptionValue(opt, defArray);
+        assertSame(defArray, result);
+    }
+
+    @Test
+    public void testInvokePrivateSupplierBasedMethod_viaReflection() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Option opt = new Option("d", true, "desc");
+        // find the supplier-based getParsedOptionValue method (may be private)
+        Method target = null;
+        for (Method m : CommandLine.class.getDeclaredMethods()) {
+            if ("getParsedOptionValue".equals(m.getName())) {
+                Class<?>[] params = m.getParameterTypes();
+                if (params.length == 2 && params[0] == Option.class && params[1] == java.util.function.Supplier.class) {
+                    target = m;
+                    break;
+                }
+            }
+        }
+        assertNotNull(target, "Expected a getParsedOptionValue(Option, Supplier) method");
+        target.setAccessible(true);
+        // Supplier that provides a distinct value
+        Supplier<String> supplier = () -> "suppliedValue";
+        @SuppressWarnings("unchecked")
+        String invokedResult = (String) target.invoke(cmd, opt, supplier);
+        assertEquals("suppliedValue", invokedResult);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getParsedOptionValue_32_0_Test: line 21 : class CommandLine_getParsedOptionValue_32_0_Test is public, should be declared in a file named CommandLine_getParsedOptionValue_32_0_Test.java

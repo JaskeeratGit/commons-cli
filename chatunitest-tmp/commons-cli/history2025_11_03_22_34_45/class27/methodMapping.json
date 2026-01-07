@@ -1,0 +1,116 @@
+{
+  "method0": {
+    "methodName": "addOption",
+    "signature": "addOption(Option)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "addOption",
+    "signature": "addOption(String, boolean, String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method10": {
+    "methodName": "getOptionGroups",
+    "signature": "getOptionGroups()",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method11": {
+    "methodName": "getOptions",
+    "signature": "getOptions()",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method12": {
+    "methodName": "getRequiredOptions",
+    "signature": "getRequiredOptions()",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method13": {
+    "methodName": "hasLongOption",
+    "signature": "hasLongOption(String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method14": {
+    "methodName": "hasOption",
+    "signature": "hasOption(String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method15": {
+    "methodName": "hasShortOption",
+    "signature": "hasShortOption(String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method16": {
+    "methodName": "helpOptions",
+    "signature": "helpOptions()",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method17": {
+    "methodName": "toString",
+    "signature": "toString()",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method18": {
+    "methodName": "Options",
+    "signature": "Options()",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "addOption",
+    "signature": "addOption(String, String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "addOption",
+    "signature": "addOption(String, String, boolean, String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "addOptionGroup",
+    "signature": "addOptionGroup(OptionGroup)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "addOptions",
+    "signature": "addOptions(Options)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "addRequiredOption",
+    "signature": "addRequiredOption(String, String, boolean, String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "getMatchingOptions",
+    "signature": "getMatchingOptions(String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "getOption",
+    "signature": "getOption(String)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "getOptionGroup",
+    "signature": "getOptionGroup(Option)",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli"
+  }
+}

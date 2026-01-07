@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "required",
+  "brief": "public Builder required(){}",
+  "methodSignature": "required()",
+  "sourceCode": "public Builder required() {\n            return required(true);\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option.Builder": [
+      "required(boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Marks this Option as required.\n *\n * @return this builder.\n */\npublic Builder required() {\n    return required(true);\n}",
+  "method_comment": "\n         * Marks this Option as required.\n         *\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

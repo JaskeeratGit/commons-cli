@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "valueSeparator",
+  "brief": "public Builder valueSeparator(){}",
+  "methodSignature": "valueSeparator()",
+  "sourceCode": "public Builder valueSeparator() {\n            return valueSeparator(Char.EQUAL);\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option.Builder": [
+      "valueSeparator(char)"
+    ]
+  },
+  "full_method_info": "/**\n * The Option will use '=' as a means to separate argument value.\n *\n * @return this builder.\n */\npublic Builder valueSeparator() {\n    return valueSeparator(Char.EQUAL);\n}",
+  "method_comment": "\n         * The Option will use '=' as a means to separate argument value.\n         *\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

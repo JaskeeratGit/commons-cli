@@ -1,0 +1,104 @@
+{
+  "method0": {
+    "methodName": "createClass",
+    "signature": "createClass(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method1": {
+    "methodName": "createDate",
+    "signature": "createDate(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method10": {
+    "methodName": "createValueUnchecked",
+    "signature": "createValueUnchecked(String, Class)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method11": {
+    "methodName": "getDefault",
+    "signature": "getDefault()",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method12": {
+    "methodName": "openFile",
+    "signature": "openFile(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method13": {
+    "methodName": "putDefaultMap",
+    "signature": "putDefaultMap(Map)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method14": {
+    "methodName": "getConverter",
+    "signature": "getConverter(Class)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method15": {
+    "methodName": "TypeHandler",
+    "signature": "TypeHandler()",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method16": {
+    "methodName": "TypeHandler",
+    "signature": "TypeHandler(Map)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method2": {
+    "methodName": "createDefaultMap",
+    "signature": "createDefaultMap()",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method3": {
+    "methodName": "createFile",
+    "signature": "createFile(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method4": {
+    "methodName": "createFiles",
+    "signature": "createFiles(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method5": {
+    "methodName": "createNumber",
+    "signature": "createNumber(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method6": {
+    "methodName": "createObject",
+    "signature": "createObject(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method7": {
+    "methodName": "createURL",
+    "signature": "createURL(String)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method8": {
+    "methodName": "createValue",
+    "signature": "createValue(String, Class)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  },
+  "method9": {
+    "methodName": "createValue",
+    "signature": "createValue(String, Object)",
+    "className": "TypeHandler",
+    "packageName": "org.apache.commons.cli"
+  }
+}

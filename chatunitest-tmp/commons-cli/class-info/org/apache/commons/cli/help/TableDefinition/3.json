@@ -1,0 +1,18 @@
+{
+  "className": "TableDefinition",
+  "methodName": "headers",
+  "brief": "List<String> headers();",
+  "methodSignature": "headers()",
+  "sourceCode": "List<String> headers();",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Gets the list of header strings. One for each column in order.\n *\n * @return The list of header strings.\n */\nList<String> headers();",
+  "method_comment": "\n     * Gets the list of header strings. One for each column in order.\n     *\n     * @return The list of header strings.\n     ",
+  "method_annotation": ""
+}

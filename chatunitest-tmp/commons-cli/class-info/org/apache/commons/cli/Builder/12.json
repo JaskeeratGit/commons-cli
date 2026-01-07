@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "numberOfArgs",
+  "brief": "public Builder numberOfArgs(final int argCount){}",
+  "methodSignature": "numberOfArgs(int)",
+  "sourceCode": "public Builder numberOfArgs(final int argCount) {\n            this.argCount = argCount;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the number of argument values the Option can take.\n *\n * @param argCount the number of argument values\n * @return this builder.\n */\npublic Builder numberOfArgs(final int argCount) {\n    this.argCount = argCount;\n    return this;\n}",
+  "method_comment": "\n         * Sets the number of argument values the Option can take.\n         *\n         * @param argCount the number of argument values\n         * @return this builder.\n         ",
+  "method_annotation": ""
+}

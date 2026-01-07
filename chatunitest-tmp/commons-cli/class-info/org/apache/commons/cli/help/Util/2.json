@@ -1,0 +1,24 @@
+{
+  "className": "Util",
+  "methodName": "isEmpty",
+  "brief": "static boolean isEmpty(final CharSequence str){}",
+  "methodSignature": "isEmpty(CharSequence)",
+  "sourceCode": "static boolean isEmpty(final CharSequence str) {\n        return str == null || str.length() == 0;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": [
+      "length()"
+    ]
+  },
+  "full_method_info": "/**\n * Tests whether the given string is null or empty.\n *\n * @param str The string to test.\n * @return Whether the given string is null or empty.\n */\nstatic boolean isEmpty(final CharSequence str) {\n    return str == null || str.length() == 0;\n}",
+  "method_comment": "\n     * Tests whether the given string is null or empty.\n     *\n     * @param str The string to test.\n     * @return Whether the given string is null or empty.\n     ",
+  "method_annotation": ""
+}

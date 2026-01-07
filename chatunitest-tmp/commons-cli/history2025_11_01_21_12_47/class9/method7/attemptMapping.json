@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "TextHelpAppendable_appendTitle_7_0_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_appendTitle_7_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_appendTitle_7_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "appendTitle",
+    "methodSig": "appendTitle(CharSequence)"
+  },
+  "attempt1": {
+    "testClassName": "TextHelpAppendable_appendTitle_7_1_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_appendTitle_7_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_appendTitle_7_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "appendTitle",
+    "methodSig": "appendTitle(CharSequence)"
+  },
+  "attempt2": {
+    "testClassName": "TextHelpAppendable_appendTitle_7_2_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_appendTitle_7_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_appendTitle_7_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "appendTitle",
+    "methodSig": "appendTitle(CharSequence)"
+  },
+  "attempt3": {
+    "testClassName": "TextHelpAppendable_appendTitle_7_3_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_appendTitle_7_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_appendTitle_7_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "appendTitle",
+    "methodSig": "appendTitle(CharSequence)"
+  },
+  "attempt4": {
+    "testClassName": "TextHelpAppendable_appendTitle_7_4_Test",
+    "fullName": "org.apache.commons.cli.help.TextHelpAppendable_appendTitle_7_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/help/TextHelpAppendable_appendTitle_7_0_Test.java",
+    "className": "TextHelpAppendable",
+    "packageName": "org.apache.commons.cli.help",
+    "methodName": "appendTitle",
+    "methodSig": "appendTitle(CharSequence)"
+  }
+}

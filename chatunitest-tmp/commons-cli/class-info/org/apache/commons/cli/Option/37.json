@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "setArgName",
+  "brief": "public void setArgName(final String argName){}",
+  "methodSignature": "setArgName(String)",
+  "sourceCode": "public void setArgName(final String argName) {\n        this.argName = argName;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the display name for the argument value.\n *\n * @param argName the display name for the argument value.\n */\npublic void setArgName(final String argName) {\n    this.argName = argName;\n}",
+  "method_comment": "\n     * Sets the display name for the argument value.\n     *\n     * @param argName the display name for the argument value.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,20 @@
+{
+  "className": "OptionBuilder",
+  "methodName": "hasOptionalArgs",
+  "brief": "public static OptionBuilder hasOptionalArgs(final int numArgs){}",
+  "methodSignature": "hasOptionalArgs(int)",
+  "sourceCode": "public static OptionBuilder hasOptionalArgs(final int numArgs) {\n        argCount = numArgs;\n        optionalArg = true;\n        return INSTANCE;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * The next Option can have the specified number of optional arguments.\n *\n * @param numArgs   the maximum number of optional arguments the next Option created can have.\n * @return the OptionBuilder instance\n */\npublic static OptionBuilder hasOptionalArgs(final int numArgs) {\n    argCount = numArgs;\n    optionalArg = true;\n    return INSTANCE;\n}",
+  "method_comment": "\n     * The next Option can have the specified number of optional arguments.\n     *\n     * @param numArgs   the maximum number of optional arguments the next Option created can have.\n     * @return the OptionBuilder instance\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,24 @@
+{
+  "className": "MissingArgumentException",
+  "methodName": "MissingArgumentException",
+  "brief": "public MissingArgumentException(final Option option){}",
+  "methodSignature": "MissingArgumentException(Option)",
+  "sourceCode": "public MissingArgumentException(final Option option) {\n        this(\"Missing argument for option: \" + option.getKey());\n        this.option = option;\n    }",
+  "useField": true,
+  "isConstructor": true,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getKey()"
+    ]
+  },
+  "full_method_info": "public MissingArgumentException(final Option option) {\n    this(\"Missing argument for option: \" + option.getKey());\n    this.option = option;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}

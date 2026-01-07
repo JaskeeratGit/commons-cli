@@ -1,0 +1,22 @@
+{
+  "className": "TextHelpAppendable",
+  "methodName": "getIndent",
+  "brief": "public int getIndent(){}",
+  "methodSignature": "getIndent()",
+  "sourceCode": "public int getIndent() {\n        return textStyleBuilder.getIndent();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.TextStyle.Builder": [
+      "getIndent()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the indent for the output.\n *\n * @return the indent of the page.\n */\npublic int getIndent() {\n    return textStyleBuilder.getIndent();\n}",
+  "method_comment": "\n     * Gets the indent for the output.\n     *\n     * @return the indent of the page.\n     ",
+  "method_annotation": ""
+}

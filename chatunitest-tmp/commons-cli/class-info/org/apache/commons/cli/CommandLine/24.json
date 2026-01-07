@@ -1,0 +1,34 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionValues",
+  "brief": "public String[] getOptionValues(final Option option){}",
+  "methodSignature": "getOptionValues(Option)",
+  "sourceCode": "public String[] getOptionValues(final Option option) {\n        if (option == null) {\n            return null;\n        }\n        final List<String> values = new ArrayList<>();\n        for (final Option processedOption : options) {\n            if (processedOption.equals(option)) {\n                if (option.isDeprecated()) {\n                    handleDeprecated(option);\n                }\n                values.addAll(processedOption.getValuesList());\n            }\n        }\n        return values.isEmpty() ? null : values.toArray(Util.EMPTY_STRING_ARRAY);\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "equals(Object)",
+      "getValuesList()",
+      "isDeprecated()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "handleDeprecated(Option)"
+    ],
+    "java.util.List": [
+      "toArray(T[])",
+      "isEmpty()",
+      "addAll(Collection<? extends E>)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the array of values, if any, of an option.\n *\n * @param option the option.\n * @return Values of the argument if option is set, and has an argument, otherwise null.\n * @since 1.5.0\n */\npublic String[] getOptionValues(final Option option) {\n    if (option == null) {\n        return null;\n    }\n    final List<String> values = new ArrayList<>();\n    for (final Option processedOption : options) {\n        if (processedOption.equals(option)) {\n            if (option.isDeprecated()) {\n                handleDeprecated(option);\n            }\n            values.addAll(processedOption.getValuesList());\n        }\n    }\n    return values.isEmpty() ? null : values.toArray(Util.EMPTY_STRING_ARRAY);\n}",
+  "method_comment": "\n     * Gets the array of values, if any, of an option.\n     *\n     * @param option the option.\n     * @return Values of the argument if option is set, and has an argument, otherwise null.\n     * @since 1.5.0\n     ",
+  "method_annotation": ""
+}

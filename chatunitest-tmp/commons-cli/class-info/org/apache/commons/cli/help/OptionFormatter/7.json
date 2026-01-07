@@ -1,0 +1,25 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "getSince",
+  "brief": "public String getSince(){}",
+  "methodSignature": "getSince()",
+  "sourceCode": "public String getSince() {\n        return Util.defaultValue(option.getSince(), \"--\");\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.Util": [
+      "defaultValue(T, T)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getSince()"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the \"since\" value from the Option.\n *\n * @return The since valeu from the option or \"--\" if no since value was set.\n */\npublic String getSince() {\n    return Util.defaultValue(option.getSince(), \"--\");\n}",
+  "method_comment": "\n     * Gets the \"since\" value from the Option.\n     *\n     * @return The since valeu from the option or \"--\" if no since value was set.\n     ",
+  "method_annotation": ""
+}

@@ -1,0 +1,24 @@
+{
+  "className": "Util",
+  "methodName": "repeatSpace",
+  "brief": "static String repeatSpace(final int len){}",
+  "methodSignature": "repeatSpace(int)",
+  "sourceCode": "static String repeatSpace(final int len) {\n        return repeat(len, ' ');\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.Util": [
+      "repeat(int, char)"
+    ]
+  },
+  "full_method_info": "/**\n * Creates a String of padding of length {@code len}.\n *\n * @param len The length of the String of padding to create.\n * @return The String of padding.\n */\nstatic String repeatSpace(final int len) {\n    return repeat(len, ' ');\n}",
+  "method_comment": "\n     * Creates a String of padding of length {@code len}.\n     *\n     * @param len The length of the String of padding to create.\n     * @return The String of padding.\n     ",
+  "method_annotation": ""
+}

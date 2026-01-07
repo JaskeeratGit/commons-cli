@@ -1,0 +1,22 @@
+{
+  "className": "Builder",
+  "methodName": "desc",
+  "brief": "public Builder desc(final String description){}",
+  "methodSignature": "desc(String)",
+  "sourceCode": "public Builder desc(final String description) {\n            this.description = description;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the description for this option.\n *\n * @param description the description of the option.\n * @return {@code this} instance..\n */\npublic Builder desc(final String description) {\n    this.description = description;\n    return this;\n}",
+  "method_comment": "\n         * Sets the description for this option.\n         *\n         * @param description the description of the option.\n         * @return {@code this} instance..\n         ",
+  "method_annotation": ""
+}

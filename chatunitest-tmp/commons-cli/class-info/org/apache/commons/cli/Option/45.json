@@ -1,0 +1,25 @@
+{
+  "className": "Option",
+  "methodName": "setType",
+  "brief": "@Deprecated\n    public void setType(final Object type){}",
+  "methodSignature": "setType(Object)",
+  "sourceCode": "@Deprecated\n    public void setType(final Object type) {\n        setType((Class<?>) type);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Object"
+  ],
+  "dependentMethods": {
+    "java.lang.Object": [],
+    "org.apache.commons.cli.Option": [
+      "setType(Class<?>)"
+    ]
+  },
+  "full_method_info": "/**\n * Sets the type of this Option.\n * <p>\n * <strong>Note:</strong> this method is kept for binary compatibility and the input type is supposed to be a {@link Class} object.\n * </p>\n *\n * @param type the type of this Option.\n * @deprecated since 1.3, use {@link #setType(Class)} instead.\n */\n@Deprecated\npublic void setType(final Object type) {\n    setType((Class<?>) type);\n}",
+  "method_comment": "\n     * Sets the type of this Option.\n     * <p>\n     * <strong>Note:</strong> this method is kept for binary compatibility and the input type is supposed to be a {@link Class} object.\n     * </p>\n     *\n     * @param type the type of this Option.\n     * @deprecated since 1.3, use {@link #setType(Class)} instead.\n     ",
+  "method_annotation": "@Deprecated\n"
+}

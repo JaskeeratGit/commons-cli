@@ -1,0 +1,55 @@
+{
+  "fullClassName": "org.apache.commons.cli.ParseException",
+  "className": "ParseException",
+  "index": 36,
+  "modifier": "[public ]",
+  "extend": "[Exception]",
+  "implement": "[]",
+  "packageName": "org.apache.commons.cli",
+  "packageDeclaration": "package org.apache.commons.cli;",
+  "classSignature": "public class ParseException",
+  "hasConstructor": true,
+  "isPublic": true,
+  "isInterface": false,
+  "isAbstract": false,
+  "imports": [],
+  "fields": [
+    "private static final long serialVersionUID = 9112808380089253192L;"
+  ],
+  "superClasses": [
+    "Exception"
+  ],
+  "implementedTypes": [],
+  "methodSigs": {
+    "wrap(Throwable)": "0",
+    "ParseException(String)": "1",
+    "ParseException(Throwable)": "2"
+  },
+  "methodsBrief": [
+    "public static ParseException wrap(final Throwable e) throws UnsupportedOperationException{}",
+    "public ParseException(final String message){}",
+    "public ParseException(final Throwable e){}"
+  ],
+  "constructorSigs": [
+    "ParseException(String)",
+    "ParseException(Throwable)"
+  ],
+  "constructorBrief": [
+    "public ParseException(final String message){}",
+    "public ParseException(final Throwable e){}"
+  ],
+  "getterSetterSigs": [],
+  "getterSetterBrief": [],
+  "constructorDeps": {
+    "java.lang.String": [],
+    "java.lang.Throwable": []
+  },
+  "compilationUnitCode": "/*\n  Licensed to the Apache Software Foundation (ASF) under one or more\n  contributor license agreements.  See the NOTICE file distributed with\n  this work for additional information regarding copyright ownership.\n  The ASF licenses this file to You under the Apache License, Version 2.0\n  (the \"License\"); you may not use this file except in compliance with\n  the License.  You may obtain a copy of the License at\n\n      https://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n */\npackage org.apache.commons.cli;\n\n/**\n * Base for Exceptions thrown during parsing of a command-line.\n */\npublic class ParseException extends Exception {\n\n    /**\n     * This exception {@code serialVersionUID}.\n     */\n    private static final long serialVersionUID = 9112808380089253192L;\n\n    /**\n     * Converts any exception except {@code UnsupportedOperationException} to a {@code ParseException}.\n     * if {@code e} is an instance of {@code ParseException} it is returned, otherwise a {@code ParseException} is\n     * created that wraps it.\n     * <p>\n     * Note: {@code UnsupportedOperationException} are not wrapped.  This is to solve a legacy expected exception problem and will be\n     * removed in the future.</p>\n     * @param e the exception to convert.\n     * @return the ParseException.\n     * @throws UnsupportedOperationException due to legacy expectations.  Will be removed in the future.\n     * @since 1.7.0\n     */\n    public static ParseException wrap(final Throwable e) throws UnsupportedOperationException {\n        if (e instanceof UnsupportedOperationException) {\n            throw (UnsupportedOperationException) e;\n        }\n        if (e instanceof ParseException) {\n            return (ParseException) e;\n        }\n        return new ParseException(e);\n    }\n\n    public ParseException(final String message) {\n        super(message);\n    }\n\n    public ParseException(final Throwable e) {\n        super(e);\n    }\n}\n",
+  "classDeclarationCode": "/**\n * Base for Exceptions thrown during parsing of a command-line.\n */\npublic class ParseException extends Exception {\n\n    /**\n     * This exception {@code serialVersionUID}.\n     */\n    private static final long serialVersionUID = 9112808380089253192L;\n\n    /**\n     * Converts any exception except {@code UnsupportedOperationException} to a {@code ParseException}.\n     * if {@code e} is an instance of {@code ParseException} it is returned, otherwise a {@code ParseException} is\n     * created that wraps it.\n     * <p>\n     * Note: {@code UnsupportedOperationException} are not wrapped.  This is to solve a legacy expected exception problem and will be\n     * removed in the future.</p>\n     * @param e the exception to convert.\n     * @return the ParseException.\n     * @throws UnsupportedOperationException due to legacy expectations.  Will be removed in the future.\n     * @since 1.7.0\n     */\n    public static ParseException wrap(final Throwable e) throws UnsupportedOperationException {\n        if (e instanceof UnsupportedOperationException) {\n            throw (UnsupportedOperationException) e;\n        }\n        if (e instanceof ParseException) {\n            return (ParseException) e;\n        }\n        return new ParseException(e);\n    }\n\n    public ParseException(final String message) {\n        super(message);\n    }\n\n    public ParseException(final Throwable e) {\n        super(e);\n    }\n}",
+  "subClasses": [
+    "org.apache.commons.cli.MissingOptionException",
+    "org.apache.commons.cli.MissingArgumentException",
+    "org.apache.commons.cli.UnrecognizedOptionException",
+    "org.apache.commons.cli.AlreadySelectedException"
+  ]
+}

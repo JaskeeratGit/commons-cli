@@ -1,0 +1,28 @@
+{
+  "className": "CommandLine",
+  "methodName": "getOptionValues",
+  "brief": "public String[] getOptionValues(final OptionGroup optionGroup){}",
+  "methodSignature": "getOptionValues(OptionGroup)",
+  "sourceCode": "public String[] getOptionValues(final OptionGroup optionGroup) {\n        if (optionGroup == null || !optionGroup.isSelected()) {\n            return null;\n        }\n        return getOptionValues(optionGroup.getSelected());\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "OptionGroup"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.OptionGroup": [
+      "getSelected()",
+      "isSelected()"
+    ],
+    "org.apache.commons.cli.CommandLine": [
+      "getOptionValues(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the array of values, if any, of an option group.\n *\n * @param optionGroup the option group.\n * @return Values of the argument if option group is selected, and has an argument, otherwise null.\n * @since 1.9.0\n */\npublic String[] getOptionValues(final OptionGroup optionGroup) {\n    if (optionGroup == null || !optionGroup.isSelected()) {\n        return null;\n    }\n    return getOptionValues(optionGroup.getSelected());\n}",
+  "method_comment": "\n     * Gets the array of values, if any, of an option group.\n     *\n     * @param optionGroup the option group.\n     * @return Values of the argument if option group is selected, and has an argument, otherwise null.\n     * @since 1.9.0\n     ",
+  "method_annotation": ""
+}

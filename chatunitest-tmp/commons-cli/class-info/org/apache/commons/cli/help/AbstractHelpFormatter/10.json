@@ -1,0 +1,25 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "printOptions",
+  "brief": "public final void printOptions(final Iterable<Option> options) throws IOException{}",
+  "methodSignature": "printOptions(Iterable)",
+  "sourceCode": "public final void printOptions(final Iterable<Option> options) throws IOException {\n        printOptions(getTableDefinition(options));\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Iterable<Option>"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "getTableDefinition(Option>)",
+      "printOptions(TableDefinition)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the option table for a collection of {@link Option} objects to the {@link HelpAppendable}.\n *\n * @param options the collection of Option objects to print in the table.\n * @throws IOException If the output could not be written to the {@link HelpAppendable}\n */\npublic final void printOptions(final Iterable<Option> options) throws IOException {\n    printOptions(getTableDefinition(options));\n}",
+  "method_comment": "\n     * Prints the option table for a collection of {@link Option} objects to the {@link HelpAppendable}.\n     *\n     * @param options the collection of Option objects to print in the table.\n     * @throws IOException If the output could not be written to the {@link HelpAppendable}\n     ",
+  "method_annotation": ""
+}

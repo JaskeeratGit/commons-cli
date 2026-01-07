@@ -1,0 +1,25 @@
+{
+  "className": "CommandLine",
+  "methodName": "handleDeprecated",
+  "brief": "private void handleDeprecated(final Option option){}",
+  "methodSignature": "handleDeprecated(Option)",
+  "sourceCode": "private void handleDeprecated(final Option option) {\n        if (deprecatedHandler != null) {\n            deprecatedHandler.accept(option);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Option"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [],
+    "java.util.function.Consumer": [
+      "accept(T)"
+    ]
+  },
+  "full_method_info": "/**\n * Handles deprecated options.\n *\n * @param option a deprecated option.\n */\nprivate void handleDeprecated(final Option option) {\n    if (deprecatedHandler != null) {\n        deprecatedHandler.accept(option);\n    }\n}",
+  "method_comment": "\n     * Handles deprecated options.\n     *\n     * @param option a deprecated option.\n     ",
+  "method_annotation": ""
+}

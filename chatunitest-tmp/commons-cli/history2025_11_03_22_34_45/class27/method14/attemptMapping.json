@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Options_hasOption_14_0_Test",
+    "fullName": "org.apache.commons.cli.Options_hasOption_14_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasOption_14_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasOption",
+    "methodSig": "hasOption(String)"
+  },
+  "attempt1": {
+    "testClassName": "Options_hasOption_14_1_Test",
+    "fullName": "org.apache.commons.cli.Options_hasOption_14_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasOption_14_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasOption",
+    "methodSig": "hasOption(String)"
+  },
+  "attempt2": {
+    "testClassName": "Options_hasOption_14_2_Test",
+    "fullName": "org.apache.commons.cli.Options_hasOption_14_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasOption_14_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasOption",
+    "methodSig": "hasOption(String)"
+  },
+  "attempt3": {
+    "testClassName": "Options_hasOption_14_3_Test",
+    "fullName": "org.apache.commons.cli.Options_hasOption_14_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasOption_14_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasOption",
+    "methodSig": "hasOption(String)"
+  },
+  "attempt4": {
+    "testClassName": "Options_hasOption_14_4_Test",
+    "fullName": "org.apache.commons.cli.Options_hasOption_14_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasOption_14_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasOption",
+    "methodSig": "hasOption(String)"
+  }
+}

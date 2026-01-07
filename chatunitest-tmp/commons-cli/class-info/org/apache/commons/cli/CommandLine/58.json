@@ -1,0 +1,31 @@
+{
+  "className": "CommandLine",
+  "methodName": "resolveOption",
+  "brief": "private Option resolveOption(final String optionName){}",
+  "methodSignature": "resolveOption(String)",
+  "sourceCode": "private Option resolveOption(final String optionName) {\n        final String actual = Util.stripLeadingHyphens(optionName);\n        if (actual != null) {\n            for (final Option option : options) {\n                if (actual.equals(option.getOpt()) || actual.equals(option.getLongOpt())) {\n                    return option;\n                }\n            }\n        }\n        return null;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [
+      "equals(Object)"
+    ],
+    "org.apache.commons.cli.Util": [
+      "stripLeadingHyphens(String)"
+    ],
+    "org.apache.commons.cli.Option": [
+      "getOpt()",
+      "getLongOpt()"
+    ]
+  },
+  "full_method_info": "/**\n * Retrieves the option object given the long or short option as a String\n *\n * @param optionName short or long name of the option, may be null.\n * @return Canonicalized option.\n */\nprivate Option resolveOption(final String optionName) {\n    final String actual = Util.stripLeadingHyphens(optionName);\n    if (actual != null) {\n        for (final Option option : options) {\n            if (actual.equals(option.getOpt()) || actual.equals(option.getLongOpt())) {\n                return option;\n            }\n        }\n    }\n    return null;\n}",
+  "method_comment": "\n     * Retrieves the option object given the long or short option as a String\n     *\n     * @param optionName short or long name of the option, may be null.\n     * @return Canonicalized option.\n     ",
+  "method_annotation": ""
+}

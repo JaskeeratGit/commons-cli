@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "addValue",
+  "brief": "@Deprecated\n    public boolean addValue(final String value){}",
+  "methodSignature": "addValue(String)",
+  "sourceCode": "@Deprecated\n    public boolean addValue(final String value) {\n        throw new UnsupportedOperationException(\"The addValue method is not intended for client use. Subclasses should use the processValue method instead.\");\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * This method is not intended to be used. It was a piece of internal API that was made public in 1.0. It currently throws an UnsupportedOperationException.\n *\n * @param value the value to add.\n * @return always throws an {@link UnsupportedOperationException}.\n * @throws UnsupportedOperationException always.\n * @deprecated Unused.\n */\n@Deprecated\npublic boolean addValue(final String value) {\n    throw new UnsupportedOperationException(\"The addValue method is not intended for client use. Subclasses should use the processValue method instead.\");\n}",
+  "method_comment": "\n     * This method is not intended to be used. It was a piece of internal API that was made public in 1.0. It currently throws an UnsupportedOperationException.\n     *\n     * @param value the value to add.\n     * @return always throws an {@link UnsupportedOperationException}.\n     * @throws UnsupportedOperationException always.\n     * @deprecated Unused.\n     ",
+  "method_annotation": "@Deprecated\n"
+}

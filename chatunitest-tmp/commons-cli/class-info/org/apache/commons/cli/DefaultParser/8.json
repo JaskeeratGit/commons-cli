@@ -1,0 +1,27 @@
+{
+  "className": "DefaultParser",
+  "methodName": "handleLongOption",
+  "brief": "private void handleLongOption(final String token) throws ParseException{}",
+  "methodSignature": "handleLongOption(String)",
+  "sourceCode": "private void handleLongOption(final String token) throws ParseException {\n        if (indexOfEqual(token) == -1) {\n            handleLongOptionWithoutEqual(token);\n        } else {\n            handleLongOptionWithEqual(token);\n        }\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.DefaultParser": [
+      "handleLongOptionWithEqual(String)",
+      "indexOfEqual(String)",
+      "handleLongOptionWithoutEqual(String)"
+    ]
+  },
+  "full_method_info": "/**\n * Handles the following tokens:\n * <pre>\n * --L --L=V --L V --l\n * </pre>\n *\n * @param token the command line token to handle.\n */\nprivate void handleLongOption(final String token) throws ParseException {\n    if (indexOfEqual(token) == -1) {\n        handleLongOptionWithoutEqual(token);\n    } else {\n        handleLongOptionWithEqual(token);\n    }\n}",
+  "method_comment": "\n     * Handles the following tokens:\n     * <pre>\n     * --L --L=V --L V --l\n     * </pre>\n     *\n     * @param token the command line token to handle.\n     ",
+  "method_annotation": ""
+}

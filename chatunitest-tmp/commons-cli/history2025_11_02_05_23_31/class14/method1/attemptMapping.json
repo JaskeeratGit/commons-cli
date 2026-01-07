@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "PatternOptionBuilder_getValueType_1_0_Test",
+    "fullName": "org.apache.commons.cli.PatternOptionBuilder_getValueType_1_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/PatternOptionBuilder_getValueType_1_0_Test.java",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getValueType",
+    "methodSig": "getValueType(char)"
+  },
+  "attempt1": {
+    "testClassName": "PatternOptionBuilder_getValueType_1_1_Test",
+    "fullName": "org.apache.commons.cli.PatternOptionBuilder_getValueType_1_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/PatternOptionBuilder_getValueType_1_0_Test.java",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getValueType",
+    "methodSig": "getValueType(char)"
+  },
+  "attempt2": {
+    "testClassName": "PatternOptionBuilder_getValueType_1_2_Test",
+    "fullName": "org.apache.commons.cli.PatternOptionBuilder_getValueType_1_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/PatternOptionBuilder_getValueType_1_0_Test.java",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getValueType",
+    "methodSig": "getValueType(char)"
+  },
+  "attempt3": {
+    "testClassName": "PatternOptionBuilder_getValueType_1_3_Test",
+    "fullName": "org.apache.commons.cli.PatternOptionBuilder_getValueType_1_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/PatternOptionBuilder_getValueType_1_0_Test.java",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getValueType",
+    "methodSig": "getValueType(char)"
+  },
+  "attempt4": {
+    "testClassName": "PatternOptionBuilder_getValueType_1_4_Test",
+    "fullName": "org.apache.commons.cli.PatternOptionBuilder_getValueType_1_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/PatternOptionBuilder_getValueType_1_0_Test.java",
+    "className": "PatternOptionBuilder",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "getValueType",
+    "methodSig": "getValueType(char)"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setWidth",
+  "brief": "public void setWidth(final int width){}",
+  "methodSignature": "setWidth(int)",
+  "sourceCode": "public void setWidth(final int width) {\n        this.defaultWidth = width;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "int"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the 'width'.\n *\n * @param width the new value of 'width'\n */\npublic void setWidth(final int width) {\n    this.defaultWidth = width;\n}",
+  "method_comment": "\n     * Sets the 'width'.\n     *\n     * @param width the new value of 'width'\n     ",
+  "method_annotation": ""
+}

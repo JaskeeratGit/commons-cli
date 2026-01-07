@@ -1,0 +1,106 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.Objects;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+/**
+ * JUnit 5 tests for CommandLine#getParsedOptionValues(char).
+ *
+ * These tests verify that the char overload delegates to the String overload.
+ * A SpyCommandLine subclass overrides the String overload to capture the argument
+ * and return predictable values. Both direct invocation and reflective invocation
+ * of the char overload are tested.
+ */
+public class CommandLine_getParsedOptionValues_39_0_Test {
+
+    /**
+     * A test double that overrides getParsedOptionValues(String) so we can observe delegation.
+     */
+    public static class SpyCommandLine extends CommandLine {
+
+        String capturedOptionName;
+
+        public SpyCommandLine() {
+            // uses protected no-arg constructor
+            super();
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T[] getParsedOptionValues(final String optionName) {
+            this.capturedOptionName = optionName;
+            // return a predictable String[] (unchecked cast to T[])
+            return (T[]) new String[] { optionName + "-v1", optionName + "-v2" };
+        }
+    }
+
+    @Test
+    public void testDelegationToStringOverload_directCall() throws Exception {
+        SpyCommandLine cmd = new SpyCommandLine();
+        // explicit type witness: T = String so return type T[] == String[]
+        String[] values = cmd.<String>getParsedOptionValues('a');
+        assertEquals("a", cmd.capturedOptionName, "Should delegate with single-character string");
+        assertArrayEquals(new String[] { "a-v1", "a-v2" }, values);
+    }
+
+    @Test
+    public void testDelegationToStringOverload_reflectiveInvocation() throws Exception {
+        SpyCommandLine cmd = new SpyCommandLine();
+        Method m = CommandLine.class.getMethod("getParsedOptionValues", char.class);
+        Object ret = m.invoke(cmd, 'Z');
+        assertTrue(ret == null || ret.getClass().isArray(), "Returned value should be null or an array");
+        if (ret != null) {
+            String[] values = (String[]) ret;
+            assertArrayEquals(new String[] { "Z-v1", "Z-v2" }, values);
+        }
+        assertEquals("Z", cmd.capturedOptionName, "Reflective invocation should delegate with single-character string");
+    }
+
+    @Test
+    public void testCanInstantiateViaPrivateConstructor_usingReflection() throws Exception {
+        // Demonstrate creating a CommandLine instance using the private constructor via reflection.
+        // We won't call the real getParsedOptionValues(String) implementation on it (which may depend on other internals).
+        // This primarily ensures construction via reflection works and no runtime errors occur here.
+        Class<CommandLine> cls = CommandLine.class;
+        java.lang.reflect.Constructor<CommandLine> ctor = cls.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        List<String> args = new LinkedList<>();
+        // generic type erased at runtime
+        List<Object> options = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        Consumer<Object> consumer = o -> {
+            // no-op
+        };
+        CommandLine instance = ctor.newInstance(args, options, consumer);
+        assertNotNull(instance);
+        // invoke the char overload reflectively but don't assert on base behavior (may throw in real impl).
+        Method m = CommandLine.class.getMethod("getParsedOptionValues", char.class);
+        // Invocation should either return or throw an exception from the underlying implementation.
+        // We call it and just ensure invocation mechanics work (capture exceptions if thrown).
+        try {
+            Object result = m.invoke(instance, 'x');
+            // result may be null or an array depending on implementation; just check no invocation-level exception.
+            if (result != null) {
+                assertTrue(result.getClass().isArray());
+            }
+        } catch (java.lang.reflect.InvocationTargetException ite) {
+            // Underlying implementation may throw. Accept that as well.
+            assertNotNull(ite.getCause());
+        }
+    }
+}

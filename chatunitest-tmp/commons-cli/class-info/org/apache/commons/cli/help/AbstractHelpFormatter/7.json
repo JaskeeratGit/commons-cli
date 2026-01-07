@@ -1,0 +1,20 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "getTableDefinition",
+  "brief": "protected abstract TableDefinition getTableDefinition(Iterable<Option> options);",
+  "methodSignature": "getTableDefinition(Iterable)",
+  "sourceCode": "protected abstract TableDefinition getTableDefinition(Iterable<Option> options);",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": true,
+  "parameters": [
+    "Iterable<Option>"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Converts a collection of {@link Option}s into a {@link TableDefinition}.\n *\n * @param options The options to create a table for.\n * @return the TableDefinition.\n */\nprotected abstract TableDefinition getTableDefinition(Iterable<Option> options);",
+  "method_comment": "\n     * Converts a collection of {@link Option}s into a {@link TableDefinition}.\n     *\n     * @param options The options to create a table for.\n     * @return the TableDefinition.\n     ",
+  "method_annotation": ""
+}

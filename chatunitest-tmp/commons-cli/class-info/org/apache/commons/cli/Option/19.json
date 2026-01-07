@@ -1,0 +1,25 @@
+{
+  "className": "Option",
+  "methodName": "getValue",
+  "brief": "public String getValue(){}",
+  "methodSignature": "getValue()",
+  "sourceCode": "public String getValue() {\n        return hasNoValues() ? null : values.get(0);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "hasNoValues()"
+    ],
+    "java.util.List": [
+      "get(int)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the specified value of this Option or {@code null} if there is no value.\n *\n * @return the value/first value of this Option or {@code null} if there is no value.\n */\npublic String getValue() {\n    return hasNoValues() ? null : values.get(0);\n}",
+  "method_comment": "\n     * Gets the specified value of this Option or {@code null} if there is no value.\n     *\n     * @return the value/first value of this Option or {@code null} if there is no value.\n     ",
+  "method_annotation": ""
+}

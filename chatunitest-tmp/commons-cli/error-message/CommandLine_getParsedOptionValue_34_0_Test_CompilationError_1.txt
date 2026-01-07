@@ -1,0 +1,144 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+
+/**
+ * Tests for CommandLine#getParsedOptionValues(Option, Supplier)
+ */
+public class CommandLine_getParsedOptionValues_43_0_Test {
+
+    @Test
+    public void testNullOptionReturnsDefaultSupplier() throws Exception {
+        final CommandLine cmd = new CommandLine() {
+        };
+        Supplier<String[]> supplier = () -> new String[] { "default", "v2" };
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        assertArrayEquals(new String[] { "default", "v2" }, result);
+    }
+
+    @Test
+    public void testNoValuesReturnsDefaultSupplier() throws Exception {
+        // create a CommandLine that returns null for getOptionValues to simulate no values present
+        final CommandLine cmd = new CommandLine() {
+
+            @Override
+            public String[] getOptionValues(final Option option) {
+                return null;
+            }
+        };
+        Option opt = new Option("o", true, "desc");
+        // set type and converter though it shouldn't be used because getOptionValues returns null
+        opt.setType(Integer.class);
+        @SuppressWarnings("unchecked")
+        Converter<Integer, RuntimeException> conv = s -> Integer.valueOf(s);
+        opt.setConverter(conv);
+        Supplier<Integer[]> supplier = () -> new Integer[] { 7 };
+        Integer[] result = cmd.getParsedOptionValues(opt, supplier);
+        assertArrayEquals(new Integer[] { 7 }, result);
+    }
+
+    @Test
+    public void testSuccessfulParsingWithOverrideGetOptionValues() throws Exception {
+        // override getOptionValues to return string numbers
+        final CommandLine cmd = new CommandLine() {
+
+            @Override
+            public String[] getOptionValues(final Option option) {
+                return new String[] { "1", "2", "3" };
+            }
+        };
+        Option opt = new Option("n", true, "numbers");
+        opt.setType(Integer.class);
+        @SuppressWarnings("unchecked")
+        Converter<Integer, RuntimeException> conv = s -> Integer.valueOf(s);
+        opt.setConverter(conv);
+        Integer[] parsed = cmd.getParsedOptionValues(opt, () -> new Integer[0]);
+        assertArrayEquals(new Integer[] { 1, 2, 3 }, parsed);
+    }
+
+    @Test
+    public void testConverterThrowsWrappedAsParseException() {
+        final CommandLine cmd = new CommandLine() {
+
+            @Override
+            public String[] getOptionValues(final Option option) {
+                return new String[] { "bad" };
+            }
+        };
+        Option opt = new Option("x", true, "badconv");
+        opt.setType(Integer.class);
+        // converter that throws IllegalArgumentException
+        @SuppressWarnings("unchecked")
+        Converter<Integer, RuntimeException> badConv = s -> {
+            throw new IllegalArgumentException("nope");
+        };
+        opt.setConverter(badConv);
+        assertThrows(ParseException.class, () -> cmd.getParsedOptionValues(opt, () -> new Integer[0]));
+    }
+
+    @Test
+    public void testConverterThrowsUnsupportedOperationExceptionIsPropagated() {
+        final CommandLine cmd = new CommandLine() {
+
+            @Override
+            public String[] getOptionValues(final Option option) {
+                return new String[] { "uop" };
+            }
+        };
+        Option opt = new Option("u", true, "uop");
+        opt.setType(String.class);
+        @SuppressWarnings("unchecked")
+        Converter<String, UnsupportedOperationException> uopConv = s -> {
+            throw new UnsupportedOperationException("unsupported");
+        };
+        opt.setConverter(uopConv);
+        assertThrows(UnsupportedOperationException.class, () -> cmd.getParsedOptionValues(opt, () -> new String[0]));
+    }
+
+    @Test
+    public void testUsingPrivateConstructorAndReflectivelySetOptionValues() throws Exception {
+        // Create an Option and reflectively set its private 'values' list so that CommandLine.getOptionValues (real impl) returns them
+        Option opt = new Option("r", true, "reflective");
+        opt.setType(Integer.class);
+        @SuppressWarnings("unchecked")
+        Converter<Integer, RuntimeException> conv = s -> Integer.valueOf(s);
+        opt.setConverter(conv);
+        // set private field 'values' on Option
+        Field valuesField = Option.class.getDeclaredField("values");
+        valuesField.setAccessible(true);
+        List<String> vals = new ArrayList<>(Arrays.asList("10", "20"));
+        valuesField.set(opt, vals);
+        // prepare options list and args list
+        List<String> args = new ArrayList<>();
+        List<Option> options = new ArrayList<>();
+        options.add(opt);
+        // use the private constructor CommandLine(List<String>, List<Option>, Consumer<Option>)
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, java.util.function.Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(args, options, (java.util.function.Consumer<Option>) o -> {
+        });
+        Integer[] parsed = cmd.getParsedOptionValues(opt, () -> new Integer[] { 99 });
+        assertArrayEquals(new Integer[] { 10, 20 }, parsed);
+    }
+}
+
+--------------------------------------------
+Error in CommandLine_getParsedOptionValues_43_0_Test: line 24 : class CommandLine_getParsedOptionValue_30_0_Test is public, should be declared in a file named CommandLine_getParsedOptionValue_30_0_Test.java

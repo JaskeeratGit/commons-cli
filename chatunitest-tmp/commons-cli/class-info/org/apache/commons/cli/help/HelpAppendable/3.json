@@ -1,0 +1,22 @@
+{
+  "className": "HelpAppendable",
+  "methodName": "appendParagraph",
+  "brief": "void appendParagraph(CharSequence paragraph) throws IOException;",
+  "methodSignature": "appendParagraph(CharSequence)",
+  "sourceCode": "void appendParagraph(CharSequence paragraph) throws IOException;",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "CharSequence"
+  ],
+  "dependentMethods": {
+    "java.lang.CharSequence": []
+  },
+  "full_method_info": "/**\n * Appends a paragraph.\n *\n * @param paragraph the paragraph to write, null is a noop.\n * @throws IOException If an output error occurs.\n */\nvoid appendParagraph(CharSequence paragraph) throws IOException;",
+  "method_comment": "\n     * Appends a paragraph.\n     *\n     * @param paragraph the paragraph to write, null is a noop.\n     * @throws IOException If an output error occurs.\n     ",
+  "method_annotation": ""
+}

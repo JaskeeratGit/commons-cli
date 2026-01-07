@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "setShowSince",
+  "brief": "public Builder setShowSince(final boolean showSince){}",
+  "methodSignature": "setShowSince(boolean)",
+  "sourceCode": "public Builder setShowSince(final boolean showSince) {\n            this.showSince = showSince;\n            return this;\n        }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Sets the showSince flag.\n *\n * @param showSince the desired value of the showSince flag.\n * @return this instance.\n */\npublic Builder setShowSince(final boolean showSince) {\n    this.showSince = showSince;\n    return this;\n}",
+  "method_comment": "\n         * Sets the showSince flag.\n         *\n         * @param showSince the desired value of the showSince flag.\n         * @return this instance.\n         ",
+  "method_annotation": ""
+}

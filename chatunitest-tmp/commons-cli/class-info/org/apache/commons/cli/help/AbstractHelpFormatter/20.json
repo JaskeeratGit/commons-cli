@@ -1,0 +1,27 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "toSyntaxOptions",
+  "brief": "public String toSyntaxOptions(final Options options){}",
+  "methodSignature": "toSyntaxOptions(Options)",
+  "sourceCode": "public String toSyntaxOptions(final Options options) {\n        return toSyntaxOptions(options.getOptions(), options::getOptionGroup);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Options"
+  ],
+  "dependentMethods": {
+    "org.apache.commons.cli.Options": [
+      "getOptions()"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "toSyntaxOptions(Option>, OptionGroup>)"
+    ]
+  },
+  "full_method_info": "/**\n * Return the string representation of the options as used in the syntax display.\n *\n * @param options The {@link Options} to create the string representation for.\n * @return the string representation of the options as used in the syntax display.\n */\npublic String toSyntaxOptions(final Options options) {\n    return toSyntaxOptions(options.getOptions(), options::getOptionGroup);\n}",
+  "method_comment": "\n     * Return the string representation of the options as used in the syntax display.\n     *\n     * @param options The {@link Options} to create the string representation for.\n     * @return the string representation of the options as used in the syntax display.\n     ",
+  "method_annotation": ""
+}

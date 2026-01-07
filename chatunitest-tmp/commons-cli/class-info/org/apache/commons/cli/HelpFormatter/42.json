@@ -1,0 +1,22 @@
+{
+  "className": "HelpFormatter",
+  "methodName": "setNewLine",
+  "brief": "public void setNewLine(final String newline){}",
+  "methodSignature": "setNewLine(String)",
+  "sourceCode": "public void setNewLine(final String newline) {\n        this.defaultNewLine = newline;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": []
+  },
+  "full_method_info": "/**\n * Sets the 'newLine'.\n *\n * @param newline the new value of 'newLine'\n */\npublic void setNewLine(final String newline) {\n    this.defaultNewLine = newline;\n}",
+  "method_comment": "\n     * Sets the 'newLine'.\n     *\n     * @param newline the new value of 'newLine'\n     ",
+  "method_annotation": ""
+}

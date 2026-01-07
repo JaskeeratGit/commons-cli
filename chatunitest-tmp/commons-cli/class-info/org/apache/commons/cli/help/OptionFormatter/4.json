@@ -1,0 +1,29 @@
+{
+  "className": "OptionFormatter",
+  "methodName": "getDescription",
+  "brief": "public String getDescription(){}",
+  "methodSignature": "getDescription()",
+  "sourceCode": "public String getDescription() {\n        return option.isDeprecated() ? deprecatedFormatFunction.apply(option) : Util.defaultValue(option.getDescription(), \"\");\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": true,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "org.apache.commons.cli.Option": [
+      "getDescription()",
+      "isDeprecated()"
+    ],
+    "java.util.function.Function": [
+      "apply(T)"
+    ],
+    "org.apache.commons.cli.help.Util": [
+      "defaultValue(T, T)"
+    ]
+  },
+  "full_method_info": "/**\n * Gets the description for the option. This will include any deprecation notices if the deprecated format function has been set.\n *\n * @return The Description from the option or an empty string is no description was provided and the option is not deprecated.\n */\npublic String getDescription() {\n    return option.isDeprecated() ? deprecatedFormatFunction.apply(option) : Util.defaultValue(option.getDescription(), \"\");\n}",
+  "method_comment": "\n     * Gets the description for the option. This will include any deprecation notices if the deprecated format function has been set.\n     *\n     * @return The Description from the option or an empty string is no description was provided and the option is not deprecated.\n     ",
+  "method_annotation": ""
+}

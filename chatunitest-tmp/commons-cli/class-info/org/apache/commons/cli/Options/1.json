@@ -1,0 +1,27 @@
+{
+  "className": "Options",
+  "methodName": "addOption",
+  "brief": "public Options addOption(final String opt, final boolean hasArg, final String description){}",
+  "methodSignature": "addOption(String, boolean, String)",
+  "sourceCode": "public Options addOption(final String opt, final boolean hasArg, final String description) {\n        addOption(opt, null, hasArg, description);\n        return this;\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "boolean",
+    "String"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [
+      "addOption(String, String, boolean, String)"
+    ]
+  },
+  "full_method_info": "/**\n * Adds an option that only contains a short-name.\n * <p>\n * It may be specified as requiring an argument.\n * </p>\n *\n * @param opt Short single-character name of the option.\n * @param hasArg flag signaling if an argument is required after this option.\n * @param description Self-documenting description.\n * @return the resulting Options instance.\n */\npublic Options addOption(final String opt, final boolean hasArg, final String description) {\n    addOption(opt, null, hasArg, description);\n    return this;\n}",
+  "method_comment": "\n     * Adds an option that only contains a short-name.\n     * <p>\n     * It may be specified as requiring an argument.\n     * </p>\n     *\n     * @param opt Short single-character name of the option.\n     * @param hasArg flag signaling if an argument is required after this option.\n     * @param description Self-documenting description.\n     * @return the resulting Options instance.\n     ",
+  "method_annotation": ""
+}

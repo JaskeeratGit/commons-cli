@@ -1,0 +1,32 @@
+{
+  "className": "AbstractHelpFormatter",
+  "methodName": "printHelp",
+  "brief": "public final void printHelp(final String cmdLineSyntax, final String header, final Options options, final String footer, final boolean autoUsage)\n            throws IOException{}",
+  "methodSignature": "printHelp(String, String, Options, String, boolean)",
+  "sourceCode": "public final void printHelp(final String cmdLineSyntax, final String header, final Options options, final String footer, final boolean autoUsage)\n            throws IOException {\n        printHelp(cmdLineSyntax, header, options.getOptions(), footer, autoUsage);\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "String",
+    "String",
+    "Options",
+    "String",
+    "boolean"
+  ],
+  "dependentMethods": {
+    "java.lang.String": [],
+    "org.apache.commons.cli.Options": [
+      "getOptions()"
+    ],
+    "org.apache.commons.cli.help.AbstractHelpFormatter": [
+      "printHelp(String, String, Option>, String, boolean)"
+    ]
+  },
+  "full_method_info": "/**\n * Prints the help for {@link Options} with the specified command line syntax.\n *\n * @param cmdLineSyntax the syntax for this application\n * @param header        the banner to display at the beginning of the help\n * @param options       the {@link Options} to print\n * @param footer        the banner to display at the end of the help\n * @param autoUsage     whether to print an automatically generated usage statement\n * @throws IOException If the output could not be written to the {@link HelpAppendable}\n */\npublic final void printHelp(final String cmdLineSyntax, final String header, final Options options, final String footer, final boolean autoUsage) throws IOException {\n    printHelp(cmdLineSyntax, header, options.getOptions(), footer, autoUsage);\n}",
+  "method_comment": "\n     * Prints the help for {@link Options} with the specified command line syntax.\n     *\n     * @param cmdLineSyntax the syntax for this application\n     * @param header        the banner to display at the beginning of the help\n     * @param options       the {@link Options} to print\n     * @param footer        the banner to display at the end of the help\n     * @param autoUsage     whether to print an automatically generated usage statement\n     * @throws IOException If the output could not be written to the {@link HelpAppendable}\n     ",
+  "method_annotation": ""
+}

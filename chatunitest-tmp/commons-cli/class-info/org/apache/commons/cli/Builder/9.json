@@ -1,0 +1,20 @@
+{
+  "className": "Builder",
+  "methodName": "hasArg",
+  "brief": "public Builder hasArg(final boolean hasArg){}",
+  "methodSignature": "hasArg(boolean)",
+  "sourceCode": "public Builder hasArg(final boolean hasArg) {\n            // set to UNINITIALIZED when no arg is specified to be compatible with OptionBuilder\n            argCount = hasArg ? 1 : UNINITIALIZED;\n            return this;\n        }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": true,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "boolean"
+  ],
+  "dependentMethods": {},
+  "full_method_info": "/**\n * Tests whether the Option has an argument or not.\n *\n * @param hasArg specifies whether the Option takes an argument or not.\n * @return {@code this} instance..\n */\npublic Builder hasArg(final boolean hasArg) {\n    // set to UNINITIALIZED when no arg is specified to be compatible with OptionBuilder\n    argCount = hasArg ? 1 : UNINITIALIZED;\n    return this;\n}",
+  "method_comment": "\n         * Tests whether the Option has an argument or not.\n         *\n         * @param hasArg specifies whether the Option takes an argument or not.\n         * @return {@code this} instance..\n         ",
+  "method_annotation": ""
+}

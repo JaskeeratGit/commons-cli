@@ -1,0 +1,47 @@
+{
+  "attempt0": {
+    "testClassName": "Options_hasShortOption_15_0_Test",
+    "fullName": "org.apache.commons.cli.Options_hasShortOption_15_0_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasShortOption_15_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasShortOption",
+    "methodSig": "hasShortOption(String)"
+  },
+  "attempt1": {
+    "testClassName": "Options_hasShortOption_15_1_Test",
+    "fullName": "org.apache.commons.cli.Options_hasShortOption_15_1_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasShortOption_15_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasShortOption",
+    "methodSig": "hasShortOption(String)"
+  },
+  "attempt2": {
+    "testClassName": "Options_hasShortOption_15_2_Test",
+    "fullName": "org.apache.commons.cli.Options_hasShortOption_15_2_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasShortOption_15_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasShortOption",
+    "methodSig": "hasShortOption(String)"
+  },
+  "attempt3": {
+    "testClassName": "Options_hasShortOption_15_3_Test",
+    "fullName": "org.apache.commons.cli.Options_hasShortOption_15_3_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasShortOption_15_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasShortOption",
+    "methodSig": "hasShortOption(String)"
+  },
+  "attempt4": {
+    "testClassName": "Options_hasShortOption_15_4_Test",
+    "fullName": "org.apache.commons.cli.Options_hasShortOption_15_4_Test",
+    "path": "/home/jaskeerat/automated-test-research/final_projects/cli_latest_stable/commons-cli/chatunitest-generated/commons-cli/org/apache/commons/cli/Options_hasShortOption_15_0_Test.java",
+    "className": "Options",
+    "packageName": "org.apache.commons.cli",
+    "methodName": "hasShortOption",
+    "methodSig": "hasShortOption(String)"
+  }
+}

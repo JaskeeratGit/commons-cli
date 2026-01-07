@@ -1,0 +1,22 @@
+{
+  "className": "Option",
+  "methodName": "clearValues",
+  "brief": "void clearValues(){}",
+  "methodSignature": "clearValues()",
+  "sourceCode": "void clearValues() {\n        values.clear();\n    }",
+  "useField": false,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [],
+  "dependentMethods": {
+    "java.util.List": [
+      "clear()"
+    ]
+  },
+  "full_method_info": "/**\n * Clears the Option values. After a parse is complete, these are left with data in them and they need clearing if another parse is done.\n *\n * See: <a href=\"https://issues.apache.org/jira/browse/CLI-71\">CLI-71</a>\n */\nvoid clearValues() {\n    values.clear();\n}",
+  "method_comment": "\n     * Clears the Option values. After a parse is complete, these are left with data in them and they need clearing if another parse is done.\n     *\n     * See: <a href=\"https://issues.apache.org/jira/browse/CLI-71\">CLI-71</a>\n     ",
+  "method_annotation": ""
+}

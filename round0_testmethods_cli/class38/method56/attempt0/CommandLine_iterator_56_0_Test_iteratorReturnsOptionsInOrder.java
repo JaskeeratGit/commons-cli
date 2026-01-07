@@ -1,0 +1,68 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+public class CommandLine_iterator_56_0_Test_iteratorReturnsOptionsInOrder {
+
+    @Test
+    public void iteratorReturnsOptionsInOrder() throws Exception {
+        // create instance via protected no-arg constructor
+        CommandLine cmd = new CommandLine();
+        // prepare a mutable list of options
+        List<Option> options = new ArrayList<>();
+        options.add(new Option("a"));
+        options.add(new Option("b"));
+        options.add(new Option("c"));
+        // set the private final field 'options' via reflection
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        optionsField.set(cmd, options);
+        // get iterator and collect items
+        Iterator<Option> it = cmd.iterator();
+        List<String> collected = new ArrayList<>();
+        while (it.hasNext()) {
+            collected.add(it.next().getOpt());
+        }
+        assertEquals(List.of("a", "b", "c"), collected);
+    }
+
+
+
+}
+
+// Minimal Option stub for tests (package-private, same package as CommandLine)
+class Option {
+
+    private final String opt;
+
+    Option(String opt) {
+        this.opt = opt;
+    }
+
+    String getOpt() {
+        return opt;
+    }
+
+    @Override
+    public String toString() {
+        return opt;
+    }
+}

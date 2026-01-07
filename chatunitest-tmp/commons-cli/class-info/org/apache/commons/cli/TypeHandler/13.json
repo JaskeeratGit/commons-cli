@@ -1,0 +1,35 @@
+{
+  "className": "TypeHandler",
+  "methodName": "putDefaultMap",
+  "brief": "private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map){}",
+  "methodSignature": "putDefaultMap(Map)",
+  "sourceCode": "private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map) {\n        map.put(Object.class, Converter.OBJECT);\n        map.put(Class.class, Converter.CLASS);\n        map.put(Date.class, Converter.DATE);\n        map.put(File.class, Converter.FILE);\n        map.put(Path.class, Converter.PATH);\n        map.put(Number.class, Converter.NUMBER);\n        map.put(URL.class, Converter.URL);\n        map.put(FileInputStream.class, FileInputStream::new);\n        map.put(Long.class, Long::parseLong);\n        map.put(Integer.class, Integer::parseInt);\n        map.put(Short.class, Short::parseShort);\n        map.put(Byte.class, Byte::parseByte);\n        map.put(Character.class, s -> s.startsWith(\"\\\\u\") ? Character.toChars(Integer.parseInt(s.substring(2), HEX_RADIX))[0] : s.charAt(0));\n        map.put(Double.class, Double::parseDouble);\n        map.put(Float.class, Float::parseFloat);\n        map.put(BigInteger.class, BigInteger::new);\n        map.put(BigDecimal.class, BigDecimal::new);\n        return map;\n    }",
+  "useField": true,
+  "isConstructor": false,
+  "isGetSet": false,
+  "isPublic": false,
+  "isBoolean": false,
+  "isAbstract": false,
+  "parameters": [
+    "Map<Class<?>,Converter<?,? extends Throwable>>"
+  ],
+  "dependentMethods": {
+    "java.util.Map": [
+      "put(K, V)"
+    ],
+    "java.lang.String": [
+      "startsWith(String)",
+      "substring(int)",
+      "charAt(int)"
+    ],
+    "java.lang.Character": [
+      "toChars(int)"
+    ],
+    "java.lang.Integer": [
+      "parseInt(String, int)"
+    ]
+  },
+  "full_method_info": "private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map) {\n    map.put(Object.class, Converter.OBJECT);\n    map.put(Class.class, Converter.CLASS);\n    map.put(Date.class, Converter.DATE);\n    map.put(File.class, Converter.FILE);\n    map.put(Path.class, Converter.PATH);\n    map.put(Number.class, Converter.NUMBER);\n    map.put(URL.class, Converter.URL);\n    map.put(FileInputStream.class, FileInputStream::new);\n    map.put(Long.class, Long::parseLong);\n    map.put(Integer.class, Integer::parseInt);\n    map.put(Short.class, Short::parseShort);\n    map.put(Byte.class, Byte::parseByte);\n    map.put(Character.class, s -> s.startsWith(\"\\\\u\") ? Character.toChars(Integer.parseInt(s.substring(2), HEX_RADIX))[0] : s.charAt(0));\n    map.put(Double.class, Double::parseDouble);\n    map.put(Float.class, Float::parseFloat);\n    map.put(BigInteger.class, BigInteger::new);\n    map.put(BigDecimal.class, BigDecimal::new);\n    return map;\n}",
+  "method_comment": "",
+  "method_annotation": ""
+}
