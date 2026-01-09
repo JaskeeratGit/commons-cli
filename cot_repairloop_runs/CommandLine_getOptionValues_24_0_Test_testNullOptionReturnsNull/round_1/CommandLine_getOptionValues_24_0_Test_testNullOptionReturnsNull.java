@@ -1,0 +1,27 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.*;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Fixed unit test for CommandLine.getOptionValues(Option) when passed null.
+ */
+public class CommandLine_getOptionValues_24_0_Test_testNullOptionReturnsNull {
+
+    // Helper to create a CommandLine instance by invoking the private constructor via reflection
+    private CommandLine createCommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    @Test
+    public void testNullOptionReturnsNull() throws Exception {
+        CommandLine cl = createCommandLine(new LinkedList<>(), new ArrayList<>(), null);
+        // Cast the null to Option to disambiguate overloaded getOptionValues methods
+        assertNull(cl.getOptionValues((Option) null), "getOptionValues should return null for null argument");
+    }
+}

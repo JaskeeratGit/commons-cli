@@ -1,0 +1,45 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt {
+
+    // Helper to instantiate CommandLine via its private constructor
+    private CommandLine createCommandLineWithOptions(final List<Option> options) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        final List<String> args = new ArrayList<>();
+        // pass null for deprecatedHandler
+        return ctor.newInstance(args, options, (Consumer<Option>) null);
+    }
+
+    @Test
+    public void getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt() throws Exception {
+        Option opt = new Option("b", true, "has values");
+
+        // Option.addValueForProcessing may not exist in all versions; set the internal 'values' field reflectively.
+        Field valuesField = Option.class.getDeclaredField("values");
+        valuesField.setAccessible(true);
+        List<String> vals = new ArrayList<>();
+        vals.add("first");
+        vals.add("second");
+        valuesField.set(opt, vals);
+
+        List<Option> opts = new ArrayList<>();
+        opts.add(opt);
+        CommandLine cmd = createCommandLineWithOptions(opts);
+
+        assertEquals("first", cmd.getOptionValue("b"));
+        assertEquals("first", cmd.getOptionValue("-b"));
+    }
+
+}
+<<Generation Over>>

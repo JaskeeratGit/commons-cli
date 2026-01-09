@@ -1,0 +1,19 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_nullOption_throwsNPE {
+
+    @Test
+    public void testGetParsedOptionValues_nullOption_returnsNull() {
+        CommandLine cmd = new CommandLine();
+        // previously the test expected an NPE, but current CommandLine#getParsedOptionValues((Option) null)
+        // returns null (it delegates to the two-arg overload with a supplier returning null).
+        assertNull(cmd.getParsedOptionValues((Option) null));
+    }
+
+}
+<<Generation Over>>

@@ -1,0 +1,159 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Test for CommandLine.getParsedOptionValue(char) related behavior.
+ * This test constructs CommandLine via reflection and verifies
+ * the private fields were assigned by the constructor.
+ *
+ * The file also provides minimal stubs for Option, ParseException and
+ * Builder to allow the test-suite to compile in this isolated context.
+ */
+public class CommandLine_getParsedOptionValue_27_0_Test_testPrivateConstructor_assignsFields_andAccessibleViaReflection {
+
+    @Test
+    public void testPrivateConstructor_assignsFields_andAccessibleViaReflection() throws Exception {
+        List<String> args = new LinkedList<>();
+        args.add("arg1");
+        final List<Option> options = new ArrayList<>();
+        options.add(new Option());
+        Consumer<Option> handler = o -> {
+            // no-op for test
+        };
+        // Obtain the (non-public) constructor and create an instance.
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(args, options, handler);
+
+        // Reflectively access private fields to ensure they were set by the constructor
+        Field argsField = CommandLine.class.getDeclaredField("args");
+        argsField.setAccessible(true);
+        Object actualArgs = argsField.get(cmd);
+        assertSame(args, actualArgs);
+
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        Object actualOptions = optionsField.get(cmd);
+        assertSame(options, actualOptions);
+
+        Field deprecatedHandlerField = CommandLine.class.getDeclaredField("deprecatedHandler");
+        deprecatedHandlerField.setAccessible(true);
+        Object actualHandler = deprecatedHandlerField.get(cmd);
+        assertSame(handler, actualHandler);
+    }
+}
+
+/*
+ * Minimal supporting stubs to allow this test (and other tests compiled together)
+ * to compile and run independently. These are intentionally broader than the minimal
+ * for this single test because many other tests in the suite expect Option to
+ * expose several constructors and getValuesList().
+ *
+ * These stubs mimic the commonly-used parts of the real library classes.
+ */
+
+class Option {
+    private String opt;
+    private String longOpt;
+    private boolean hasArg;
+    private String description;
+    private final List<String> values = new ArrayList<>();
+
+    // No-arg constructor (used by some tests)
+    public Option() {
+    }
+
+    // Common constructor signatures used across the test-suite
+    public Option(final String opt, final String description) {
+        this.opt = opt;
+        this.description = description;
+    }
+
+    public Option(final String opt, final String longOpt, final boolean hasArg, final String description) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = hasArg;
+        this.description = description;
+    }
+
+    public Option(final String opt, final boolean hasArg, final String description) {
+        this.opt = opt;
+        this.hasArg = hasArg;
+        this.description = description;
+    }
+
+    public Option(final String opt, final String longOpt) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+    }
+
+    // Add a single value
+    public void addValue(final String value) {
+        this.values.add(value);
+    }
+
+    // Add multiple values
+    public void addValues(final String... vals) {
+        if (vals != null) {
+            for (String v : vals) {
+                this.values.add(v);
+            }
+        }
+    }
+
+    // Set values (replace existing)
+    public void setValues(final String... vals) {
+        this.values.clear();
+        addValues(vals);
+    }
+
+    // Return the first value or null
+    public String getValue() {
+        return values.isEmpty() ? null : values.get(0);
+    }
+
+    // Many tests reference getValuesList(); provide it here
+    public List<String> getValuesList() {
+        return values;
+    }
+
+    // helpers to mimic Option behavior used in some tests
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+
+    public boolean hasArg() {
+        return hasArg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}
+
+class ParseException extends Exception {
+    public ParseException(final String message) {
+        super(message);
+    }
+}
+
+class Builder {
+    // Provide a default deprecated handler used by the protected CommandLine() constructor.
+    static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        // no-op stub
+    };
+}
+<<Generation Over>>

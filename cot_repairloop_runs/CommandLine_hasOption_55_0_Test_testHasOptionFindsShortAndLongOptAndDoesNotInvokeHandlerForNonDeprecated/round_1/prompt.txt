@@ -1,0 +1,122 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `hasOption(String)` in the focal class `CommandLine`, and their information is
+```[java]
+public boolean hasOption(final String optionName) {
+        return hasOption(resolveOption(optionName));
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/*
+ This test verifies CommandLine.hasOption(String) resolves both short and long
+ option names and does not invoke the deprecated-option handler for a non-deprecated option.
+ It intentionally uses the real org.apache.commons.cli.Option from the same package
+ (no local Option stub) so it doesn't interfere with other tests that expect different
+ Option constructors/methods.
+*/
+public class CommandLine_hasOption_55_0_Test_testHasOptionFindsShortAndLongOptAndDoesNotInvokeHandlerForNonDeprecated {
+
+    // Helper to create CommandLine using the private constructor via reflection
+    private CommandLine createCommandLine(List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // first argument is args list (List<String>), we pass an empty list
+        return ctor.newInstance(new ArrayList<String>(), options, deprecatedHandler);
+    }
+
+    @Test
+    public void testHasOptionFindsShortAndLongOptAndDoesNotInvokeHandlerForNonDeprecated() throws Exception {
+        // Use the library Option class constructor (opt, longOpt, hasArg)
+        Option opt = new Option("a", "alpha", false);
+        List<Option> options = new ArrayList<>();
+        options.add(opt);
+        AtomicInteger invoked = new AtomicInteger(0);
+        Consumer<Option> handler = o -> invoked.incrementAndGet();
+        CommandLine cmd = createCommandLine(options, handler);
+        // Using short name
+        assertTrue(cmd.hasOption("a"));
+        // Using long name
+        assertTrue(cmd.hasOption("alpha"));
+        // Ensure deprecated handler was not invoked for a non-deprecated option
+        assertEquals(0, invoked.get());
+    }
+}
+```
+
+The error encountered when running this unit test is:
+
+```
+compile
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] CommandLine_hasOption_55_0_Test_testHasOptionFindsShortAndLongOptAndDoesNotInvokeHandlerForNonDeprecated.java:[31,38] incompatible types: java.lang.String cannot be converted to boolean
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.175 s
+[INFO] Finished at: 2026-01-09T05:36:58-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] CommandLine_hasOption_55_0_Test_testHasOptionFindsShortAndLongOptAndDoesNotInvokeHandlerForNonDeprecated.java:[31,38] incompatible types: java.lang.String cannot be converted to boolean
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in CommandLine.
+    - The method under test is CommandLine.hasOption.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

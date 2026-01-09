@@ -1,0 +1,48 @@
+package org.apache.commons.cli.help;
+
+import sun.misc.Unsafe;
+import java.lang.reflect.Field;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Unit tests for TextStyle.pad(boolean, CharSequence)
+ */
+public class TextStyle_pad_7_0_Test_testPad_Center_WithMaxWidth {
+
+    private static TextStyle createTextStyle(TextStyle.Alignment alignment, int leftPad, int indent, boolean scalable, int minWidth, int maxWidth) throws Exception {
+        // allocate instance without invoking constructor
+        Unsafe unsafe = getUnsafe();
+        Object instance = unsafe.allocateInstance(TextStyle.class);
+        setField(instance, "alignment", alignment);
+        setField(instance, "leftPad", leftPad);
+        setField(instance, "indent", indent);
+        setField(instance, "scalable", scalable);
+        setField(instance, "minWidth", minWidth);
+        setField(instance, "maxWidth", maxWidth);
+        return (TextStyle) instance;
+    }
+
+    private static Unsafe getUnsafe() throws Exception {
+        Field f = Unsafe.class.getDeclaredField("theUnsafe");
+        f.setAccessible(true);
+        return (Unsafe) f.get(null);
+    }
+
+    private static void setField(Object target, String name, Object value) throws Exception {
+        Field field = TextStyle.class.getDeclaredField(name);
+        field.setAccessible(true);
+        field.set(target, value);
+    }
+
+    @Test
+    public void testPad_Center_WithMaxWidth() throws Exception {
+        TextStyle ts = createTextStyle(TextStyle.Alignment.CENTER, 0, 0, false, 0, 7);
+        String text = "abc";
+        CharSequence result = ts.pad(false, text);
+        // maxWidth=7, text length=3 -> padLen=4 -> left=2, right=2
+        assertEquals("  abc  ", result.toString());
+    }
+
+}

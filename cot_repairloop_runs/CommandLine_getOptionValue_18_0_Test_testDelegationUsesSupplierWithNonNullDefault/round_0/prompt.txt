@@ -1,0 +1,122 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `getOptionValue(OptionGroup, String)` in the focal class `CommandLine`, and their information is
+```[java]
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue) {
+        return getOptionValue(optionGroup, () -> defaultValue);
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Properties;
+import java.util.function.Consumer;
+
+class CommandLine_getOptionValue_18_0_Test_testDelegationUsesSupplierWithNonNullDefault {
+
+    /**
+     * Test helper subclass that captures the Supplier and OptionGroup passed to
+     * the Supplier-based getOptionValue(...) overload. This method is declared
+     * without @Override to avoid compile-time dependency on the exact signature
+     * visibility of the overload in the super class; at runtime the superclass'
+     * call should dispatch here if signatures match.
+     */
+    static class TestCommandLine extends CommandLine {
+
+        Supplier<String> capturedSupplier;
+
+        OptionGroup capturedGroup;
+
+        final String prefix = "OVERRIDE:";
+
+        // protected constructor in CommandLine is accessible from same package
+        TestCommandLine() {
+            super();
+        }
+
+        // Intentionally do not annotate with @Override (safer across different compile contexts).
+        public String getOptionValue(final OptionGroup group, final Supplier<String> defaultValue) {
+            this.capturedGroup = group;
+            this.capturedSupplier = defaultValue;
+            // guard in case the supplier itself is null (defensive)
+            String v = (defaultValue == null) ? null : defaultValue.get();
+            return prefix + v;
+        }
+    }
+
+    @Test
+    void testDelegationUsesSupplierWithNonNullDefault() {
+        TestCommandLine cli = new TestCommandLine();
+        String result = cli.getOptionValue(null, "myDefault");
+        // The subclass override should have been dispatched and returned prefix + default
+        assertEquals("OVERRIDE:myDefault", result);
+        // The Supplier captured should be non-null and return the original default
+        assertNotNull(cli.capturedSupplier, "Supplier should have been passed to the overload");
+        assertEquals("myDefault", cli.capturedSupplier.get());
+    }
+
+
+}
+
+```
+
+The error encountered when running this unit test is:
+
+```
+compilation
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_18_0_Test_testDelegationUsesSupplierWithNonNullDefault.java:[56,28] reference to getOptionValue is ambiguous
+both method getOptionValue(org.apache.commons.cli.OptionGroup,java.lang.String) in org.apache.commons.cli.CommandLine and method getOptionValue(java.lang.String,java.lang.String) in org.apache.commons.cli.CommandLine match
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in CommandLine.
+    - The method under test is CommandLine.getOptionValue.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

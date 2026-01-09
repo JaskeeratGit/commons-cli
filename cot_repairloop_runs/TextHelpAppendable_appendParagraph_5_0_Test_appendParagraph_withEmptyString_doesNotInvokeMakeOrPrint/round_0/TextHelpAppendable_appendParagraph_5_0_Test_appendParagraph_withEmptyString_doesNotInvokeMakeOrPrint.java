@@ -1,0 +1,30 @@
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.util.Queue;
+
+import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Tests for TextHelpAppendable.appendParagraph to ensure no make/print interactions happen
+ * when an empty string is passed.
+ */
+class TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withEmptyString_doesNotInvokeMakeOrPrint {
+
+    @Test
+    void appendParagraph_withEmptyString_doesNotInvokeMakeOrPrint() throws Exception {
+        // create a real instance and spy it so we can verify interactions with protected methods
+        final TextHelpAppendable real = new TextHelpAppendable(new StringBuilder());
+        final TextHelpAppendable spy = spy(real);
+
+        // call the method under test with an empty string
+        spy.appendParagraph("");
+
+        // verify that makeColumnQueue and printQueue were never invoked
+        verify(spy, never()).makeColumnQueue(any(CharSequence.class), any(TextStyle.class));
+        verify(spy, never()).printQueue(any(Queue.class));
+    }
+}

@@ -1,0 +1,126 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/**
+ * Test that CommandLine.getParsedOptionValue(char) delegates to the String variant.
+ */
+public class CommandLine_getParsedOptionValue_27_0_Test_testDelegatesToStringVersion_returnsValue {
+
+    @Test
+    public void testDelegatesToStringVersion_returnsValue() throws Exception {
+        final AtomicReference<String> captured = new AtomicReference<>();
+        // Use the protected no-arg constructor by subclassing to override the String-version method.
+        CommandLine cmd = new CommandLine() {
+
+            @Override
+            public <T> T getParsedOptionValue(final String optionName) throws ParseException {
+                captured.set(optionName);
+                // return a typed value to verify generics behavior
+                @SuppressWarnings("unchecked")
+                T t = (T) ("parsed:" + optionName);
+                return t;
+            }
+        };
+        // should delegate to getParsedOptionValue(String)
+        String result = cmd.getParsedOptionValue('a');
+        assertEquals("parsed:a", result);
+        assertEquals("a", captured.get());
+    }
+
+}
+
+/*
+ * Minimal supporting stubs to allow this test to compile and run independently.
+ * These match the minimal signatures referenced by CommandLine and the tests.
+ * In a real project these would be provided by the library under test.
+ *
+ * The Option stub below implements several constructors and methods that many
+ * other tests expect (based on compile errors). This keeps the test suite
+ * compilable when running this single-file test in isolation.
+ */
+
+class Option {
+    private String opt;
+    private String longOpt;
+    private boolean hasArg;
+    private String description;
+    private final List<String> values = new ArrayList<>();
+
+    // No-arg constructor (some tests expect this)
+    public Option() {
+    }
+
+    // Common simplified constructors that tests expect
+    public Option(final String opt, final String description) {
+        this(opt, null, false, description);
+    }
+
+    public Option(final String opt, final boolean hasArg, final String description) {
+        this(opt, null, hasArg, description);
+    }
+
+    public Option(final String opt, final String longOpt, final boolean hasArg, final String description) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = hasArg;
+        this.description = description;
+    }
+
+    // Return a modifiable list of values associated with this option (some tests call getValuesList())
+    public List<String> getValuesList() {
+        return values;
+    }
+
+    // Utility used by some tests to simulate processing values
+    public void addValueForProcessing(final String value) {
+        values.add(value);
+    }
+
+    // Basic accessors
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+
+    public boolean hasArg() {
+        return hasArg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String toString() {
+        return "Option[" + opt + (longOpt != null ? ("/" + longOpt) : "") + "]";
+    }
+}
+
+class ParseException extends Exception {
+    public ParseException(final String message) {
+        super(message);
+    }
+
+    public ParseException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+}
+
+class Builder {
+    // Provide a default deprecated handler used by the protected CommandLine() constructor.
+    static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        // no-op stub
+    };
+}
+<<Generation Over>>

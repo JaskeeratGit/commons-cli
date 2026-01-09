@@ -1,0 +1,118 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `getConverter(Class)` in the focal class `TypeHandler`, and their information is
+```[java]
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz) {
+        return (Converter<T, ?>) converterMap.getOrDefault(clazz, Converter.DEFAULT);
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit test for TypeHandler.getConverter when a null key is present in the map.
+ */
+class TypeHandler_getConverter_14_0_Test_testGetConverterWithNullKeyReturnsMappedConverter {
+
+    // Helper to create a Converter proxy instance
+    @SuppressWarnings("unchecked")
+    private Converter<Object, Exception> createConverterProxy() {
+        InvocationHandler handler = (proxy, method, args) -> null;
+        return (Converter<Object, Exception>) Proxy.newProxyInstance(
+                Converter.class.getClassLoader(),
+                new Class[]{Converter.class},
+                handler);
+    }
+
+    @Test
+    void testGetConverterWithNullKeyReturnsMappedConverter() {
+        Converter<Object, Exception> proxy = createConverterProxy();
+
+        @SuppressWarnings("unchecked")
+        Map<Class<?>, Converter<?, ? extends Exception>> map = new HashMap<>();
+        // cast to the map value type to satisfy generics
+        map.put(null, (Converter<?, ? extends Exception>) proxy);
+
+        TypeHandler handler = new TypeHandler(map);
+        Converter<?, ?> result = handler.getConverter(null);
+
+        assertSame(proxy, result, "Expected the converter mapped to null key to be returned");
+    }
+}
+```
+
+The error encountered when running this unit test is:
+
+```
+compile
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] TypeHandler_getConverter_14_0_Test_testGetConverterWithNullKeyReturnsMappedConverter.java:[34,47] incompatible types: java.util.Map<java.lang.Class<?>,org.apache.commons.cli.Converter<?,? extends java.lang.Exception>> cannot be converted to java.util.Map<java.lang.Class<?>,org.apache.commons.cli.Converter<?,? extends java.lang.Throwable>>
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.513 s
+[INFO] Finished at: 2026-01-09T06:06:44-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] TypeHandler_getConverter_14_0_Test_testGetConverterWithNullKeyReturnsMappedConverter.java:[34,47] incompatible types: java.util.Map<java.lang.Class<?>,org.apache.commons.cli.Converter<?,? extends java.lang.Exception>> cannot be converted to java.util.Map<java.lang.Class<?>,org.apache.commons.cli.Converter<?,? extends java.lang.Throwable>>
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in TypeHandler.
+    - The method under test is TypeHandler.getConverter.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

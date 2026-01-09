@@ -1,0 +1,65 @@
+<<Generation Begin>>
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit test for TextHelpAppendable.appendParagraph(CharSequence)
+ */
+class TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withNonEmpty_invokesMakeAndPrint_andAddsBlankLine {
+
+    /**
+     * Test helper that overrides makeColumnQueue to observe interactions.
+     *
+     * Note: We intentionally do NOT rely on overriding printQueue because some
+     * versions of TextHelpAppendable may declare printQueue in a way that
+     * prevents overriding (for example private), so asserting that a subclass
+     * override was called can produce false negatives. Instead we capture the
+     * exact Queue instance returned by makeColumnQueue and inspect it after
+     * appendParagraph returns to ensure a blank line was appended.
+     */
+    static class TestableTextHelpAppendable extends TextHelpAppendable {
+
+        volatile Queue<String> capturedQueue;
+
+        volatile boolean makeColumnQueueCalled = false;
+
+        TestableTextHelpAppendable(final Appendable output) {
+            super(output);
+        }
+
+        @Override
+        protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {
+            makeColumnQueueCalled = true;
+            final Queue<String> q = new LinkedList<>();
+            // capture the queue instance so the test can verify appendParagraph mutated it
+            this.capturedQueue = q;
+            // return the incoming data as single entry so appendParagraph's behavior is observable
+            q.add(columnData == null ? null : columnData.toString());
+            return q;
+        }
+
+        // Do not override printQueue: some implementations may make it non-overridable.
+    }
+
+    @Test
+    void appendParagraph_withNonEmpty_invokesMakeAndPrint_andAddsBlankLine() throws Exception {
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(new StringBuilder());
+        final String payload = "HelloWorld";
+        t.appendParagraph(payload);
+
+        assertTrue(t.makeColumnQueueCalled, "makeColumnQueue should be called for non-empty paragraph");
+        assertNotNull(t.capturedQueue, "Queue should be captured for non-empty paragraph");
+        final Object[] arr = t.capturedQueue.toArray();
+        // Our override returned a queue with a single element equal to payload;
+        // appendParagraph should have added the BLANK_LINE ("") after it.
+        assertEquals(2, arr.length, "Queue should contain original line and the appended blank line");
+        assertEquals(payload, arr[0], "First element should be the payload returned by makeColumnQueue");
+        assertEquals("", arr[1], "Second element should be the BLANK_LINE appended by appendParagraph");
+    }
+}
+<<Generation Over>>

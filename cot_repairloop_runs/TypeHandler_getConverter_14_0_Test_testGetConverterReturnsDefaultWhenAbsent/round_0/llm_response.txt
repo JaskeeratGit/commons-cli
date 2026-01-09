@@ -1,0 +1,41 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertSame;
+
+class TypeHandler_getConverter_14_0_Test_testGetConverterReturnsDefaultWhenAbsent {
+
+    // Helper to create a Converter proxy instance
+    @SuppressWarnings("unchecked")
+    private Converter<Object, Exception> createConverterProxy() {
+        InvocationHandler handler = (proxy, method, args) -> null;
+        return (Converter<Object, Exception>)
+                Proxy.newProxyInstance(Converter.class.getClassLoader(),
+                        new Class[] { Converter.class }, handler);
+    }
+
+    @Test
+    void testGetConverterReturnsDefaultWhenAbsent() {
+        Map<Class<?>, Converter<?, ? extends Exception>> map = new HashMap<>();
+        TypeHandler handler = new TypeHandler(map);
+        Converter<?, ?> result = handler.getConverter(Integer.class);
+        assertSame(Converter.DEFAULT, result, "Expected Converter.DEFAULT when no mapping exists");
+    }
+
+    @Test
+    void testGetConverterReturnsProvidedWhenPresent() {
+        Map<Class<?>, Converter<?, ? extends Exception>> map = new HashMap<>();
+        Converter<Object, Exception> conv = createConverterProxy();
+        map.put(Integer.class, conv);
+        TypeHandler handler = new TypeHandler(map);
+        Converter<?, ?> result = handler.getConverter(Integer.class);
+        assertSame(conv, result, "Expected the provided converter to be returned when mapping exists");
+    }
+}
+<<Generation Over>>

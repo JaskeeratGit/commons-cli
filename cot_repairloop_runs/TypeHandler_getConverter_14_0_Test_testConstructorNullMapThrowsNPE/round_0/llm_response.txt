@@ -1,0 +1,53 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class TypeHandler_getConverter_14_0_Test_testConstructorNullMapThrowsNPE {
+
+    // Helper to create a Converter proxy instance (use a wildcard for the second type parameter
+    // to avoid issues with the exact exception bound on the Converter type parameter).
+    @SuppressWarnings("unchecked")
+    private Converter<Object, ?> createConverterProxy() {
+        InvocationHandler handler = (proxy, method, args) -> null;
+        return (Converter<Object, ?>) Proxy.newProxyInstance(
+                Converter.class.getClassLoader(),
+                new Class[]{Converter.class},
+                handler);
+    }
+
+    @Test
+    void testConstructorNullMapThrowsNPE() {
+        assertThrows(NullPointerException.class, () -> new TypeHandler(null));
+    }
+
+    @Test
+    void testGetConverterReturnsMappedConverter() {
+        Map<Class<?>, Converter<?, ?>> map = new HashMap<>();
+        Converter<Object, ?> conv = createConverterProxy();
+        // store with raw Class key
+        map.put(String.class, conv);
+
+        TypeHandler handler = new TypeHandler(map);
+
+        Converter<String, ?> result = handler.getConverter(String.class);
+        assertSame(conv, result, "Should return the mapped converter for String.class");
+    }
+
+    @Test
+    void testGetConverterReturnsDefaultWhenAbsent() {
+        Map<Class<?>, Converter<?, ?>> map = new HashMap<>();
+        TypeHandler handler = new TypeHandler(map);
+
+        Converter<Integer, ?> result = handler.getConverter(Integer.class);
+        assertSame(Converter.DEFAULT, result, "Should return Converter.DEFAULT when no mapping exists");
+    }
+}
+<<Generation Over>>

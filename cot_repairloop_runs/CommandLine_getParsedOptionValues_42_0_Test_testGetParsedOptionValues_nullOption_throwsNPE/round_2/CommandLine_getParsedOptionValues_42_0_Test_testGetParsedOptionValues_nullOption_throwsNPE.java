@@ -1,0 +1,18 @@
+package org.apache.commons.cli;
+
+import org.apache.commons.cli.ParseException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_nullOption_throwsNPE {
+
+    @Test
+    public void testGetParsedOptionValues_nullOption_returnsNull() throws ParseException {
+        CommandLine cmd = new CommandLine();
+        // CommandLine#getParsedOptionValues((Option) null) delegates to the two-arg overload
+        // with a supplier returning null, so the expected result is null.
+        assertNull(cmd.getParsedOptionValues((Option) null));
+    }
+
+}

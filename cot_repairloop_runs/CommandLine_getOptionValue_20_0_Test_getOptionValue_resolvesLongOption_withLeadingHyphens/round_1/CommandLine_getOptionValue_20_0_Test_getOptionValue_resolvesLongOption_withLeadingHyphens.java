@@ -1,0 +1,43 @@
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Fixed unit test for CommandLine.getOptionValue(String).
+ *
+ * This test uses the real DefaultParser and a real Option instance instead of
+ * trying to construct CommandLine via reflection or mocking Option. It verifies
+ * that getOptionValue(String) resolves the option name whether provided as the
+ * bare long name or with one or two leading hyphens.
+ */
+public class CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens {
+
+    @Test
+    public void getOptionValue_resolvesLongOption_withLeadingHyphens() throws Exception {
+        // Define an option -c / --charlie that takes an argument
+        Option opt = Option.builder("c")
+                .longOpt("charlie")
+                .hasArg()
+                .desc("charlie option")
+                .build();
+
+        Options options = new Options();
+        options.addOption(opt);
+
+        // Parse arguments as they would appear on the command line
+        String[] args = new String[] {"--charlie", "longValue"};
+        DefaultParser parser = new DefaultParser();
+        CommandLine cmd = parser.parse(options, args);
+
+        // getOptionValue should resolve the option regardless of leading hyphens
+        assertEquals("longValue", cmd.getOptionValue("charlie"));
+        assertEquals("longValue", cmd.getOptionValue("-charlie"));
+        assertEquals("longValue", cmd.getOptionValue("--charlie"));
+
+        // Also verify that the short option name resolves to the same value
+        assertEquals("longValue", cmd.getOptionValue("c"));
+        assertEquals("longValue", cmd.getOptionValue("-c"));
+    }
+}

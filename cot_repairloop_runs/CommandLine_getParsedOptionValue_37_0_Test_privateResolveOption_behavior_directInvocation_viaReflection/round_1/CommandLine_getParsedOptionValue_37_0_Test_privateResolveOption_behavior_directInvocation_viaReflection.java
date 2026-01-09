@@ -1,0 +1,151 @@
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.function.Supplier;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/*
+ This test verifies the private resolveOption behavior of CommandLine by
+ setting the private 'options' field via reflection and invoking the
+ private resolveOption(String) method directly.
+ The test uses the real production Option class (from org.apache.commons.cli)
+ and avoids defining test-local Option/Util/ParseException classes which
+ would produce class cast issues at runtime.
+*/
+class CommandLine_getParsedOptionValue_37_0_Test_privateResolveOption_behavior_directInvocation_viaReflection {
+
+    // Subclass of CommandLine to optionally intercept getParsedOptionValue(Option, Supplier)
+    public static class TestableCommandLine extends CommandLine {
+
+        volatile Option lastSeenOption;
+        volatile Supplier<?> lastSeenSupplier;
+        private final Object returnValue;
+
+        // Use protected no-arg constructor of CommandLine
+        public TestableCommandLine() {
+            super();
+            this.returnValue = null;
+        }
+
+        public TestableCommandLine(final Object returnValue) {
+            super();
+            this.returnValue = returnValue;
+        }
+
+        // Provide a method with the same signature as the (expected) overloaded method on CommandLine.
+        // Do NOT use @Override to avoid signature mismatch issues across versions.
+        @SuppressWarnings("unchecked")
+        public <T> T getParsedOptionValue(final Option opt, final Supplier<T> defaultValue) throws ParseException {
+            this.lastSeenOption = opt;
+            this.lastSeenSupplier = defaultValue;
+            if (returnValue != null) {
+                return (T) returnValue;
+            }
+            return (defaultValue == null) ? null : defaultValue.get();
+        }
+    }
+
+    // Helper to set the private final 'options' field in CommandLine
+    private static void setOptionsField(final CommandLine target, final List<Option> options) throws Exception {
+        Field f = CommandLine.class.getDeclaredField("options");
+        f.setAccessible(true);
+        f.set(target, options);
+    }
+
+    // Helper that constructs an org.apache.commons.cli.Option with opt and longOpt.
+    // Attempts several constructor or builder strategies to be robust across commons-cli versions.
+    private static Option createOption(final String opt, final String longOpt) throws Exception {
+        Class<Option> optionClass = Option.class;
+
+        // Try Option.builder(opt).longOpt(longOpt).build()
+        try {
+            Method builderMethod = optionClass.getMethod("builder", String.class);
+            Object builder = builderMethod.invoke(null, opt);
+            // Try to call longOpt(String) on builder if present
+            try {
+                Method longOptSetter = builder.getClass().getMethod("longOpt", String.class);
+                longOptSetter.invoke(builder, longOpt);
+            } catch (NoSuchMethodException ignored) {
+                // ignore, maybe builder does not have longOpt setter in this version
+            }
+            Method buildMethod = builder.getClass().getMethod("build");
+            return (Option) buildMethod.invoke(builder);
+        } catch (NoSuchMethodException ignored) {
+            // builder not present; fall through to constructors
+        }
+
+        // Try constructors in common signatures
+        try {
+            // constructor Option(String opt, String longOpt)
+            Constructor<Option> c = optionClass.getConstructor(String.class, String.class);
+            return c.newInstance(opt, longOpt);
+        } catch (NoSuchMethodException ignored) {
+            // try next
+        }
+
+        try {
+            // constructor Option(String opt, String longOpt, boolean hasArg, String description)
+            Constructor<Option> c = optionClass.getConstructor(String.class, String.class, boolean.class, String.class);
+            return c.newInstance(opt, longOpt, false, null);
+        } catch (NoSuchMethodException ignored) {
+            // try next
+        }
+
+        try {
+            // constructor Option(String opt, String description)
+            Constructor<Option> c = optionClass.getConstructor(String.class, String.class);
+            // This is same signature as above, already tried; keep for completeness
+            return c.newInstance(opt, longOpt);
+        } catch (NoSuchMethodException ignored) {
+            // nothing else to try
+        }
+
+        // As a last resort, attempt constructor with single arg (opt) and set longOpt via reflection if setter exists
+        try {
+            Constructor<Option> c = optionClass.getConstructor(String.class);
+            Option o = c.newInstance(opt);
+            try {
+                Method setLongOpt = optionClass.getMethod("setLongOpt", String.class);
+                setLongOpt.invoke(o, longOpt);
+            } catch (NoSuchMethodException ignored) {
+                // can't set long opt; leave as-is
+            }
+            return o;
+        } catch (NoSuchMethodException ex) {
+            throw new IllegalStateException("Unable to construct org.apache.commons.cli.Option for tests", ex);
+        }
+    }
+
+    @Test
+    void privateResolveOption_behavior_directInvocation_viaReflection() throws Exception {
+        TestableCommandLine cmd = new TestableCommandLine();
+
+        Option opt1 = createOption("a", "alpha");
+        Option opt2 = createOption("b", "beta");
+
+        setOptionsField(cmd, new ArrayList<>(Arrays.asList(opt1, opt2)));
+
+        // Invoke private resolveOption directly
+        Method m = CommandLine.class.getDeclaredMethod("resolveOption", String.class);
+        m.setAccessible(true);
+
+        Object resolvedShort = m.invoke(cmd, "-a");
+        assertSame(opt1, resolvedShort);
+
+        Object resolvedLong = m.invoke(cmd, "--beta");
+        assertSame(opt2, resolvedLong);
+
+        Object none = m.invoke(cmd, "--does-not-exist");
+        assertNull(none);
+
+        // edge: only hyphens -> empty string -> no match
+        Object strippedEmpty = m.invoke(cmd, "----");
+        assertNull(strippedEmpty);
+    }
+}

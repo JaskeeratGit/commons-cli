@@ -1,0 +1,67 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Method;
+import java.util.function.Supplier;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+class CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_optionNull_usesDefault {
+
+    @Test
+    void testGetParsedOptionValue_optionNull_usesDefault() throws Exception {
+        CommandLine cmd = new CommandLine() {
+        };
+        // disambiguate overloaded methods by casting null to Option
+        String result = cmd.getParsedOptionValue((Option) null, () -> "defaultValue");
+        assertEquals("defaultValue", result);
+
+        // Also invoke the private helper 'get' via reflection to satisfy private-method reflection usage
+        Method getMethod = CommandLine.class.getDeclaredMethod("get", Supplier.class);
+        getMethod.setAccessible(true);
+        Object reflected = getMethod.invoke(cmd, (Supplier<String>) () -> "reflectedDefault");
+        assertEquals("reflectedDefault", reflected);
+    }
+
+    @Test
+    void testGetParsedOptionValue_withOption_parsesValue() {
+        // create a mock Option and provide a simple converter
+        final Option opt = mock(Option.class);
+        // cast to raw Converter to avoid generic complications in the test
+        when(opt.getConverter()).thenReturn((Converter) (String s) -> s + "_parsed");
+
+        CommandLine cmd = new CommandLine() {
+            @Override
+            public String getOptionValue(final Option option) {
+                if (option == opt) {
+                    return "input";
+                }
+                return null;
+            }
+        };
+
+        String result = cmd.getParsedOptionValue(opt, () -> "default");
+        assertEquals("input_parsed", result);
+    }
+
+    @Test
+    void testGetParsedOptionValue_withOption_valueNull_usesDefault() {
+        final Option opt = mock(Option.class);
+        when(opt.getConverter()).thenReturn((Converter) (String s) -> s + "_parsed");
+
+        CommandLine cmd = new CommandLine() {
+            @Override
+            public String getOptionValue(final Option option) {
+                // simulate missing option value
+                return null;
+            }
+        };
+
+        String result = cmd.getParsedOptionValue(opt, () -> "fallback");
+        assertEquals("fallback", result);
+    }
+}
+<<Generation Over>>

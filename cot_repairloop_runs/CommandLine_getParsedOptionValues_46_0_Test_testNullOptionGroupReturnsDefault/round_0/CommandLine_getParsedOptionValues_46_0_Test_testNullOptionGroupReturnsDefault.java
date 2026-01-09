@@ -1,0 +1,70 @@
+package org.apache.commons.cli;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.function.Supplier;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+public class CommandLine_getParsedOptionValues_46_0_Test_testNullOptionGroupReturnsDefault {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+
+        // Act
+        // cast null to OptionGroup to avoid ambiguous overload resolution with String
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+
+    @Test
+    void testOptionGroupNotSelectedReturnsDefault() throws Exception {
+        // Arrange
+        OptionGroup og = mock(OptionGroup.class);
+        when(og.isSelected()).thenReturn(false);
+
+        CommandLine cmd = new CommandLine();
+        Supplier<Integer[]> supplier = () -> new Integer[] { 1, 2 };
+
+        // Act
+        Integer[] result = cmd.getParsedOptionValues(og, supplier);
+
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+
+    @Test
+    void testOptionGroupSelectedDelegatesToStringOverload() throws Exception {
+        // Arrange
+        OptionGroup og = mock(OptionGroup.class);
+        when(og.isSelected()).thenReturn(true);
+        when(og.getSelected()).thenReturn("optName");
+
+        // Spy the CommandLine so we can stub the String overload
+        CommandLine cmd = spy(new CommandLine());
+
+        // When the String overload is called with "optName" return this array
+        doReturn(new String[] { "fromString" })
+            .when(cmd)
+            .getParsedOptionValues(eq("optName"), Mockito.<Supplier<String[]>>any());
+
+        Supplier<String[]> defaultSupplier = () -> new String[] { "defaultX" };
+
+        // Act
+        String[] result = cmd.getParsedOptionValues(og, defaultSupplier);
+
+        // Assert
+        assertArrayEquals(new String[] { "fromString" }, result);
+        // verify delegation happened
+        verify(cmd).getParsedOptionValues(eq("optName"), Mockito.<Supplier<String[]>>any());
+    }
+}

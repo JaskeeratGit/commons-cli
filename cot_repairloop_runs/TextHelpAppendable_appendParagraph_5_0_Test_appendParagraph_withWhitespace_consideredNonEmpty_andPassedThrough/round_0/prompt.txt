@@ -1,0 +1,169 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `appendParagraph(CharSequence)` in the focal class `TextHelpAppendable`, and their information is
+```[java]
+@Override
+    public void appendParagraph(final CharSequence paragraph) throws IOException {
+        if (!Util.isEmpty(paragraph)) {
+            final Queue<String> queue = makeColumnQueue(paragraph, textStyleBuilder.get());
+            queue.add(BLANK_LINE);
+            printQueue(queue);
+        }
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.help.Util` is
+```[java]
+import java.util.Arrays;
+final class Util {
+private static final int NOT_FOUND = ...;
+private Util(){}
+static boolean isEmpty(final CharSequence str){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.TextStyle.Builder` is
+```[java]
+import java.util.function.Supplier;
+public final class TextStyle {
+public static final int UNSET_MAX_WIDTH = ...;
+public static final TextStyle DEFAULT = ...;
+private final Alignment alignment;
+private final int leftPad;
+private final int indent;
+private final boolean scalable;
+private final int minWidth;
+private final int maxWidth;
+private TextStyle(final Builder builder){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.Util` is
+```[java]
+isEmpty(CharSequence)
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.TextStyle.Builder` is
+```[java]
+get()
+```
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.Queue;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+class TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withWhitespace_consideredNonEmpty_andPassedThrough {
+
+    /**
+     * Test helper that overrides makeColumnQueue and printQueue to observe interactions.
+     */
+    static class TestableTextHelpAppendable extends TextHelpAppendable {
+
+        volatile Queue<String> capturedQueue;
+
+        volatile boolean makeColumnQueueCalled = false;
+
+        volatile boolean printQueueCalled = false;
+
+        TestableTextHelpAppendable(final Appendable output) {
+            super(output);
+        }
+
+        @Override
+        protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {
+            makeColumnQueueCalled = true;
+            final Queue<String> q = new LinkedList<>();
+            // return the incoming data as single entry so appendParagraph's behavior is observable
+            q.add(columnData == null ? null : columnData.toString());
+            return q;
+        }
+
+        @Override
+        protected void printQueue(final Queue<String> queue) throws IOException {
+            printQueueCalled = true;
+            // capture the exact queue instance that appendParagraph passes
+            this.capturedQueue = queue;
+        }
+    }
+
+
+
+
+    @Test
+    void appendParagraph_withWhitespace_consideredNonEmpty_andPassedThrough() throws Exception {
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(new StringBuilder());
+        // whitespace only; Util.isEmpty checks length, so this is non-empty
+        final String payload = "   ";
+        t.appendParagraph(payload);
+        assertTrue(t.makeColumnQueueCalled, "makeColumnQueue should be called for whitespace-only paragraph");
+        assertTrue(t.printQueueCalled, "printQueue should be called for whitespace-only paragraph");
+        assertNotNull(t.capturedQueue);
+        final Object[] arr = t.capturedQueue.toArray();
+        assertEquals(payload, arr[0], "Whitespace payload should be preserved in the returned queue element");
+        assertEquals("", arr[1], "A blank line should still be appended");
+    }
+
+}
+
+```
+
+The error encountered when running this unit test is:
+
+```
+compilation
+src/test/java/org/apache/commons/cli/help/TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withWhitespace_consideredNonEmpty_andPassedThrough.java:[47,9] method does not override or implement a method from a supertype
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in TextHelpAppendable.
+    - The method under test is TextHelpAppendable.appendParagraph.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

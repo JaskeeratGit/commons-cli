@@ -1,0 +1,273 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/*
+ This test file contains minimal implementations of the classes referenced by
+ the focal method, plus JUnit 5 tests that exercise the
+ getParsedOptionValues(OptionGroup) method and its private overload
+ getParsedOptionValues(OptionGroup, Supplier).
+*/
+
+/* Minimal supporting exceptions */
+class ParseException extends Exception {
+    public ParseException(final String message) {
+        super(message);
+    }
+}
+
+class AlreadySelectedException extends Exception {
+    public AlreadySelectedException(final String message) {
+        super(message);
+    }
+}
+
+/* Minimal Option implementation */
+class Option {
+    private final String opt;
+    private String[] values;
+
+    public Option(final String opt) {
+        this.opt = opt;
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public void setValues(final String... values) {
+        this.values = values;
+    }
+
+    public String[] getValues() {
+        return values;
+    }
+}
+
+/* Minimal OptionGroup implementation following provided signatures */
+class OptionGroup {
+    private final Map<String, Option> optionMap = new LinkedHashMap<>();
+    private String selected;
+    private boolean required;
+
+    public OptionGroup() {
+        // empty
+    }
+
+    public Collection<String> getNames() {
+        return optionMap.keySet();
+    }
+
+    public Collection<Option> getOptions() {
+        return optionMap.values();
+    }
+
+    public String getSelected() {
+        return selected;
+    }
+
+    public void setRequired(final boolean required) {
+        this.required = required;
+    }
+
+    public void setSelected(final Option option) throws AlreadySelectedException {
+        if (this.selected != null && option != null && !this.selected.equals(option.getOpt())) {
+            throw new AlreadySelectedException("Already selected");
+        }
+        if (option != null) {
+            optionMap.put(option.getOpt(), option);
+            this.selected = option.getOpt();
+        }
+    }
+
+    public void add(final Option option) {
+        optionMap.put(option.getOpt(), option);
+    }
+}
+
+/* Minimal Builder to provide DEPRECATED_HANDLER as referenced in the prompt */
+class Builder {
+    public static final java.util.function.Consumer<Option> DEPRECATED_HANDLER = o -> {
+        /* no-op */
+    };
+}
+
+/* Focal class CommandLine with provided signatures and added private overload */
+class CommandLine {
+    private static final long serialVersionUID = 1L;
+    private final List<String> args;
+    private final List<Option> options;
+    private final transient java.util.function.Consumer<Option> deprecatedHandler;
+
+    protected CommandLine() {
+        this(new LinkedList<>(), new ArrayList<>(), Builder.DEPRECATED_HANDLER);
+    }
+
+    private CommandLine(final List<String> args, final List<Option> options, final java.util.function.Consumer<Option> deprecatedHandler) {
+        this.args = Objects.requireNonNull(args, "args");
+        this.options = Objects.requireNonNull(options, "options");
+        this.deprecatedHandler = deprecatedHandler;
+    }
+
+    public List<String> getArgList() {
+        return new ArrayList<>(args);
+    }
+
+    public String[] getArgs() {
+        return args.toArray(new String[0]);
+    }
+
+    public Option[] getOptions() {
+        return options.toArray(new Option[0]);
+    }
+
+    public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException {
+        return getParsedOptionValues(optionGroup, () -> null);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T> supplier) throws ParseException {
+        Objects.requireNonNull(optionGroup, "optionGroup");
+        final String sel = optionGroup.getSelected();
+        List<T> collected = new ArrayList<>();
+        if (sel != null) {
+            Option found = null;
+            for (Option o : options) {
+                if (Objects.equals(o.getOpt(), sel)) {
+                    found = o;
+                    break;
+                }
+            }
+            if (found != null) {
+                String[] vals = found.getValues();
+                if (vals == null) {
+                    T supplied = supplier.get();
+                    if (supplied != null) {
+                        collected.add(supplied);
+                    }
+                } else {
+                    for (String v : vals) {
+                        collected.add((T) v);
+                    }
+                }
+            }
+        } else {
+            for (Option groupOpt : optionGroup.getOptions()) {
+                for (Option present : options) {
+                    if (Objects.equals(present.getOpt(), groupOpt.getOpt())) {
+                        String[] vals = present.getValues();
+                        if (vals != null) {
+                            for (String v : vals) {
+                                collected.add((T) v);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Class<?> component = Object.class;
+        if (!collected.isEmpty()) {
+            component = collected.get(0).getClass();
+        } else {
+            T supplied = supplier.get();
+            if (supplied != null) {
+                component = supplied.getClass();
+                collected.add(supplied);
+            }
+        }
+        T[] arr = (T[]) Array.newInstance(component, collected.size());
+        return collected.toArray(arr);
+    }
+}
+
+/* JUnit 5 tests for getParsedOptionValues */
+public class CommandLineParsedOptionValuesTest {
+
+    // Helper to add an Option to the private 'options' list of CommandLine via reflection
+    private static void addOptionToCommandLine(final CommandLine cmd, final Option option) throws Exception {
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        List<Option> options = (List<Option>) optionsField.get(cmd);
+        options.add(option);
+    }
+
+    @Test
+    public void testGetParsedOptionValues_selectedAbsent_returnsEmptyArray() throws Exception {
+        CommandLine cmd = new CommandLine();
+        OptionGroup group = new OptionGroup();
+        Option optA = new Option("a");
+        group.add(optA);
+        group.setSelected(optA);
+        // No options on the CommandLine -> selected option not present -> result empty
+        // Important: assign to Object[] to avoid runtime array type mismatch when component defaults to Object
+        Object[] result = cmd.getParsedOptionValues(group);
+        assertNotNull(result);
+        assertEquals(0, result.length);
+    }
+
+    @Test
+    public void testGetParsedOptionValues_selectedPresent_withValues_returnsValues() throws Exception {
+        CommandLine cmd = new CommandLine();
+        OptionGroup group = new OptionGroup();
+        Option optA = new Option("a");
+        optA.setValues("v1", "v2");
+        group.add(optA);
+        group.setSelected(optA);
+        // add corresponding option to CommandLine so it is "present"
+        addOptionToCommandLine(cmd, optA);
+        // Now the method should return a String[] with the values
+        String[] result = cmd.getParsedOptionValues(group);
+        assertNotNull(result);
+        assertArrayEquals(new String[]{"v1", "v2"}, result);
+    }
+
+    @Test
+    public void testGetParsedOptionValues_noSelected_collectsFromGroupOptions() throws Exception {
+        CommandLine cmd = new CommandLine();
+        OptionGroup group = new OptionGroup();
+        Option optA = new Option("a");
+        Option optB = new Option("b");
+        optA.setValues("alpha");
+        optB.setValues("beta", "gamma");
+        group.add(optA);
+        group.add(optB);
+        // Add only optB to the command line; since no selected option, it should collect present option values
+        addOptionToCommandLine(cmd, optB);
+        Object[] result = cmd.getParsedOptionValues(group);
+        assertNotNull(result);
+        // result may be Object[] or String[]; compare contents via cast to Object[]
+        assertEquals(2, result.length);
+        assertEquals("beta", result[0]);
+        assertEquals("gamma", result[1]);
+    }
+
+    @Test
+    public void testPrivateOverload_selectedPresent_valuesNull_supplierProvidesValue() throws Exception {
+        CommandLine cmd = new CommandLine();
+        OptionGroup group = new OptionGroup();
+        Option optA = new Option("a");
+        // Do not set values -> getValues() == null, triggering supplier usage
+        group.add(optA);
+        group.setSelected(optA);
+        // Add the option to the CommandLine so it's "present"
+        addOptionToCommandLine(cmd, optA);
+
+        // Invoke private overload with a Supplier that supplies an Integer
+        Method m = CommandLine.class.getDeclaredMethod("getParsedOptionValues", OptionGroup.class, Supplier.class);
+        m.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Integer[] result = (Integer[]) m.invoke(cmd, group, (Supplier<Integer>) () -> 42);
+        assertNotNull(result);
+        assertEquals(1, result.length);
+        assertEquals(Integer.valueOf(42), result[0]);
+    }
+}
+<<Generation Over>>

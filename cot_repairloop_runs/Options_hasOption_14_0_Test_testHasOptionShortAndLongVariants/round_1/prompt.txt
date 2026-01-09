@@ -1,0 +1,136 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `hasOption(String)` in the focal class `Options`, and their information is
+```[java]
+public boolean hasOption(final String opt) {
+        final String clean = Util.stripLeadingHyphens(opt);
+        return shortOpts.containsKey(clean) || longOpts.containsKey(clean);
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.Util` is
+```[java]
+final class Util {
+static final String[] EMPTY_STRING_ARRAY = ...;
+private Util(){}
+static String stripLeadingHyphens(final String str){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.Util` is
+```[java]
+stripLeadingHyphens(String)
+```
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.util.Map;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class Options_hasOption_14_0_Test_testHasOptionShortAndLongVariants {
+
+    private Options options;
+
+    @BeforeEach
+    void setUp() {
+        options = new Options();
+    }
+
+    @Test
+    void testHasOptionShortAndLongVariants() throws Exception {
+        // Add short option "a" and long option "alpha"
+        putIntoMap(options, "shortOpts", "a", new Option("a"));
+        putIntoMap(options, "longOpts", "alpha", new Option("alpha"));
+        // With hyphens
+        assertTrue(options.hasOption("-a"));
+        assertTrue(options.hasOption("--alpha"));
+        // Without hyphens should also work (stripLeadingHyphens leaves it unchanged)
+        assertTrue(options.hasOption("a"));
+        assertTrue(options.hasOption("alpha"));
+        // Unknown option should be false
+        assertFalse(options.hasOption("unknown"));
+        assertFalse(options.hasOption("-unknown"));
+        assertFalse(options.hasOption("--unknown"));
+    }
+
+    // Helper to inject into private maps shortOpts/longOpts via reflection
+    @SuppressWarnings("unchecked")
+    private void putIntoMap(Options optionsInstance, String fieldName, String key, Option value) throws Exception {
+        Field f = Options.class.getDeclaredField(fieldName);
+        f.setAccessible(true);
+        Map<String, Option> map = (Map<String, Option>) f.get(optionsInstance);
+        map.put(key, value);
+    }
+}
+```
+
+The error encountered when running this unit test is:
+
+```
+compile
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] Options_hasOption_14_0_Test_testHasOptionShortAndLongVariants.java:[20,58] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[ERROR] Options_hasOption_14_0_Test_testHasOptionShortAndLongVariants.java:[21,61] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.502 s
+[INFO] Finished at: 2026-01-09T05:43:43-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure: Compilation failure: 
+[ERROR] Options_hasOption_14_0_Test_testHasOptionShortAndLongVariants.java:[20,58] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[ERROR] Options_hasOption_14_0_Test_testHasOptionShortAndLongVariants.java:[21,61] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in Options.
+    - The method under test is Options.hasOption.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

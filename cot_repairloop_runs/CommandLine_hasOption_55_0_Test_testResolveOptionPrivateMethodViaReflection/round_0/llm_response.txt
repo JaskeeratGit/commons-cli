@@ -1,0 +1,73 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
+import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Tests CommandLine.resolveOption (private) by reflection.
+ *
+ * Note: we use Mockito to create Option instances rather than declaring a
+ * local minimal Option class which would conflict with the real
+ * org.apache.commons.cli.Option API expected elsewhere in the test-suite.
+ */
+public class CommandLine_hasOption_55_0_Test_testResolveOptionPrivateMethodViaReflection {
+
+    // Helper to create CommandLine using the private constructor via reflection
+    private CommandLine createCommandLine(List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // first argument is args list (List<String>), we pass an empty list
+        return ctor.newInstance(new ArrayList<String>(), options, deprecatedHandler);
+    }
+
+    @Test
+    public void testResolveOptionPrivateMethodViaReflection() throws Exception {
+        // Create Mockito mocks for Option to avoid constructor/signature issues
+        Option opt1 = mock(Option.class);
+        when(opt1.getOpt()).thenReturn("x");
+        when(opt1.getLongOpt()).thenReturn("xlong");
+        when(opt1.isDeprecated()).thenReturn(false);
+
+        Option opt2 = mock(Option.class);
+        when(opt2.getOpt()).thenReturn("y");
+        when(opt2.getLongOpt()).thenReturn("ylong");
+        when(opt2.isDeprecated()).thenReturn(false);
+
+        List<Option> options = new ArrayList<>();
+        options.add(opt1);
+        options.add(opt2);
+
+        CommandLine cmd = createCommandLine(options, o -> {
+        });
+
+        // Invoke private resolveOption method reflectively
+        Method resolve = CommandLine.class.getDeclaredMethod("resolveOption", String.class);
+        resolve.setAccessible(true);
+
+        // Should find by short opt (with or without hyphen)
+        Object found1 = resolve.invoke(cmd, "-x");
+        assertSame(opt1, found1, "Should resolve '-x' to opt1");
+        Object found1b = resolve.invoke(cmd, "x");
+        assertSame(opt1, found1b, "Should resolve 'x' to opt1");
+
+        // Should find by long opt (with or without double hyphen)
+        Object found2 = resolve.invoke(cmd, "--ylong");
+        assertSame(opt2, found2, "Should resolve '--ylong' to opt2");
+        Object found2b = resolve.invoke(cmd, "ylong");
+        assertSame(opt2, found2b, "Should resolve 'ylong' to opt2");
+
+        // Non-existent option should return null
+        Object notFound = resolve.invoke(cmd, "nope");
+        assertNull(notFound, "Non-existent option should resolve to null");
+    }
+}
+<<Generation Over>>

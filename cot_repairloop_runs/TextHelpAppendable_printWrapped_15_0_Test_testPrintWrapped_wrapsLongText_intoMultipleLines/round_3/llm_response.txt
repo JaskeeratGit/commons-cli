@@ -1,0 +1,81 @@
+<<Generation Begin>>
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.Queue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for TextHelpAppendable#printWrapped(String)
+ */
+public class TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines {
+
+    private static final String SAMPLE_TEXT = "one two three four five six seven eight nine ten eleven twelve";
+
+    private CapturingTextHelpAppendable subject;
+
+    @BeforeEach
+    public void setUp() {
+        // Use a StringBuilder as the Appendable target (actual output is not important for these tests)
+        subject = new CapturingTextHelpAppendable(new StringBuilder());
+    }
+
+    @Test
+    public void testPrintWrapped_wrapsLongText_intoMultipleLines() throws Exception {
+        // configure style to force wrapping at small width
+        subject.getTextStyleBuilder()
+               .setMaxWidth(10) // a left pad so produced lines will have a leading space
+               .setLeftPad(1)
+               .setIndent(0);
+
+        // call the focal method
+        subject.printWrapped(SAMPLE_TEXT);
+
+        // capturedQueue must have been set by overridden printQueue
+        @SuppressWarnings("unchecked")
+        Queue<CharSequence> captured = (Queue<CharSequence>) subject.getCapturedQueue();
+        assertNotNull(captured, "printQueue should have been invoked and capturedQueue set");
+
+        // For correctness assert that the same result is produced by directly invoking makeColumnQueue (via reflection).
+        // This checks that printWrapped indeed passed the makeColumnQueue result into printQueue.
+        Method makeColumnQueue = TextHelpAppendable.class.getDeclaredMethod("makeColumnQueue", CharSequence.class, TextStyle.class);
+        makeColumnQueue.setAccessible(true);
+        TextStyle style = subject.getTextStyleBuilder().get();
+        @SuppressWarnings("unchecked")
+        Queue<CharSequence> expected = (Queue<CharSequence>) makeColumnQueue.invoke(subject, SAMPLE_TEXT, style);
+
+        assertEquals(expected.size(), captured.size(), "Wrapped line count should match expected makeColumnQueue result");
+        assertEquals(expected, captured, "Wrapped queue contents should match the queue produced by makeColumnQueue");
+    }
+
+
+
+    /**
+     * A small subclass to capture the Queue argument passed to printQueue when printWrapped is invoked.
+     * The signature matches the base class exactly (including generic parameter type).
+     */
+    private static class CapturingTextHelpAppendable extends TextHelpAppendable {
+
+        private Queue<? extends CharSequence> capturedQueue;
+
+        CapturingTextHelpAppendable(Appendable output) {
+            super(output);
+        }
+
+        @Override
+        protected void printQueue(final Queue<? extends CharSequence> queue) throws IOException {
+            // capture the queue reference for assertions
+            this.capturedQueue = queue;
+            // do not forward; we only need to capture for verification
+        }
+
+        Queue<? extends CharSequence> getCapturedQueue() {
+            return capturedQueue;
+        }
+    }
+}
+<<Generation Over>>

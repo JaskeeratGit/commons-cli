@@ -1,0 +1,98 @@
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Fixed unit test for TextHelpAppendable.appendParagraph.
+ *
+ * This test avoids relying on the (possibly private) printQueue implementation.
+ * Instead it verifies that makeColumnQueue is invoked when the paragraph is
+ * considered non-empty by Util.isEmpty and that some output (the blank line
+ * appended by the method) is produced. For null/empty paragraphs the test
+ * verifies that makeColumnQueue is not invoked and nothing is written.
+ */
+class TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withWhitespace_consideredNonEmpty_andPassedThrough {
+
+    /**
+     * Test helper that overrides only makeColumnQueue to observe that it is
+     * invoked and to control the queue contents returned to appendParagraph.
+     */
+    static class TestableTextHelpAppendable extends TextHelpAppendable {
+
+        volatile boolean makeColumnQueueCalled = false;
+
+        TestableTextHelpAppendable(final Appendable output) {
+            super(output);
+        }
+
+        // Only override makeColumnQueue which is expected to be protected/overridable.
+        @Override
+        protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {
+            makeColumnQueueCalled = true;
+            final Queue<String> q = new LinkedList<>();
+            // return the incoming data as single entry so appendParagraph's behavior is observable
+            q.add(columnData == null ? null : columnData.toString());
+            return q;
+        }
+    }
+
+    @Test
+    void appendParagraph_withWhitespace_consideredNonEmpty_andPassedThrough() throws Exception {
+        final StringBuilder out = new StringBuilder();
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(out);
+
+        // whitespace only; Util.isEmpty checks length, so this is non-empty
+        final String payload = "   ";
+        t.appendParagraph(payload);
+
+        // makeColumnQueue should have been invoked
+        assertTrue(t.makeColumnQueueCalled, "makeColumnQueue should be called for whitespace-only paragraph");
+
+        // We cannot rely on private printQueue implementation details.
+        // The observable effect guaranteed by appendParagraph is that a blank line
+        // (BLANK_LINE) is appended to the queue and thus something is written.
+        final String actual = out.toString();
+        final String ls = System.lineSeparator();
+
+        // Something should have been written (at least the blank line)
+        assertFalse(actual.isEmpty(), "Some output should be produced for non-empty paragraph");
+
+        // Trimmed output should be empty because payload is whitespace and the method appends a blank line.
+        // This assertion is robust: whether printQueue writes the payload (which is whitespace) or only the blank line,
+        // trimming will result in an empty string.
+        assertTrue(actual.trim().isEmpty(), "Output (when trimmed) should be empty for whitespace payload plus blank line");
+
+        // Ensure at least one line separator was written (indicates a blank line was output)
+        assertTrue(actual.contains(ls), "Output should contain at least one line separator representing the blank line");
+    }
+
+    @Test
+    void appendParagraph_withNull_doesNothing() throws Exception {
+        final StringBuilder out = new StringBuilder();
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(out);
+
+        // null should be considered empty by Util.isEmpty and thus not processed
+        t.appendParagraph(null);
+
+        assertFalse(t.makeColumnQueueCalled, "makeColumnQueue should NOT be called for null paragraph");
+        assertEquals("", out.toString(), "No output should be written for null paragraph");
+    }
+
+    @Test
+    void appendParagraph_withEmptyString_doesNothing() throws Exception {
+        final StringBuilder out = new StringBuilder();
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(out);
+
+        // empty string should be considered empty by Util.isEmpty and thus not processed
+        t.appendParagraph("");
+
+        assertFalse(t.makeColumnQueueCalled, "makeColumnQueue should NOT be called for empty paragraph");
+        assertEquals("", out.toString(), "No output should be written for empty paragraph");
+    }
+}

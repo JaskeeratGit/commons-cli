@@ -1,0 +1,211 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `getParsedOptionValue(char)` in the focal class `CommandLine`, and their information is
+```[java]
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException {
+        return getParsedOptionValue(String.valueOf(optionChar));
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+/**
+ * Test for CommandLine.getParsedOptionValue(char) delegating to the String variant
+ * and propagating ParseException as expected.
+ */
+public class CommandLine_getParsedOptionValue_27_0_Test_testDelegatesToStringVersion_propagatesParseException {
+
+    @Test
+    public void testDelegatesToStringVersion_propagatesParseException() {
+        CommandLine cmd = new CommandLine() {
+
+            @Override
+            public <T> T getParsedOptionValue(final String optionName) throws ParseException {
+                throw new ParseException("simulated failure for: " + optionName);
+            }
+        };
+
+        // Should propagate the ParseException thrown by the String-based overload.
+        assertThrows(ParseException.class, () -> cmd.getParsedOptionValue('z'));
+    }
+}
+
+/*
+ * Minimal supporting stubs to allow this test (and other CLI tests compiled together)
+ * to compile and run independently. These stubs implement the constructors/methods
+ * referenced across the test-suite. They are intentionally minimal but provide the
+ * common API surface used by tests (constructors, getValuesList, etc.).
+ *
+ * In a real project these would be provided by the library under test and should
+ * not be included in the tests.
+ */
+
+class Option {
+    private String opt;
+    private String longOpt;
+    private boolean hasArg;
+    private String description;
+    private final List<String> values = new ArrayList<>();
+
+    public Option() {
+    }
+
+    /**
+     * Matches signature Option(String opt, String description)
+     */
+    public Option(final String opt, final String description) {
+        this(opt, null, false, description);
+    }
+
+    /**
+     * Matches signature Option(String opt, String longOpt)
+     */
+    public Option(final String opt, final String longOpt) {
+        this(opt, longOpt, false, null);
+    }
+
+    /**
+     * Matches signature Option(String opt, boolean hasArg, String description)
+     */
+    public Option(final String opt, final boolean hasArg, final String description) {
+        this(opt, null, hasArg, description);
+    }
+
+    /**
+     * Matches signature Option(String opt, String longOpt, boolean hasArg, String description)
+     */
+    public Option(final String opt, final String longOpt, final boolean hasArg, final String description) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = hasArg;
+        this.description = description;
+    }
+
+    /**
+     * Return a modifiable list of values (tests often call getValuesList().add(...)).
+     */
+    public List<String> getValuesList() {
+        return values;
+    }
+
+    /**
+     * Compatibility helper used in some tests.
+     */
+    public String[] getValues() {
+        if (values.isEmpty()) {
+            return null;
+        }
+        return values.toArray(new String[0]);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+
+    public boolean hasArg() {
+        return hasArg;
+    }
+
+    public void addValue(final String v) {
+        values.add(v);
+    }
+}
+
+class ParseException extends Exception {
+
+    public ParseException(final String message) {
+        super(message);
+    }
+}
+
+class Builder {
+    // Provide a default deprecated handler used by any protected CommandLine() constructor.
+    static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        // no-op
+    };
+}
+```
+
+The error encountered when running this unit test is:
+
+```
+compile
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] CommandLine_getParsedOptionValue_27_0_Test_testDelegatesToStringVersion_propagatesParseException.java:[62,12] constructor Option(java.lang.String,java.lang.String) is already defined in class org.apache.commons.cli.Option
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.502 s
+[INFO] Finished at: 2026-01-09T05:06:13-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] CommandLine_getParsedOptionValue_27_0_Test_testDelegatesToStringVersion_propagatesParseException.java:[62,12] constructor Option(java.lang.String,java.lang.String) is already defined in class org.apache.commons.cli.Option
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in CommandLine.
+    - The method under test is CommandLine.getParsedOptionValue.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

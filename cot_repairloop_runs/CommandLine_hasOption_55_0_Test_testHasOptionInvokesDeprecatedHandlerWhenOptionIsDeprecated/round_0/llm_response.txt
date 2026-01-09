@@ -1,0 +1,56 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+
+import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Tests for CommandLine.hasOption ensuring deprecated handler is invoked when the option is marked deprecated.
+ *
+ * Note: Do NOT declare a local Option class in this package — that conflicts with the real org.apache.commons.cli.Option
+ * used across the test-suite. Use Mockito to create a mock Option instance to control behavior (getOpt, getLongOpt, isDeprecated).
+ */
+public class CommandLine_hasOption_55_0_Test_testHasOptionInvokesDeprecatedHandlerWhenOptionIsDeprecated {
+
+    // Helper to create CommandLine using the private constructor via reflection
+    private CommandLine createCommandLine(List<Option> processedOptions, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // first argument is args list (List<String>), we pass an empty list
+        return ctor.newInstance(new ArrayList<String>(), processedOptions, deprecatedHandler);
+    }
+
+    @Test
+    public void testHasOptionInvokesDeprecatedHandlerWhenOptionIsDeprecated() throws Exception {
+        // Create a mock Option and configure its behavior
+        Option dep = mock(Option.class);
+        when(dep.getOpt()).thenReturn("d");
+        when(dep.getLongOpt()).thenReturn("deprecated");
+        when(dep.isDeprecated()).thenReturn(true);
+
+        List<Option> options = new ArrayList<>();
+        options.add(dep);
+
+        AtomicInteger invoked = new AtomicInteger(0);
+        Consumer<Option> handler = o -> invoked.incrementAndGet();
+
+        CommandLine cmd = createCommandLine(options, handler);
+
+        // The option exists and is deprecated, so hasOption should return true and invoke the handler once
+        assertTrue(cmd.hasOption("d"), "Short option name should be reported as present");
+        assertEquals(1, invoked.get(), "Deprecated handler should have been invoked once after first check");
+
+        // Calling again with the long option name should also return true and invoke handler again
+        assertTrue(cmd.hasOption("deprecated"), "Long option name should be reported as present");
+        assertEquals(2, invoked.get(), "Deprecated handler should have been invoked again after second check");
+    }
+}
+<<Generation Over>>

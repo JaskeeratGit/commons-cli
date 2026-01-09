@@ -1,0 +1,20 @@
+package org.apache.commons.cli;
+
+import java.util.function.Supplier;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+public class CommandLine_getParsedOptionValues_43_0_Test_testOptionNullReturnsDefault {
+
+    @Test
+    public void testOptionNullReturnsDefault() throws Exception {
+        final CommandLine cmd = new CommandLine();
+        Supplier<String[]> def = () -> new String[] { "default" };
+        // Cast null to Option to avoid overload ambiguity with other getParsedOptionValues overloads
+        String[] result = cmd.getParsedOptionValues((Option) null, def);
+        assertArrayEquals(new String[] { "default" }, result);
+    }
+
+}

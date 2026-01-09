@@ -1,0 +1,55 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class CommandLine_getOptionValue_21_0_Test_nullOptionNameReturnsDefault {
+
+    /**
+     * Helper to instantiate a CommandLine using its private constructor:
+     * CommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler)
+     */
+    private CommandLine newCommandLineWithOptions(List<Option> options) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // pass empty args list and null deprecatedHandler
+        return ctor.newInstance(new ArrayList<String>(), options, null);
+    }
+
+    /**
+     * Helper to add a processed value to an Option by invoking
+     * Option.addValueForProcessing(String) via reflection.
+     */
+    @SuppressWarnings("unused")
+    private void addValueToOption(Option opt, String value) throws Exception {
+        Method m = null;
+        // try the commonly used method name
+        try {
+            m = Option.class.getDeclaredMethod("addValueForProcessing", String.class);
+        } catch (NoSuchMethodException e) {
+            // try alternative common names if present
+            try {
+                m = Option.class.getDeclaredMethod("addValue", String.class);
+            } catch (NoSuchMethodException ex) {
+                // last resort: try setValue (less likely)
+                m = Option.class.getDeclaredMethod("setValue", String.class);
+            }
+        }
+        m.setAccessible(true);
+        m.invoke(opt, value);
+    }
+
+    @Test
+    void nullOptionNameReturnsDefault() throws Exception {
+        CommandLine cmd = newCommandLineWithOptions(new ArrayList<>());
+        // cast null to String to avoid ambiguity with overload that accepts OptionGroup
+        String result = cmd.getOptionValue((String) null, "default");
+        assertEquals("default", result, "When optionName is null should return default");
+    }
+
+}

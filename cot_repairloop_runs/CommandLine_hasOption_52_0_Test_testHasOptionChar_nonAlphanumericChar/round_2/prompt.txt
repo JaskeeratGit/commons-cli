@@ -1,0 +1,154 @@
+Hello. You are a talented Java programmer. Here you're going to help the user fix the unit test file with error.
+Here is the information of the method-to-test:
+
+The focal method is `hasOption(char)` in the focal class `CommandLine`, and their information is
+```[java]
+public boolean hasOption(final char optionChar) {
+        return hasOption(String.valueOf(optionChar));
+    }
+```
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+# Unit Test to Fix
+
+Here's the unit test that needs fixing.
+
+```java
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * JUnit 5 tests for CommandLine.hasOption(char)
+ *
+ * The tests instantiate CommandLine via its private constructor using reflection,
+ * providing a controlled list of Option instances.
+ */
+public class CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar {
+
+    /**
+     * Helper to create a CommandLine instance using the private constructor:
+     * CommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler)
+     */
+    private CommandLine createCommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    @Test
+    public void testHasOptionChar_nonAlphanumericChar() throws Exception {
+        List<String> args = new ArrayList<>();
+        List<Option> options = new ArrayList<>();
+        // Use a punctuation short name, e.g. "-"
+        // Option's public API uses a builder in recent versions, so create via Option.builder(...).build()
+        options.add(Option.builder("-").build());
+        CommandLine cmd = createCommandLine(args, options, null);
+
+        assertTrue(cmd.hasOption('-'), "Expected hasOption('-') to be true when Option with opt '-' is present");
+        assertFalse(cmd.hasOption('_'), "Expected hasOption('_') to be false when it's not present");
+    }
+}
+```
+
+The error encountered when running this unit test is:
+
+```
+test
+[INFO] Copying 2 resources from  to target/classes/META-INF
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:compile (default-compile) @ commons-cli ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- maven-bundle-plugin:5.1.9:manifest (bundle-manifest) @ commons-cli ---
+[INFO] Writing manifest: /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/target/osgi/MANIFEST.MF
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ commons-cli ---
+[INFO] skip non existing resourceDirectory /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/test/resources
+[INFO] Copying 2 resources from  to target/test-classes/META-INF
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:testCompile (default-testCompile) @ commons-cli ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar.java: CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar.java uses or overrides a deprecated API.
+[INFO] CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- animal-sniffer-maven-plugin:1.24:check (checkAPIcompatibility) @ commons-cli ---
+[INFO] Checking unresolved references to org.codehaus.mojo.signature:java18:1.0
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.13:prepare-agent (prepare-agent) @ commons-cli ---
+[INFO] argLine set to -javaagent:/home/jaskeerat/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.3:test (default-test) @ commons-cli ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.commons.cli.CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.035 s <<< FAILURE! -- in org.apache.commons.cli.CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar
+[ERROR] org.apache.commons.cli.CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar.testHasOptionChar_nonAlphanumericChar -- Time elapsed: 0.017 s <<< ERROR!
+java.lang.IllegalArgumentException: Illegal option name '-'.
+	at org.apache.commons.cli.OptionValidator.validate(OptionValidator.java:125)
+	at org.apache.commons.cli.Option$Builder.option(Option.java:260)
+	at org.apache.commons.cli.Option$Builder.<init>(Option.java:113)
+	at org.apache.commons.cli.Option$Builder.<init>(Option.java:55)
+	at org.apache.commons.cli.Option.builder(Option.java:386)
+	at org.apache.commons.cli.CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar.testHasOptionChar_nonAlphanumericChar(CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar.java:36)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   CommandLine_hasOption_52_0_Test_testHasOptionChar_nonAlphanumericChar.testHasOptionChar_nonAlphanumericChar:36 » IllegalArgument Illegal option name '-'.
+[INFO] 
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.416 s
+[INFO] Finished at: 2026-01-09T05:34:46-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.mav
+```
+
+# Procedures for Fixing the Unit Test:
+Let's proceed step by step:
+
+1. Pick out the statements that the errors occur
+2. Reason about the causes of the errors
+3. Reason about solutions on how to fix the errors
+3. Provide the complete fixed unit test, utilizing JUnit 5 and Mockito 3 if required.
+
+# Requirements and Considerations for the Unit Test Fix:
+- Ensure the unit tests are executable without compile errors, runtime errors, or timeouts.
+- Aim for high coverage scores, covering as many instructions and branches of the method under test as possible.
+- Avoid modifying the method under test.
+- Generate the entire unit test file, including package declaration and imports.
+- Ensure correct testing of the method under test:
+    - The method under test is defined in CommandLine.
+    - The method under test is CommandLine.hasOption.
+- Utilize correct tools and adhere to Java 8 language style:
+    - You can use JUnit 5 and Mockito 3.
+    - The language style should follow Java 8 conventions.
+
+# Output Format
+To facilitate generating the desired unit test, follow these instructions:
+
+<<Generation Begin>>
+{complete unit test}
+<<Generation Over>>
+
+Please proceed with generating the fixed unit test.
+Ensure all generations are provided in a single response.

@@ -1,0 +1,62 @@
+<<Generation Begin>>
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.HashSet;
+
+class Options_addOptions_5_0_Test_testAddOptionsSuccessfullyMergesOptionsAndRequiredOptions {
+
+    @Test
+    void testAddOptionsSuccessfullyMergesOptionsAndRequiredOptions() throws Exception {
+        Options base = new Options();
+        Options incoming = new Options();
+        // base has option "a"
+        Option a = new Option("a", false, "option a");
+        base.addOption(a);
+        // incoming has option "b" and it is required
+        Option b = new Option("b", false, "option b");
+        b.setRequired(true);
+        incoming.addOption(b);
+        // incoming also has a long option "longC" (option key "c")
+        Option c = new Option("c", "longC", true, "option c");
+        incoming.addOption(c);
+        // perform merge
+        Options returned = base.addOptions(incoming);
+        // chaining: should return same base instance
+        assertSame(base, returned);
+        // public API checks
+        assertTrue(base.hasOption("a"), "base should still have option a");
+        assertTrue(base.hasOption("b"), "base should now have option b from incoming");
+        assertTrue(base.hasOption("c"), "base should now have option c from incoming");
+        // hasOption should also recognize long option name
+        assertTrue(base.hasOption("longC"), "base should recognize long option longC");
+        // required options list should include "b" key
+        List<?> required = base.getRequiredOptions();
+        assertNotNull(required);
+        assertTrue(required.contains(b.getKey()), "required options should contain key for b");
+        // getOptions() should contain options with keys a, b, c
+        Collection<Option> opts = base.getOptions();
+        assertNotNull(opts);
+        assertEquals(3, opts.size(), "there should be three options after merge");
+        // Collect keys and verify they contain a, b, c
+        java.util.Set<String> keys = opts.stream().map(Option::getKey).collect(Collectors.toSet());
+        assertTrue(keys.containsAll(new HashSet<>(Arrays.asList("a", "b", "c"))));
+        // Use reflection to inspect internal private shortOpts map to ensure internal state
+        Field shortOptsField = Options.class.getDeclaredField("shortOpts");
+        shortOptsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<String, Option> shortOptsMap = (Map<String, Option>) shortOptsField.get(base);
+        assertTrue(shortOptsMap.containsKey("a"));
+        assertTrue(shortOptsMap.containsKey("b"));
+        assertTrue(shortOptsMap.containsKey("c"));
+    }
+
+}
+<<Generation Over>>

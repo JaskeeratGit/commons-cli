@@ -1,0 +1,17 @@
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class Options_getOptionGroup_9_0_Test_testGetOptionGroupReturnsNullWhenMissing {
+
+    @Test
+    public void testGetOptionGroupReturnsNullWhenMissing() {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        // Ensure no mapping exists for this option key (fresh Options instance)
+        OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+
+}
