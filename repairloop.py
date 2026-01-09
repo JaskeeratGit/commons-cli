@@ -18,7 +18,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-from prompt_constructor import RepairLoopContext  # prompt_constructor.py must be on PYTHONPATH / same dir
+from prompt_constructor import RepairLoopContext  # prompt_constructor.py must be in same dir / PYTHONPATH
 
 
 # =========================
@@ -297,7 +297,7 @@ def method_json_exists(
 
 
 # =========================
-# OpenRouter call
+# OpenRouter call (NOW RETURNS TOKEN USAGE TOO)
 # =========================
 
 def openrouter_chat(
@@ -310,7 +310,7 @@ def openrouter_chat(
     site_url: Optional[str] = None,
     app_title: Optional[str] = None,
     timeout_s: int = 180,
-) -> str:
+) -> Tuple[str, Dict[str, int]]:
     payload: Dict[str, Any] = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
@@ -344,25 +344,52 @@ def openrouter_chat(
     choices = j.get("choices") or []
     if not choices:
         raise RuntimeError(f"OpenRouter response missing choices: {body[:2000]}")
+
     msg = (choices[0].get("message") or {})
     content = msg.get("content")
 
     if isinstance(content, str):
-        return content.strip()
-    if isinstance(content, list):
+        text_out = content.strip()
+    elif isinstance(content, list):
         parts: List[str] = []
         for part in content:
             if isinstance(part, dict) and isinstance(part.get("text"), str):
                 parts.append(part["text"])
             elif isinstance(part, str):
                 parts.append(part)
-        return "\n".join(parts).strip()
+        text_out = "\n".join(parts).strip()
+    else:
+        text = choices[0].get("text")
+        if isinstance(text, str):
+            text_out = text.strip()
+        else:
+            raise RuntimeError(f"OpenRouter response content not found: {body[:2000]}")
 
-    text = choices[0].get("text")
-    if isinstance(text, str):
-        return text.strip()
+    usage = j.get("usage") or {}
+    if not isinstance(usage, dict):
+        usage = {}
 
-    raise RuntimeError(f"OpenRouter response content not found: {body[:2000]}")
+    prompt_tokens = int(usage.get("prompt_tokens") or 0)
+    completion_tokens = int(usage.get("completion_tokens") or 0)
+
+    total_tokens = usage.get("total_tokens")
+    if total_tokens is None:
+        total_tokens = prompt_tokens + completion_tokens
+    total_tokens = int(total_tokens or 0)
+
+    reasoning_tokens = usage.get("reasoning_tokens")
+    if reasoning_tokens is None and isinstance(usage.get("completion_tokens_details"), dict):
+        reasoning_tokens = usage["completion_tokens_details"].get("reasoning_tokens")
+    reasoning_tokens = int(reasoning_tokens or 0)
+
+    usage_out = {
+        "input_tokens": prompt_tokens,
+        "output_tokens": completion_tokens,
+        "reasoning_tokens": reasoning_tokens,
+        "total_tokens": total_tokens,
+    }
+
+    return text_out, usage_out
 
 
 # =========================
@@ -442,7 +469,7 @@ def place_test_in_project(
 
 
 # =========================
-# Maven run + improved error summarization
+# Maven run + error summarization
 # =========================
 
 def _strip_noise_lines(lines: Iterable[str]) -> List[str]:
@@ -607,7 +634,7 @@ def main() -> int:
     ap.add_argument(
         "--stop-on-unrelated-failure",
         action="store_true",
-        help="if mvn fails but error doesn't mention the placed test, stop looping this test instead of feeding junk back",
+        help="if mvn fails but error doesn't mention the placed test, stop looping this test",
     )
 
     args = ap.parse_args()
@@ -638,7 +665,7 @@ def main() -> int:
     for record_id in record_ids:
         meta = get_record_meta(broken_obj, record_id)
 
-        # INITIAL ERROR comes from broken_tests_mapped.json (this was missing before)
+        # INITIAL ERROR FROM MAP
         initial_error_message = str(meta.get("error_message") or meta.get("errorMessage") or "")
         initial_error_type = str(meta.get("error_type") or meta.get("errorType") or "")
 
@@ -653,6 +680,11 @@ def main() -> int:
                 "record_id": record_id,
                 "round": None,
                 "status": "skip_load_input",
+                "llm_time_s": None,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "reasoning_tokens": 0,
+                "total_tokens": 0,
                 "error_type": "other",
                 "error_message": str(e)[:2000],
                 "timestamp_utc": now_utc_iso(),
@@ -666,13 +698,17 @@ def main() -> int:
                 "record_id": record_id,
                 "round": None,
                 "status": "skip_bad_filename_or_package",
+                "llm_time_s": None,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "reasoning_tokens": 0,
+                "total_tokens": 0,
                 "error_type": "other",
                 "error_message": f"pkg={pkg} cls={fn_class_name} method={method_name}",
                 "timestamp_utc": now_utc_iso(),
             })
             continue
 
-        # Prefer class_number/method_number from broken map if present
         class_number = meta.get("class_number") or meta.get("classNumber")
         method_number = meta.get("method_number") or meta.get("methodNumber")
 
@@ -681,15 +717,18 @@ def main() -> int:
             ck = f"class{int(class_number)}"
             if ck in class_map:
                 class_key = ck
-
         if not class_key:
             class_key = infer_class_key(class_map=class_map, class_name=fn_class_name, package_name=pkg)
-
         if not class_key:
             append_jsonl(records_jsonl, {
                 "record_id": record_id,
                 "round": None,
                 "status": "skip_no_class_key",
+                "llm_time_s": None,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "reasoning_tokens": 0,
+                "total_tokens": 0,
                 "error_type": "other",
                 "error_message": f"Could not find class_key for {pkg}.{fn_class_name}",
                 "timestamp_utc": now_utc_iso(),
@@ -704,6 +743,11 @@ def main() -> int:
                 "record_id": record_id,
                 "round": None,
                 "status": "skip_bad_class_map_entry",
+                "llm_time_s": None,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "reasoning_tokens": 0,
+                "total_tokens": 0,
                 "error_type": "other",
                 "error_message": f"class_key={class_key} entry_missing packageName/className",
                 "timestamp_utc": now_utc_iso(),
@@ -715,9 +759,7 @@ def main() -> int:
             ms = str(int(method_number))
             if method_json_exists(args.class_info_dir, focal_pkg, focal_cls, ms):
                 method_file_stem = ms
-
         if not method_file_stem:
-            # fallback to filename token + content scan
             method_file_stem = infer_method_file_stem_numbered(
                 class_info_dir=args.class_info_dir,
                 package_name=focal_pkg,
@@ -725,14 +767,18 @@ def main() -> int:
                 method_name=method_name,
                 method_index_token=fn_method_index_token,
             )
-
         if not method_file_stem:
             append_jsonl(records_jsonl, {
                 "record_id": record_id,
                 "round": None,
                 "status": "skip_no_method_json",
+                "llm_time_s": None,
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "reasoning_tokens": 0,
+                "total_tokens": 0,
                 "error_type": "other",
-                "error_message": f"Could not find method json for {focal_pkg}.{focal_cls}.{method_name} (map_method={method_number}, token={fn_method_index_token})",
+                "error_message": f"Could not find method json for {focal_pkg}.{focal_cls}.{method_name}",
                 "timestamp_utc": now_utc_iso(),
             })
             continue
@@ -777,6 +823,10 @@ def main() -> int:
                     "round": round_num,
                     "status": "skip_prompt_construction",
                     "llm_time_s": None,
+                    "input_tokens": 0,
+                    "output_tokens": 0,
+                    "reasoning_tokens": 0,
+                    "total_tokens": 0,
                     "error_type": "other",
                     "error_message": str(e)[:2000],
                     "timestamp_utc": now_utc_iso(),
@@ -784,8 +834,9 @@ def main() -> int:
                 break
 
             llm_t0 = time.time()
+            usage_out = {"input_tokens": 0, "output_tokens": 0, "reasoning_tokens": 0, "total_tokens": 0}
             try:
-                llm_raw = openrouter_chat(
+                llm_raw, usage_out = openrouter_chat(
                     api_key=args.api_key,
                     model=args.model,
                     prompt=prompt,
@@ -801,6 +852,10 @@ def main() -> int:
                     "round": round_num,
                     "status": "fail_llm_call",
                     "llm_time_s": round(llm_time_s, 6),
+                    "input_tokens": usage_out["input_tokens"],
+                    "output_tokens": usage_out["output_tokens"],
+                    "reasoning_tokens": usage_out["reasoning_tokens"],
+                    "total_tokens": usage_out["total_tokens"],
                     "error_type": "other",
                     "error_message": str(e)[:2000],
                     "timestamp_utc": now_utc_iso(),
@@ -809,12 +864,13 @@ def main() -> int:
             llm_time_s = time.time() - llm_t0
 
             generated_java = extract_java_from_llm_response(llm_raw)
-            out_pkg, out_cls = infer_pkg_and_public_class(generated_java)
+            _out_pkg, out_cls = infer_pkg_and_public_class(generated_java)
             out_cls_name = out_cls or Path(record_id).stem
 
             per_round_dir = args.out_dir / safe_stem(Path(record_id).stem) / f"round_{round_num}"
             write_text(per_round_dir / "prompt.txt", prompt)
             write_text(per_round_dir / "llm_response.txt", llm_raw)
+            write_text(per_round_dir / "usage.json", json.dumps(usage_out, indent=2))
             write_text(per_round_dir / f"{safe_stem(out_cls_name)}.java", generated_java.rstrip() + "\n")
 
             swap: Optional[TempFileSwap] = None
@@ -844,6 +900,10 @@ def main() -> int:
                         "round": round_num,
                         "status": "pass",
                         "llm_time_s": round(llm_time_s, 6),
+                        "input_tokens": usage_out["input_tokens"],
+                        "output_tokens": usage_out["output_tokens"],
+                        "reasoning_tokens": usage_out["reasoning_tokens"],
+                        "total_tokens": usage_out["total_tokens"],
                         "error_type": "",
                         "error_message": "",
                         "prompt": prompt,
@@ -869,6 +929,10 @@ def main() -> int:
                     "round": round_num,
                     "status": status,
                     "llm_time_s": round(llm_time_s, 6),
+                    "input_tokens": usage_out["input_tokens"],
+                    "output_tokens": usage_out["output_tokens"],
+                    "reasoning_tokens": usage_out["reasoning_tokens"],
+                    "total_tokens": usage_out["total_tokens"],
                     "error_type": err_type,
                     "error_message": err_msg,
                     "prompt": prompt,
@@ -895,6 +959,10 @@ def main() -> int:
                     "round": round_num,
                     "status": "fail",
                     "llm_time_s": round(llm_time_s, 6),
+                    "input_tokens": usage_out["input_tokens"],
+                    "output_tokens": usage_out["output_tokens"],
+                    "reasoning_tokens": usage_out["reasoning_tokens"],
+                    "total_tokens": usage_out["total_tokens"],
                     "error_type": err_type,
                     "error_message": err_msg,
                     "prompt": prompt,
