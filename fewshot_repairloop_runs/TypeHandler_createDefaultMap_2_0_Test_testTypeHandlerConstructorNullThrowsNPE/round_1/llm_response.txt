@@ -1,0 +1,13 @@
+package org.apache.commons.cli;
+
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TypeHandler_createDefaultMap_2_0_Test_testTypeHandlerConstructorNullThrowsNPE {
+
+    @Test
+    public void testTypeHandlerConstructorNullThrowsNPE() {
+        assertThrows(NullPointerException.class, () -> new TypeHandler((Map<Class<?>, Converter<?, ? extends Throwable>>) null));
+    }
+}

@@ -1,0 +1,415 @@
+I need you to fix an error in a unit test. An error occurred while compiling or executing.
+
+Below are a few examples of similar fixes. Follow the same style: minimal changes to make the test compile and run.
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) {
+            this.id = id;
+        }
+        String getId() {
+            return id;
+        }
+    }
+    
+    testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+    
+}
+```
+
+Error chatMessage:
+ Error in Options_getOptionGroup_9_0_Test: line 46 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup,
+ Error in Options_getOptionGroup_9_0_Test: line 55 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup
+
+Fixed Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+   
+   testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+}
+}
+
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Error chatMessage:
+Error in CommandLine_getParsedOptionValues_46_0_Test: line 30 : reference to getParsedOptionValues is ambiguous
+  both method <T>getParsedOptionValues(org.apache.commons.cli.OptionGroup,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValues(java.lang.String,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine match
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+Now, fix the following.
+
+The unit test is:
+
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+/**
+ * Unit tests for CommandLine#getOptionValue(String, Supplier)
+ */
+public class CommandLine_getOptionValue_22_0_Test_testGetOptionValue_delegatesForLongOption {
+
+    // Helper to construct a CommandLine instance via the non-public constructor
+    private CommandLine newCommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    // Helper to invoke private resolveOption(String) via reflection
+    private Option invokeResolveOption(CommandLine cli, String optionName) throws Exception {
+        Method resolve = CommandLine.class.getDeclaredMethod("resolveOption", String.class);
+        resolve.setAccessible(true);
+        return (Option) resolve.invoke(cli, optionName);
+    }
+
+    // Helper to invoke getOptionValue(Option, Supplier) via reflection
+    private String invokeGetOptionValueWithOption(CommandLine cli, Option opt, Supplier<String> supplier) throws Exception {
+        Method gv = CommandLine.class.getDeclaredMethod("getOptionValue", Option.class, Supplier.class);
+        gv.setAccessible(true);
+        return (String) gv.invoke(cli, opt, supplier);
+    }
+
+
+    @Test
+    public void testGetOptionValue_delegatesForLongOption() throws Exception {
+        List<String> args = new LinkedList<>();
+        List<Option> options = new ArrayList<>();
+        Option optB = new Option("b", "beta");
+        options.add(optB);
+        CommandLine cli = newCommandLine(args, options, null);
+        Supplier<String> def = () -> "DEFAULT-B";
+        // Call the public focal method with leading double hyphen
+        String viaString = cli.getOptionValue("--beta", def);
+        // Call resolveOption + getOptionValue(Option,Supplier) directly via reflection
+        Option resolved = invokeResolveOption(cli, "--beta");
+        assertNotNull(resolved, "resolveOption should find the long option 'beta'");
+        String viaOption = invokeGetOptionValueWithOption(cli, resolved, def);
+        assertEquals(viaOption, viaString, "getOptionValue(String, Supplier) should delegate to getOptionValue(Option, Supplier)");
+    }
+
+}
+
+/*
+ * Minimal supporting Option and Util classes in the same package to allow testing of resolveOption.
+ * These are intentionally simple and provide the required methods used by CommandLine.resolveOption.
+ */
+class Option {
+
+    private final String opt;
+
+    private final String longOpt;
+
+    public Option(String opt, String longOpt) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+}
+
+class Util {
+
+    /**
+     * Strips leading hyphens from the option name.
+     * Returns null if input is null or the result is empty.
+     */
+    public static String stripLeadingHyphens(final String option) {
+        if (option == null) {
+            return null;
+        }
+        int i = 0;
+        while (i < option.length() && option.charAt(i) == '-') {
+            i++;
+        }
+        String actual = option.substring(i);
+        return actual.isEmpty() ? null : actual;
+    }
+}
+
+
+The error chatMessage is:
+
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testEqualDifferentInstanceMatches.java:[36,15] cannot find symbol
+symbol:   method getValuesList()
+location: variable stored of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[37,14] cannot find symbol
+symbol:   method getValuesList()
+location: variable first of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testMultipleMatchingOptionsOverrideBehavior.java:[39,15] cannot find symbol
+symbol:   method getValuesList()
+location: variable second of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[35,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[36,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_8_0_Test_testPropertiesExtractedFromValues.java:[37,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[37,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[38,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesLongOpt_parsesValues.java:[39,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[37,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[40,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_matchesOpt_parsesValues.java:[41,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[38,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[39,13] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt1 of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[40,23] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[41,13] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt2 of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionProperties_9_0_Test_testGetOptionProperties_multipleOptions_onlyMatchingProcessed.java:[42,13] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt2 of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[34,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[35,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsFirstValueWhenOptionHasValues.java:[36,12] cannot find symbol
+symbol:   method getValuesList()
+location: variable opt of type org.apache.commons.cli.Option
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_14_0_Test_testGetOptionValue_returnsNullWhenOptionPresentButNoValues.java:[35,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_invokePublicMethodViaReflection_and_checkResults.java:[52,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_returnsDefaultWhenOptionNotPresent.java:[51,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_15_0_Test_returnsOptionValueWhenOptionPresent.java:[50,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsDefaultWhenOptionMissing.java:[29,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsDefaultWhenOptionPresentButNoValues.java:[30,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_16_0_Test_returnsOptionValueWhenPresent.java:[28,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsNull_whenOptionHasNoValues.java:[36,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_longOptionReturnsItsValue.java:[63,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_optionWithoutValueReturnsDefault.java:[64,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+src/test/java/org/apache/commons/cli/CommandLine_getOptionValue_21_0_Test_shortOptionReturnsItsValue.java:[62,22] constructor Option in class org.apache.commons.cli.Option cannot be applied to given types;
+required: java.lang.String,java.lang.String
+found: java.lang.String,java.lang.String,boolean,java.lang.String
+reason: actual and formal argument lists differ in length
+
+The unit test is testing the method `getOptionValue(String, Supplier)` in the class `CommandLine`.
+
+Focal method source code:
+
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue) {
+        return getOptionValue(resolveOption(optionName), defaultValue);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+public class CommandLine {
+private static final long serialVersionUID = ...;
+private final List<String> args;
+private final List<Option> options;
+private final transient Consumer<Option> deprecatedHandler;
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+public static Builder builder(){}
+protected void addArg(final String arg){}
+protected void addOption(final Option option){}
+private <T> T get(final Supplier<T> supplier){}
+public List<String> getArgList(){}
+public String[] getArgs(){}
+@Deprecated
+    public Object getOptionObject(final char optionChar){}
+@Deprecated
+    public Object getOptionObject(final String optionName){}
+public Properties getOptionProperties(final Option option){}
+public Properties getOptionProperties(final String optionName){}
+public Option[] getOptions(){}
+public String getOptionValue(final char optionChar){}
+public String getOptionValue(final char optionChar, final String defaultValue){}
+public String getOptionValue(final char optionChar, final Supplier<String> defaultValue){}
+public String getOptionValue(final Option option){}
+public String getOptionValue(final Option option, final String defaultValue){}
+public String getOptionValue(final Option option, final Supplier<String> defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup){}
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}
+public String getOptionValue(final String optionName){}
+public String getOptionValue(final String optionName, final String defaultValue){}
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue){}
+public String[] getOptionValues(final char optionChar){}
+public String[] getOptionValues(final Option option){}
+public String[] getOptionValues(final OptionGroup optionGroup){}
+public String[] getOptionValues(final String optionName){}
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final T defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException{}
+private void handleDeprecated(final Option option){}
+public boolean hasOption(final char optionChar){}
+public boolean hasOption(final Option option){}
+public boolean hasOption(final OptionGroup optionGroup){}
+public boolean hasOption(final String optionName){}
+public Iterator<Option> iterator(){}
+private void processPropertiesFromValues(final Properties props, final List<String> values){}
+private Option resolveOption(final String optionName){}
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5, and Mockito 3. Adhere to Java 8 language style. No explanation is needed.
+Return only the fixed unit test.

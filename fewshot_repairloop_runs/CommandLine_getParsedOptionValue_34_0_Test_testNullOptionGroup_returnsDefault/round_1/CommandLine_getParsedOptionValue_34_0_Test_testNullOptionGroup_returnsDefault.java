@@ -1,0 +1,44 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+class CommandLine_getParsedOptionValue_34_0_Test_testNullOptionGroup_returnsDefault {
+
+    // A small subclass to allow interception of the String overload.
+    // This relies on the overload in CommandLine being non-final/non-private so it can be overridden.
+    static class TestCommandLine extends CommandLine {
+
+        public TestCommandLine() {
+            super();
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> T getParsedOptionValue(final String opt, final Supplier<T> defaultValue) {
+            // return a distinct value so we can detect delegation
+            return (T) ("parsed-" + opt);
+        }
+    }
+
+    @Test
+    void testNullOptionGroup_returnsDefault() throws Exception {
+        CommandLine cmd = new TestCommandLine();
+        Supplier<String> supplier = () -> "defaultValue";
+        String result = cmd.getParsedOptionValue((OptionGroup) null, supplier);
+        assertEquals("defaultValue", result);
+    }
+
+}

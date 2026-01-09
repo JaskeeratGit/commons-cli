@@ -1,0 +1,263 @@
+I need you to fix an error in a unit test. An error occurred while compiling or executing.
+
+Below are a few examples of similar fixes. Follow the same style: minimal changes to make the test compile and run.
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) {
+            this.id = id;
+        }
+        String getId() {
+            return id;
+        }
+    }
+    
+    testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+    
+}
+```
+
+Error chatMessage:
+ Error in Options_getOptionGroup_9_0_Test: line 46 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup,
+ Error in Options_getOptionGroup_9_0_Test: line 55 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup
+
+Fixed Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+   
+   testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+}
+}
+
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Error chatMessage:
+Error in CommandLine_getParsedOptionValues_46_0_Test: line 30 : reference to getParsedOptionValues is ambiguous
+  both method <T>getParsedOptionValues(org.apache.commons.cli.OptionGroup,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValues(java.lang.String,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine match
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+Now, fix the following.
+
+The unit test is:
+
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.util.Map;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens {
+
+    private Options options;
+
+    @BeforeEach
+    void setUp() {
+        options = new Options();
+    }
+
+    @Test
+    void testHasOptionWithEmptyStringAndHyphens() throws Exception {
+        // Put an entry with empty string key into shortOpts and longOpts
+        putIntoMap(options, "shortOpts", "", Option.builder("").build());
+        putIntoMap(options, "longOpts", "", Option.builder("").build());
+        // Direct empty string
+        assertTrue(options.hasOption(""));
+        // Single hyphen should strip to empty string
+        assertTrue(options.hasOption("-"));
+        // Double hyphen should strip to empty string
+        assertTrue(options.hasOption("--"));
+    }
+
+    // Helper to inject into private maps shortOpts/longOpts via reflection
+    @SuppressWarnings("unchecked")
+    private void putIntoMap(Options optionsInstance, String fieldName, String key, Option value) throws Exception {
+        Field f = Options.class.getDeclaredField(fieldName);
+        f.setAccessible(true);
+        Map<String, Option> map = (Map<String, Option>) f.get(optionsInstance);
+        map.put(key, value);
+    }
+}
+
+The error chatMessage is:
+
+[INFO] Copying 2 resources from  to target/classes/META-INF
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:compile (default-compile) @ commons-cli ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- maven-bundle-plugin:5.1.9:manifest (bundle-manifest) @ commons-cli ---
+[INFO] Writing manifest: /home/jaskeerat/paper1/cli_latest_stable/few_shot/commons-cli/target/osgi/MANIFEST.MF
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ commons-cli ---
+[INFO] skip non existing resourceDirectory /home/jaskeerat/paper1/cli_latest_stable/few_shot/commons-cli/src/test/resources
+[INFO] Copying 2 resources from  to target/test-classes/META-INF
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:testCompile (default-testCompile) @ commons-cli ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens.java: Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens.java uses or overrides a deprecated API.
+[INFO] Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- animal-sniffer-maven-plugin:1.24:check (checkAPIcompatibility) @ commons-cli ---
+[INFO] Checking unresolved references to org.codehaus.mojo.signature:java18:1.0
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.13:prepare-agent (prepare-agent) @ commons-cli ---
+[INFO] argLine set to -javaagent:/home/jaskeerat/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/home/jaskeerat/paper1/cli_latest_stable/few_shot/commons-cli/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.3:test (default-test) @ commons-cli ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.commons.cli.Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.034 s <<< FAILURE! -- in org.apache.commons.cli.Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens
+[ERROR] org.apache.commons.cli.Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens.testHasOptionWithEmptyStringAndHyphens -- Time elapsed: 0.016 s <<< ERROR!
+java.lang.IllegalArgumentException: Empty option name.
+	at org.apache.commons.cli.OptionValidator.validate(OptionValidator.java:120)
+	at org.apache.commons.cli.Option$Builder.option(Option.java:260)
+	at org.apache.commons.cli.Option$Builder.<init>(Option.java:113)
+	at org.apache.commons.cli.Option$Builder.<init>(Option.java:55)
+	at org.apache.commons.cli.Option.builder(Option.java:386)
+	at org.apache.commons.cli.Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens.testHasOptionWithEmptyStringAndHyphens(Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens.java:20)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   Options_hasOption_14_0_Test_testHasOptionWithEmptyStringAndHyphens.testHasOptionWithEmptyStringAndHyphens:20 » IllegalArgument Empty option name.
+[INFO] 
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.431 s
+[INFO] Finished at: 2026-01-09T05:48:11-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-sure
+
+The unit test is testing the method `hasOption(String)` in the class `Options`.
+
+Focal method source code:
+
+public boolean hasOption(final String opt) {
+        final String clean = Util.stripLeadingHyphens(opt);
+        return shortOpts.containsKey(clean) || longOpts.containsKey(clean);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+public class Options {
+private static final long serialVersionUID = ...;
+private final Map<String, Option> shortOpts = ...;
+private final Map<String, Option> longOpts = ...;
+private final List<Object> requiredOpts = ...;
+private final Map<String, OptionGroup> optionGroups = ...;
+public Options(){}
+public Options addOption(final Option opt){}
+public Options addOption(final String opt, final boolean hasArg, final String description){}
+public Options addOption(final String opt, final String description){}
+public Options addOption(final String opt, final String longOpt, final boolean hasArg, final String description){}
+public Options addOptionGroup(final OptionGroup optionGroup){}
+public Options addOptions(final Options options){}
+public Options addRequiredOption(final String opt, final String longOpt, final boolean hasArg, final String description){}
+public List<String> getMatchingOptions(final String opt){}
+public Option getOption(final String opt){}
+public OptionGroup getOptionGroup(final Option option){}
+Collection<OptionGroup> getOptionGroups(){}
+public Collection<Option> getOptions(){}
+public List<?> getRequiredOptions(){}
+public boolean hasLongOption(final String opt){}
+public boolean hasOption(final String opt){}
+public boolean hasShortOption(final String opt){}
+List<Option> helpOptions(){}
+@Override
+    public String toString(){}
+public Options(){}
+}
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.Util` is
+```[java]
+final class Util {
+static final String[] EMPTY_STRING_ARRAY = ...;
+private Util(){}
+static String stripLeadingHyphens(final String str){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.Util` is
+```[java]
+stripLeadingHyphens(String)
+```
+
+Please fix the error and return the whole fixed unit test. You can use Junit 5, and Mockito 3. Adhere to Java 8 language style. No explanation is needed.
+Return only the fixed unit test.

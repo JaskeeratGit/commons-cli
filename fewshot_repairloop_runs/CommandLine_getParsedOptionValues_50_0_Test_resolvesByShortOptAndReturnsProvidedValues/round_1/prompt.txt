@@ -1,0 +1,303 @@
+I need you to fix an error in a unit test. An error occurred while compiling or executing.
+
+Below are a few examples of similar fixes. Follow the same style: minimal changes to make the test compile and run.
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) {
+            this.id = id;
+        }
+        String getId() {
+            return id;
+        }
+    }
+    
+    testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+    
+}
+```
+
+Error chatMessage:
+ Error in Options_getOptionGroup_9_0_Test: line 46 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup,
+ Error in Options_getOptionGroup_9_0_Test: line 55 : incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to org.apache.commons.cli.Options_getOptionGroup_9_0_Test.OptionGroup
+
+Fixed Unit Test:
+
+```java
+"public class Options_getOptionGroup_9_0_Test {
+   
+   testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+    Options options = new Options();
+    Option opt = new Option(""b"", ""desc"");
+    OptionGroup result = options.getOptionGroup(opt);
+    assertNull(result, ""Expected null when no OptionGroup is associated with the option key"");
+}
+}
+
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Error chatMessage:
+Error in CommandLine_getParsedOptionValues_46_0_Test: line 30 : reference to getParsedOptionValues is ambiguous
+  both method <T>getParsedOptionValues(org.apache.commons.cli.OptionGroup,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine and method <T>getParsedOptionValues(java.lang.String,java.util.function.Supplier<T[]>) in org.apache.commons.cli.CommandLine match
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        // Arrange
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        // Act
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        // Assert
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+Now, fix the following.
+
+The unit test is:
+
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.function.Executable;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+/*
+ This test file provides a focused JUnit 5 test suite for CommandLine#getParsedOptionValues(String, T[]).
+ It includes a small TestableCommandLine subclass that injects the internal 'options' list via reflection
+ and overrides getParsedOptionValues(Option, T[]) to provide predictable outputs for testing.
+*/
+public class CommandLine_getParsedOptionValues_50_0_Test_resolvesByShortOptAndReturnsProvidedValues {
+
+    // A small subclass that allows injecting the internal 'options' list via reflection
+    // and overrides getParsedOptionValues(Option, T[]) to provide predictable outputs for testing.
+    static class TestableCommandLine extends CommandLine {
+
+        private final Object[] resultsToReturn;
+
+        TestableCommandLine(List<Option> options, Object[] resultsToReturn) {
+            // call protected no-arg constructor
+            super();
+            this.resultsToReturn = resultsToReturn != null ? resultsToReturn : new Object[0];
+            // inject the private final 'options' field to the desired list
+            try {
+                Field optionsField = CommandLine.class.getDeclaredField("options");
+                optionsField.setAccessible(true);
+                optionsField.set(this, options);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        // Override the delegating variant so that the public getParsedOptionValues(String, T[]) call
+        // will dispatch here and we can control the returned values for testing.
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException {
+            if (option == null) {
+                // mimic expected behavior: return the provided default
+                return defaultValue;
+            }
+            // build an array of the same component type as defaultValue and populate with our resultsToReturn
+            Class<?> componentType = (defaultValue != null) ? defaultValue.getClass().getComponentType() : Object.class;
+            T[] arr = (T[]) Array.newInstance(componentType, resultsToReturn.length);
+            for (int i = 0; i < resultsToReturn.length; i++) {
+                arr[i] = (T) resultsToReturn[i];
+            }
+            return arr;
+        }
+    }
+
+
+    @Test
+    public void resolvesByShortOptAndReturnsProvidedValues() throws Exception {
+        Option opt = new Option("a", "alpha");
+        List<Option> options = new ArrayList<>();
+        options.add(opt);
+        String[] defaultValues = new String[] { "d" };
+        String[] produced = new String[] { "v1", "v2" };
+        TestableCommandLine cl = new TestableCommandLine(options, produced);
+        // passing the short option name should resolve to the injected Option
+        String[] result = cl.getParsedOptionValues("a", defaultValues);
+        assertArrayEquals(produced, result);
+    }
+
+
+}
+
+The error chatMessage is:
+
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] CommandLine_getParsedOptionValues_50_0_Test_resolvesByShortOptAndReturnsProvidedValues.java:[14,33] package org.mockito.junit.jupiter does not exist
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.492 s
+[INFO] Finished at: 2026-01-09T05:34:50-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] CommandLine_getParsedOptionValues_50_0_Test_resolvesByShortOptAndReturnsProvidedValues.java:[14,33] package org.mockito.junit.jupiter does not exist
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+The unit test is testing the method `getParsedOptionValues(String, T[])` in the class `CommandLine`.
+
+Focal method source code:
+
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException {
+        return getParsedOptionValues(resolveOption(optionName), defaultValue);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+public class CommandLine {
+private static final long serialVersionUID = ...;
+private final List<String> args;
+private final List<Option> options;
+private final transient Consumer<Option> deprecatedHandler;
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+public static Builder builder(){}
+protected void addArg(final String arg){}
+protected void addOption(final Option option){}
+private <T> T get(final Supplier<T> supplier){}
+public List<String> getArgList(){}
+public String[] getArgs(){}
+@Deprecated
+    public Object getOptionObject(final char optionChar){}
+@Deprecated
+    public Object getOptionObject(final String optionName){}
+public Properties getOptionProperties(final Option option){}
+public Properties getOptionProperties(final String optionName){}
+public Option[] getOptions(){}
+public String getOptionValue(final char optionChar){}
+public String getOptionValue(final char optionChar, final String defaultValue){}
+public String getOptionValue(final char optionChar, final Supplier<String> defaultValue){}
+public String getOptionValue(final Option option){}
+public String getOptionValue(final Option option, final String defaultValue){}
+public String getOptionValue(final Option option, final Supplier<String> defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup){}
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}
+public String getOptionValue(final String optionName){}
+public String getOptionValue(final String optionName, final String defaultValue){}
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue){}
+public String[] getOptionValues(final char optionChar){}
+public String[] getOptionValues(final Option option){}
+public String[] getOptionValues(final OptionGroup optionGroup){}
+public String[] getOptionValues(final String optionName){}
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final T defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException{}
+private void handleDeprecated(final Option option){}
+public boolean hasOption(final char optionChar){}
+public boolean hasOption(final Option option){}
+public boolean hasOption(final OptionGroup optionGroup){}
+public boolean hasOption(final String optionName){}
+public Iterator<Option> iterator(){}
+private void processPropertiesFromValues(final Properties props, final List<String> values){}
+private Option resolveOption(final String optionName){}
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5, and Mockito 3. Adhere to Java 8 language style. No explanation is needed.
+Return only the fixed unit test.

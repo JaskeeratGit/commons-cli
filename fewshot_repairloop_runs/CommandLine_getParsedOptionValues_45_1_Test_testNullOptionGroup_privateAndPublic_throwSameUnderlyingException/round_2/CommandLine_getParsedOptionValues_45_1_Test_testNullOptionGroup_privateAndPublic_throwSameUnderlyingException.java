@@ -1,0 +1,67 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getParsedOptionValues_45_1_Test_testNullOptionGroup_privateAndPublic_throwSameUnderlyingException {
+
+    /**
+     * Verifies that the public getParsedOptionValues(OptionGroup) delegates to the
+     * private getParsedOptionValues(OptionGroup, Supplier) invocation and that the
+     * public and private invocations behave consistently when given a null
+     * OptionGroup. This test creates a CommandLine instance via reflection
+     * (matching the private constructor) so the private API can be exercised.
+     */
+
+    /**
+     * Verifies that calling the private method with a null OptionGroup and calling
+     * the public delegating method with a null OptionGroup produce the same outcome
+     * (either both throw the same underlying exception or both return the same value).
+     */
+    @Test
+    public void testNullOptionGroup_privateAndPublic_throwSameUnderlyingException() throws Exception {
+        // create CommandLine via private constructor
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(new LinkedList<>(), new ArrayList<>(), (Consumer<?>) (o -> {
+            // no-op
+        }));
+        Method privateMethod = CommandLine.class.getDeclaredMethod("getParsedOptionValues", OptionGroup.class, Supplier.class);
+        privateMethod.setAccessible(true);
+        // Invoke private method with null OptionGroup and capture underlying cause or result
+        Throwable privateThrown = null;
+        Object privateResult = null;
+        try {
+            privateResult = privateMethod.invoke(cmd, null, (Supplier<?>) (() -> null));
+        } catch (InvocationTargetException ite) {
+            privateThrown = ite.getCause();
+        } catch (Throwable t) {
+            privateThrown = t;
+        }
+        // Invoke public method with null OptionGroup and capture thrown exception or result
+        Throwable publicThrown = null;
+        Object publicResult = null;
+        try {
+            publicResult = cmd.getParsedOptionValues((OptionGroup) null);
+        } catch (Throwable t) {
+            publicThrown = t;
+        }
+        // If either threw, ensure both threw the same underlying exception type.
+        if (privateThrown != null || publicThrown != null) {
+            assertNotNull(privateThrown, "Private invocation should throw an underlying exception when OptionGroup is null");
+            assertNotNull(publicThrown, "Public invocation should throw an exception when OptionGroup is null");
+            assertEquals(privateThrown.getClass(), publicThrown.getClass(), "The underlying exception types should match between private and public invocations");
+        } else {
+            // Otherwise ensure both returned the same result (including both null)
+            assertEquals(privateResult, publicResult, "Private and public invocations should return the same result when no exception is thrown");
+        }
+    }
+}

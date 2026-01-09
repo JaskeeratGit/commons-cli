@@ -1,0 +1,89 @@
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withWhitespace_consideredNonEmpty_andPassedThrough {
+
+    /**
+     * Test helper that overrides makeColumnQueue to observe interactions.
+     */
+    static class TestableTextHelpAppendable extends TextHelpAppendable {
+
+        static final class ObservedQueue extends LinkedList<String> {
+            private static final long serialVersionUID = 1L;
+            private final List<String> snapshot = new ArrayList<>();
+            volatile boolean consumed = false;
+
+            @Override
+            public boolean add(final String e) {
+                snapshot.add(e);
+                return super.add(e);
+            }
+
+            @Override
+            public String poll() {
+                consumed = true;
+                return super.poll();
+            }
+
+            @Override
+            public String remove() {
+                consumed = true;
+                return super.remove();
+            }
+
+            List<String> getSnapshot() {
+                return new ArrayList<>(snapshot);
+            }
+
+            boolean wasConsumed() {
+                return consumed;
+            }
+        }
+
+        volatile ObservedQueue capturedQueue;
+
+        volatile boolean makeColumnQueueCalled = false;
+
+        TestableTextHelpAppendable(final Appendable output) {
+            super(output);
+        }
+
+        @Override
+        protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {
+            makeColumnQueueCalled = true;
+            final ObservedQueue q = new ObservedQueue();
+            // return the incoming data as single entry so appendParagraph's behavior is observable
+            q.add(columnData == null ? null : columnData.toString());
+            // capture the exact queue instance that appendParagraph will pass to printQueue
+            this.capturedQueue = q;
+            return q;
+        }
+    }
+
+
+
+
+    @Test
+    void appendParagraph_withWhitespace_consideredNonEmpty_andPassedThrough() throws Exception {
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(new StringBuilder());
+        // whitespace only; Util.isEmpty checks length, so this is non-empty
+        final String payload = "   ";
+        t.appendParagraph(payload);
+        assertTrue(t.makeColumnQueueCalled, "makeColumnQueue should be called for whitespace-only paragraph");
+        assertNotNull(t.capturedQueue);
+        // verify the queue as it was passed to printQueue: payload then blank line
+        final Object[] arr = t.capturedQueue.getSnapshot().toArray();
+        assertEquals(payload, arr[0], "Whitespace payload should be preserved in the returned queue element");
+        assertEquals("", arr[1], "A blank line should still be appended");
+        // ensure the queue was consumed by the internal printQueue implementation
+        assertTrue(t.capturedQueue.wasConsumed(), "The queue should have been consumed by printQueue");
+    }
+
+}

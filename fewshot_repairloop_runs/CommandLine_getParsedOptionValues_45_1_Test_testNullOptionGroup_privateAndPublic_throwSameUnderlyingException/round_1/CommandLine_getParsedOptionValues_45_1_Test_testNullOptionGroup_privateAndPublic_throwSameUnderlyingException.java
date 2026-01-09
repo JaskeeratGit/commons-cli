@@ -1,0 +1,69 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+public class CommandLine_getParsedOptionValues_45_1_Test_testNullOptionGroup_privateAndPublic_throwSameUnderlyingException {
+
+    /**
+     * Verifies that the public getParsedOptionValues(OptionGroup) delegates to the
+     * private getParsedOptionValues(OptionGroup, Supplier) invocation and returns the
+     * exact same array instance produced by the private method when the supplier
+     * returns null. This test creates a CommandLine instance via reflection
+     * (matching the private constructor) so the private API can be exercised.
+     */
+
+
+    /**
+     * Verifies that calling the private method with a null OptionGroup and calling
+     * the public delegating method with a null OptionGroup produce the same type of
+     * underlying exception (i.e. the public method truly delegates behavior).
+     */
+    @Test
+    public void testNullOptionGroup_privateAndPublic_throwSameUnderlyingException() throws Exception {
+        // create CommandLine via private constructor
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(new LinkedList<>(), new ArrayList<>(), (Consumer<?>) (o -> {
+            // no-op
+        }));
+        Method privateMethod = CommandLine.class.getDeclaredMethod("getParsedOptionValues", OptionGroup.class, Supplier.class);
+        privateMethod.setAccessible(true);
+        // Invoke private method with null OptionGroup and capture underlying cause
+        Throwable privateUnderlying = null;
+        try {
+            privateMethod.invoke(cmd, null, (Supplier<?>) (() -> null));
+        } catch (InvocationTargetException ite) {
+            privateUnderlying = ite.getCause();
+        } catch (Throwable t) {
+            privateUnderlying = t;
+        }
+        // Invoke public method with null OptionGroup and capture thrown exception
+        Throwable publicThrown = null;
+        try {
+            cmd.getParsedOptionValues((OptionGroup) null);
+        } catch (Throwable t) {
+            publicThrown = t;
+        }
+        // Ensure both threw something and that the underlying exception types match
+        assertNotNull(privateUnderlying, "Private invocation should throw an underlying exception when OptionGroup is null");
+        assertNotNull(publicThrown, "Public invocation should throw an exception when OptionGroup is null");
+        assertEquals(privateUnderlying.getClass(), publicThrown.getClass(), "The underlying exception types should match between private and public invocations");
+    }
+}
