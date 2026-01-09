@@ -1,0 +1,37 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+public class CommandLine_getOptionValue_16_0_Test_returnsNullWhenOptionMissingAndSupplierIsNull {
+
+    @Test
+    void returnsNullWhenOptionMissingAndSupplierIsNull() throws Exception {
+        // create an option not present and pass null as supplier
+        Option opt = new Option("d", false, "desc");
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        List<String> args = new LinkedList<>();
+        List<Option> options = new ArrayList<>();
+        CommandLine cmd = ctor.newInstance(args, options, (Consumer<Option>) null);
+        String result = cmd.getOptionValue(opt, (Supplier<String>) null);
+        assertNull(result, "Should return null when option missing and default supplier is null");
+    }
+}

@@ -1,0 +1,108 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.Objects;
+
+/**
+ * JUnit 5 tests for TypeHandler#createDefaultMap() and related behavior.
+ *
+ * Note: A minimal Converter interface is provided below to satisfy compilation
+ * of the TypeHandler signatures used in these tests.
+ */
+public class TypeHandler_createDefaultMap_2_0_Test_testTypeHandlerConstructorNullThrowsNPE {
+
+
+
+
+    @Test
+    public void testTypeHandlerConstructorNullThrowsNPE() {
+        assertThrows(NullPointerException.class, () -> new TypeHandler((Map<Class<?>, Converter<?, ? extends Throwable>>) null));
+    }
+
+
+
+
+    // Minimal stub for Converter to satisfy compilation when running tests.
+    // If a real Converter interface exists on the classpath, this definition will be ignored only if the real one is present;
+    // otherwise this package-private interface here allows tests to compile.
+    interface Converter<S, T extends Throwable> {
+        // no methods needed for tests
+    }
+}
+
+
+The error chatMessage is:
+
+src/test/java/org/apache/commons/cli/TypeHandler_createDefaultMap_2_0_Test_testTypeHandlerConstructorNullThrowsNPE.java:[35,72] incompatible types: java.util.Map<java.lang.Class<?>,org.apache.commons.cli.TypeHandler_createDefaultMap_2_0_Test_testTypeHandlerConstructorNullThrowsNPE.Converter<?,? extends java.lang.Throwable>> cannot be converted to java.util.Map<java.lang.Class<?>,org.apache.commons.cli.Converter<?,? extends java.lang.Throwable>>
+
+The unit test is testing the method `createDefaultMap()` in the class `TypeHandler`.
+
+Focal method source code:
+
+public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap() {
+        return putDefaultMap(new HashMap<>());
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+public class TypeHandler {
+private static final TypeHandler DEFAULT = ...;
+private static final int HEX_RADIX = ...;
+private final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap;
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+public static Class<?> createClass(final String className) throws ParseException{}
+public static Date createDate(final String string){}
+public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap(){}
+public static File createFile(final String string){}
+@Deprecated // since 1.7.0
+    public static File[] createFiles(final String string){}
+@Deprecated // since 1.7.0
+    public static Number createNumber(final String string) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createObject(final String className) throws ParseException{}
+public static URL createURL(final String string) throws ParseException{}
+public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createValue(final String string, final Object obj) throws ParseException{}
+private static <T> T createValueUnchecked(final String string, final Class<T> clazz){}
+public static TypeHandler getDefault(){}
+@Deprecated // since 1.7.0
+    public static FileInputStream openFile(final String string) throws ParseException{}
+private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map){}
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz){}
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

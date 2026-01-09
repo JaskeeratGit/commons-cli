@@ -1,0 +1,104 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.Objects;
+
+class TypeHandler_getConverter_14_0_Test_testConstructorNullMapThrowsNPE {
+
+    // Helper to create a Converter proxy instance
+    @SuppressWarnings("unchecked")
+    private Converter<Object, Throwable> createConverterProxy() {
+        InvocationHandler handler = (proxy, method, args) -> null;
+        return (Converter<Object, Throwable>) Proxy.newProxyInstance(Converter.class.getClassLoader(), new Class[] { Converter.class }, handler);
+    }
+
+
+
+
+
+    @Test
+    void testConstructorNullMapThrowsNPE() {
+        assertThrows(NullPointerException.class, () -> new TypeHandler(null));
+    }
+
+}
+
+
+The error chatMessage is:
+
+src/test/java/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test_testConstructorNullMapThrowsNPE.java:[27,31] type argument java.lang.Throwable is not within bounds of type-variable E
+src/test/java/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test_testConstructorNullMapThrowsNPE.java:[29,35] type argument java.lang.Throwable is not within bounds of type-variable E
+
+The unit test is testing the method `getConverter(Class)` in the class `TypeHandler`.
+
+Focal method source code:
+
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz) {
+        return (Converter<T, ?>) converterMap.getOrDefault(clazz, Converter.DEFAULT);
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+public class TypeHandler {
+private static final TypeHandler DEFAULT = ...;
+private static final int HEX_RADIX = ...;
+private final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap;
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+public static Class<?> createClass(final String className) throws ParseException{}
+public static Date createDate(final String string){}
+public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap(){}
+public static File createFile(final String string){}
+@Deprecated // since 1.7.0
+    public static File[] createFiles(final String string){}
+@Deprecated // since 1.7.0
+    public static Number createNumber(final String string) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createObject(final String className) throws ParseException{}
+public static URL createURL(final String string) throws ParseException{}
+public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createValue(final String string, final Object obj) throws ParseException{}
+private static <T> T createValueUnchecked(final String string, final Class<T> clazz){}
+public static TypeHandler getDefault(){}
+@Deprecated // since 1.7.0
+    public static FileInputStream openFile(final String string) throws ParseException{}
+private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map){}
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz){}
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

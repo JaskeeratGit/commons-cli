@@ -1,0 +1,215 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt {
+
+    // Helper to instantiate CommandLine via its private constructor
+    private CommandLine createCommandLineWithOptions(final List<Option> options) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        final List<String> args = new ArrayList<>();
+        // pass null for deprecatedHandler
+        return ctor.newInstance(args, options, (Consumer<Option>) null);
+    }
+
+    // Test-only Option subclass that provides addValueForProcessing and overrides value accessors
+    static class TestOption extends Option {
+        private final List<String> vals = new ArrayList<>();
+
+        public TestOption(final String opt, final boolean hasArg, final String description) {
+            super(opt, hasArg, description);
+        }
+
+        // provide the method expected by older tests
+        public void addValueForProcessing(final String value) {
+            vals.add(value);
+        }
+
+        @Override
+        public String getValue() {
+            return vals.isEmpty() ? null : vals.get(0);
+        }
+
+        @Override
+        public String[] getValues() {
+            return vals.toArray(new String[0]);
+        }
+    }
+
+    @Test
+    public void getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt() throws Exception {
+        TestOption opt = new TestOption("b", true, "has values");
+        // add values for processing (commons-cli Option exposes addValueForProcessing in some versions)
+        opt.addValueForProcessing("first");
+        opt.addValueForProcessing("second");
+        List<Option> opts = new ArrayList<>();
+        opts.add(opt);
+        CommandLine cmd = createCommandLineWithOptions(opts);
+        // current CommandLine resolves short options by their opt name (without '-')
+        assertEquals("first", cmd.getOptionValue("b"));
+        assertEquals("first", cmd.getOptionValue(opt));
+    }
+
+}
+
+The error chatMessage is:
+
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] 
+[INFO] --- animal-sniffer-maven-plugin:1.24:check (checkAPIcompatibility) @ commons-cli ---
+[INFO] Checking unresolved references to org.codehaus.mojo.signature:java18:1.0
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.13:prepare-agent (prepare-agent) @ commons-cli ---
+[INFO] argLine set to -javaagent:/home/jaskeerat/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/home/jaskeerat/paper1/cli_latest_stable/zero_shot/commons-cli/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.3:test (default-test) @ commons-cli ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.038 s <<< FAILURE! -- in org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt
+[ERROR] org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt.getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt -- Time elapsed: 0.021 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <first> but was: <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt.getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt(CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt.java:55)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt.getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt:55 expected: <first> but was: <null>
+[INFO] 
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.465 s
+[INFO] Finished at: 2026-01-09T05:00:29-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.3:test (default-test) on project commons-cli: There are test failures.
+[ERROR] 
+[ERROR] See /home/jaskeerat/paper1/cli_latest_stable/zero_shot/commons-cli/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVE
+
+The unit test is testing the method `getOptionValue(String)` in the class `CommandLine`.
+
+Focal method source code:
+
+public String getOptionValue(final String optionName) {
+        return getOptionValue(resolveOption(optionName));
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+public class CommandLine {
+private static final long serialVersionUID = ...;
+private final List<String> args;
+private final List<Option> options;
+private final transient Consumer<Option> deprecatedHandler;
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+public static Builder builder(){}
+protected void addArg(final String arg){}
+protected void addOption(final Option option){}
+private <T> T get(final Supplier<T> supplier){}
+public List<String> getArgList(){}
+public String[] getArgs(){}
+@Deprecated
+    public Object getOptionObject(final char optionChar){}
+@Deprecated
+    public Object getOptionObject(final String optionName){}
+public Properties getOptionProperties(final Option option){}
+public Properties getOptionProperties(final String optionName){}
+public Option[] getOptions(){}
+public String getOptionValue(final char optionChar){}
+public String getOptionValue(final char optionChar, final String defaultValue){}
+public String getOptionValue(final char optionChar, final Supplier<String> defaultValue){}
+public String getOptionValue(final Option option){}
+public String getOptionValue(final Option option, final String defaultValue){}
+public String getOptionValue(final Option option, final Supplier<String> defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup){}
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}
+public String getOptionValue(final String optionName){}
+public String getOptionValue(final String optionName, final String defaultValue){}
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue){}
+public String[] getOptionValues(final char optionChar){}
+public String[] getOptionValues(final Option option){}
+public String[] getOptionValues(final OptionGroup optionGroup){}
+public String[] getOptionValues(final String optionName){}
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final T defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException{}
+private void handleDeprecated(final Option option){}
+public boolean hasOption(final char optionChar){}
+public boolean hasOption(final Option option){}
+public boolean hasOption(final OptionGroup optionGroup){}
+public boolean hasOption(final String optionName){}
+public Iterator<Option> iterator(){}
+private void processPropertiesFromValues(final Properties props, final List<String> values){}
+private Option resolveOption(final String optionName){}
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+}
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

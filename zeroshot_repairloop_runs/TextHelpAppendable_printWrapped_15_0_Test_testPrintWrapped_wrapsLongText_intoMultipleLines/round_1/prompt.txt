@@ -1,0 +1,216 @@
+I need you to fix an error in a unit test, an error occurred while compiling and executing
+
+The unit test is:
+
+package org.apache.commons.cli.help;
+
+import java.lang.reflect.Method;
+import java.util.Queue;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.IOException;
+
+/**
+ * Unit tests for TextHelpAppendable#printWrapped(String)
+ */
+public class TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines {
+
+    private static final String SAMPLE_TEXT = "one two three four five six seven eight nine ten eleven twelve";
+
+    private CapturingTextHelpAppendable subject;
+
+    @BeforeEach
+    public void setUp() {
+        // Use a StringBuilder as the Appendable target (actual output is not important for these tests)
+        subject = new CapturingTextHelpAppendable(new StringBuilder());
+    }
+
+    @Test
+    public void testPrintWrapped_wrapsLongText_intoMultipleLines() throws Exception {
+        // configure style to force wrapping at small width
+        subject.getTextStyleBuilder() // a left pad so produced lines will have a leading space
+            .setMaxWidth( // a left pad so produced lines will have a leading space
+                10).setLeftPad(1).setIndent(0);
+        // call the focal method
+        subject.printWrapped(SAMPLE_TEXT);
+        // capturedQueue must have been set by overridden printQueue
+        Queue<String> captured = subject.getCapturedQueue();
+        assertNotNull(captured, "printQueue should have been invoked and capturedQueue set");
+        // For correctness assert that the same result is produced by directly invoking makeColumnQueue (via reflection).
+        // This checks that printWrapped indeed passed the makeColumnQueue result into printQueue.
+        Method makeColumnQueue = TextHelpAppendable.class.getDeclaredMethod("makeColumnQueue", CharSequence.class, TextStyle.class);
+        makeColumnQueue.setAccessible(true);
+        TextStyle style = subject.getTextStyleBuilder().get();
+        @SuppressWarnings("unchecked")
+        Queue<String> expected = (Queue<String>) makeColumnQueue.invoke(subject, SAMPLE_TEXT, style);
+        assertEquals(expected.size(), captured.size(), "Wrapped line count should match expected makeColumnQueue result");
+        assertEquals(expected, captured, "Wrapped queue contents should match the queue produced by makeColumnQueue");
+    }
+
+    /**
+     * A small subclass to capture the Queue argument passed to printQueue when printWrapped is invoked.
+     * The override signature is intentionally minimal to remain compatible regardless of checked exceptions
+     * declared on the base class method.
+     */
+    private static class CapturingTextHelpAppendable extends TextHelpAppendable {
+
+        private Queue<String> capturedQueue;
+
+        CapturingTextHelpAppendable(Appendable output) {
+            super(output);
+        }
+
+        // Intentionally not using @Override to maintain compatibility with differing visibility
+        // of printQueue in various versions of TextHelpAppendable.
+        protected void printQueue(final Queue<String> queue) throws IOException {
+            // capture the queue reference for assertions
+            this.capturedQueue = queue;
+            // do not forward; we only need to capture for verification
+        }
+
+        Queue<String> getCapturedQueue() {
+            return capturedQueue;
+        }
+    }
+}
+
+The error chatMessage is:
+
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] 
+[INFO] --- animal-sniffer-maven-plugin:1.24:check (checkAPIcompatibility) @ commons-cli ---
+[INFO] Checking unresolved references to org.codehaus.mojo.signature:java18:1.0
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.13:prepare-agent (prepare-agent) @ commons-cli ---
+[INFO] argLine set to -javaagent:/home/jaskeerat/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/home/jaskeerat/paper1/cli_latest_stable/zero_shot/commons-cli/target/jacoco.exec
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.3:test (default-test) @ commons-cli ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.commons.cli.help.TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.066 s <<< FAILURE! -- in org.apache.commons.cli.help.TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines
+[ERROR] org.apache.commons.cli.help.TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines.testPrintWrapped_wrapsLongText_intoMultipleLines -- Time elapsed: 0.037 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: printQueue should have been invoked and capturedQueue set ==> expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:312)
+	at org.apache.commons.cli.help.TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines.testPrintWrapped_wrapsLongText_intoMultipleLines(TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines.java:34)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines.testPrintWrapped_wrapsLongText_intoMultipleLines:34 printQueue should have been invoked and capturedQueue set ==> expected: not <null>
+[INFO] 
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.904 s
+[INFO] Finished at: 2026-01-09T05:56:35-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.3:test (default-test) on project commons-cli: There are test failures.
+[ERROR] 
+[ERROR] See /home/jaskeerat/paper1/cli_latest_stable/zero_shot/commons-cli/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+
+The unit test is testing the method `printWrapped(String)` in the class `TextHelpAppendable`.
+
+Focal method source code:
+
+public void printWrapped(final String text) throws IOException {
+        printQueue(makeColumnQueue(text, this.textStyleBuilder.get()));
+    }
+
+Focal class skeleton (imports + fields + method signatures):
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
+public class TextHelpAppendable {
+public static final int DEFAULT_WIDTH = ...;
+public static final int DEFAULT_LEFT_PAD = ...;
+public static final int DEFAULT_INDENT = ...;
+public static final int DEFAULT_LIST_INDENT = ...;
+private static final String BLANK_LINE = ...;
+private static final Set<Character> BREAK_CHAR_SET = ...;
+private final TextStyle.Builder textStyleBuilder;
+public TextHelpAppendable(final Appendable output){}
+public static int indexOfWrap(final CharSequence text, final int width, final int startPos){}
+protected static TextHelpAppendable systemOut(){}
+protected TableDefinition adjustTableFormat(final TableDefinition table){}
+@Override
+    public void appendHeader(final int level, final CharSequence text) throws IOException{}
+@Override
+    public void appendList(final boolean ordered, final Collection<CharSequence> list) throws IOException{}
+@Override
+    public void appendParagraph(final CharSequence paragraph) throws IOException{}
+@Override
+    public void appendTable(final TableDefinition rawTable) throws IOException{}
+@Override
+    public void appendTitle(final CharSequence title) throws IOException{}
+public int getIndent(){}
+public int getLeftPad(){}
+public int getMaxWidth(){}
+public TextStyle.Builder getTextStyleBuilder(){}
+protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style){}
+protected List<Queue<String>> makeColumnQueues(final List<String> columnData, final List<TextStyle> styles){}
+private void printQueue(final Queue<String> queue) throws IOException{}
+public void printWrapped(final String text) throws IOException{}
+public void printWrapped(final String text, final TextStyle style) throws IOException{}
+private int resize(final int orig, final double fraction){}
+protected TextStyle.Builder resize(final TextStyle.Builder builder, final double fraction){}
+public void setIndent(final int indent){}
+public void setLeftPad(final int leftPad){}
+public void setMaxWidth(final int maxWidth){}
+protected void writeColumnQueues(final List<Queue<String>> columnQueues, final List<TextStyle> styles) throws IOException{}
+public TextHelpAppendable(final Appendable output){}
+}
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.help.TextStyle.Builder` is
+```[java]
+import java.util.function.Supplier;
+public final class TextStyle {
+public static final int UNSET_MAX_WIDTH = ...;
+public static final TextStyle DEFAULT = ...;
+private final Alignment alignment;
+private final int leftPad;
+private final int indent;
+private final boolean scalable;
+private final int minWidth;
+private final int maxWidth;
+private TextStyle(final Builder builder){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.TextStyle.Builder` is
+```[java]
+get()
+```
+
+Please fix the error and return the whole fixed unit test. You can use Junit 5 and Mockito 3. Adhere to Java 8 language style. No explanation is needed.

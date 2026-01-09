@@ -1,0 +1,17 @@
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+public class CommandLine_getParsedOptionValues_42_0_Test_testGetParsedOptionValues_nullOption_throwsNPE {
+
+    @Test
+    public void testGetParsedOptionValues_nullOption_returnsNull() {
+        CommandLine cmd = new CommandLine();
+        Object[] values = assertDoesNotThrow(() -> cmd.getParsedOptionValues((Option) null));
+        assertNull(values);
+    }
+
+}

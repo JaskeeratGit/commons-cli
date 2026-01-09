@@ -1,0 +1,103 @@
+package org.apache.commons.cli;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class CommandLine_getParsedOptionValue_27_0_Test_testDelegatesToStringVersion_propagatesParseException {
+
+
+    @Test
+    public void testDelegatesToStringVersion_propagatesParseException() {
+        CommandLine cmd = new CommandLine() {
+
+            @Override
+            public <T> T getParsedOptionValue(final String optionName) throws ParseException {
+                throw new ParseException("simulated failure for: " + optionName);
+            }
+        };
+        assertThrows(ParseException.class, () -> cmd.getParsedOptionValue('z'));
+    }
+
+}
+
+/*
+ * Minimal supporting stubs to allow this test to compile and run independently.
+ * These match the minimal signatures referenced by CommandLine and the tests.
+ * In a real project these would be provided by the library under test.
+ */
+class Option {
+    private String opt;
+    private String longOpt;
+    private boolean hasArg;
+    private String description;
+    private final List<String> values = new ArrayList<>();
+
+    public Option() {
+    }
+
+    public Option(final String opt, final String description) {
+        this(opt, null, false, description);
+    }
+
+    public Option(final String opt, final boolean hasArg, final String description) {
+        this(opt, null, hasArg, description);
+    }
+
+    public Option(final String opt, final String longOpt, final boolean hasArg, final String description) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = hasArg;
+        this.description = description;
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+
+    public boolean hasArg() {
+        return hasArg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getValuesList() {
+        return values;
+    }
+
+    public void addValueForProcessing(final String v) {
+        values.add(v);
+    }
+
+    public void setValues(final String... vals) {
+        values.clear();
+        if (vals != null) {
+            for (String v : vals) {
+                values.add(v);
+            }
+        }
+    }
+}
+
+class ParseException extends Exception {
+
+    public ParseException(final String message) {
+        super(message);
+    }
+}
+
+class Builder {
+
+    // Provide a default deprecated handler used by the protected CommandLine() constructor.
+    static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        // no-op stub
+    };
+}
