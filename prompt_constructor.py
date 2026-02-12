@@ -351,7 +351,7 @@ class RepairLoopContext:
 
             return (
                 "I need you to fix an error in a unit test. An error occurred while compiling or executing.\n\n"
-                "Below are a few examples of similar fixes. Follow the same style: minimal changes to make the test compile and run.\n\n"
+                "Below are a few examples of unit tests with their error messages and their correct fixes.\n\n"
                 "========================\n"
                 "EXAMPLE 1\n"
                 "========================\n"
