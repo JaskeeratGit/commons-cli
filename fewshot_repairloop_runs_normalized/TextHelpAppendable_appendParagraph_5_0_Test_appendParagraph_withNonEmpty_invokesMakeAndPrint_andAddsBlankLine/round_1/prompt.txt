@@ -1,0 +1,316 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+FEW-SHOT EXAMPLES (error -> minimal fix):
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) { this.id = id; }
+        String getId() { return id; }
+    }
+
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+Observed error:
+```
+incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to Options_getOptionGroup_9_0_Test.OptionGroup
+```
+
+Fixed Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        org.apache.commons.cli.OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Observed error:
+```
+reference to getParsedOptionValues is ambiguous
+```
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+
+NOW FIX THIS INPUT:
+
+Unit test to fix:
+
+```java
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.Queue;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+class TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withNonEmpty_invokesMakeAndPrint_andAddsBlankLine {
+
+    /**
+     * Test helper that overrides makeColumnQueue and printQueue to observe interactions.
+     */
+    static class TestableTextHelpAppendable extends TextHelpAppendable {
+
+        volatile Queue<String> capturedQueue;
+
+        volatile boolean makeColumnQueueCalled = false;
+
+        volatile boolean printQueueCalled = false;
+
+        TestableTextHelpAppendable(final Appendable output) {
+            super(output);
+        }
+
+        @Override
+        protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {
+            makeColumnQueueCalled = true;
+            final Queue<String> q = new LinkedList<>();
+            // return the incoming data as single entry so appendParagraph's behavior is observable
+            q.add(columnData == null ? null : columnData.toString());
+            return q;
+        }
+
+        // cannot assume printQueue is visible to override in all versions; do not use @Override
+        protected void printQueue(final Queue<String> queue) throws IOException {
+            printQueueCalled = true;
+            // capture the exact queue instance that appendParagraph passes
+            this.capturedQueue = queue;
+        }
+    }
+
+
+
+    @Test
+    void appendParagraph_withNonEmpty_invokesMakeAndPrint_andAddsBlankLine() throws Exception {
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(new StringBuilder());
+        final String payload = "HelloWorld";
+        t.appendParagraph(payload);
+        assertTrue(t.makeColumnQueueCalled, "makeColumnQueue should be called for non-empty paragraph");
+        assertTrue(t.printQueueCalled, "printQueue should be called for non-empty paragraph");
+        assertNotNull(t.capturedQueue, "Queue should be captured for non-empty paragraph");
+        final Object[] arr = t.capturedQueue.toArray();
+        // Our override returned a queue with a single element equal to payload;
+        // appendParagraph should have added the BLANK_LINE ("") after it.
+        assertEquals(2, arr.length, "Queue should contain original line and the appended blank line");
+        assertEquals(payload, arr[0], "First element should be the payload returned by makeColumnQueue");
+        assertEquals("", arr[1], "Second element should be the BLANK_LINE appended by appendParagraph");
+    }
+
+
+}
+```
+
+Observed error:
+
+```
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withNonEmpty_invokesMakeAndPrint_andAddsBlankLine.java:[12,33] package org.mockito.junit.jupiter does not exist
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.511 s
+[INFO] Finished at: 2026-02-13T03:27:14-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withNonEmpty_invokesMakeAndPrint_andAddsBlankLine.java:[12,33] package org.mockito.junit.jupiter does not exist
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+Target under test: method `appendParagraph(CharSequence)` in class `TextHelpAppendable`.
+
+Focal method source:
+
+```java
+@Override
+    public void appendParagraph(final CharSequence paragraph) throws IOException {
+        if (!Util.isEmpty(paragraph)) {
+            final Queue<String> queue = makeColumnQueue(paragraph, textStyleBuilder.get());
+            queue.add(BLANK_LINE);
+            printQueue(queue);
+        }
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
+public class TextHelpAppendable {
+public static final int DEFAULT_WIDTH = ...;
+public static final int DEFAULT_LEFT_PAD = ...;
+public static final int DEFAULT_INDENT = ...;
+public static final int DEFAULT_LIST_INDENT = ...;
+private static final String BLANK_LINE = ...;
+private static final Set<Character> BREAK_CHAR_SET = ...;
+private final TextStyle.Builder textStyleBuilder;
+public TextHelpAppendable(final Appendable output){}
+public static int indexOfWrap(final CharSequence text, final int width, final int startPos){}
+protected static TextHelpAppendable systemOut(){}
+protected TableDefinition adjustTableFormat(final TableDefinition table){}
+@Override
+    public void appendHeader(final int level, final CharSequence text) throws IOException{}
+@Override
+    public void appendList(final boolean ordered, final Collection<CharSequence> list) throws IOException{}
+@Override
+    public void appendParagraph(final CharSequence paragraph) throws IOException{}
+@Override
+    public void appendTable(final TableDefinition rawTable) throws IOException{}
+@Override
+    public void appendTitle(final CharSequence title) throws IOException{}
+public int getIndent(){}
+public int getLeftPad(){}
+public int getMaxWidth(){}
+public TextStyle.Builder getTextStyleBuilder(){}
+protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style){}
+protected List<Queue<String>> makeColumnQueues(final List<String> columnData, final List<TextStyle> styles){}
+private void printQueue(final Queue<String> queue) throws IOException{}
+public void printWrapped(final String text) throws IOException{}
+public void printWrapped(final String text, final TextStyle style) throws IOException{}
+private int resize(final int orig, final double fraction){}
+protected TextStyle.Builder resize(final TextStyle.Builder builder, final double fraction){}
+public void setIndent(final int indent){}
+public void setLeftPad(final int leftPad){}
+public void setMaxWidth(final int maxWidth){}
+protected void writeColumnQueues(final List<Queue<String>> columnQueues, final List<TextStyle> styles) throws IOException{}
+public TextHelpAppendable(final Appendable output){}
+}
+```
+
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.help.Util` is
+```[java]
+import java.util.Arrays;
+final class Util {
+private static final int NOT_FOUND = ...;
+private Util(){}
+static boolean isEmpty(final CharSequence str){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.TextStyle.Builder` is
+```[java]
+import java.util.function.Supplier;
+public final class TextStyle {
+public static final int UNSET_MAX_WIDTH = ...;
+public static final TextStyle DEFAULT = ...;
+private final Alignment alignment;
+private final int leftPad;
+private final int indent;
+private final boolean scalable;
+private final int minWidth;
+private final int maxWidth;
+private TextStyle(final Builder builder){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.Util` is
+```[java]
+isEmpty(CharSequence)
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.TextStyle.Builder` is
+```[java]
+get()
+```
+
+Return ONLY the complete fixed unit test file.

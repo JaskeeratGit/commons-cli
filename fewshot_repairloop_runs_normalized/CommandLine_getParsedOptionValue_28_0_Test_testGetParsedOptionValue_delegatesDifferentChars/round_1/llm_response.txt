@@ -1,0 +1,61 @@
+package org.apache.commons.cli;
+
+import java.util.function.Supplier;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+class CommandLine_getParsedOptionValue_28_0_Test_testGetParsedOptionValue_delegatesDifferentChars {
+
+    // A small subclass to observe delegation from the char-based API to the String-based API.
+    static class TestableCommandLine extends CommandLine {
+
+        String lastReceivedOption;
+
+        Object lastReceivedDefaultResult;
+
+        TestableCommandLine() {
+            // protected no-arg constructor of CommandLine
+            super();
+        }
+
+        @Override
+        public <T> T getParsedOptionValue(final String option, final Supplier<T> defaultValue) {
+            // capture the passed option and supplier result, then return the supplier result
+            lastReceivedOption = option;
+            T result = null;
+            if (defaultValue != null) {
+                result = defaultValue.get();
+                lastReceivedDefaultResult = result;
+            } else {
+                lastReceivedDefaultResult = null;
+            }
+            return result;
+        }
+    }
+
+    private TestableCommandLine subject;
+
+    @BeforeEach
+    void setUp() {
+        subject = new TestableCommandLine();
+    }
+
+
+    @Test
+    void testGetParsedOptionValue_delegatesDifferentChars() throws ParseException {
+        Supplier<Integer> supplier = () -> 42;
+        Integer returnedA = subject.getParsedOptionValue('A', supplier);
+        assertEquals("A", subject.lastReceivedOption);
+        assertEquals(Integer.valueOf(42), returnedA);
+        Integer returnedZero = subject.getParsedOptionValue('0', supplier);
+        assertEquals("0", subject.lastReceivedOption);
+        assertEquals(Integer.valueOf(42), returnedZero);
+        // test a non-printable char
+        Supplier<String> s2 = () -> "ok";
+        String ret = subject.getParsedOptionValue((char) 7, s2);
+        assertEquals(String.valueOf((char) 7), subject.lastReceivedOption);
+        assertEquals("ok", ret);
+    }
+
+}

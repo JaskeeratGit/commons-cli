@@ -1,0 +1,216 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+FEW-SHOT EXAMPLES (error -> minimal fix):
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) { this.id = id; }
+        String getId() { return id; }
+    }
+
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+Observed error:
+```
+incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to Options_getOptionGroup_9_0_Test.OptionGroup
+```
+
+Fixed Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        org.apache.commons.cli.OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Observed error:
+```
+reference to getParsedOptionValues is ambiguous
+```
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+
+NOW FIX THIS INPUT:
+
+Unit test to fix:
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.Objects;
+
+class TypeHandler_getConverter_14_0_Test_testGetDefaultMatchesPrivateDefaultField {
+
+    // Helper to create a Converter proxy instance
+    @SuppressWarnings("unchecked")
+    private Converter<Object, Throwable> createConverterProxy() {
+        InvocationHandler handler = (proxy, method, args) -> null;
+        return (Converter<Object, Throwable>) Proxy.newProxyInstance(Converter.class.getClassLoader(), new Class[] { Converter.class }, handler);
+    }
+
+
+
+
+
+
+    @Test
+    void testGetDefaultMatchesPrivateDefaultField() throws Exception {
+        // Use reflection to read the private static DEFAULT field
+        Field defaultField = TypeHandler.class.getDeclaredField("DEFAULT");
+        defaultField.setAccessible(true);
+        Object privateDefault = defaultField.get(null);
+        // Validate getDefault() returns the same instance
+        TypeHandler viaMethod = TypeHandler.getDefault();
+        assertSame(privateDefault, viaMethod, "TypeHandler.getDefault() should return the private DEFAULT instance");
+    }
+}
+
+```
+
+Observed error:
+
+```
+src/test/java/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test_testGetDefaultMatchesPrivateDefaultField.java:[27,31] type argument java.lang.Throwable is not within bounds of type-variable E
+src/test/java/org/apache/commons/cli/TypeHandler_getConverter_14_0_Test_testGetDefaultMatchesPrivateDefaultField.java:[29,35] type argument java.lang.Throwable is not within bounds of type-variable E
+```
+
+Target under test: method `getConverter(Class)` in class `TypeHandler`.
+
+Focal method source:
+
+```java
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz) {
+        return (Converter<T, ?>) converterMap.getOrDefault(clazz, Converter.DEFAULT);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+public class TypeHandler {
+private static final TypeHandler DEFAULT = ...;
+private static final int HEX_RADIX = ...;
+private final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap;
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+public static Class<?> createClass(final String className) throws ParseException{}
+public static Date createDate(final String string){}
+public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap(){}
+public static File createFile(final String string){}
+@Deprecated // since 1.7.0
+    public static File[] createFiles(final String string){}
+@Deprecated // since 1.7.0
+    public static Number createNumber(final String string) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createObject(final String className) throws ParseException{}
+public static URL createURL(final String string) throws ParseException{}
+public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createValue(final String string, final Object obj) throws ParseException{}
+private static <T> T createValueUnchecked(final String string, final Class<T> clazz){}
+public static TypeHandler getDefault(){}
+@Deprecated // since 1.7.0
+    public static FileInputStream openFile(final String string) throws ParseException{}
+private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map){}
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz){}
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+}
+```
+
+Return ONLY the complete fixed unit test file.

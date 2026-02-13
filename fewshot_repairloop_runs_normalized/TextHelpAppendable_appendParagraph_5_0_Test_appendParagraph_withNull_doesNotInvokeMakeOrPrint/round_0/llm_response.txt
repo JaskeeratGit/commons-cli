@@ -1,0 +1,43 @@
+package org.apache.commons.cli.help;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+class TextHelpAppendable_appendParagraph_5_0_Test_appendParagraph_withNull_doesNotInvokeMakeOrPrint {
+
+    /**
+     * Test helper that overrides makeColumnQueue to observe interactions.
+     */
+    static class TestableTextHelpAppendable extends TextHelpAppendable {
+
+        volatile boolean makeColumnQueueCalled = false;
+
+        TestableTextHelpAppendable(final Appendable output) {
+            super(output);
+        }
+
+        @Override
+        protected Queue<String> makeColumnQueue(final CharSequence columnData, final TextStyle style) {
+            makeColumnQueueCalled = true;
+            final Queue<String> q = new LinkedList<>();
+            // return the incoming data as single entry so appendParagraph's behavior is observable
+            q.add(columnData == null ? null : columnData.toString());
+            return q;
+        }
+    }
+
+    @Test
+    void appendParagraph_withNull_doesNotInvokeMakeOrPrint() throws Exception {
+        final StringBuilder sb = new StringBuilder();
+        final TestableTextHelpAppendable t = new TestableTextHelpAppendable(sb);
+        // null should be treated as empty by Util.isEmpty -> no calls
+        t.appendParagraph(null);
+        assertFalse(t.makeColumnQueueCalled, "makeColumnQueue should not be called for null");
+        // ensure nothing was written to the underlying Appendable (indirect check that print did not occur)
+        assertEquals("", sb.toString(), "Nothing should be written for null input");
+    }
+
+}

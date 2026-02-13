@@ -1,0 +1,465 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+FEW-SHOT EXAMPLES (error -> minimal fix):
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) { this.id = id; }
+        String getId() { return id; }
+    }
+
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+Observed error:
+```
+incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to Options_getOptionGroup_9_0_Test.OptionGroup
+```
+
+Fixed Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        org.apache.commons.cli.OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Observed error:
+```
+reference to getParsedOptionValues is ambiguous
+```
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+
+NOW FIX THIS INPUT:
+
+Unit test to fix:
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+
+/*
+ This test file contains minimal implementations of the classes referenced by
+ the focal method, plus JUnit 5 tests that aim to exercise the
+ getParsedOptionValues(OptionGroup) method and its private overload
+ getParsedOptionValues(OptionGroup, Supplier).
+ The classes below mirror the signatures given in the prompt.
+*/
+/* Minimal supporting exceptions */
+class CommandLine_getParsedOptionValues_45_0_Test_testGetParsedOptionValues_groupNoSelected_collectsPresentOptions extends Exception {
+
+    public ParseException(final String message) {
+        super(message);
+    }
+}
+
+class AlreadySelectedException extends Exception {
+
+    public AlreadySelectedException(final String message) {
+        super(message);
+    }
+}
+
+/* Minimal Option implementation */
+class Option {
+
+    private final String opt;
+
+    private String[] values;
+
+    public Option(final String opt) {
+        this.opt = opt;
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public void setValues(final String... values) {
+        this.values = values;
+    }
+
+    public String[] getValues() {
+        return values;
+    }
+}
+
+/* Minimal OptionGroup implementation following provided signatures */
+class OptionGroup {
+
+    private final Map<String, Option> optionMap = new LinkedHashMap<>();
+
+    private String selected;
+
+    private boolean required;
+
+    public OptionGroup() {
+        // empty
+    }
+
+    public Collection<String> getNames() {
+        return optionMap.keySet();
+    }
+
+    public Collection<Option> getOptions() {
+        return optionMap.values();
+    }
+
+    public String getSelected() {
+        return selected;
+    }
+
+    public void setRequired(final boolean required) {
+        this.required = required;
+    }
+
+    public void setSelected(final Option option) throws AlreadySelectedException {
+        if (this.selected != null && option != null && !this.selected.equals(option.getOpt())) {
+            throw new AlreadySelectedException("Already selected");
+        }
+        if (option != null) {
+            optionMap.put(option.getOpt(), option);
+            this.selected = option.getOpt();
+        }
+    }
+
+    public void add(final Option option) {
+        optionMap.put(option.getOpt(), option);
+    }
+}
+
+/* Minimal Builder to provide DEPRECATED_HANDLER as referenced in the prompt */
+class Builder {
+
+    public static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        /* no-op */
+    };
+}
+
+/* Focal class CommandLine with provided signatures and added private overload */
+class CommandLine {
+
+    private static final long serialVersionUID = 1L;
+
+    private final List<String> args;
+
+    private final List<Option> options;
+
+    private final transient Consumer<Option> deprecatedHandler;
+
+    protected CommandLine() {
+        this(new LinkedList<>(), new ArrayList<>(), Builder.DEPRECATED_HANDLER);
+    }
+
+    private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler) {
+        this.args = Objects.requireNonNull(args, "args");
+        this.options = Objects.requireNonNull(options, "options");
+        this.deprecatedHandler = deprecatedHandler;
+    }
+
+    public List<String> getArgList() {
+        return new ArrayList<>(args);
+    }
+
+    public String[] getArgs() {
+        return args.toArray(new String[0]);
+    }
+
+    public Option[] getOptions() {
+        return options.toArray(new Option[0]);
+    }
+
+    public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException {
+        return getParsedOptionValues(optionGroup, () -> null);
+    }
+
+    /*
+      Private overload used by the public method.
+      The implementation below is intentionally simple but covers branches:
+       - optionGroup == null -> NullPointerException
+       - selected option present -> return its values (or supplier default if values null)
+       - no selected option -> collect values from any options in the group that are present in this CommandLine
+       - when no values found -> return empty array of type T[]
+    */
+    @SuppressWarnings("unchecked")
+    private <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T> supplier) throws ParseException {
+        Objects.requireNonNull(optionGroup, "optionGroup");
+        // If there's a selected option name, prefer returning its values
+        final String sel = optionGroup.getSelected();
+        List<T> collected = new ArrayList<>();
+        if (sel != null) {
+            // find the option in this command line by opt name
+            Option found = null;
+            for (Option o : options) {
+                if (Objects.equals(o.getOpt(), sel)) {
+                    found = o;
+                    break;
+                }
+            }
+            if (found != null) {
+                String[] vals = found.getValues();
+                if (vals == null) {
+                    T supplied = supplier.get();
+                    if (supplied != null) {
+                        collected.add(supplied);
+                    }
+                } else {
+                    for (String v : vals) {
+                        collected.add((T) v);
+                    }
+                }
+            }
+        } else {
+            // No selected option: collect values from options in the group that this CommandLine contains
+            for (Option groupOpt : optionGroup.getOptions()) {
+                for (Option present : options) {
+                    if (Objects.equals(present.getOpt(), groupOpt.getOpt())) {
+                        String[] vals = present.getValues();
+                        if (vals != null) {
+                            for (String v : vals) {
+                                collected.add((T) v);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Create array of correct runtime component type; default to Object if none available
+        Class<?> component = Object.class;
+        if (!collected.isEmpty()) {
+            component = collected.get(0).getClass();
+        } else {
+            // attempt to use supplier to determine type
+            T supplied = supplier.get();
+            if (supplied != null) {
+                component = supplied.getClass();
+                collected.add(supplied);
+            }
+        }
+        T[] arr = (T[]) Array.newInstance(component, collected.size());
+        return collected.toArray(arr);
+    }
+}
+
+/* JUnit 5 tests for getParsedOptionValues */
+public class CommandLineParsedOptionValuesTest {
+
+    // Helper to add an Option to the private 'options' list of CommandLine via reflection
+    private static void addOptionToCommandLine(final CommandLine cmd, final Option option) throws Exception {
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        List<Option> options = (List<Option>) optionsField.get(cmd);
+        options.add(option);
+    }
+
+
+
+
+
+    @Test
+    public void testGetParsedOptionValues_groupNoSelected_collectsPresentOptions() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Option opt1 = new Option("a");
+        opt1.setValues("one");
+        Option opt2 = new Option("b");
+        opt2.setValues("two", "three");
+        // Add only opt2 to command line
+        addOptionToCommandLine(cmd, opt2);
+        OptionGroup group = new OptionGroup();
+        group.add(opt1);
+        group.add(opt2);
+        // no selected set
+        String[] result = cmd.getParsedOptionValues(group);
+        assertNotNull(result);
+        // only opt2 values should be present because opt1 isn't in the CommandLine
+        assertArrayEquals(new String[] { "two", "three" }, result);
+    }
+}
+
+```
+
+Observed error:
+
+```
+
+```
+
+Target under test: method `getParsedOptionValues(OptionGroup)` in class `CommandLine`.
+
+Focal method source:
+
+```java
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException {
+        return getParsedOptionValues(optionGroup, () -> null);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+public class CommandLine {
+private static final long serialVersionUID = ...;
+private final List<String> args;
+private final List<Option> options;
+private final transient Consumer<Option> deprecatedHandler;
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+public static Builder builder(){}
+protected void addArg(final String arg){}
+protected void addOption(final Option option){}
+private <T> T get(final Supplier<T> supplier){}
+public List<String> getArgList(){}
+public String[] getArgs(){}
+@Deprecated
+    public Object getOptionObject(final char optionChar){}
+@Deprecated
+    public Object getOptionObject(final String optionName){}
+public Properties getOptionProperties(final Option option){}
+public Properties getOptionProperties(final String optionName){}
+public Option[] getOptions(){}
+public String getOptionValue(final char optionChar){}
+public String getOptionValue(final char optionChar, final String defaultValue){}
+public String getOptionValue(final char optionChar, final Supplier<String> defaultValue){}
+public String getOptionValue(final Option option){}
+public String getOptionValue(final Option option, final String defaultValue){}
+public String getOptionValue(final Option option, final Supplier<String> defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup){}
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}
+public String getOptionValue(final String optionName){}
+public String getOptionValue(final String optionName, final String defaultValue){}
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue){}
+public String[] getOptionValues(final char optionChar){}
+public String[] getOptionValues(final Option option){}
+public String[] getOptionValues(final OptionGroup optionGroup){}
+public String[] getOptionValues(final String optionName){}
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final T defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException{}
+private void handleDeprecated(final Option option){}
+public boolean hasOption(final char optionChar){}
+public boolean hasOption(final Option option){}
+public boolean hasOption(final OptionGroup optionGroup){}
+public boolean hasOption(final String optionName){}
+public Iterator<Option> iterator(){}
+private void processPropertiesFromValues(final Properties props, final List<String> values){}
+private Option resolveOption(final String optionName){}
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+}
+```
+
+Return ONLY the complete fixed unit test file.

@@ -1,0 +1,38 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt {
+
+    // Helper to instantiate CommandLine via its private constructor
+    private CommandLine createCommandLineWithOptions(final List<Option> options) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        final List<String> args = new ArrayList<>();
+        // pass null for deprecatedHandler
+        return ctor.newInstance(args, options, (Consumer<Option>) null);
+    }
+
+
+
+
+    @Test
+    public void getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt() throws Exception {
+        // Use a real Option and add values for processing
+        Option opt = new Option("b", "desc");
+        opt.addValueForProcessing("first");
+        opt.addValueForProcessing("second");
+        List<Option> opts = new ArrayList<>();
+        opts.add(opt);
+        CommandLine cmd = createCommandLineWithOptions(opts);
+        // Call the overload that takes an Option directly to verify it returns the first value
+        assertEquals("first", cmd.getOptionValue(opt));
+        assertEquals("first", cmd.getOptionValue(opt));
+    }
+
+}

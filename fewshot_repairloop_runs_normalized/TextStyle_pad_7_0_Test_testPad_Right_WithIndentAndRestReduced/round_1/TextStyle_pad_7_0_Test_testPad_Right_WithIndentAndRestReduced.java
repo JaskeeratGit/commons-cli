@@ -1,0 +1,60 @@
+package org.apache.commons.cli.help;
+
+import sun.misc.Unsafe;
+import java.lang.reflect.Field;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for TextStyle.pad(boolean, CharSequence)
+ */
+public class TextStyle_pad_7_0_Test_testPad_Right_WithIndentAndRestReduced {
+
+    private static TextStyle createTextStyle(String alignmentName, int leftPad, int indent, boolean scalable, int minWidth, int maxWidth) throws Exception {
+        // allocate instance without invoking constructor
+        Unsafe unsafe = getUnsafe();
+        Object instance = unsafe.allocateInstance(TextStyle.class);
+
+        // set alignment enum by name using the field's type
+        Field alignField = TextStyle.class.getDeclaredField("alignment");
+        alignField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Class<? extends Enum> enumClass = (Class<? extends Enum>) alignField.getType();
+        Object enumConst = Enum.valueOf(enumClass, alignmentName);
+        alignField.set(instance, enumConst);
+
+        setField(instance, "leftPad", leftPad);
+        setField(instance, "indent", indent);
+        setField(instance, "scalable", scalable);
+        setField(instance, "minWidth", minWidth);
+        setField(instance, "maxWidth", maxWidth);
+        return (TextStyle) instance;
+    }
+
+    private static Unsafe getUnsafe() throws Exception {
+        Field f = Unsafe.class.getDeclaredField("theUnsafe");
+        f.setAccessible(true);
+        return (Unsafe) f.get(null);
+    }
+
+    private static void setField(Object target, String name, Object value) throws Exception {
+        Field field = TextStyle.class.getDeclaredField(name);
+        field.setAccessible(true);
+        field.set(target, value);
+    }
+
+
+
+
+
+    @Test
+    public void testPad_Right_WithIndentAndRestReduced() throws Exception {
+        TextStyle ts = createTextStyle("RIGHT", 0, 2, false, 0, 8);
+        String text = "abc";
+        CharSequence result = ts.pad(true, text);
+        // maxWidth=8, text len=3 -> restLen=5 > indent(2) -> indentPad=2, restLen -> 3
+        // result = indentPad + rest + text => 2 + 3 = 5 spaces before text
+        assertEquals("     abc", result.toString());
+    }
+
+}

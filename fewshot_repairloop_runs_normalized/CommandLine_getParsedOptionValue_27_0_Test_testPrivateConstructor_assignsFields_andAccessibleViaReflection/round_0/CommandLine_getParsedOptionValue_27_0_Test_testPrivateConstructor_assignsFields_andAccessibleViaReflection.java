@@ -1,0 +1,42 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getParsedOptionValue_27_0_Test_testPrivateConstructor_assignsFields_andAccessibleViaReflection {
+
+    @Test
+    public void testPrivateConstructor_assignsFields_andAccessibleViaReflection() throws Exception {
+        List<String> args = new LinkedList<>();
+        args.add("arg1");
+        final List<Option> options = new ArrayList<>();
+        options.add(mock(Option.class));
+        Consumer<Option> handler = o -> {
+            // no-op for test
+        };
+        // Obtain the private constructor and create an instance without invoking the protected default ctor.
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(args, options, handler);
+        // Reflectively access private fields to ensure they were set by the constructor
+        Field argsField = CommandLine.class.getDeclaredField("args");
+        argsField.setAccessible(true);
+        Object actualArgs = argsField.get(cmd);
+        assertSame(args, actualArgs);
+        Field optionsField = CommandLine.class.getDeclaredField("options");
+        optionsField.setAccessible(true);
+        Object actualOptions = optionsField.get(cmd);
+        assertSame(options, actualOptions);
+        Field deprecatedHandlerField = CommandLine.class.getDeclaredField("deprecatedHandler");
+        deprecatedHandlerField.setAccessible(true);
+        Object actualHandler = deprecatedHandlerField.get(cmd);
+        assertSame(handler, actualHandler);
+    }
+}

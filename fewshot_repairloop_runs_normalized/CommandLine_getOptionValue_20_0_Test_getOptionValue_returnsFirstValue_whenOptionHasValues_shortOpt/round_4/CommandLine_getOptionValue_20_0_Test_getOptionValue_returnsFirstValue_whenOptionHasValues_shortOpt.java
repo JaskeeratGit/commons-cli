@@ -1,0 +1,93 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_getOptionValue_20_0_Test_getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt {
+
+    // Helper to instantiate CommandLine via its private constructor
+    private CommandLine createCommandLineWithOptions(final List<Option> options) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        final List<String> args = new ArrayList<>();
+        // pass null for deprecatedHandler
+        return ctor.newInstance(args, options, (Consumer<Option>) null);
+    }
+
+    // Helper to add values to Option using reflection to be compatible with different versions
+    private void addValuesToOption(Option opt, String... values) throws Exception {
+        // try method addValueForProcessing
+        try {
+            Method m = Option.class.getDeclaredMethod("addValueForProcessing", String.class);
+            m.setAccessible(true);
+            for (String v : values) {
+                m.invoke(opt, v);
+            }
+            return;
+        } catch (NoSuchMethodException ignored) {
+        }
+
+        // try method addValue
+        try {
+            Method m = Option.class.getDeclaredMethod("addValue", String.class);
+            m.setAccessible(true);
+            for (String v : values) {
+                m.invoke(opt, v);
+            }
+            return;
+        } catch (NoSuchMethodException ignored) {
+        }
+
+        // try to set a List<String> field named "values" or "valuesList"
+        try {
+            Field f = Option.class.getDeclaredField("values");
+            f.setAccessible(true);
+            List<String> list = new ArrayList<>();
+            for (String v : values) list.add(v);
+            f.set(opt, list);
+            return;
+        } catch (NoSuchFieldException ignored) {
+        }
+
+        try {
+            Field f = Option.class.getDeclaredField("valuesList");
+            f.setAccessible(true);
+            List<String> list = new ArrayList<>();
+            for (String v : values) list.add(v);
+            f.set(opt, list);
+            return;
+        } catch (NoSuchFieldException ignored) {
+        }
+
+        // try to set an array field named "values"
+        try {
+            Field f = Option.class.getDeclaredField("values");
+            f.setAccessible(true);
+            f.set(opt, values);
+            return;
+        } catch (NoSuchFieldException ignored) {
+        }
+
+        throw new IllegalStateException("Could not set option values via reflection");
+    }
+
+    @Test
+    public void getOptionValue_returnsFirstValue_whenOptionHasValues_shortOpt() throws Exception {
+        // Use a real Option and add values for processing
+        Option opt = new Option("b", "desc");
+        addValuesToOption(opt, "first", "second");
+        List<Option> opts = new ArrayList<>();
+        opts.add(opt);
+        CommandLine cmd = createCommandLineWithOptions(opts);
+        // Call the overload that takes an Option directly to verify it returns the first value
+        assertEquals("first", cmd.getOptionValue(opt));
+        assertEquals("first", cmd.getOptionValue(opt));
+    }
+
+}

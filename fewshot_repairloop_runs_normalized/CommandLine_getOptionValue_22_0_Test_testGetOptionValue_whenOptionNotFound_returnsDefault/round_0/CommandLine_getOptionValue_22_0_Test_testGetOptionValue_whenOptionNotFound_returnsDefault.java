@@ -1,0 +1,57 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Unit tests for CommandLine#getOptionValue(String, Supplier)
+ */
+public class CommandLine_getOptionValue_22_0_Test_testGetOptionValue_whenOptionNotFound_returnsDefault {
+
+    // Helper to construct a CommandLine instance via the non-public constructor
+    private CommandLine newCommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    // Helper to invoke private resolveOption(String) via reflection
+    private Object invokeResolveOption(CommandLine cli, String optionName) throws Exception {
+        Method resolve = CommandLine.class.getDeclaredMethod("resolveOption", String.class);
+        resolve.setAccessible(true);
+        return resolve.invoke(cli, optionName);
+    }
+
+    // Helper to invoke getOptionValue(Option, Supplier) via reflection
+    private String invokeGetOptionValueWithOption(CommandLine cli, Object opt, Supplier<String> supplier) throws Exception {
+        Class<?> optionClass = Class.forName("org.apache.commons.cli.Option");
+        Method gv = CommandLine.class.getDeclaredMethod("getOptionValue", optionClass, Supplier.class);
+        gv.setAccessible(true);
+        return (String) gv.invoke(cli, opt, supplier);
+    }
+
+    @Test
+    public void testGetOptionValue_whenOptionNotFound_returnsDefault() throws Exception {
+        List<String> args = new LinkedList<>();
+        // no options
+        List<Option> options = new ArrayList<>();
+        CommandLine cli = newCommandLine(args, options, null);
+        Supplier<String> def = () -> "MY-DEFAULT";
+        // When option name is null -> Util.stripLeadingHyphens will yield null and resolveOption returns null
+        String viaString = cli.getOptionValue((String) null, def);
+        // Direct resolveOption should return null
+        Object resolved = invokeResolveOption(cli, null);
+        assertNull(resolved, "resolveOption should return null for a null input");
+        // getOptionValue(Option,Supplier) with null should be invoked directly and match
+        String viaOption = invokeGetOptionValueWithOption(cli, null, def);
+        assertEquals("MY-DEFAULT", viaString, "When option not found, public method should return the supplier value");
+        assertEquals(viaOption, viaString, "Both invocation paths should produce the same result");
+    }
+}

@@ -1,0 +1,324 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+FEW-SHOT EXAMPLES (error -> minimal fix):
+
+========================
+EXAMPLE 1
+========================
+Original Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    static class OptionGroup {
+        private final String id;
+        OptionGroup(String id) { this.id = id; }
+        String getId() { return id; }
+    }
+
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+Observed error:
+```
+incompatible types: org.apache.commons.cli.OptionGroup cannot be converted to Options_getOptionGroup_9_0_Test.OptionGroup
+```
+
+Fixed Unit Test:
+
+```java
+public class Options_getOptionGroup_9_0_Test {
+    @Test
+    void testGetOptionGroupReturnsNullWhenMissing() throws Exception {
+        Options options = new Options();
+        Option opt = new Option("b", "desc");
+        org.apache.commons.cli.OptionGroup result = options.getOptionGroup(opt);
+        assertNull(result, "Expected null when no OptionGroup is associated with the option key");
+    }
+}
+```
+
+========================
+EXAMPLE 2
+========================
+Original Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues(null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+Observed error:
+```
+reference to getParsedOptionValues is ambiguous
+```
+
+Fixed Unit Test:
+
+```java
+public class CommandLine_getParsedOptionValues_46_0_Test {
+    @Test
+    void testNullOptionGroupReturnsDefault() throws Exception {
+        CommandLine cmd = new CommandLine();
+        Supplier<String[]> supplier = () -> new String[] { "default1", "default2" };
+        String[] result = cmd.getParsedOptionValues((OptionGroup) null, supplier);
+        assertArrayEquals(supplier.get(), result);
+    }
+}
+```
+
+========================
+
+NOW FIX THIS INPUT:
+
+Unit test to fix:
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.Objects;
+
+class TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance {
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    private static void removeFinalAndSet(Field field, Object value) throws Exception {
+        field.setAccessible(true);
+        // remove final modifier
+        try {
+            Field modifiersField = Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+        } catch (NoSuchFieldException ignored) {
+            // Some JVMs (like newer ones) may not allow changing modifiers; still try set()
+        }
+        field.set(null, value);
+    }
+
+    @Test
+    void createValue_rethrowsSameParseExceptionInstance() throws Exception {
+        final ParseException expected = new ParseException("expected");
+        Map<Class<?>, Converter<?, ? extends Throwable>> map = new HashMap<>();
+        map.put(Long.class, (Converter<Long, ParseException>) s -> {
+            throw expected;
+        });
+        TypeHandler custom = new TypeHandler(map);
+
+        Field defaultField = TypeHandler.class.getDeclaredField("DEFAULT");
+        defaultField.setAccessible(true);
+        Object original = defaultField.get(null);
+        try {
+            removeFinalAndSet(defaultField, custom);
+            ParseException thrown = assertThrows(ParseException.class, () -> TypeHandler.createValue("10", Long.class));
+            // ensure it's the exact same instance thrown by the converter
+            assertSame(expected, thrown);
+        } finally {
+            // restore original
+            removeFinalAndSet(defaultField, original);
+        }
+    }
+}
+```
+
+Observed error:
+
+```
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] 
+[INFO] --- animal-sniffer-maven-plugin:1.24:check (checkAPIcompatibility) @ commons-cli ---
+[INFO] Checking unresolved references to org.codehaus.mojo.signature:java18:1.0
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.13:prepare-agent (prepare-agent) @ commons-cli ---
+[INFO] argLine set to -javaagent:/home/jaskeerat/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/home/jaskeerat/paper1/cli_latest_stable/few_shot/commons-cli/target/jacoco.exec,append=false
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.3:test (default-test) @ commons-cli ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.commons.cli.TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.041 s <<< FAILURE! -- in org.apache.commons.cli.TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance
+[ERROR] org.apache.commons.cli.TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance.createValue_rethrowsSameParseExceptionInstance -- Time elapsed: 0.023 s <<< ERROR!
+java.lang.IllegalAccessException: Can not set static final org.apache.commons.cli.TypeHandler field org.apache.commons.cli.TypeHandler.DEFAULT to org.apache.commons.cli.TypeHandler
+	at sun.reflect.UnsafeFieldAccessorImpl.throwFinalFieldIllegalAccessException(UnsafeFieldAccessorImpl.java:76)
+	at sun.reflect.UnsafeFieldAccessorImpl.throwFinalFieldIllegalAccessException(UnsafeFieldAccessorImpl.java:80)
+	at sun.reflect.UnsafeQualifiedStaticObjectFieldAccessorImpl.set(UnsafeQualifiedStaticObjectFieldAccessorImpl.java:77)
+	at java.lang.reflect.Field.set(Field.java:764)
+	at org.apache.commons.cli.TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance.removeFinalAndSet(TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance.java:33)
+	at org.apache.commons.cli.TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance.createValue_rethrowsSameParseExceptionInstance(TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance.java:55)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   TypeHandler_createValue_8_0_Test_createValue_rethrowsSameParseExceptionInstance.createValue_rethrowsSameParseExceptionInstance:55->removeFinalAndSet:33 » IllegalAccess Can not set static final org.apache.commons.cli.TypeHandler field org.apache.commons.cli.TypeHandler.DEFAULT to org.apache.commons.cli.TypeHandler
+[INFO] 
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.480 s
+[INFO] Finished at: 2026-02-13T03:37:55-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.3:test (default-test) on project commons-cli: 
+[ERROR] 
+[ERROR] See /home/jaskeerat/paper1/cli_latest_stable/few_shot/commons-cli/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to ena
+```
+
+Target under test: method `createValue(String, Class)` in class `TypeHandler`.
+
+Focal method source:
+
+```java
+public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException {
+        try {
+            return getDefault().getConverter(clazz).apply(string);
+        } catch (final Exception e) {
+            throw ParseException.wrap(e);
+        }
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+public class TypeHandler {
+private static final TypeHandler DEFAULT = ...;
+private static final int HEX_RADIX = ...;
+private final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap;
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+public static Class<?> createClass(final String className) throws ParseException{}
+public static Date createDate(final String string){}
+public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap(){}
+public static File createFile(final String string){}
+@Deprecated // since 1.7.0
+    public static File[] createFiles(final String string){}
+@Deprecated // since 1.7.0
+    public static Number createNumber(final String string) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createObject(final String className) throws ParseException{}
+public static URL createURL(final String string) throws ParseException{}
+public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createValue(final String string, final Object obj) throws ParseException{}
+private static <T> T createValueUnchecked(final String string, final Class<T> clazz){}
+public static TypeHandler getDefault(){}
+@Deprecated // since 1.7.0
+    public static FileInputStream openFile(final String string) throws ParseException{}
+private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map){}
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz){}
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+}
+```
+
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.Converter` is
+```[java]
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+@FunctionalInterface
+public interface Converter {
+Converter<?, RuntimeException> DEFAULT = ...;
+Converter<Class<?>, ClassNotFoundException> CLASS = ...;
+Converter<File, NullPointerException> FILE = ...;
+Converter<Path, InvalidPathException> PATH = ...;
+Converter<Number, NumberFormatException> NUMBER = ...;
+Converter<Object, ReflectiveOperationException> OBJECT = ...;
+Converter<URL, MalformedURLException> URL = ...;
+Converter<Date, java.text.ParseException> DATE = ...;
+T apply(String string) throws E;
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.ParseException` is
+```[java]
+public class ParseException {
+private static final long serialVersionUID = ...;
+public ParseException(final String message){}
+public ParseException(final Throwable e){}
+public static ParseException wrap(final Throwable e) throws UnsupportedOperationException{}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.Converter` is
+```[java]
+apply(String)
+```
+
+The brief information of dependent class `org.apache.commons.cli.ParseException` is
+```[java]
+wrap(Throwable)
+```
+
+Return ONLY the complete fixed unit test file.
