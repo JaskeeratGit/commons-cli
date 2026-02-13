@@ -1,0 +1,23 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Method;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class CommandLine_getParsedOptionValue_31_0_Test_testGetParsedOptionValue_optionNull_usesDefault {
+
+    @Test
+    void testGetParsedOptionValue_optionNull_usesDefault() throws Exception {
+        CommandLine cmd = new CommandLine() {
+        };
+        String result = cmd.getParsedOptionValue((Option) null, () -> "defaultValue");
+        assertEquals("defaultValue", result);
+        // Also invoke the private helper 'get' via reflection to satisfy private-method reflection usage
+        Method getMethod = CommandLine.class.getDeclaredMethod("get", Supplier.class);
+        getMethod.setAccessible(true);
+        Object reflected = getMethod.invoke(cmd, (Supplier<String>) () -> "reflectedDefault");
+        assertEquals("reflectedDefault", reflected);
+    }
+
+}

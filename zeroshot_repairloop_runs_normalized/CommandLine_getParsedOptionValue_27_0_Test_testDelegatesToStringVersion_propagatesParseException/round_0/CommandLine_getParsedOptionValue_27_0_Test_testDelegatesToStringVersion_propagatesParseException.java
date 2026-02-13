@@ -1,0 +1,22 @@
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public class CommandLine_getParsedOptionValue_27_0_Test_testDelegatesToStringVersion_propagatesParseException {
+
+
+    @Test
+    public void testDelegatesToStringVersion_propagatesParseException() {
+        CommandLine cmd = new CommandLine() {
+
+            @Override
+            public <T> T getParsedOptionValue(final String optionName) throws ParseException {
+                throw new ParseException("simulated failure for: " + optionName);
+            }
+        };
+        assertThrows(ParseException.class, () -> cmd.getParsedOptionValue('z'));
+    }
+
+}

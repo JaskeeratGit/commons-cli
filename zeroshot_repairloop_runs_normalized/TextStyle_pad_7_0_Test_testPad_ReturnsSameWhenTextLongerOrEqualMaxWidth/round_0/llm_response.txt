@@ -1,0 +1,52 @@
+package org.apache.commons.cli.help;
+
+import sun.misc.Unsafe;
+import java.lang.reflect.Field;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
+/**
+ * Unit tests for TextStyle.pad(boolean, CharSequence)
+ */
+public class TextStyle_pad_7_0_Test_testPad_ReturnsSameWhenTextLongerOrEqualMaxWidth {
+
+    private static TextStyle createTextStyle(String alignmentName, int leftPad, int indent, boolean scalable, int minWidth, int maxWidth) throws Exception {
+        // allocate instance without invoking constructor
+        Unsafe unsafe = getUnsafe();
+        Object instance = unsafe.allocateInstance(TextStyle.class);
+
+        // obtain Alignment enum constant via reflection to avoid compile-time dependency
+        Class<?> alignmentClass = Class.forName("org.apache.commons.cli.help.Alignment");
+        Object alignment = Enum.valueOf((Class) alignmentClass, alignmentName);
+
+        setField(instance, "alignment", alignment);
+        setField(instance, "leftPad", leftPad);
+        setField(instance, "indent", indent);
+        setField(instance, "scalable", scalable);
+        setField(instance, "minWidth", minWidth);
+        setField(instance, "maxWidth", maxWidth);
+        return (TextStyle) instance;
+    }
+
+    private static Unsafe getUnsafe() throws Exception {
+        Field f = Unsafe.class.getDeclaredField("theUnsafe");
+        f.setAccessible(true);
+        return (Unsafe) f.get(null);
+    }
+
+    private static void setField(Object target, String name, Object value) throws Exception {
+        Field field = TextStyle.class.getDeclaredField(name);
+        field.setAccessible(true);
+        field.set(target, value);
+    }
+
+    @Test
+    public void testPad_ReturnsSameWhenTextLongerOrEqualMaxWidth() throws Exception {
+        TextStyle ts = createTextStyle("LEFT", 0, 0, false, 0, 3);
+        String text = "abcd";
+        CharSequence result = ts.pad(false, text);
+        // should return the same CharSequence instance when text.length() >= maxWidth
+        assertSame(text, result);
+    }
+
+}

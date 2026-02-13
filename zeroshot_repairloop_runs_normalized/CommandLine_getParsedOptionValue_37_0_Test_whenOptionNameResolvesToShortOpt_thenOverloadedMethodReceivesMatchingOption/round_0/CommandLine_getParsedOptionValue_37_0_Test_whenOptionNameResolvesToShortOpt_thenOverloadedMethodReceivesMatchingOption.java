@@ -1,0 +1,119 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
+
+class CommandLine_getParsedOptionValue_37_0_Test_whenOptionNameResolvesToShortOpt_thenOverloadedMethodReceivesMatchingOption {
+
+    // Minimal stub names renamed to avoid conflicting with production classes
+    public static class OptionStub {
+
+        private final String opt;
+
+        private final String longOpt;
+
+        public OptionStub(final String opt) {
+            this(opt, null);
+        }
+
+        public OptionStub(final String opt, final String longOpt) {
+            this.opt = opt;
+            this.longOpt = longOpt;
+        }
+
+        public String getOpt() {
+            return opt;
+        }
+
+        public String getLongOpt() {
+            return longOpt;
+        }
+    }
+
+    public static class ParseExceptionStub extends Exception {
+
+        public ParseExceptionStub(String message) {
+            super(message);
+        }
+    }
+
+    public static class UtilStub {
+
+        public static String stripLeadingHyphens(final String s) {
+            if (s == null) {
+                return null;
+            }
+            int i = 0;
+            while (i < s.length() && s.charAt(i) == '-') {
+                i++;
+            }
+            return (i == 0) ? s : (i >= s.length() ? "" : s.substring(i));
+        }
+    }
+
+    public static class BuilderStub {
+
+        public static final java.util.function.Consumer<OptionStub> DEPRECATED_HANDLER = o -> {
+            // no-op for tests
+        };
+    }
+
+    // Subclass of CommandLine to intercept calls to the overloaded method getParsedOptionValue(Option, Supplier)
+    public static class TestableCommandLine extends CommandLine {
+
+        volatile org.apache.commons.cli.Option lastSeenOption;
+
+        volatile Supplier<?> lastSeenSupplier;
+
+        private final Object returnValue;
+
+        // Use protected no-arg constructor of CommandLine
+        public TestableCommandLine() {
+            super();
+            this.returnValue = null;
+        }
+
+        // Allow specifying a value to return from the overridden method
+        public TestableCommandLine(final Object returnValue) {
+            super();
+            this.returnValue = returnValue;
+        }
+
+        // Override the overloaded method to record inputs and return a controlled value
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T getParsedOptionValue(final org.apache.commons.cli.Option opt, final Supplier<T> defaultValue) throws org.apache.commons.cli.ParseException {
+            this.lastSeenOption = opt;
+            this.lastSeenSupplier = defaultValue;
+            if (returnValue != null) {
+                return (T) returnValue;
+            }
+            return (defaultValue == null) ? null : defaultValue.get();
+        }
+    }
+
+    // Helper to set the private final 'options' field in CommandLine
+    private static void setOptionsField(final CommandLine target, final List<?> options) throws Exception {
+        Field f = CommandLine.class.getDeclaredField("options");
+        f.setAccessible(true);
+        f.set(target, options);
+    }
+
+
+    @Test
+    void whenOptionNameResolvesToShortOpt_thenOverloadedMethodReceivesMatchingOption() throws Exception {
+        TestableCommandLine cmd = new TestableCommandLine();
+        // Use production Option class (commons-cli) constructor commonly available: (String opt, String longOpt, boolean hasArg, String description)
+        org.apache.commons.cli.Option opt = new org.apache.commons.cli.Option("a", "alpha", false, null);
+        setOptionsField(cmd, new ArrayList<>(Collections.singletonList(opt)));
+        Supplier<Integer> defaultSupplier = () -> 42;
+        Integer val = cmd.getParsedOptionValue("-a", defaultSupplier);
+        org.junit.jupiter.api.Assertions.assertEquals(Integer.valueOf(42), val, "Should return supplier value when overloaded method returns default supplier result");
+        org.junit.jupiter.api.Assertions.assertNotNull(cmd.lastSeenOption, "Option should not be null for a matching short option");
+        org.junit.jupiter.api.Assertions.assertEquals("a", cmd.lastSeenOption.getOpt());
+        org.junit.jupiter.api.Assertions.assertSame(defaultSupplier, cmd.lastSeenSupplier);
+    }
+
+}

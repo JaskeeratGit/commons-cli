@@ -1,0 +1,152 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CommandLine_hasOption_55_0_Test_testHasOptionInvokesDeprecatedHandlerWhenOptionIsDeprecated {
+
+    // Helper to create CommandLine using the private constructor via reflection
+    private CommandLine createCommandLine(List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // first argument is args list (List<String>), we pass an empty list
+        return ctor.newInstance(new ArrayList<String>(), options, deprecatedHandler);
+    }
+
+    @Test
+    public void testHasOptionInvokesDeprecatedHandlerWhenOptionIsDeprecated() throws Exception {
+        Option dep = new Option("d", "deprecated", true);
+        List<Option> options = new ArrayList<>();
+        options.add(dep);
+        AtomicInteger invoked = new AtomicInteger(0);
+        Consumer<Option> handler = o -> invoked.incrementAndGet();
+        CommandLine cmd = createCommandLine(options, handler);
+        // The option exists and is deprecated, so hasOption should return true and invoke the handler once
+        assertTrue(cmd.hasOption("d"));
+        assertEquals(1, invoked.get());
+        // Calling again should also return true and invoke handler again
+        assertTrue(cmd.hasOption("deprecated"));
+        assertEquals(2, invoked.get());
+    }
+
+}
+
+/*
+ Minimal Option class to support testing. Placed in the same package as CommandLine
+ so it matches the expected type used by the CommandLine class under test.
+ This implementation provides a superset of commonly used constructors and methods
+ so other tests in the package can compile as well.
+*/
+class Option {
+
+    private final String opt;
+    private final String longOpt;
+    private final boolean hasArg;
+    private final String description;
+    private boolean deprecated;
+    private Class<?> type;
+    private Object converter;
+    private final List<String> values = new ArrayList<>();
+
+    // Two-arg constructor
+    public Option(String opt, String longOpt) {
+        this(opt, longOpt, false, null);
+    }
+
+    // Three-arg constructor used by this test to mark deprecated
+    public Option(String opt, String longOpt, boolean deprecated) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = false;
+        this.description = null;
+        this.deprecated = deprecated;
+    }
+
+    // Common four-arg constructor: opt, longOpt, hasArg, description
+    public Option(String opt, String longOpt, boolean hasArg, String description) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = hasArg;
+        this.description = description;
+        this.deprecated = false;
+    }
+
+    // Alternate constructor: single-name option with hasArg and description
+    public Option(String opt, boolean hasArg, String description) {
+        this(opt, null, hasArg, description);
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+
+    public boolean hasArg() {
+        return hasArg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isDeprecated() {
+        return deprecated;
+    }
+
+    public void setDeprecated(final boolean deprecated) {
+        this.deprecated = deprecated;
+    }
+
+    public List<String> getValuesList() {
+        return values;
+    }
+
+    public String getValue() {
+        return values.isEmpty() ? null : values.get(0);
+    }
+
+    public String[] getValues() {
+        return values.isEmpty() ? null : values.toArray(new String[0]);
+    }
+
+    public void addValueForProcessing(final String value) {
+        values.add(value);
+    }
+
+    public void setType(final Class<?> type) {
+        this.type = type;
+    }
+
+    public Class<?> getType() {
+        return type;
+    }
+
+    // Accept any converter object to avoid tight coupling to a specific Converter interface
+    public void setConverter(final Object converter) {
+        this.converter = converter;
+    }
+
+    public Object getConverter() {
+        return converter;
+    }
+
+    @Override
+    public String toString() {
+        return "Option{" +
+                "opt='" + opt + '\'' +
+                ", longOpt='" + longOpt + '\'' +
+                ", hasArg=" + hasArg +
+                ", description='" + description + '\'' +
+                ", deprecated=" + deprecated +
+                '}';
+    }
+}

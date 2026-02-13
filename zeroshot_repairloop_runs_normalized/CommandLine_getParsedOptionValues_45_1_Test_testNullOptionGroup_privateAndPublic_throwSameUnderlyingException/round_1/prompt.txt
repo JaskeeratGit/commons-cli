@@ -1,0 +1,219 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+INPUTS:
+Unit test to fix:
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Properties;
+
+public class CommandLine_getParsedOptionValues_45_1_Test_testNullOptionGroup_privateAndPublic_throwSameUnderlyingException {
+
+    /**
+     * Verifies that the public getParsedOptionValues(OptionGroup) delegates to the
+     * private getParsedOptionValues(OptionGroup, Supplier) invocation and returns the
+     * exact same array instance produced by the private method when the supplier
+     * returns null. This test creates a CommandLine instance via reflection
+     * (matching the private constructor) so the private API can be exercised.
+     */
+
+
+    /**
+     * Verifies that calling the private method with a null OptionGroup and calling
+     * the public delegating method with a null OptionGroup produce the same type of
+     * underlying exception (i.e. the public method truly delegates behavior).
+     */
+    @Test
+    public void testNullOptionGroup_privateAndPublic_throwSameUnderlyingException() throws Exception {
+        // create CommandLine via private constructor
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        CommandLine cmd = ctor.newInstance(new LinkedList<>(), new ArrayList<>(), (Consumer<?>) (o -> {
+            // no-op
+        }));
+        Method privateMethod = CommandLine.class.getDeclaredMethod("getParsedOptionValues", OptionGroup.class, Supplier.class);
+        privateMethod.setAccessible(true);
+        // Invoke private method with null OptionGroup and capture underlying cause
+        Throwable privateUnderlying = null;
+        try {
+            privateMethod.invoke(cmd, null, (Supplier<?>) (() -> null));
+        } catch (InvocationTargetException ite) {
+            privateUnderlying = ite.getCause();
+        } catch (Throwable t) {
+            privateUnderlying = t;
+        }
+        // Invoke public method with null OptionGroup and capture thrown exception
+        Throwable publicThrown = null;
+        try {
+            cmd.getParsedOptionValues((OptionGroup) null);
+        } catch (Throwable t) {
+            publicThrown = t;
+        }
+        // Ensure both threw something and that the underlying exception types match
+        assertNotNull(privateUnderlying, "Private invocation should throw an underlying exception when OptionGroup is null");
+        assertNotNull(publicThrown, "Public invocation should throw an exception when OptionGroup is null");
+        assertEquals(privateUnderlying.getClass(), publicThrown.getClass(), "The underlying exception types should match between private and public invocations");
+    }
+}
+```
+
+Observed error:
+
+```
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] CommandLine_getParsedOptionValues_45_1_Test_testNullOptionGroup_privateAndPublic_throwSameUnderlyingException.java:[16,33] package org.mockito.junit.jupiter does not exist
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.452 s
+[INFO] Finished at: 2026-02-13T03:13:59-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] CommandLine_getParsedOptionValues_45_1_Test_testNullOptionGroup_privateAndPublic_throwSameUnderlyingException.java:[16,33] package org.mockito.junit.jupiter does not exist
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+
+Target under test: method `getParsedOptionValues(OptionGroup)` in class `CommandLine`.
+
+Focal method source:
+
+```java
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException {
+        return getParsedOptionValues(optionGroup, () -> null);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+public class CommandLine {
+private static final long serialVersionUID = ...;
+private final List<String> args;
+private final List<Option> options;
+private final transient Consumer<Option> deprecatedHandler;
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+public static Builder builder(){}
+protected void addArg(final String arg){}
+protected void addOption(final Option option){}
+private <T> T get(final Supplier<T> supplier){}
+public List<String> getArgList(){}
+public String[] getArgs(){}
+@Deprecated
+    public Object getOptionObject(final char optionChar){}
+@Deprecated
+    public Object getOptionObject(final String optionName){}
+public Properties getOptionProperties(final Option option){}
+public Properties getOptionProperties(final String optionName){}
+public Option[] getOptions(){}
+public String getOptionValue(final char optionChar){}
+public String getOptionValue(final char optionChar, final String defaultValue){}
+public String getOptionValue(final char optionChar, final Supplier<String> defaultValue){}
+public String getOptionValue(final Option option){}
+public String getOptionValue(final Option option, final String defaultValue){}
+public String getOptionValue(final Option option, final Supplier<String> defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup){}
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}
+public String getOptionValue(final String optionName){}
+public String getOptionValue(final String optionName, final String defaultValue){}
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue){}
+public String[] getOptionValues(final char optionChar){}
+public String[] getOptionValues(final Option option){}
+public String[] getOptionValues(final OptionGroup optionGroup){}
+public String[] getOptionValues(final String optionName){}
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final T defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException{}
+private void handleDeprecated(final Option option){}
+public boolean hasOption(final char optionChar){}
+public boolean hasOption(final Option option){}
+public boolean hasOption(final OptionGroup optionGroup){}
+public boolean hasOption(final String optionName){}
+public Iterator<Option> iterator(){}
+private void processPropertiesFromValues(final Properties props, final List<String> values){}
+private Option resolveOption(final String optionName){}
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+}
+```
+
+Return the complete fixed unit test file now.

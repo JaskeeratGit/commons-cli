@@ -1,0 +1,56 @@
+package org.apache.commons.cli.help;
+
+import sun.misc.Unsafe;
+import java.lang.reflect.Field;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.function.Supplier;
+
+/**
+ * Unit tests for TextStyle.pad(boolean, CharSequence)
+ */
+public class TextStyle_pad_7_0_Test_testPad_Center_UnsetMaxWidth_AddIndentTrue {
+
+    private static TextStyle createTextStyle(TextStyle.Alignment alignment, int leftPad, int indent, boolean scalable, int minWidth, int maxWidth) throws Exception {
+        // allocate instance without invoking constructor
+        Unsafe unsafe = getUnsafe();
+        Object instance = unsafe.allocateInstance(TextStyle.class);
+        setField(instance, "alignment", alignment);
+        setField(instance, "leftPad", leftPad);
+        setField(instance, "indent", indent);
+        setField(instance, "scalable", scalable);
+        setField(instance, "minWidth", minWidth);
+        setField(instance, "maxWidth", maxWidth);
+        return (TextStyle) instance;
+    }
+
+    private static Unsafe getUnsafe() throws Exception {
+        Field f = Unsafe.class.getDeclaredField("theUnsafe");
+        f.setAccessible(true);
+        return (Unsafe) f.get(null);
+    }
+
+    private static void setField(Object target, String name, Object value) throws Exception {
+        Field field = TextStyle.class.getDeclaredField(name);
+        field.setAccessible(true);
+        field.set(target, value);
+    }
+
+
+    @Test
+    public void testPad_Center_UnsetMaxWidth_AddIndentTrue() throws Exception {
+        TextStyle ts = createTextStyle(TextStyle.Alignment.CENTER, 0, 5, false, 0, TextStyle.UNSET_MAX_WIDTH);
+        String text = "x";
+        CharSequence result = ts.pad(true, text);
+        // indent = 5 -> padLen = 5 -> left = 2, right = 3
+        assertEquals("  x   ", result.toString());
+    }
+
+
+
+
+}

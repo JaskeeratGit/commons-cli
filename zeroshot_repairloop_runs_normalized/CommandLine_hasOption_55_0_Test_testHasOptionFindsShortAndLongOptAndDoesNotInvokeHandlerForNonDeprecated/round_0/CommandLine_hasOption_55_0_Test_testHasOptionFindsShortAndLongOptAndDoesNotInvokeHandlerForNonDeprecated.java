@@ -1,0 +1,40 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.function.Supplier;
+
+public class CommandLine_hasOption_55_0_Test_testHasOptionFindsShortAndLongOptAndDoesNotInvokeHandlerForNonDeprecated {
+
+    // Helper to create CommandLine using the private constructor via reflection
+    private CommandLine createCommandLine(List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        // first argument is args list (List<String>), we pass an empty list
+        return ctor.newInstance(new ArrayList<String>(), options, deprecatedHandler);
+    }
+
+
+    @Test
+    public void testHasOptionFindsShortAndLongOptAndDoesNotInvokeHandlerForNonDeprecated() throws Exception {
+        Option opt = new Option("a", "alpha", false);
+        List<Option> options = new ArrayList<>();
+        options.add(opt);
+        AtomicInteger invoked = new AtomicInteger(0);
+        Consumer<Option> handler = o -> invoked.incrementAndGet();
+        CommandLine cmd = createCommandLine(options, handler);
+        // Using short name
+        assertTrue(cmd.hasOption("a"));
+        // Using long name
+        assertTrue(cmd.hasOption("alpha"));
+        // Ensure deprecated handler was not invoked
+        assertEquals(0, invoked.get());
+    }
+
+
+}

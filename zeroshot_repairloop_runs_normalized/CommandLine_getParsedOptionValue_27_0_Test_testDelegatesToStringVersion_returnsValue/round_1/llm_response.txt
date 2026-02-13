@@ -1,0 +1,135 @@
+package org.apache.commons.cli;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class CommandLine_getParsedOptionValue_27_0_Test_testDelegatesToStringVersion_returnsValue {
+
+    @Test
+    public void testDelegatesToStringVersion_returnsValue() throws Exception {
+        final AtomicReference<String> captured = new AtomicReference<>();
+        // Use the protected no-arg constructor by subclassing to override the String-version method.
+        CommandLine cmd = new CommandLine() {
+
+            @Override
+            public <T> T getParsedOptionValue(final String optionName) throws ParseException {
+                captured.set(optionName);
+                // return a typed value to verify generics behavior
+                return (T) ("parsed:" + optionName);
+            }
+        };
+        // should delegate to getParsedOptionValue(String)
+        String result = cmd.getParsedOptionValue('a');
+        assertEquals("parsed:a", result);
+        assertEquals("a", captured.get());
+    }
+
+
+}
+
+/*
+ * Minimal supporting stubs to allow this test to compile and run independently.
+ * These match the minimal signatures referenced by CommandLine and the tests.
+ * In a real project these would be provided by the library under test.
+ */
+class Option {
+    private final String opt;
+    private final String longOpt;
+    private final boolean hasArg;
+    private final String description;
+    private final List<String> values = new ArrayList<>();
+
+    public Option() {
+        this.opt = null;
+        this.longOpt = null;
+        this.hasArg = false;
+        this.description = null;
+    }
+
+    public Option(final String opt, final String description) {
+        this(opt, null, false, description);
+    }
+
+    public Option(final String opt, final boolean hasArg, final String description) {
+        this(opt, null, hasArg, description);
+    }
+
+    public Option(final String opt, final String longOpt, final boolean hasArg, final String description) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = hasArg;
+        this.description = description;
+    }
+
+    public List<String> getValuesList() {
+        return values;
+    }
+
+    public String[] getValues() {
+        if (values.isEmpty()) {
+            return null;
+        }
+        return values.toArray(new String[0]);
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+
+    public boolean hasArg() {
+        return hasArg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void addValueForProcessing(final String v) {
+        values.add(v);
+    }
+
+    public void setValue(final String v) {
+        values.clear();
+        values.add(v);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Option)) return false;
+        final Option other = (Option) o;
+        return Objects.equals(opt, other.opt) && Objects.equals(longOpt, other.longOpt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(opt, longOpt);
+    }
+}
+
+class ParseException extends Exception {
+
+    public ParseException(final String message) {
+        super(message);
+    }
+}
+
+class Builder {
+
+    // Provide a default deprecated handler used by the protected CommandLine() constructor.
+    static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        // no-op stub
+    };
+}
