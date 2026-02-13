@@ -1,0 +1,53 @@
+package org.apache.commons.cli.help;
+
+import java.lang.reflect.Method;
+import java.util.Queue;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.IOException;
+
+/**
+ * Unit tests for TextHelpAppendable#printWrapped(String)
+ */
+public class TextHelpAppendable_printWrapped_15_0_Test_testPrintWrapped_wrapsLongText_intoMultipleLines {
+
+    private static final String SAMPLE_TEXT = "one two three four five six seven eight nine ten eleven twelve";
+
+    private TextHelpAppendable subject;
+    private StringBuilder output;
+
+    @BeforeEach
+    public void setUp() {
+        // Use a StringBuilder as the Appendable target (actual output is not important for these tests)
+        output = new StringBuilder();
+        subject = new TextHelpAppendable(output);
+    }
+
+    @Test
+    public void testPrintWrapped_wrapsLongText_intoMultipleLines() throws Exception {
+        // configure style to force wrapping at small width
+        subject.getTextStyleBuilder().setMaxWidth(10).setLeftPad(1).setIndent(0);
+        // call the focal method
+        subject.printWrapped(SAMPLE_TEXT);
+
+        // For correctness assert that the same result is produced by directly invoking makeColumnQueue
+        // and then invoking the (private) printQueue on a fresh TextHelpAppendable. This checks that
+        // printWrapped's overall effect matches printing the queue produced by makeColumnQueue.
+        Method makeColumnQueue = TextHelpAppendable.class.getDeclaredMethod("makeColumnQueue", CharSequence.class, TextStyle.class);
+        makeColumnQueue.setAccessible(true);
+        TextStyle style = subject.getTextStyleBuilder().get();
+        @SuppressWarnings("unchecked")
+        Queue<String> expectedQueue = (Queue<String>) makeColumnQueue.invoke(subject, SAMPLE_TEXT, style);
+
+        // Prepare a fresh appendable to capture expected output when printing the queue directly.
+        StringBuilder expectedOutput = new StringBuilder();
+        TextHelpAppendable expectedSubject = new TextHelpAppendable(expectedOutput);
+        Method printQueue = TextHelpAppendable.class.getDeclaredMethod("printQueue", Queue.class);
+        printQueue.setAccessible(true);
+        // Invoke private printQueue on the fresh subject with the expected queue to generate expected output.
+        printQueue.invoke(expectedSubject, expectedQueue);
+
+        // Now compare the outputs
+        assertEquals(expectedOutput.toString(), output.toString(), "Output produced by printWrapped should match printing the queue produced by makeColumnQueue");
+    }
+}

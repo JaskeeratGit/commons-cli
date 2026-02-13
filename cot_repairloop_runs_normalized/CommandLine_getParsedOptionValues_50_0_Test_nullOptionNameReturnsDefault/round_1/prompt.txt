@@ -1,0 +1,370 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+# Procedures for Fixing the Unit Test
+Let's proceed step by step:
+1. Identify the statements where the error occurs.
+2. Determine the root cause from the compiler/runtime output.
+3. Apply a targeted fix.
+
+CONTEXT:
+- Method under test: `getParsedOptionValues(String, T[])` in class `CommandLine` (i.e., `CommandLine.getParsedOptionValues`)
+
+Focal method source:
+
+```java
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException {
+        return getParsedOptionValues(resolveOption(optionName), defaultValue);
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+public class CommandLine {
+private static final long serialVersionUID = ...;
+private final List<String> args;
+private final List<Option> options;
+private final transient Consumer<Option> deprecatedHandler;
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+public static Builder builder(){}
+protected void addArg(final String arg){}
+protected void addOption(final Option option){}
+private <T> T get(final Supplier<T> supplier){}
+public List<String> getArgList(){}
+public String[] getArgs(){}
+@Deprecated
+    public Object getOptionObject(final char optionChar){}
+@Deprecated
+    public Object getOptionObject(final String optionName){}
+public Properties getOptionProperties(final Option option){}
+public Properties getOptionProperties(final String optionName){}
+public Option[] getOptions(){}
+public String getOptionValue(final char optionChar){}
+public String getOptionValue(final char optionChar, final String defaultValue){}
+public String getOptionValue(final char optionChar, final Supplier<String> defaultValue){}
+public String getOptionValue(final Option option){}
+public String getOptionValue(final Option option, final String defaultValue){}
+public String getOptionValue(final Option option, final Supplier<String> defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup){}
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}
+public String getOptionValue(final String optionName){}
+public String getOptionValue(final String optionName, final String defaultValue){}
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue){}
+public String[] getOptionValues(final char optionChar){}
+public String[] getOptionValues(final Option option){}
+public String[] getOptionValues(final OptionGroup optionGroup){}
+public String[] getOptionValues(final String optionName){}
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final T defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException{}
+private void handleDeprecated(final Option option){}
+public boolean hasOption(final char optionChar){}
+public boolean hasOption(final Option option){}
+public boolean hasOption(final OptionGroup optionGroup){}
+public boolean hasOption(final String optionName){}
+public Iterator<Option> iterator(){}
+private void processPropertiesFromValues(final Properties props, final List<String> values){}
+private Option resolveOption(final String optionName){}
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+}
+```
+
+
+# Unit Test to Fix
+
+```java
+package org.apache.commons.cli;
+
+import org.junit.jupiter.api.function.Executable;
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+/*
+ This test file provides a focused JUnit 5 test suite for CommandLine#getParsedOptionValues(String, T[]).
+ It includes small local stubs for Option, Util, Builder and ParseException so the tests compile and exercise
+ the target method and the resolveOption private helper via realistic scenarios.
+*/
+public class CommandLine_getParsedOptionValues_50_0_Test_nullOptionNameReturnsDefault {
+
+    // A small subclass that allows injecting the internal 'options' list via reflection
+    // and overrides getParsedOptionValues(Option, T[]) to provide predictable outputs for testing.
+    static class TestableCommandLine extends CommandLine {
+
+        private final Object[] resultsToReturn;
+
+        TestableCommandLine(List<Option> options, Object[] resultsToReturn) {
+            // call protected no-arg constructor
+            super();
+            this.resultsToReturn = resultsToReturn != null ? resultsToReturn : new Object[0];
+            // inject the private final 'options' field to the desired list
+            try {
+                Field optionsField = CommandLine.class.getDeclaredField("options");
+                optionsField.setAccessible(true);
+                optionsField.set(this, options);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        // Override the delegating variant so that the public getParsedOptionValues(String, T[]) call
+        // will dispatch here and we can control the returned values for testing.
+        @Override
+        @SuppressWarnings("unchecked")
+        public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException {
+            if (option == null) {
+                // mimic expected behavior: return the provided default
+                return defaultValue;
+            }
+            // build an array of the same component type as defaultValue and populate with our resultsToReturn
+            Class<?> componentType = (defaultValue != null) ? defaultValue.getClass().getComponentType() : Object.class;
+            T[] arr = (T[]) Array.newInstance(componentType, resultsToReturn.length);
+            for (int i = 0; i < resultsToReturn.length; i++) {
+                arr[i] = (T) resultsToReturn[i];
+            }
+            return arr;
+        }
+    }
+
+
+
+
+    @Test
+    public void nullOptionNameReturnsDefault() throws Exception {
+        List<Option> options = new ArrayList<>();
+        String[] defaultValues = new String[] { "x" };
+        TestableCommandLine cl = new TestableCommandLine(options, new Object[] { "unused" });
+        // cast null to String to ensure the String overload is selected (the method is overloaded)
+        String[] result = cl.getParsedOptionValues((String) null, defaultValues);
+        assertArrayEquals(defaultValues, result);
+    }
+}
+
+// --- Supporting minimal stubs so the test file compiles and exercises the CommandLine code paths ---
+/**
+ * Minimal Option stub used by the tests. Only implements what CommandLine.resolveOption needs.
+ * In production this would be org.apache.commons.cli.Option from the library.
+ */
+class Option {
+
+    private final String opt;
+
+    private final String longOpt;
+
+    private final boolean hasArg;
+
+    private final String description;
+
+    private final List<String> valuesList = new LinkedList<>();
+
+    private Class<?> type;
+
+    @SuppressWarnings("rawtypes")
+    private Converter converter;
+
+    Option(String opt, String longOpt) {
+        this(opt, longOpt, false, null);
+    }
+
+    Option(String opt, boolean hasArg, String description) {
+        this(opt, null, hasArg, description);
+    }
+
+    Option(String opt, String longOpt, boolean hasArg, String description) {
+        this.opt = opt;
+        this.longOpt = longOpt;
+        this.hasArg = hasArg;
+        this.description = description;
+    }
+
+    public String getOpt() {
+        return opt;
+    }
+
+    public String getLongOpt() {
+        return longOpt;
+    }
+
+    public boolean hasArg() {
+        return hasArg;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getValuesList() {
+        return valuesList;
+    }
+
+    public void addValueForProcessing(final String val) {
+        valuesList.add(val);
+    }
+
+    public void setType(final Class<?> type) {
+        this.type = type;
+    }
+
+    public Class<?> getType() {
+        return type;
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public <T, E extends RuntimeException> void setConverter(final Converter<T, E> c) {
+        this.converter = (Converter) c;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T convertValue(final String val) {
+        if (converter == null) {
+            return (T) val;
+        }
+        return (T) converter.convert(val);
+    }
+}
+
+/**
+ * Minimal Converter stub similar to org.apache.commons.cli.Converter used by tests.
+ */
+interface Converter<T, E extends RuntimeException> {
+    T convert(String value) throws E;
+}
+
+/**
+ * Minimal Util stub with stripLeadingHyphens behavior used by resolveOption.
+ */
+final class Util {
+
+    private Util() {
+    }
+
+    static String stripLeadingHyphens(final String s) {
+        if (s == null) {
+            return null;
+        }
+        // remove a single leading '-' or double leading '--'
+        return s.replaceFirst("^-{1,2}", "");
+    }
+}
+
+/**
+ * Minimal Builder stub to satisfy the protected CommandLine() constructor reference.
+ */
+final class Builder {
+
+    static final Consumer<Option> DEPRECATED_HANDLER = o -> {
+        /* no-op */
+    };
+
+    private Builder() {
+    }
+}
+
+/**
+ * Minimal ParseException stub to match the signature in CommandLine methods.
+ */
+class ParseException extends Exception {
+
+    ParseException(String message) {
+        super(message);
+    }
+
+    ParseException() {
+        super();
+    }
+}
+```
+
+Observed error:
+
+```
+compile
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] CommandLine_getParsedOptionValues_50_0_Test_nullOptionNameReturnsDefault.java:[14,33] package org.mockito.junit.jupiter does not exist
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.572 s
+[INFO] Finished at: 2026-02-13T01:46:52-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] CommandLine_getParsedOptionValues_50_0_Test_nullOptionNameReturnsDefault.java:[14,33] package org.mockito.junit.jupiter does not exist
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+

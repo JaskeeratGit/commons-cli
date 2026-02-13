@@ -1,0 +1,225 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+# Procedures for Fixing the Unit Test
+Let's proceed step by step:
+1. Identify the statements where the error occurs.
+2. Determine the root cause from the compiler/runtime output.
+3. Apply a targeted fix.
+
+CONTEXT:
+- Method under test: `addOptions(Options)` in class `Options` (i.e., `Options.addOptions`)
+
+Focal method source:
+
+```java
+public Options addOptions(final Options options) {
+        for (final Option opt : options.getOptions()) {
+            if (hasOption(opt.getKey())) {
+                throw new IllegalArgumentException("Duplicate key: " + opt.getKey());
+            }
+            addOption(opt);
+        }
+        options.getOptionGroups().forEach(this::addOptionGroup);
+        return this;
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+public class Options {
+private static final long serialVersionUID = ...;
+private final Map<String, Option> shortOpts = ...;
+private final Map<String, Option> longOpts = ...;
+private final List<Object> requiredOpts = ...;
+private final Map<String, OptionGroup> optionGroups = ...;
+public Options(){}
+public Options addOption(final Option opt){}
+public Options addOption(final String opt, final boolean hasArg, final String description){}
+public Options addOption(final String opt, final String description){}
+public Options addOption(final String opt, final String longOpt, final boolean hasArg, final String description){}
+public Options addOptionGroup(final OptionGroup optionGroup){}
+public Options addOptions(final Options options){}
+public Options addRequiredOption(final String opt, final String longOpt, final boolean hasArg, final String description){}
+public List<String> getMatchingOptions(final String opt){}
+public Option getOption(final String opt){}
+public OptionGroup getOptionGroup(final Option option){}
+Collection<OptionGroup> getOptionGroups(){}
+public Collection<Option> getOptions(){}
+public List<?> getRequiredOptions(){}
+public boolean hasLongOption(final String opt){}
+public boolean hasOption(final String opt){}
+public boolean hasShortOption(final String opt){}
+List<Option> helpOptions(){}
+@Override
+    public String toString(){}
+public Options(){}
+}
+```
+
+
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.Option` is
+```[java]
+import static org.apache.commons.cli.Util.EMPTY_STRING_ARRAY;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
+public class Option {
+static final Option[] EMPTY_ARRAY = ...;
+private static final long serialVersionUID = ...;
+public static final int UNINITIALIZED = ...;
+public static final int UNLIMITED_VALUES = ...;
+private int argCount = ...;
+private String argName;
+private transient Converter<?, ?> converter;
+private final transient DeprecatedAttributes deprecated;
+private String description;
+private String longOption;
+private final String option;
+private boolean optionalArg;
+private boolean required;
+private String since;
+private Class<?> type = ...;
+private List<String> values = ...;
+private char valueSeparator;
+private Option(final Builder builder){}
+public Option(final String option, final boolean hasArg, final String description) throws IllegalArgumentException{}
+public Option(final String option, final String description) throws IllegalArgumentException{}
+public Option(final String option, final String longOption, final boolean hasArg, final String description) throws IllegalArgumentException{}
+public String getKey(){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.Option` is
+```[java]
+getKey()
+```
+
+# Unit Test to Fix
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Arrays;
+
+class Options_addOptions_5_0_Test_testAddOptionsSuccessfullyMergesOptionsAndRequiredOptions {
+
+    @Test
+    void testAddOptionsSuccessfullyMergesOptionsAndRequiredOptions() throws Exception {
+        Options base = new Options();
+        Options incoming = new Options();
+        // base has option "a"
+        Option a = new Option("a", false, "option a");
+        base.addOption(a);
+        // incoming has option "b" and it is required
+        Option b = new Option("b", false, "option b");
+        b.setRequired(true);
+        incoming.addOption(b);
+        // incoming also has a long option "longC" (option key "c")
+        Option c = new Option("c", "longC", true, "option c");
+        incoming.addOption(c);
+        // perform merge
+        Options returned = base.addOptions(incoming);
+        // chaining: should return same base instance
+        assertSame(base, returned);
+        // public API checks
+        assertTrue(base.hasOption("a"), "base should still have option a");
+        assertTrue(base.hasOption("b"), "base should now have option b from incoming");
+        assertTrue(base.hasOption("c"), "base should now have option c from incoming");
+        // hasOption should also recognize long option name
+        assertTrue(base.hasOption("longC"), "base should recognize long option longC");
+        // required options list should include "b" key
+        List<?> required = base.getRequiredOptions();
+        assertNotNull(required);
+        assertTrue(required.contains(b.getKey()), "required options should contain key for b");
+        // getOptions() should contain options with keys a, b, c
+        Collection<Option> opts = base.getOptions();
+        assertNotNull(opts);
+        assertEquals(3, opts.size(), "there should be three options after merge");
+        assertTrue(opts.stream().map(Option::getKey).collect(Collectors.toSet()).containsAll(Arrays.asList("a", "b", "c")));
+        // Use reflection to inspect internal private shortOpts map to ensure internal state
+        Field shortOptsField = Options.class.getDeclaredField("shortOpts");
+        shortOptsField.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<String, Option> shortOptsMap = (Map<String, Option>) shortOptsField.get(base);
+        assertTrue(shortOptsMap.containsKey("a"));
+        assertTrue(shortOptsMap.containsKey("b"));
+        assertTrue(shortOptsMap.containsKey("c"));
+    }
+
+
+}
+```
+
+Observed error:
+
+```
+compile
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] Options_addOptions_5_0_Test_testAddOptionsSuccessfullyMergesOptionsAndRequiredOptions.java:[13,33] package org.mockito.junit.jupiter does not exist
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.751 s
+[INFO] Finished at: 2026-02-13T01:58:51-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] Options_addOptions_5_0_Test_testAddOptionsSuccessfullyMergesOptionsAndRequiredOptions.java:[13,33] package org.mockito.junit.jupiter does not exist
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+

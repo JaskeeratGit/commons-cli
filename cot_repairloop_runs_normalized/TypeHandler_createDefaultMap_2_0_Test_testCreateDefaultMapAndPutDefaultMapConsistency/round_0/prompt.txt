@@ -1,0 +1,166 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+# Procedures for Fixing the Unit Test
+Let's proceed step by step:
+1. Identify the statements where the error occurs.
+2. Determine the root cause from the compiler/runtime output.
+3. Apply a targeted fix.
+
+CONTEXT:
+- Method under test: `createDefaultMap()` in class `TypeHandler` (i.e., `TypeHandler.createDefaultMap`)
+
+Focal method source:
+
+```java
+public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap() {
+        return putDefaultMap(new HashMap<>());
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+public class TypeHandler {
+private static final TypeHandler DEFAULT = ...;
+private static final int HEX_RADIX = ...;
+private final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap;
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+public static Class<?> createClass(final String className) throws ParseException{}
+public static Date createDate(final String string){}
+public static Map<Class<?>, Converter<?, ? extends Throwable>> createDefaultMap(){}
+public static File createFile(final String string){}
+@Deprecated // since 1.7.0
+    public static File[] createFiles(final String string){}
+@Deprecated // since 1.7.0
+    public static Number createNumber(final String string) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createObject(final String className) throws ParseException{}
+public static URL createURL(final String string) throws ParseException{}
+public static <T> T createValue(final String string, final Class<T> clazz) throws ParseException{}
+@Deprecated // since 1.7.0
+    public static Object createValue(final String string, final Object obj) throws ParseException{}
+private static <T> T createValueUnchecked(final String string, final Class<T> clazz){}
+public static TypeHandler getDefault(){}
+@Deprecated // since 1.7.0
+    public static FileInputStream openFile(final String string) throws ParseException{}
+private static Map<Class<?>, Converter<?, ? extends Throwable>> putDefaultMap(final Map<Class<?>, Converter<?, ? extends Throwable>> map){}
+@SuppressWarnings("unchecked") // returned value will have type T because it is fixed by clazz
+    public <T> Converter<T, ?> getConverter(final Class<T> clazz){}
+public TypeHandler(){}
+public TypeHandler(final Map<Class<?>, Converter<?, ? extends Throwable>> converterMap){}
+}
+```
+
+
+# Unit Test to Fix
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.io.File;
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.Objects;
+
+/**
+ * JUnit 5 tests for TypeHandler#createDefaultMap() and related behavior.
+ *
+ * Note: A minimal Converter interface is provided below to satisfy compilation
+ * of the TypeHandler signatures used in these tests.
+ */
+public class TypeHandler_createDefaultMap_2_0_Test_testCreateDefaultMapAndPutDefaultMapConsistency {
+
+
+
+
+
+
+
+    @Test
+    public void testCreateDefaultMapAndPutDefaultMapConsistency() throws Exception {
+        // Ensure createDefaultMap delegates to putDefaultMap(new HashMap<>()) effectively
+        Map<Class<?>, Converter<?, ? extends Throwable>> created = TypeHandler.createDefaultMap();
+        // invoke putDefaultMap on a fresh map
+        Method putDefaultMap = null;
+        for (Method m : TypeHandler.class.getDeclaredMethods()) {
+            if ("putDefaultMap".equals(m.getName()) && m.getParameterCount() == 1) {
+                Class<?>[] params = m.getParameterTypes();
+                if (Map.class.isAssignableFrom(params[0])) {
+                    putDefaultMap = m;
+                    break;
+                }
+            }
+        }
+        assertNotNull(putDefaultMap, "Expected a method named putDefaultMap(Map) in TypeHandler");
+        putDefaultMap.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<Class<?>, Converter<?, ? extends Throwable>> fromPut = (Map<Class<?>, Converter<?, ? extends Throwable>>) putDefaultMap.invoke(null, new HashMap<>());
+        // The two maps should have similar characteristics: both non-empty and contain Class->Converter mappings.
+        assertFalse(created.isEmpty());
+        assertFalse(fromPut.isEmpty());
+        // Verify that keys/values types align
+        for (Class<?> k : created.keySet()) {
+            assertNotNull(k);
+            assertTrue(created.get(k) != null);
+        }
+        for (Class<?> k : fromPut.keySet()) {
+            assertNotNull(k);
+            assertTrue(fromPut.get(k) != null);
+        }
+    }
+
+    // Minimal stub for Converter to satisfy compilation when running tests.
+    // If a real Converter interface exists on the classpath, this definition will be ignored only if the real one is present;
+    // otherwise this package-private interface here allows tests to compile.
+    interface Converter<S, T extends Throwable> {
+        // no methods needed for tests
+    }
+}
+
+```
+
+Observed error:
+
+```
+compilation
+src/test/java/org/apache/commons/cli/TypeHandler_createDefaultMap_2_0_Test_testCreateDefaultMapAndPutDefaultMapConsistency.java:[39,96] incompatible types: java.util.Map<java.lang.Class<?>,org.apache.commons.cli.Converter<?,? extends java.lang.Throwable>> cannot be converted to java.util.Map<java.lang.Class<?>,org.apache.commons.cli.TypeHandler_createDefaultMap_2_0_Test_testCreateDefaultMapAndPutDefaultMapConsistency.Converter<?,? extends java.lang.Throwable>>
+```
+

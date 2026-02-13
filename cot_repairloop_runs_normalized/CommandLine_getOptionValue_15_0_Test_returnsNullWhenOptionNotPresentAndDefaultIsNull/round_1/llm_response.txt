@@ -1,0 +1,55 @@
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+public class CommandLine_getOptionValue_15_0_Test_returnsNullWhenOptionNotPresentAndDefaultIsNull {
+
+    // Helper to instantiate CommandLine via its private constructor:
+    private CommandLine newCommandLine(List<String> args, List<Option> options, Consumer<Option> deprecatedHandler) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        return ctor.newInstance(args, options, deprecatedHandler);
+    }
+
+    // Helper to add an internal value to Option via reflection
+    @SuppressWarnings("unchecked")
+    private void addOptionValue(Option option, String value) throws Exception {
+        Field valuesField = Option.class.getDeclaredField("values");
+        valuesField.setAccessible(true);
+        List<String> values = (List<String>) valuesField.get(option);
+        if (values == null) {
+            values = new ArrayList<>();
+            valuesField.set(option, values);
+        }
+        values.add(value);
+    }
+
+
+    @Test
+    public void returnsNullWhenOptionNotPresentAndDefaultIsNull() throws Exception {
+        List<String> args = new ArrayList<>();
+        List<Option> options = new ArrayList<>();
+        CommandLine cmd = newCommandLine(args, options, null);
+        Option opt = new Option("x", false, "option x");
+        String result = cmd.getOptionValue(opt, (String) null);
+        assertNull(result);
+    }
+
+
+}

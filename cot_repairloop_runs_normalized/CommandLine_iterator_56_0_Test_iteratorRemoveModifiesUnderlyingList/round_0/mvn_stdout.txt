@@ -1,0 +1,79 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcommons-cli:commons-cli[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Commons CLI 1.10.0[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:3.5.0:enforce[m [1m(enforce-maven-version)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:3.5.0:enforce[m [1m(enforce-java-version)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mapache-rat-plugin:0.16.1:check[m [1m(rat-check)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] RAT will not execute since it is configured to be skipped via system property 'rat.skip'.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-artifact-plugin:3.6.0:check-buildplan[m [1m(check-buildplan)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] No known issue in 21 plugins
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbuild-helper-maven-plugin:3.6.1:parse-version[m [1m(parse-version)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjacoco-maven-plugin:0.8.13:prepare-agent[m [1m(jacoco-prepare-agent)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] argLine set to -javaagent:/home/jaskeerat/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/target/jacoco.exec,append=false
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-antrun-plugin:3.1.0:run[m [1m(javadoc.resources)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Executing tasks
+[[1;34mINFO[m] Executed tasks
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-remote-resources-plugin:3.3.0:process[m [1m(process-resource-bundles)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Skipping remote resources execution.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbuildnumber-maven-plugin:3.2.1:create[m [1m(default)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Executing: /bin/sh -c cd '/home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli' && 'git' 'log' '-1' '--no-merges' '--format=format:%H %aI %aE %aN'
+[[1;34mINFO[m] Working directory: /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli
+[[1;34mINFO[m] Storing buildNumber: null at timestamp: 1770973084041
+[[1;34mINFO[m] Executing: /bin/sh -c cd '/home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli' && 'git' 'symbolic-ref' 'HEAD'
+[[1;34mINFO[m] Working directory: /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli
+[[1;34mINFO[m] Storing scmBranch: cot_rl_normalized
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/main/resources
+[[1;34mINFO[m] Copying 2 resources from  to target/classes/META-INF
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:compile[m [1m(default-compile)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-bundle-plugin:5.1.9:manifest[m [1m(bundle-manifest)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Writing manifest: /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/target/osgi/MANIFEST.MF
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/test/resources
+[[1;34mINFO[m] Copying 2 resources from  to target/test-classes/META-INF
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m @ [36mcommons-cli[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[[1;34mINFO[m] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] COMPILATION ERROR : 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;31mERROR[m] /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_iterator_56_0_Test_iteratorRemoveModifiesUnderlyingList.java:[16,32] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[[1;31mERROR[m] /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_iterator_56_0_Test_iteratorRemoveModifiesUnderlyingList.java:[17,32] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[[1;34mINFO[m] 2 errors 
+[[1;34mINFO[m] -------------------------------------------------------------
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  1.619 s
+[[1;34mINFO[m] Finished at: 2026-02-13T01:58:04-07:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile[m [1m(default-testCompile)[m on project [36mcommons-cli[m: [1;31mCompilation failure[m: Compilation failure: 
+[[1;31mERROR[m] /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_iterator_56_0_Test_iteratorRemoveModifiesUnderlyingList.java:[16,32] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[[1;31mERROR[m] /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/test/java/org/apache/commons/cli/CommandLine_iterator_56_0_Test_iteratorRemoveModifiesUnderlyingList.java:[17,32] incompatible types: java.lang.String cannot be converted to org.apache.commons.cli.Option.Builder
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

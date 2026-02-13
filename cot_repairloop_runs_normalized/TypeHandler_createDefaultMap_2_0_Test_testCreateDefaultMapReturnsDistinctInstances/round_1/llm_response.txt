@@ -1,0 +1,26 @@
+package org.apache.commons.cli;
+
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * JUnit 5 tests for TypeHandler#createDefaultMap() and related behavior.
+ *
+ * Note: A minimal Converter interface is expected to exist in the same package
+ * (org.apache.commons.cli) and will be used by these tests.
+ */
+public class TypeHandler_createDefaultMap_2_0_Test_testCreateDefaultMapReturnsDistinctInstances {
+
+
+    @Test
+    public void testCreateDefaultMapReturnsDistinctInstances() {
+        Map<Class<?>, Converter<?, ? extends Throwable>> a = TypeHandler.createDefaultMap();
+        Map<Class<?>, Converter<?, ? extends Throwable>> b = TypeHandler.createDefaultMap();
+        assertNotSame(a, b, "createDefaultMap() should return a new Map instance each call");
+        // but contents should be non-empty in both
+        assertFalse(a.isEmpty());
+        assertFalse(b.isEmpty());
+    }
+
+}

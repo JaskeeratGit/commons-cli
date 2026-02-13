@@ -1,0 +1,213 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+# Procedures for Fixing the Unit Test
+Let's proceed step by step:
+1. Identify the statements where the error occurs.
+2. Determine the root cause from the compiler/runtime output.
+3. Apply a targeted fix.
+
+CONTEXT:
+- Method under test: `pad(boolean, CharSequence)` in class `TextStyle` (i.e., `TextStyle.pad`)
+
+Focal method source:
+
+```java
+public CharSequence pad(final boolean addIndent, final CharSequence text) {
+        if (text.length() >= maxWidth) {
+            return text;
+        }
+        String indentPad;
+        String rest;
+        final StringBuilder sb = new StringBuilder();
+        switch (alignment) {
+        case CENTER:
+            int padLen;
+            if (maxWidth == UNSET_MAX_WIDTH) {
+                padLen = addIndent ? indent : 0;
+            } else {
+                padLen = maxWidth - text.length();
+            }
+            final int left = padLen / 2;
+            indentPad = Util.repeatSpace(left);
+            rest = Util.repeatSpace(padLen - left);
+            sb.append(indentPad).append(text).append(rest);
+            break;
+        case LEFT:
+        case RIGHT:
+        default: // default should never happen. It is here to keep code coverage happy.
+            if (maxWidth == UNSET_MAX_WIDTH) {
+                indentPad = addIndent ? Util.repeatSpace(indent) : "";
+                rest = "";
+            } else {
+                int restLen = maxWidth - text.length();
+                if (addIndent && restLen > indent) {
+                    indentPad = Util.repeatSpace(indent);
+                    restLen -= indent;
+                } else {
+                    indentPad = "";
+                }
+                rest = Util.repeatSpace(restLen);
+            }
+
+            if (alignment == Alignment.LEFT) {
+                sb.append(indentPad).append(text).append(rest);
+            } else {
+                sb.append(indentPad).append(rest).append(text);
+            }
+            break;
+        }
+        return sb.toString();
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.util.function.Supplier;
+public final class TextStyle {
+public static final int UNSET_MAX_WIDTH = ...;
+public static final TextStyle DEFAULT = ...;
+private final Alignment alignment;
+private final int leftPad;
+private final int indent;
+private final boolean scalable;
+private final int minWidth;
+private final int maxWidth;
+private TextStyle(final Builder builder){}
+public static Builder builder(){}
+public Alignment getAlignment(){}
+public int getIndent(){}
+public int getLeftPad(){}
+public int getMaxWidth(){}
+public int getMinWidth(){}
+public boolean isScalable(){}
+public CharSequence pad(final boolean addIndent, final CharSequence text){}
+@Override
+    public String toString(){}
+private TextStyle(final Builder builder){}
+}
+```
+
+
+
+To help you correctly fix the unit test file, we provide the brief information about the dependency
+
+The brief information of dependent class `org.apache.commons.cli.help.Util` is
+```[java]
+import java.util.Arrays;
+final class Util {
+private static final int NOT_FOUND = ...;
+private Util(){}
+static String repeatSpace(final int len){}
+}
+```
+
+The brief information of dependent class `org.apache.commons.cli.help.Util` is
+```[java]
+repeatSpace(int)
+```
+
+# Unit Test to Fix
+
+```java
+package org.apache.commons.cli.help;
+
+import sun.misc.Unsafe;
+import java.lang.reflect.Field;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.function.Supplier;
+
+/**
+ * Unit tests for TextStyle.pad(boolean, CharSequence)
+ */
+public class TextStyle_pad_7_0_Test_testPad_Center_UnsetMaxWidth_AddIndentTrue {
+
+    private static TextStyle createTextStyle(TextStyle.Alignment alignment, int leftPad, int indent, boolean scalable, int minWidth, int maxWidth) throws Exception {
+        // allocate instance without invoking constructor
+        Unsafe unsafe = getUnsafe();
+        Object instance = unsafe.allocateInstance(TextStyle.class);
+        setField(instance, "alignment", alignment);
+        setField(instance, "leftPad", leftPad);
+        setField(instance, "indent", indent);
+        setField(instance, "scalable", scalable);
+        setField(instance, "minWidth", minWidth);
+        setField(instance, "maxWidth", maxWidth);
+        return (TextStyle) instance;
+    }
+
+    private static Unsafe getUnsafe() throws Exception {
+        Field f = Unsafe.class.getDeclaredField("theUnsafe");
+        f.setAccessible(true);
+        return (Unsafe) f.get(null);
+    }
+
+    private static void setField(Object target, String name, Object value) throws Exception {
+        Field field = TextStyle.class.getDeclaredField(name);
+        field.setAccessible(true);
+        field.set(target, value);
+    }
+
+
+    @Test
+    public void testPad_Center_UnsetMaxWidth_AddIndentTrue() throws Exception {
+        TextStyle ts = createTextStyle(TextStyle.Alignment.CENTER, 0, 5, false, 0, TextStyle.UNSET_MAX_WIDTH);
+        String text = "x";
+        CharSequence result = ts.pad(true, text);
+        // indent = 5 -> padLen = 5 -> left = 2, right = 3
+        assertEquals("  x   ", result.toString());
+    }
+
+
+
+
+}
+```
+
+Observed error:
+
+```
+compile
+[INFO] 5 warnings 
+[INFO] -------------------------------------------------------------
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] TextStyle_pad_7_0_Test_testPad_Center_UnsetMaxWidth_AddIndentTrue.java:[10,33] package org.mockito.junit.jupiter does not exist
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.545 s
+[INFO] Finished at: 2026-02-13T02:06:23-07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.0:testCompile (default-testCompile) on project commons-cli: Compilation failure
+[ERROR] TextStyle_pad_7_0_Test_testPad_Center_UnsetMaxWidth_AddIndentTrue.java:[10,33] package org.mockito.junit.jupiter does not exist
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+```
+

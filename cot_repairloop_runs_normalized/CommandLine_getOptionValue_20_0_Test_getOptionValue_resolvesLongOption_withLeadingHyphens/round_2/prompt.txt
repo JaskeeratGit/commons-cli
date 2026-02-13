@@ -1,0 +1,304 @@
+ROLE: You are an expert Java test engineer specializing in fixing failing JUnit tests.
+
+TASK: Fix the provided unit test so it compiles and runs successfully.
+CONSTRAINTS:
+- Fix ONLY the provided unit test. Do NOT add new test methods, new test classes, or new files.
+- Do NOT introduce additional tests beyond what already exists in the given unit test.
+- Do NOT change the focal method or production code.
+- Keep the test’s intent the same; make the smallest change necessary to fix the failure.
+- You may adjust imports, annotations, types, mocks, stubs, assertions, and setup within the given test file.
+- Use JUnit 5 and Mockito 3 if needed.
+- Adhere to Java 8 conventions.
+OUTPUT:
+- Return ONLY the complete fixed unit test file (including package and imports if present).
+- No explanation.
+
+# Procedures for Fixing the Unit Test
+Let's proceed step by step:
+1. Identify the statements where the error occurs.
+2. Determine the root cause from the compiler/runtime output.
+3. Apply a targeted fix.
+
+CONTEXT:
+- Method under test: `getOptionValue(String)` in class `CommandLine` (i.e., `CommandLine.getOptionValue`)
+
+Focal method source:
+
+```java
+public String getOptionValue(final String optionName) {
+        return getOptionValue(resolveOption(optionName));
+    }
+```
+
+Focal class skeleton (imports + fields + method signatures):
+
+```java
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+public class CommandLine {
+private static final long serialVersionUID = ...;
+private final List<String> args;
+private final List<Option> options;
+private final transient Consumer<Option> deprecatedHandler;
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+public static Builder builder(){}
+protected void addArg(final String arg){}
+protected void addOption(final Option option){}
+private <T> T get(final Supplier<T> supplier){}
+public List<String> getArgList(){}
+public String[] getArgs(){}
+@Deprecated
+    public Object getOptionObject(final char optionChar){}
+@Deprecated
+    public Object getOptionObject(final String optionName){}
+public Properties getOptionProperties(final Option option){}
+public Properties getOptionProperties(final String optionName){}
+public Option[] getOptions(){}
+public String getOptionValue(final char optionChar){}
+public String getOptionValue(final char optionChar, final String defaultValue){}
+public String getOptionValue(final char optionChar, final Supplier<String> defaultValue){}
+public String getOptionValue(final Option option){}
+public String getOptionValue(final Option option, final String defaultValue){}
+public String getOptionValue(final Option option, final Supplier<String> defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup){}
+public String getOptionValue(final OptionGroup optionGroup, final String defaultValue){}
+public String getOptionValue(final OptionGroup optionGroup, final Supplier<String> defaultValue){}
+public String getOptionValue(final String optionName){}
+public String getOptionValue(final String optionName, final String defaultValue){}
+public String getOptionValue(final String optionName, final Supplier<String> defaultValue){}
+public String[] getOptionValues(final char optionChar){}
+public String[] getOptionValues(final Option option){}
+public String[] getOptionValues(final OptionGroup optionGroup){}
+public String[] getOptionValues(final String optionName){}
+public <T> T getParsedOptionValue(final char optionChar) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final char optionChar, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T getParsedOptionValue(final Option option, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final Option option, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final OptionGroup optionGroup, final T defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final Supplier<T> defaultValue) throws ParseException{}
+public <T> T getParsedOptionValue(final String optionName, final T defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final char optionChar, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option) throws ParseException{}
+@SuppressWarnings("unchecked")
+    public <T> T[] getParsedOptionValues(final Option option, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final Option option, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final OptionGroup optionGroup, final T[] defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final Supplier<T[]> defaultValue) throws ParseException{}
+public <T> T[] getParsedOptionValues(final String optionName, final T[] defaultValue) throws ParseException{}
+private void handleDeprecated(final Option option){}
+public boolean hasOption(final char optionChar){}
+public boolean hasOption(final Option option){}
+public boolean hasOption(final OptionGroup optionGroup){}
+public boolean hasOption(final String optionName){}
+public Iterator<Option> iterator(){}
+private void processPropertiesFromValues(final Properties props, final List<String> values){}
+private Option resolveOption(final String optionName){}
+protected CommandLine(){}
+private CommandLine(final List<String> args, final List<Option> options, final Consumer<Option> deprecatedHandler){}
+}
+```
+
+
+# Unit Test to Fix
+
+```java
+package org.apache.commons.cli;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import org.mockito.*;
+import org.junit.jupiter.api.*;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+
+public class CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens {
+
+    // Helper to instantiate CommandLine via its private constructor
+    private CommandLine createCommandLineWithOptions(final List<Option> options) throws Exception {
+        Constructor<CommandLine> ctor = CommandLine.class.getDeclaredConstructor(List.class, List.class, Consumer.class);
+        ctor.setAccessible(true);
+        final List<String> args = new ArrayList<>();
+        // pass null for deprecatedHandler
+        return ctor.newInstance(args, options, (Consumer<Option>) null);
+    }
+
+    private void setOptionValueReflectively(Option opt, String value) throws Exception {
+        Class<?> cls = opt.getClass();
+        // try known methods
+        try {
+            Method m = cls.getMethod("addValueForProcessing", String.class);
+            m.invoke(opt, value);
+            return;
+        } catch (NoSuchMethodException ignored) {}
+        try {
+            Method m = cls.getMethod("addValue", String.class);
+            m.invoke(opt, value);
+            return;
+        } catch (NoSuchMethodException ignored) {}
+        try {
+            Method m = cls.getMethod("setValue", String.class);
+            m.invoke(opt, value);
+            return;
+        } catch (NoSuchMethodException ignored) {}
+        try {
+            Method m = cls.getMethod("setValues", String[].class);
+            m.invoke(opt, (Object) new String[] { value });
+            return;
+        } catch (NoSuchMethodException ignored) {}
+
+        // try fields
+        Field f = null;
+        try {
+            f = cls.getDeclaredField("values");
+        } catch (NoSuchFieldException e) {
+            try {
+                f = cls.getDeclaredField("value");
+            } catch (NoSuchFieldException ex) {
+                try {
+                    f = cls.getDeclaredField("valuesList");
+                } catch (NoSuchFieldException ex2) {
+                    // leave f null
+                }
+            }
+        }
+        if (f != null) {
+            f.setAccessible(true);
+            Object fieldVal = f.get(opt);
+            if (fieldVal == null) {
+                if (List.class.isAssignableFrom(f.getType())) {
+                    List<String> list = new ArrayList<>();
+                    list.add(value);
+                    f.set(opt, list);
+                    return;
+                }
+                if (f.getType().isArray()) {
+                    Object arr = Array.newInstance(f.getType().getComponentType(), 1);
+                    Array.set(arr, 0, value);
+                    f.set(opt, arr);
+                    return;
+                }
+                f.set(opt, value);
+                return;
+            } else {
+                if (fieldVal instanceof List) {
+                    ((List) fieldVal).add(value);
+                    return;
+                }
+                if (fieldVal.getClass().isArray()) {
+                    int len = Array.getLength(fieldVal);
+                    Object arr = Array.newInstance(fieldVal.getClass().getComponentType(), len + 1);
+                    System.arraycopy(fieldVal, 0, arr, 0, len);
+                    Array.set(arr, len, value);
+                    f.set(opt, arr);
+                    return;
+                }
+                f.set(opt, value);
+                return;
+            }
+        }
+
+        throw new IllegalStateException("Could not set option value reflectively");
+    }
+
+    @Test
+    public void getOptionValue_resolvesLongOption_withLeadingHyphens() throws Exception {
+        Option opt = new Option("c", true, "long opt");
+        opt.setLongOpt("charlie");
+        setOptionValueReflectively(opt, "longValue");
+        List<Option> opts = new ArrayList<>();
+        opts.add(opt);
+        CommandLine cmd = createCommandLineWithOptions(opts);
+        // with single or double hyphens or bare name, resolveOption should match the longOpt
+        assertEquals("longValue", cmd.getOptionValue("charlie"));
+        assertEquals("longValue", cmd.getOptionValue("-charlie"));
+        assertEquals("longValue", cmd.getOptionValue("--charlie"));
+    }
+}
+```
+
+Observed error:
+
+```
+test
+[INFO] Copying 2 resources from  to target/classes/META-INF
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:compile (default-compile) @ commons-cli ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- maven-bundle-plugin:5.1.9:manifest (bundle-manifest) @ commons-cli ---
+[INFO] Writing manifest: /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/target/osgi/MANIFEST.MF
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ commons-cli ---
+[INFO] skip non existing resourceDirectory /home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/src/test/resources
+[INFO] Copying 2 resources from  to target/test-classes/META-INF
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.0:testCompile (default-testCompile) @ commons-cli ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug target 1.8] to target/test-classes
+[INFO] CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.java: CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.java uses unchecked or unsafe operations.
+[INFO] CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- animal-sniffer-maven-plugin:1.24:check (checkAPIcompatibility) @ commons-cli ---
+[INFO] Checking unresolved references to org.codehaus.mojo.signature:java18:1.0
+[INFO] 
+[INFO] --- jacoco-maven-plugin:0.8.13:prepare-agent (prepare-agent) @ commons-cli ---
+[INFO] argLine set to -javaagent:/home/jaskeerat/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/home/jaskeerat/paper1/cli_latest_stable/cot/commons-cli/target/jacoco.exec,append=false
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.3:test (default-test) @ commons-cli ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.037 s <<< FAILURE! -- in org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens
+[ERROR] org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.getOptionValue_resolvesLongOption_withLeadingHyphens -- Time elapsed: 0.017 s <<< ERROR!
+java.lang.UnsupportedOperationException: The addValue method is not intended for client use. Subclasses should use the processValue method instead.
+	at org.apache.commons.cli.Option.addValue(Option.java:535)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.setOptionValueReflectively(CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.java:42)
+	at org.apache.commons.cli.CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.getOptionValue_resolvesLongOption_withLeadingHyphens(CommandLine_getOptionValue_20_0_Test_getOptionValue_resolvesLongOption_withLeadingHyphens.java:114)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   CommandLine_getOptionValue_20_0_Test_getOptionValue_resolve
+```
+
